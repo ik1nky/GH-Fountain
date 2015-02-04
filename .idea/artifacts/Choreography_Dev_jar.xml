@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Choreography_Dev:jar">
+    <output-path>$USER_HOME$/Downloads</output-path>
+    <root id="archive" name="Choreography_Dev.jar">
+      <element id="module-output" name="Choreography_Dev" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Choreography_Dev/lib/controlsfx-8.0.6_20.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
