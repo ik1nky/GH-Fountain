@@ -1,5 +1,6 @@
 .metadata/
 .properties
+.idea
 *.properties
 *.htm
 Choreography_Dev/src/choreography/view/specialOperations/SpecialoperationsController.java
