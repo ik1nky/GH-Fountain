@@ -1,4 +1,5 @@
 Updated 2/16/2015
 
 -Program to auto-comment .ctl files
+    + still needs to create a dedicated readCtl function so I can uncomment the readctl that has javafx elements within it.
 -Implementing a debug mode
