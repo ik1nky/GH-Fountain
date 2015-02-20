@@ -2,7 +2,7 @@
 .properties
 .idea
 *.properties
-*.xml
 *.htm
-/.idea/workspace.xml
+.idea/workspace.xml
+/out/
 Choreography_Dev/src/choreography/view/specialOperations/SpecialoperationsController.java
