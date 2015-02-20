@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.SortedMap;
 import java.util.concurrent.ConcurrentSkipListMap;
-
+import java.util.Map;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import choreography.model.fcw.FCW;
@@ -377,32 +378,171 @@ public class CtlLib {
      *
      * Returns:
      *  1 --> Commented file created successfully
-     *  0 -->
+     *  0 --> Invalid Ctl file provided
      */
 
     public int commentCtlFile(){
+        String myFCWs = "";
+        String[] lines;
+
         try {
-            ConcurrentSkipListMap<Integer, ArrayList<FCW>> myFCWS = openCtlForComment();
+             myFCWs = openCtlForComment();
         } catch (IOException e) {
             e.printStackTrace();
+            return -1;
         }
+        lines = myFCWs.split(System.getProperty("line.separator"));
 
+        //i is equal to 1 when the ctl is legacy and 0 when it is modern
+        for(int i = (lines[0].equals("GHMF"))? 1: 0; i < lines.length;i++)
+        {
+            lines[i] += " " + buildComment(lines[i]);
+        }
         return 1;
     }
 
-    public synchronized ConcurrentSkipListMap<Integer, ArrayList<FCW>> openCtlForComment() throws IOException {
+    //i.e. MM:SS.sADR-DDD ADR-DDD.......ADR-DDD
+    public String buildComment(String fcw)
+    {
+        String comment = "(";
+
+        //Strip the time signature MM:SS.s (First 7 characters)
+        comment += "Minutes: " + fcw.substring(0,1) + " Seconds: " + fcw.substring(3,4) + "." + fcw.charAt(6);
+
+        //Find how many FCWs are in the line
+        int count = countFCWs(fcw.substring(7));
+        if(count == 0)
+            return comment + " No commands provided";
+        else if(count > 10)
+            return comment + " More than ten commands provided: " + count;
+
+        //Get 1 to 10 commands
+        for(int i = 0; i < count; i++)
+        {
+
+        }
+
+
+        return "";
+    }
+
+    public int countFCWs(String myFCW)
+    {
+        int count = 0;
+        String staticMyFCW = myFCW;
+
+        //Increments by seven as an FCW is seven characters
+        for(int i = 0; i < myFCW.length(); i+=7) {
+            //FCWs are separated by a blank space
+            if(myFCW.charAt(i) == ' ') {
+                i++;
+            }
+            //Check ADR
+            for(int j = 0; j <= 2; j++) {
+                if(!(myFCW.charAt(j) >= '0' && myFCW.charAt(j) <= '9')) {
+                    return count;
+                }
+            }
+
+            //Check for '-' between ADR and DDD
+            if(myFCW.charAt(3) != '-')
+                return count;
+
+            //Check DDD
+            for(int j = 4; j <= 6; j++) {
+                if(!(myFCW.charAt(j) >= '0' && myFCW.charAt(j) <= '9')) {
+                    return count;
+                }
+            }
+            count++;
+            myFCW = staticMyFCW.substring(i);
+        }
+        return count;
+    }
+    public synchronized String openCtlForComment() throws IOException {
         FileChooser fc = new FileChooser();
         fc.setTitle("Open CTL File");
         fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         fc.getExtensionFilters().add(new ExtensionFilter("CTL Files", "*.ctl"));
         File ctlFile = fc.showOpenDialog(null);
         //Create buffer --> read the file --> parse the file
-        if (ctlFile != null) return parseCTL(readFile(createCtlCommentBuffer(ctlFile)));
+        return readFile(createCtlCommentBuffer(ctlFile));
 
-        return null;
+
     }
 
     public BufferedReader createCtlCommentBuffer(File file) throws IOException {
         return  new BufferedReader(new FileReader(file));
+    }
+
+    public Map<String, String> makeFCWHash()
+    {
+        Map<String, String> opCodes = new HashMap<String, String>();
+
+
+        opCodes.put("001", "Ring 1");
+        opCodes.put("002", "Ring 2");
+        opCodes.put("003", "Ring 3");
+        opCodes.put("004", "Ring 4");
+        opCodes.put("005", "Ring 5");
+        opCodes.put("006", "Sweep");
+        opCodes.put("007", "A = Bazooka, B = Spout");
+        opCodes.put("008", "Candelabra");
+        opCodes.put("009", "A = Front B = back Curtain & Peacock POSSIBLE ISSUE");
+        opCodes.put("016", "Selected Lights from the table");
+        opCodes.put("017", "Module #1 lights");
+        opCodes.put("018", "Module #2 lights");
+        opCodes.put("019", "Module #3 lights");
+        opCodes.put("020", "Module #4 lights");
+        opCodes.put("021", "Module #5 lights");
+        opCodes.put("022", "Module #6 lights");
+        opCodes.put("023", "Module #7 lights");
+        opCodes.put("024", "Back courtain Lights (Green and Yello only)");
+        opCodes.put("025", "Peacock Light Group A");
+        opCodes.put("026", "Peacock Light Group B");
+        opCodes.put("027", "Peacock Light Group A + B");
+        opCodes.put("033", "Sweep Together");
+        opCodes.put("034", "Sweep Opposite");
+        opCodes.put("035", "Sweep to Limit Left and Right");
+        opCodes.put("036", "Sweep to Limit Left");
+        opCodes.put("037", "Sweep to Limit Right");
+        opCodes.put("038", "Sweep Left Speed");
+        opCodes.put("039", "Sweep Right Speed");
+        opCodes.put("040", "Sweep Left and Right Speed");
+        opCodes.put("042", "Sweep type");
+        opCodes.put("047", "Mutlicake");
+        opCodes.put("048", "Water Modules W1-W6 and Wedding Cake Formation");
+        opCodes.put("049", "Module A lights (ODD 1,3,5,7)");
+        opCodes.put("050", "Module B lights (Even 2,4,6)");
+        opCodes.put("051", "Module A and B lights");
+        opCodes.put("054", "Voice");
+        opCodes.put("055", "Center spout (voice)");
+        opCodes.put("056", "Front courtain - excludes black center module spots");
+        opCodes.put("057", "Back Curtain");
+        opCodes.put("069", "Repeat JUMP water level (Pulse) Sweep Water @0.5 seconds");
+        opCodes.put("080", "Interchange A and B module formations of water and light");
+        opCodes.put("085", "Shit or rotate module 1 - 7 lights");
+        opCodes.put("086", "Set shift timer interval");
+        opCodes.put("099", "Off");
+
+        opCodes.put("117", "Module 1 (017) All Leds - fade up or down");
+        opCodes.put("118", "Module 2 (018) All Leds - fade up or down");
+        opCodes.put("119", "Module 3 (019) All Leds - fade up or down");
+        opCodes.put("120", "Module 4 (020) All Leds - fade up or down");
+        opCodes.put("121", "Module 5 (021) All Leds - fade up or down");
+        opCodes.put("122", "Module 6 (022) All Leds - fade up or down");
+        opCodes.put("123", "Module 7 (023) All Leds - fade up or down");
+
+        opCodes.put("127", "Peacock LED group A & B (027) - fade up or down");
+        opCodes.put("149", "Peacock A LEDS (049) - fade up or down");
+        opCodes.put("150", "Modules B LEDS (050) - fade up or down");
+        opCodes.put("155", "Center spout (voice / 055) - fade up or down");
+        opCodes.put("156", "Front curtain (056) - fade up or down");
+        opCodes.put("157", "Back curtain (057) - fade up or down)");
+
+//Legacy
+        opCodes.put("041", "Peacock Light Group B");
+        opCodes.put("052", "Module A and B lights");
+        return opCodes;
     }
 }
