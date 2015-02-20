@@ -1,12 +1,6 @@
 package choreography.io;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,7 +21,6 @@ import choreography.view.music.MusicPaneController;
  * @author Frank Madrid
  */
 public class CtlLib {
-
 	private static CtlLib instance;
 
 	/**
@@ -120,7 +113,7 @@ public class CtlLib {
 			// Non Time compensated file, Legacy File
 			default:
 				isTimeCompensated = false;
-				ChoreographyController.getInstance().getSaveCTLMenuItem().setDisable(true);
+				//ChoreographyController.getInstance().getSaveCTLMenuItem().setDisable(true);
 				break;
 			}
 			String text = null;
@@ -394,9 +387,24 @@ public class CtlLib {
         lines = myFCWs.split(System.getProperty("line.separator"));
 
         //i is equal to 1 when the ctl is legacy and 0 when it is modern
-        for(int i = (lines[0].equals("GHMF"))? 1: 0; i < lines.length;i++)
+        for(int i = 1; i < lines.length;i++)
         {
             lines[i] += " " + buildComment(lines[i]);
+        }
+
+        try (PrintWriter out = new PrintWriter("auto-comment.ctl")) {
+            for(String s : lines) {
+                out.println(s);
+            }
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+
+        for(String s: lines){
+            System.out.println(s);
         }
         return 1;
     }
@@ -405,25 +413,33 @@ public class CtlLib {
     public String buildComment(String fcw)
     {
         String comment = "(";
+        Map<String,String> opCodes = makeFCWHash();
 
         //Strip the time signature MM:SS.s (First 7 characters)
         comment += "Minutes: " + fcw.substring(0,1) + " Seconds: " + fcw.substring(3,4) + "." + fcw.charAt(6);
+        fcw = fcw.substring(7);
 
         //Find how many FCWs are in the line
-        int count = countFCWs(fcw.substring(7));
+        int count = countFCWs(fcw);
         if(count == 0)
-            return comment + " No commands provided";
+            return comment + " No commands provided)";
         else if(count > 10)
-            return comment + " More than ten commands provided: " + count;
+            return comment + " More than ten commands provided: " + count + ")";
 
         //Get 1 to 10 commands
+        //Strip each command  and trailing space after it is added to the comment
         for(int i = 0; i < count; i++)
         {
+            comment += "\t\t" + opCodes.get(fcw.substring(0,3));
 
+            //System.out.println("Opcode: " + fcw.substring(0,3) + "\t\tMessage: " + opCodes.get(fcw.substring(0,3)));
+
+            if(fcw.length() > 7)
+                fcw = fcw.substring(8);
+            else
+                return comment + ")";
         }
-
-
-        return "";
+        return comment + ")";
     }
 
     public int countFCWs(String myFCW)
@@ -467,8 +483,6 @@ public class CtlLib {
         File ctlFile = fc.showOpenDialog(null);
         //Create buffer --> read the file --> parse the file
         return readFile(createCtlCommentBuffer(ctlFile));
-
-
     }
 
     public BufferedReader createCtlCommentBuffer(File file) throws IOException {
