@@ -369,4 +369,40 @@ public class CtlLib {
 		StringBuilder sb = createCtlData(timeline);
 		return new FilePayload(MusicPaneController.getInstance().getMusicName() + ".ctl", sb.toString().getBytes());
 	}
+
+    /**
+     * Creates a new file from a ctl file that is commented after each line. The comments describe what the fountain
+     * should be doing in english. The comments are surrounded by parentheses (such as this) .
+     *
+     *
+     * Returns:
+     *  1 --> Commented file created successfully
+     *  0 -->
+     */
+
+    public int commentCtlFile(){
+        try {
+            ConcurrentSkipListMap<Integer, ArrayList<FCW>> myFCWS = openCtlForComment();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return 1;
+    }
+
+    public synchronized ConcurrentSkipListMap<Integer, ArrayList<FCW>> openCtlForComment() throws IOException {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open CTL File");
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
+        fc.getExtensionFilters().add(new ExtensionFilter("CTL Files", "*.ctl"));
+        File ctlFile = fc.showOpenDialog(null);
+        //Create buffer --> read the file --> parse the file
+        if (ctlFile != null) return parseCTL(readFile(createCtlCommentBuffer(ctlFile)));
+
+        return null;
+    }
+
+    public BufferedReader createCtlCommentBuffer(File file) throws IOException {
+        return  new BufferedReader(new FileReader(file));
+    }
 }
