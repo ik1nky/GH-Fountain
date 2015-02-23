@@ -7,11 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b023212-b433-4c68-80bf-ea1ab1084d26" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Choreography_Dev/src/choreography/view/ChoreographyController.java" afterPath="$PROJECT_DIR$/Choreography_Dev/src/choreography/view/ChoreographyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Choreography_Dev/src/choreography/Main.java" afterPath="$PROJECT_DIR$/Choreography_Dev/src/choreography/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Choreography_Dev/src/choreography/view/sliders/SlidersController.java" afterPath="$PROJECT_DIR$/Choreography_Dev/src/choreography/view/sliders/SlidersController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GH-Fountain.iws" />
@@ -590,12 +585,19 @@
       <option name="number" value="Default" />
       <updated>1422475721433</updated>
       <workItem from="1424634117709" duration="1212000" />
-      <workItem from="1424635343537" duration="8467000" />
+      <workItem from="1424635343537" duration="8603000" />
     </task>
+    <task id="LOCAL-00001" summary="Sliders now disabled until CTL file is loaded. Loading WAV and CTL files now performed when Open Music button pressed.">
+      <created>1424674929752</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1424674929752</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9679000" />
+    <option name="totallyTimeSpent" value="9815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -679,6 +681,8 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+    <MESSAGE value="Sliders now disabled until CTL file is loaded. Loading WAV and CTL files now performed when Open Music button pressed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Sliders now disabled until CTL file is loaded. Loading WAV and CTL files now performed when Open Music button pressed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -943,7 +947,7 @@
         <state vertical-scroll-proportion="0.29605263" vertical-offset="925" max-vertical-offset="6970">
           <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding>
-            <element signature="e#2896#2897#0" expanded="true" />
+            <element signature="e#2896#2897#0" expanded="false" />
           </folding>
         </state>
       </provider>
