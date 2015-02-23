@@ -6,3 +6,6 @@
 .idea/workspace.xml
 /out/
 Choreography_Dev/src/choreography/view/specialOperations/SpecialoperationsController.java
+*.iws
+workspace.xml
+tasks.xml
