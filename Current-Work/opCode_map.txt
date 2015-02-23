@@ -66,3 +66,9 @@ opCodes.put("157", "Back curtain (057) - fade up or down)");
 //Legacy
 opCodes.put("041", "Peacock Light Group B");
 opCodes.put("052", "Module A and B lights");
+
+
+
+//Colors
+Map<String, String> colorCodes = new HashMap<String, String>();
+colorCodes.put("");
