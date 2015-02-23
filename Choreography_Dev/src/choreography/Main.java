@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
+import choreography.view.sliders.SlidersController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -132,6 +133,7 @@ public class Main extends Application {
 									try {
 										CtlLib.getInstance().openCtl(file);
 										SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
+                                        SlidersController.getInstance().enableAllSliders();
 									} catch (IOException e) {
 										e.printStackTrace();
 									}

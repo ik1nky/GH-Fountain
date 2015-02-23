@@ -160,6 +160,7 @@ public class SlidersController {
 		configureModules();
 		allSliders = new Slider[] { r1A, r1B, r2A, r2B, r3A, r3B, r4A, r4B, r5A, r5B, mxA, mxB, candleA, candleB, swA, swB, ftC, bkC, pk, bz, sp };
 		instance = this;
+        this.disableAllSliders();
 	}
 
 	private void configureModules() {
@@ -450,6 +451,18 @@ public class SlidersController {
 		}
 		return 0;
 	}
+
+    public void disableAllSliders() {
+        for (Slider s : allSliders) {
+            s.setDisable(true);
+        }
+    }
+
+    public void enableAllSliders() {
+        for (Slider s : allSliders) {
+            s.setDisable(false);
+        }
+    }
 
 	public void resetAllSliders() {
 		for (Slider s : allSliders) {
