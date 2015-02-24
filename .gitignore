@@ -1,6 +1,7 @@
 .metadata/
 .properties
-.idea
+/.idea
+/out
 *.properties
 *.htm
 .idea/workspace.xml

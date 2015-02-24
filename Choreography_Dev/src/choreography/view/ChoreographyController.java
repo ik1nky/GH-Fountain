@@ -110,6 +110,8 @@ public class ChoreographyController implements Initializable {
 	private MenuItem openMusicMenuItem;
 	@FXML
 	private MenuItem openCTLMenuItem;
+//    @FXML
+//    private MenuItem OpenPerformanceMenuItem;
 	@FXML
 	private Menu openRecentMenuItemItem;
 	@FXML
@@ -246,10 +248,26 @@ public class ChoreographyController implements Initializable {
 		 * Initializes timeline for selected music file, and enables the
 		 * ability to open a ctl file. 
 		 */
-		openMusicMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent arg0) {
-				fcwOutput.setText("Loading music file ...");
+//		openMusicMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent arg0) {
+//				fcwOutput.setText("Loading music file ...");
+//				FileChooser fc = new FileChooser();
+//				fc.setTitle("Open Music");
+//				fc.setInitialDirectory(new File(System.getProperty("user.dir")));
+//				fc.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Music Files", "*.wav"));
+//				File file2 = fc.showOpenDialog(null);
+//				MusicPaneController.getInstance().selectMusic(file2);
+//				TimelineController.getInstance().initializeTimelines();
+//				openCTLMenuItem.setDisable(false);
+//				fcwOutput.setText("Choreographer has loaded!");
+//			}
+//		});
+
+        openMusicMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                fcwOutput.setText("Loading music file ...");
 				FileChooser fc = new FileChooser();
 				fc.setTitle("Open Music");
 				fc.setInitialDirectory(new File(System.getProperty("user.dir")));
@@ -257,11 +275,29 @@ public class ChoreographyController implements Initializable {
 				File file2 = fc.showOpenDialog(null);
 				MusicPaneController.getInstance().selectMusic(file2);
 				TimelineController.getInstance().initializeTimelines();
-				openCTLMenuItem.setDisable(false);
-				fcwOutput.setText("Choreographer has loaded!");
-			}
 
-		});
+                String ctl = (file2.getPath().substring(0, (file2.getPath().length() - 3))) + "ctl";
+                File file3 = new File(ctl);
+
+                fcwOutput.setText("Loading CTL file ...");
+                try {
+                    loadDefaultMap();
+//                   CtlLib.getInstance().openCtl();
+                    CtlLib.getInstance().openCtl(file3);
+
+
+                    cc.setfcwOutput("CTL file has loaded!");
+                    SlidersController.getInstance().enableAllSliders();
+                    SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
+                } catch (IOException ex) {
+                    Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NullPointerException e) {
+
+                } finally {
+                    fcwOutput.setText("Choreographer has loaded!") ;
+                }
+            }
+        });
 
 		selectionButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -287,21 +323,58 @@ public class ChoreographyController implements Initializable {
 					loadDefaultMap();
 					CtlLib.getInstance().openCtl();
 					cc.setfcwOutput("CTL file has loaded!");
-					
-					/**TODO 
+                    SlidersController.getInstance().enableAllSliders();
+
+					/**TODO
 					 * Handling for if loaded ctl file is a legacy file
 					 */
-					 
+
 					SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
 				} catch (IOException ex) {
 					Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
 				} catch (NullPointerException e) {
 
-				} finally {
-					fcwOutput.setText("Choreographer has loaded!");
+				} finally {fcwOutput.setText("Choreographer has loaded!");
+
 				}
 			}
 		});
+
+//        OpenPerformanceMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+//
+//            @Override
+//            public void handle(ActionEvent event) {
+//                fcwOutput.setText("Loading music file ...");
+//				FileChooser fc = new FileChooser();
+//				fc.setTitle("Open Music");
+//				fc.setInitialDirectory(new File(System.getProperty("user.dir")));
+//				fc.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Music Files", "*.wav"));
+//				File file2 = fc.showOpenDialog(null);
+//				MusicPaneController.getInstance().selectMusic(file2);
+//				TimelineController.getInstance().initializeTimelines();
+//
+//                String ctl = (file2.getPath().substring(0, (file2.getPath().length() - 3))) + "ctl";
+//                File file3 = new File(ctl);
+//
+//                fcwOutput.setText("Loading CTL file ...");
+//                try {
+//                    loadDefaultMap();
+//                    CtlLib.getInstance().openCtl();
+//                    CtlLib.getInstance().openCtl(file3);
+//
+//
+//                    cc.setfcwOutput("CTL file has loaded!");
+//                    SlidersController.getInstance().enableAllSliders();
+//                    SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
+//                } catch (IOException ex) {
+//                    Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
+//                } catch (NullPointerException e) {
+//
+//                } finally {
+//                    fcwOutput.setText("Choreographer has loaded!") ;
+//                }
+//            }
+//        });
 
 		/**
 		 * Turns on advanced features. 
@@ -460,7 +533,7 @@ public class ChoreographyController implements Initializable {
 
 		events = new ConcurrentSkipListMap<>();
 		fcwOutput.setText("Choreographer has loaded!");
-		openCTLMenuItem.setDisable(true);
+//		openCTLMenuItem.setDisable(true);
 		cc = this;
 	}
 
