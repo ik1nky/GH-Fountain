@@ -7,6 +7,8 @@
 package choreography.model.fcw;
 
 import choreography.io.FCWLib;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -17,6 +19,7 @@ public class FCW {
     private int addr;
     private int data;
     private boolean isWater;
+    private ArrayList<String> comments;
 
     /**
      *
@@ -24,6 +27,7 @@ public class FCW {
      * @param data the value of data
      */
     public FCW(int addr, int data){
+        comments = new ArrayList<String>();
         this.addr = addr;
         this.data = data;
         FCWLib.getInstance().reverseIsWater(this);
@@ -56,6 +60,10 @@ public class FCW {
     public void setData(int data) {
         this.data = data;
     }
+
+    public void addComment(String s) { comments.add(s); }
+    public void removeComment(int index){ comments.remove(index);}
+    public ArrayList<String> getComments(){ return comments; }
 
     /**
      *
