@@ -113,7 +113,7 @@ public class CtlLib {
 			// Non Time compensated file, Legacy File
 			default:
 				isTimeCompensated = false;
-				//ChoreographyController.getInstance().getSaveCTLMenuItem().setDisable(true);
+				ChoreographyController.getInstance().getSaveCTLMenuItem().setDisable(true);
 				break;
 			}
 			String text = null;
@@ -159,6 +159,16 @@ public class CtlLib {
 				int totalTimeinTenthSecs = (minutes * 600) + (seconds * 10) + tenths;
 				// get the commands section on the line
 				String commands = line.substring(7, line.length());
+
+                //Regex selects any string between two parentheses. Includes the parentheses in the selection
+                String[] commentTokens = commands.split("\\((.*?)\\)");
+                for(String s : commentTokens)
+                {
+                    System.out.println("Comment: " + s);
+                }
+
+                //Remove comments so they are not included in the fcws. FCWs and comments will still be linked via time.
+                commands.replaceAll("\\((.*?)\\)","");
 				// break the commands into tokens
 				String[] commandTokens = commands.split(" ");
 				// create a new FCW for the command token
@@ -401,8 +411,6 @@ public class CtlLib {
             e.printStackTrace();
         }
 
-
-
         for(String s: lines){
             System.out.println(s);
         }
@@ -416,7 +424,7 @@ public class CtlLib {
         Map<String,String> opCodes = makeFCWHash();
 
         //Strip the time signature MM:SS.s (First 7 characters)
-        comment += "Minutes: " + fcw.substring(0,1) + " Seconds: " + fcw.substring(3,4) + "." + fcw.charAt(6);
+        //comment += "Minutes: " + fcw.substring(0,2) + " Seconds: " + fcw.substring(3,5) + "." + fcw.charAt(6);
         fcw = fcw.substring(7);
 
         //Find how many FCWs are in the line
@@ -431,7 +439,6 @@ public class CtlLib {
         for(int i = 0; i < count; i++)
         {
             comment += "\t\t" + opCodes.get(fcw.substring(0,3));
-
             //System.out.println("Opcode: " + fcw.substring(0,3) + "\t\tMessage: " + opCodes.get(fcw.substring(0,3)));
 
             if(fcw.length() > 7)
@@ -475,14 +482,14 @@ public class CtlLib {
         }
         return count;
     }
-    public synchronized String openCtlForComment() throws IOException {
+   public synchronized String openCtlForComment() throws IOException {
         FileChooser fc = new FileChooser();
         fc.setTitle("Open CTL File");
         fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         fc.getExtensionFilters().add(new ExtensionFilter("CTL Files", "*.ctl"));
         File ctlFile = fc.showOpenDialog(null);
         //Create buffer --> read the file --> parse the file
-        return readFile(createCtlCommentBuffer(ctlFile));
+        return readFileForComment(createCtlCommentBuffer(ctlFile));
     }
 
     public BufferedReader createCtlCommentBuffer(File file) throws IOException {
@@ -558,5 +565,24 @@ public class CtlLib {
         opCodes.put("041", "Peacock Light Group B");
         opCodes.put("052", "Module A and B lights");
         return opCodes;
+    }
+
+    public  String readFileForComment(BufferedReader reader) throws IOException {
+        StringBuilder stringBuffer = new StringBuilder();
+
+        try {
+            String text = null;
+
+            while ((text = reader.readLine()) != null) {
+                stringBuffer.append(text);
+                stringBuffer.append(System.getProperty("line.separator"));
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            reader.close();
+        }
+        return stringBuffer.toString();
     }
 }
