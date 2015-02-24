@@ -566,6 +566,285 @@ public class CtlLib {
         opCodes.put("052", "Module A and B lights");
         return opCodes;
     }
+    
+    public Map<String, String> makeDataLookupHash()
+    {
+    	Map<String, String> dataTable = new HashMap<String, String>();
+
+	dataTable.put("001", "A1");
+	dataTable.put("002", "A1");
+	dataTable.put("003", "A1");
+	dataTable.put("004", "A1");
+	dataTable.put("005", "A1");
+	dataTable.put("006", "A1");
+	dataTable.put("007", "A1");
+	dataTable.put("008", "A1");
+	dataTable.put("009", "B");
+	dataTable.put("016", "E");
+	dataTable.put("017", "C1/K");
+	dataTable.put("018", "C1/K");
+	dataTable.put("019", "C1/K");
+	dataTable.put("020", "C1/K");
+	dataTable.put("021", "C1/K");
+	dataTable.put("022", "C1/K");
+	dataTable.put("023", "C1/K");
+	dataTable.put("024", "C2");
+	dataTable.put("025", "C1/K");
+	dataTable.put("026", "C1/K");
+	dataTable.put("027", "C1/K");
+	dataTable.put("033", "D1");
+	dataTable.put("034", "D1");
+	dataTable.put("035", "J");
+	dataTable.put("036", "J");
+	dataTable.put("037", "J");
+	dataTable.put("038", "D2");
+	dataTable.put("039", "D2");
+	dataTable.put("040", "D2");
+	dataTable.put("042", "D3");
+	dataTable.put("047", "A2");
+	dataTable.put("048", "A1");
+	dataTable.put("049", "C1/K");
+	dataTable.put("050", "C1/K");
+	dataTable.put("051", "C1/K");
+	dataTable.put("054", "F");
+	dataTable.put("055", "K");
+	dataTable.put("056", "K");
+	dataTable.put("057", "K");
+	dataTable.put("069", "H");
+	dataTable.put("080", "I");
+	dataTable.put("085", "G");
+	dataTable.put("086", "Time");
+	dataTable.put("099", "M");
+
+	dataTable.put("117", "L");
+	dataTable.put("118", "L");
+	dataTable.put("119", "L");
+	dataTable.put("120", "L");
+	dataTable.put("121", "L");
+	dataTable.put("122", "L");
+	dataTable.put("123", "L");
+
+	dataTable.put("127", "L");
+	dataTable.put("149", "L");
+	dataTable.put("150", "L");
+	dataTable.put("155", "L");
+	dataTable.put("156", "L");
+	dataTable.put("157", "L");
+
+	//Legacy
+	dataTable.put("041", "C1/K");
+	dataTable.put("052", "C1/K");
+	dataTable.put("053", "C1/K");
+
+	return dataTable;
+    }
+    
+    public Map<String, String> makeAHash()
+    {
+    	Map<String, String> A = new HashMap<String, StringPeacock w();
+	A.put("000", "Water level off and bypass valve closed");
+	A.put("001", "Water level 1");
+	A.put("002", "Water level 2");
+	A.put("003", "Water level 3");
+	A.put("004", "Water level 4");
+	A.put("005", "Water level 5");
+	A.put("006", "Wedding cake");
+	A.put("016", "Module A water valves (Odd numberd)");
+	A.put("032", "Module B water valves (Even numbered)");
+	A.put("064", "Connect A to B through bypass valve");
+    
+    	return A;
+    }
+    
+    public Map<String, String> makeA2Hash()
+    {
+    	Map<String, String> A2 = new HashMap<String, String>();
+	A2.put("000", "Water level off and bypass valve closed");
+	A2.put("001", "Water level 1");
+	A2.put("002", "Water level 2");
+	A2.put("003", "Water level 3");
+	A2.put("004", "Water level 4");
+	A2.put("005", "Water level 5");
+	A2.put("006", "Wedding cake");
+	A2.put("016", "Module A water valves (Odd numberd)");
+	A2.put("032", "Module B water valves (Even numbered)");
+	A2.put("064", "Connect A to B through bypass valve");
+	return A2;
+    }
+    
+    //Courtains and peacock water level
+    public Map<String, String> makeBHash()
+    {
+	Map<String, String> B = new HashMap<String, String>();
+	B.put("000", "Peacock water level off and peacock valve closed");
+	B.put("001", "water level 1");
+	B.put("002", "water level 2");
+	B.put("003", "water level 3");
+	B.put("004", "water level 4");
+	B.put("005", "water level 5");
+	B.put("016", "Front curtain water valves);
+	B.put("032", "Back curtain water valves");
+	B.put("096", "Peacock on / back curtain off - bypass valve");
+	
+	return B;
+    }
+    
+    public Map<String, String> makeC1Hash()
+    {
+    	Map<String, String> C1 = new HashMap<String, String>();
+	C1.put("000", "All colors off");
+	C1.put("001", "Red");
+	C1.put("002", "Blue");
+	C1.put("004", "Amber");
+	C1.put("008", "White");
+	
+	return C1;
+    }
+    
+    public Map<String, String> makeC2Hash() 
+    {
+    	Map<String, String> C2 = new HashMap<String, String>();
+	C2.put("000", "All colors off");
+	C2.put("016", "Green back curtain");
+	C2.put("032", "Yellow back curtain");
+    	
+    	return C2;
+    }
+    
+    public Map<String, String> makeD1Hash() 
+    {
+    	Map<String, String> D1 = new HashMap<String, String>();
+	D1.put("000", "All stop and return to center");
+	D1.put("001", "Short sweep");
+	D1.put("002", "Long sweep");
+	D1.put("008", "Sweep pause");
+	D1.put("016", "Largo");
+	D1.put("032", "Adagio");
+	D1.put("048", "Andante")
+	D1.put("064", "Moderato");
+	D1.put("080", "Allegretto");
+	D1.put("096", "Allegro");
+	D1.put("102", "Presto");
+	
+	return D1;
+    }
+    
+    public Map<String, String> makeD2Hash() 
+    {
+    	Map<String, String> D2 = new HashMap<String, String>();
+	D2.put("000", "All stop and return to center");
+	D2.put("008", "Sweep pause");
+	D2.put("016", "Largo");
+	D2.put("032", "Adagio");
+	D2.put("048", "Andante")
+	D2.put("064", "Moderato");
+	D2.put("080", "Allegretto");
+	D2.put("096", "Allegro");
+	D2.put("102", "Presto");
+    	
+    	return D2;
+    }
+    
+    public Map<String, String> makeD3Hash() 
+    {
+    	Map<String, String> D3 = new HashMap<String, String>();
+	D3.put("000", "Sweep independent");
+	D3.put("001", "Sweep left and right together");
+	D3.put("002", "Sweep left and right Opposed");
+	
+	return D3;
+    }
+    
+    public Map<String, String> makeEHash() 
+    {
+    	Map<String, String> E = new HashMap<String, String>();
+	E.put("000", "All off");
+	E.put("002", "Top of hill - cross/star/anchor - highlight");
+	E.put("004", "White beacons on end of fountain apron");
+	E.put("008", "Superceded white modules");
+	
+	return E;
+    }
+    
+    public Map<String, String> makeFHash() 
+    {
+    	Map<String, String> F = new HashMap<String, String>();
+	F.put("000", "All off");
+	F.put("002", "Voice of the fountain water and lights on");
+	
+	return F;
+    }
+    
+    public Map<String, String> makeGHash() 
+    {
+    	Map<String, String> G = new HashMap<String, String>();
+	G.put("000", "Stop all shifting and reset");
+	G.put("001", "Motion to the right");
+	G.put("002", "Motion to the left");
+	G.put("016", "Shift without end-carry");
+	G.put("032", "Shift light with end-carry");
+	G.put("064", "Repeat shifting at timed interval");
+	
+	return G;
+    }
+    
+    public Map<String, String> makeHHash()
+    {
+    	Map<String, String> H = new HashMap<String, String>();
+	H.put("000", "Stop jumping and return to preset");
+	H.put("006", "Address the sweep water formation");
+	H.put("016", "Jump A module water level");
+	H.put("032", "Jump B module water level");
+	H.put("064", "Jump 0 phase or 1 phase of cycle timers");
+	
+	return H;
+    }
+    
+    public Map<String, String> makeIHash()
+    {
+    	Map<String, String> I = new HashMap<String, String>();
+	I.put("000", "Stop motion");
+	I.put("001", "Effect the water setting");
+	I.put("002", "Effect the light setting");
+	I.put("016", "Place A configurations into B");
+	I.put("032", "Place B configurations into C");
+	
+	return I;
+    }
+    
+    public Map<String, String> makeJHash()
+    {
+    	Map<String, String> J = new HashMap<String, String>();
+	J.put("000", "Hold at center");
+	J.put("017", "Right long to right very short");
+	J.put("019", "Hold at right long");
+	J.put("020", "Right long to center");
+	J.put("021", "Right long to left very short");
+	J.put("034", "Hold at Right short")
+	J.put("051", "Hold at right very short");
+	J.put("068", "Hold at center");
+	J.put("085", "Hold at left very short");
+	J.put("102", "Hold at left short");
+	J.put("119", "Hold at left long");
+	J.put("018", "Oscillate at limit at right long");
+	J.put("035", "Oscillate at limit at right short");
+	J.put("052", "Oscillate at limit at right very long");
+	J.put("053", "Oscillate at limit at center");
+	J.put("069", "Oscillate at limit at left very short");
+	J.put("086", "Oscillate at limit at left short");
+	J.put("103", "Oscillate at limit at left long");
+	J.put("022", "Right long to left short");
+	J.put("023", "Right long to left long");
+	J.put("036", "Right short to center");
+	J.put("037", "Right short to left very short");
+	J.put("038", "Right short to left short");
+	J.put("039", "Right short to left long");
+	J.put("070", "Center to left short");
+	J.put("071", "Center to left long");
+	J.put("087", "Left very short to left long");
+	
+	return J;
+    }
 
     public  String readFileForComment(BufferedReader reader) throws IOException {
         StringBuilder stringBuffer = new StringBuilder();
