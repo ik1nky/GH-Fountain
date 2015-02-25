@@ -461,33 +461,167 @@ public class CtlLib {
 
 		switch (table) {
 			case "A1": dataMap = makeA1Hash();
+				dataNums = new int[10];
+				dataNums[0] = 0;
+				dataNums[1] = 1;
+				dataNums[2] = 2;
+				dataNums[3] = 3;
+				dataNums[4] = 4;
+				dataNums[5] = 5;
+				dataNums[6] = 6;
+				dataNums[7] = 16;
+				dataNums[8] = 32;
+				dataNums[9] = 64;
 				break;
 			case "A2": dataMap = makeA2Hash();
+				dataNums = new int[10];
+				dataNums[0] = 0;
+				dataNums[1] = 1;
+				dataNums[2] = 2;
+				dataNums[3] = 3;
+				dataNums[4] = 4;
+				dataNums[5] = 5;
+				dataNums[6] = 6;
+				dataNums[7] = 16;
+				dataNums[8] = 32;
+				dataNums[9] = 64;
 				break;
 			case "B": dataMap = makeBHash();
+				dataNums = new int[9];
+				dataNums[0] = 0;
+				dataNums[1] = 1;
+				dataNums[2] = 2;
+				dataNums[3] = 3;
+				dataNums[4] = 4;
+				dataNums[5] = 5;
+				dataNums[6] = 16;
+				dataNums[7] = 32;
+				dataNums[8] = 96;
 				break;
 			case "C1": dataMap = makeC1Hash();
+				dataNums = new int[5];
+				dataNums[0] = 0;
+				dataNums[1] = 1;
+				dataNums[2] = 2;
+				dataNums[3] = 4;
+				dataNums[4] = 8;
 				break;
 			case "C2": dataMap = makeC2Hash();
+				dataNums = new int[3];
+				dataNums[0] = 0;
+				dataNums[1] = 16;
+				dataNums[2] = 32;
 				break;
 			case "D1": dataMap = makeD1Hash();
+				dataNums = new int[11];
+				dataNums[0] = 0;
+				dataNums[1] = 1;
+				dataNums[2] = 2;
+				dataNums[3] = 8;
+				dataNums[4] = 16;
+				dataNums[5] = 32;
+				dataNums[6] = 48;
+				dataNums[7] = 64;
+				dataNums[8] = 80;
+				dataNums[9] = 96;
+				dataNums[10] = 102;
 				break;
 			case "D2": dataMap = makeD2Hash();
+				dataNums = new int[9];
+				dataNums[0] = 0;
+				dataNums[1] = 8;
+				dataNums[2] = 16;
+				dataNums[3] = 32;
+				dataNums[4] = 48;
+				dataNums[5] = 64;
+				dataNums[6] = 80;
+				dataNums[7] = 96;
+				dataNums[8] = 102;
 				break;
 			case "D3": dataMap = makeD3Hash();
+				dataNums = new int[3];
+				dataNums[0] = 0;
+				dataNums[1] = 1;
+				dataNums[2] = 2;
 				break;
 			case "E": dataMap = makeEHash();
+				dataNums = new int[4];
+				dataNums[0] = 0;
+				dataNums[1] = 2;
+				dataNums[2] = 4;
+				dataNums[3] = 8;
 				break;
 			case "F": dataMap = makeFHash();
+				dataNums = new int[2];
+				dataNums[0] = 0;
+				dataNums[1] = 2;
 				break;
 			case "G": dataMap = makeGHash();
+				dataNums = new int[6];
+				dataNums[0] = 0;
+				dataNums[1] = 1;
+				dataNums[2] = 2;
+				dataNums[3] = 16;
+				dataNums[4] = 32;
+				dataNums[5] = 64;
 				break;
 			case "H": dataMap = makeHHash();
+				dataNums = new int[5];
+				dataNums[0] = 0;
+				dataNums[1] = 6;
+				dataNums[2] = 16;
+				dataNums[3] = 32;
+				dataNums[4] = 64;
 				break;
 			case "I": dataMap = makeIHash();
+				dataNums = new int[5];
+				dataNums[0] = 0;
+				dataNums[1] = 1;
+				dataNums[2] = 2;
+				dataNums[3] = 16;
+				dataNums[4] = 32;
 				break;
 			case "J": dataMap = makeJHash();
+				dataNums = new int[27];
+				dataNums[0] = 0;
+				dataNums[1] = 17;
+				dataNums[2] = 18;
+				dataNums[3] = 19;
+				dataNums[4] = 20;
+				dataNums[5] = 21;
+				dataNums[6] = 22;
+				dataNums[7] = 23;
+				dataNums[8] = 34;
+				dataNums[9] = 35;
+				dataNums[10] = 36;
+				dataNums[11] = 37;
+				dataNums[12] = 38;
+				dataNums[13] = 39;
+				dataNums[14] = 51;
+				dataNums[15] = 52;
+				dataNums[16] = 53;
+				dataNums[17] = 68;
+				dataNums[18] = 69;
+				dataNums[19] = 70;
+				dataNums[20] = 71;
+				dataNums[21] = 85;
+				dataNums[22] = 86;
+				dataNums[23] = 87;
+				dataNums[24] = 102;
+				dataNums[25] = 103;
+				dataNums[26] = 119;
 				break;
+			default:
+				dataNums = new int[0];
+				System.out.println("There was a problem");
+				comment = "There was a problem with the data section";
+				return comment;
+		}
+
+		for(int i = dataNums.length - 1; i >= 0; i--) {
+			if(dataNums[i] >= num) {
+				comment += dataMap.get(Integer.toString(i));
+			}
 		}
 
 		return comment;
@@ -687,16 +821,16 @@ public class CtlLib {
     public Map<String, String> makeA1Hash()
     {
     	Map<String, String> A1 = new HashMap<String, String>();
-		A1.put("000", "Water level off and bypass valve closed");
-		A1.put("001", "Water level 1");
-		A1.put("002", "Water level 2");
-		A1.put("003", "Water level 3");
-		A1.put("004", "Water level 4");
-		A1.put("005", "Water level 5");
-		A1.put("006", "Wedding cake");
-		A1.put("016", "Module A water valves (Odd numberd)");
-		A1.put("032", "Module B water valves (Even numbered)");
-		A1.put("064", "Connect A to B through bypass valve");
+		A1.put("0", "Water level off and bypass valve closed");
+		A1.put("1", "Water level 1");
+		A1.put("2", "Water level 2");
+		A1.put("3", "Water level 3");
+		A1.put("4", "Water level 4");
+		A1.put("5", "Water level 5");
+		A1.put("6", "Wedding cake");
+		A1.put("16", "Module A water valves (Odd numberd)");
+		A1.put("32", "Module B water valves (Even numbered)");
+		A1.put("64", "Connect A to B through bypass valve");
     
     	return A1;
     }
@@ -704,16 +838,16 @@ public class CtlLib {
     public Map<String, String> makeA2Hash()
     {
     	Map<String, String> A2 = new HashMap<String, String>();
-		A2.put("000", "Water level off and bypass valve closed");
-		A2.put("001", "Water level 1");
-		A2.put("002", "Water level 2");
-		A2.put("003", "Water level 3");
-		A2.put("004", "Water level 4");
-		A2.put("005", "Water level 5");
-		A2.put("006", "Wedding cake");
-		A2.put("016", "Module A water valves (Odd numberd)");
-		A2.put("032", "Module B water valves (Even numbered)");
-		A2.put("064", "Connect A to B through bypass valve");
+		A2.put("0", "Water level off and bypass valve closed");
+		A2.put("1", "Water level 1");
+		A2.put("2", "Water level 2");
+		A2.put("3", "Water level 3");
+		A2.put("4", "Water level 4");
+		A2.put("5", "Water level 5");
+		A2.put("6", "Wedding cake");
+		A2.put("16", "Module A water valves (Odd numberd)");
+		A2.put("32", "Module B water valves (Even numbered)");
+		A2.put("64", "Connect A to B through bypass valve");
 	return A2;
     }
     
@@ -721,15 +855,15 @@ public class CtlLib {
     public Map<String, String> makeBHash()
     {
 		Map<String, String> B = new HashMap<String, String>();
-		B.put("000", "Peacock water level off and peacock valve closed");
-		B.put("001", "water level 1");
-		B.put("002", "water level 2");
-		B.put("003", "water level 3");
-		B.put("004", "water level 4");
-		B.put("005", "water level 5");
-		B.put("016", "Front curtain water valves");
-		B.put("032", "Back curtain water valves");
-		B.put("096", "Peacock on / back curtain off - bypass valve");
+		B.put("0", "Peacock water level off and peacock valve closed");
+		B.put("1", "water level 1");
+		B.put("2", "water level 2");
+		B.put("3", "water level 3");
+		B.put("4", "water level 4");
+		B.put("5", "water level 5");
+		B.put("16", "Front curtain water valves");
+		B.put("32", "Back curtain water valves");
+		B.put("96", "Peacock on / back curtain off - bypass valve");
 
 		return B;
     }
@@ -737,11 +871,11 @@ public class CtlLib {
     public Map<String, String> makeC1Hash()
     {
     	Map<String, String> C1 = new HashMap<String, String>();
-		C1.put("000", "All colors off");
-		C1.put("001", "Red");
-		C1.put("002", "Blue");
-		C1.put("004", "Amber");
-		C1.put("008", "White");
+		C1.put("0", "All colors off");
+		C1.put("1", "Red");
+		C1.put("2", "Blue");
+		C1.put("4", "Amber");
+		C1.put("8", "White");
 
 		return C1;
     }
@@ -749,9 +883,9 @@ public class CtlLib {
     public Map<String, String> makeC2Hash() 
     {
     	Map<String, String> C2 = new HashMap<String, String>();
-		C2.put("000", "All colors off");
-		C2.put("016", "Green back curtain");
-		C2.put("032", "Yellow back curtain");
+		C2.put("0", "All colors off");
+		C2.put("16", "Green back curtain");
+		C2.put("32", "Yellow back curtain");
     	
     	return C2;
     }
@@ -759,16 +893,16 @@ public class CtlLib {
     public Map<String, String> makeD1Hash() 
     {
     	Map<String, String> D1 = new HashMap<String, String>();
-		D1.put("000", "All stop and return to center");
-		D1.put("001", "Short sweep");
-		D1.put("002", "Long sweep");
-		D1.put("008", "Sweep pause");
-		D1.put("016", "Largo");
-		D1.put("032", "Adagio");
-		D1.put("048", "Andante");
-		D1.put("064", "Moderato");
-		D1.put("080", "Allegretto");
-		D1.put("096", "Allegro");
+		D1.put("0", "All stop and return to center");
+		D1.put("1", "Short sweep");
+		D1.put("2", "Long sweep");
+		D1.put("8", "Sweep pause");
+		D1.put("16", "Largo");
+		D1.put("32", "Adagio");
+		D1.put("48", "Andante");
+		D1.put("64", "Moderato");
+		D1.put("80", "Allegretto");
+		D1.put("96", "Allegro");
 		D1.put("102", "Presto");
 	
 		return D1;
@@ -777,14 +911,14 @@ public class CtlLib {
     public Map<String, String> makeD2Hash() 
     {
     	Map<String, String> D2 = new HashMap<String, String>();
-		D2.put("000", "All stop and return to center");
-		D2.put("008", "Sweep pause");
-		D2.put("016", "Largo");
-		D2.put("032", "Adagio");
-		D2.put("048", "Andante");
-		D2.put("064", "Moderato");
-		D2.put("080", "Allegretto");
-		D2.put("096", "Allegro");
+		D2.put("0", "All stop and return to center");
+		D2.put("8", "Sweep pause");
+		D2.put("16", "Largo");
+		D2.put("32", "Adagio");
+		D2.put("48", "Andante");
+		D2.put("64", "Moderato");
+		D2.put("80", "Allegretto");
+		D2.put("96", "Allegro");
 		D2.put("102", "Presto");
     	
     	return D2;
@@ -793,9 +927,9 @@ public class CtlLib {
     public Map<String, String> makeD3Hash() 
     {
     	Map<String, String> D3 = new HashMap<String, String>();
-		D3.put("000", "Sweep independent");
-		D3.put("001", "Sweep left and right together");
-		D3.put("002", "Sweep left and right Opposed");
+		D3.put("0", "Sweep independent");
+		D3.put("1", "Sweep left and right together");
+		D3.put("2", "Sweep left and right Opposed");
 	
 		return D3;
     }
@@ -803,10 +937,10 @@ public class CtlLib {
     public Map<String, String> makeEHash() 
     {
     	Map<String, String> E = new HashMap<String, String>();
-		E.put("000", "All off");
-		E.put("002", "Top of hill - cross/star/anchor - highlight");
-		E.put("004", "White beacons on end of fountain apron");
-		E.put("008", "Superceded white modules");
+		E.put("0", "All off");
+		E.put("2", "Top of hill - cross/star/anchor - highlight");
+		E.put("4", "White beacons on end of fountain apron");
+		E.put("8", "Superceded white modules");
 	
 		return E;
     }
@@ -814,8 +948,8 @@ public class CtlLib {
     public Map<String, String> makeFHash() 
     {
     	Map<String, String> F = new HashMap<String, String>();
-		F.put("000", "All off");
-		F.put("002", "Voice of the fountain water and lights on");
+		F.put("0", "All off");
+		F.put("2", "Voice of the fountain water and lights on");
 	
 		return F;
     }
@@ -823,12 +957,12 @@ public class CtlLib {
     public Map<String, String> makeGHash() 
     {
     	Map<String, String> G = new HashMap<String, String>();
-		G.put("000", "Stop all shifting and reset");
-		G.put("001", "Motion to the right");
-		G.put("002", "Motion to the left");
-		G.put("016", "Shift without end-carry");
-		G.put("032", "Shift light with end-carry");
-		G.put("064", "Repeat shifting at timed interval");
+		G.put("0", "Stop all shifting and reset");
+		G.put("1", "Motion to the right");
+		G.put("2", "Motion to the left");
+		G.put("16", "Shift without end-carry");
+		G.put("32", "Shift light with end-carry");
+		G.put("64", "Repeat shifting at timed interval");
 	
 		return G;
     }
@@ -836,11 +970,11 @@ public class CtlLib {
     public Map<String, String> makeHHash()
     {
     	Map<String, String> H = new HashMap<String, String>();
-		H.put("000", "Stop jumping and return to preset");
-		H.put("006", "Address the sweep water formation");
-		H.put("016", "Jump A module water level");
-		H.put("032", "Jump B module water level");
-		H.put("064", "Jump 0 phase or 1 phase of cycle timers");
+		H.put("0", "Stop jumping and return to preset");
+		H.put("6", "Address the sweep water formation");
+		H.put("16", "Jump A module water level");
+		H.put("32", "Jump B module water level");
+		H.put("64", "Jump 0 phase or 1 phase of cycle timers");
 
 		return H;
     }
@@ -848,11 +982,11 @@ public class CtlLib {
     public Map<String, String> makeIHash()
     {
     	Map<String, String> I = new HashMap<String, String>();
-		I.put("000", "Stop motion");
-		I.put("001", "Effect the water setting");
-		I.put("002", "Effect the light setting");
-		I.put("016", "Place A configurations into B");
-		I.put("032", "Place B configurations into C");
+		I.put("0", "Stop motion");
+		I.put("1", "Effect the water setting");
+		I.put("2", "Effect the light setting");
+		I.put("16", "Place A configurations into B");
+		I.put("32", "Place B configurations into C");
 
 		return I;
     }
@@ -860,33 +994,33 @@ public class CtlLib {
     public Map<String, String> makeJHash()
     {
     	Map<String, String> J = new HashMap<String, String>();
-		J.put("000", "Hold at center");
-		J.put("017", "Right long to right very short");
-		J.put("019", "Hold at right long");
-		J.put("020", "Right long to center");
-		J.put("021", "Right long to left very short");
-		J.put("034", "Hold at Right short");
-		J.put("051", "Hold at right very short");
-		J.put("068", "Hold at center");
-		J.put("085", "Hold at left very short");
+		J.put("0", "Hold at center");
+		J.put("17", "Right long to right very short");
+		J.put("19", "Hold at right long");
+		J.put("20", "Right long to center");
+		J.put("21", "Right long to left very short");
+		J.put("34", "Hold at Right short");
+		J.put("51", "Hold at right very short");
+		J.put("68", "Hold at center");
+		J.put("85", "Hold at left very short");
 		J.put("102", "Hold at left short");
 		J.put("119", "Hold at left long");
-		J.put("018", "Oscillate at limit at right long");
-		J.put("035", "Oscillate at limit at right short");
-		J.put("052", "Oscillate at limit at right very long");
-		J.put("053", "Oscillate at limit at center");
-		J.put("069", "Oscillate at limit at left very short");
-		J.put("086", "Oscillate at limit at left short");
+		J.put("18", "Oscillate at limit at right long");
+		J.put("35", "Oscillate at limit at right short");
+		J.put("52", "Oscillate at limit at right very long");
+		J.put("53", "Oscillate at limit at center");
+		J.put("69", "Oscillate at limit at left very short");
+		J.put("86", "Oscillate at limit at left short");
 		J.put("103", "Oscillate at limit at left long");
-		J.put("022", "Right long to left short");
-		J.put("023", "Right long to left long");
-		J.put("036", "Right short to center");
-		J.put("037", "Right short to left very short");
-		J.put("038", "Right short to left short");
-		J.put("039", "Right short to left long");
-		J.put("070", "Center to left short");
-		J.put("071", "Center to left long");
-		J.put("087", "Left very short to left long");
+		J.put("22", "Right long to left short");
+		J.put("23", "Right long to left long");
+		J.put("36", "Right short to center");
+		J.put("37", "Right short to left very short");
+		J.put("38", "Right short to left short");
+		J.put("39", "Right short to left long");
+		J.put("70", "Center to left short");
+		J.put("71", "Center to left long");
+		J.put("87", "Left very short to left long");
 
 		return J;
     }
