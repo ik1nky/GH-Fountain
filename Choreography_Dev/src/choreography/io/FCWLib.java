@@ -207,6 +207,7 @@ public final class FCWLib {
 					addresses.add(new Integer(tokens[i]));
 				}
 				functionTables.put(addresses, tokens[0].trim());
+                System.err.println("Function tables token.trim     " + tokens[0].trim());
 			}
 		}
 	}
@@ -446,16 +447,24 @@ public final class FCWLib {
 	 *
 	 * @param f
 	 * @return
+     *
+     *
+     *
+     * Tables possibly need a 0 at the end
 	 */
 	public synchronized String[] reverseLookupData(FCW f) {
 		Integer[] values;
 		String table = searchFunctionTables(f.getAddr());
+        System.out.println("!!!!!!!     " + table + "     !!!!!");
 		switch (table) {
 		case "TableTime":
 			return new String[] { Integer.toString(f.getData()) };
 		case "TableA":
-			values = new Integer[] { 64, 32, 16, 8 };
+			values = new Integer[] { 64, 32, 16, 8, 6, 5, 4, 3, 2, 1 };
 			break;
+        case "TableB":
+            values = new Integer[] {96, 32, 16, 5, 4, 3, 2, 1};
+            break;
 		case "TableC":
 			values = new Integer[] { 32, 16, 8, 4, 2, 1 };
 			break;
@@ -487,6 +496,9 @@ public final class FCWLib {
 		case "TableJ":
 			values = new Integer[] { 102, 86, 85, 70, 69, 68, 54, 53, 52, 51, 38, 37, 36, 35, 34, 22, 21, 20, 19, 18, 17, 6, 5, 4, 3, 2, 1 };
 			break;
+        case "TableO":
+            values = new Integer[] {99, 98, 97};
+            break;
 		default:
 			values = new Integer[] { 256, 128, 64, 32, 16, 8 };
 		}
@@ -564,18 +576,24 @@ public final class FCWLib {
 		// }
 	}
 
+    //
 	private void setFlags(Integer[] values, int data, ArrayList<Integer> flags) {
-		for (Integer value : values) {
-			if (data >= value) {
-				data -= value;
-				flags.add(value);
-			}
-		}
-		if (data > 0 && data <= 6)
-			flags.add(data);
+        for (Integer value : values) {
+            if (data >= value  && data > 6) {
+                data -= value;
+                flags.add(value);
+            }
+            else {
+                flags.add(data);
+            }
+        }
+        /*if (data > 0 && data <= 6){
+            System.out.println("DATA VALUE :  " + data);
+            flags.add(data);
+        }
 		else if (data == 0) {
 			flags.add(0);
-		}
+		}*/
 	}
 
 	/**

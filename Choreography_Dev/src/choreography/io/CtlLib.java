@@ -621,7 +621,7 @@ public class CtlLib {
 		for(int i = dataNums.length - 1; i >= 0; i--) {
 			if(dataNums[i] >= num) {
 				comment += dataMap.get(Integer.toString(i));
-				num = num - dataNums[i]
+				num = num - dataNums[i];
 				if(num == 0) {
 					break;
 				}
