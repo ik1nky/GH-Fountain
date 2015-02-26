@@ -54,444 +54,94 @@ public class FountainSimController implements Initializable {
 	private Pane fountainPane;
 
 	@FXML
-	private Group mod5;
-	@FXML
-	private Rectangle mod3ring4;
-
-	@FXML
-	private Group mod4;
-
-	@FXML
-	private Group mod3;
-
-	@FXML
-	private Rectangle mod3ring2;
-
-	@FXML
-	private Rectangle mod6ring4;
-
-	@FXML
-	private Group mod2;
-
-	@FXML
-	private Rectangle mod6ring5;
-
-	@FXML
-	private Slider ring4Slider;
-
-	@FXML
-	private Group mod7;
-
-	@FXML
-	private Group mod6;
-
-	@FXML
 	private MenuButton ring5Level;
 
 	@FXML
-	private Slider ring1Slider;
+	private Group mod1, mod2, mod3, mod4, mod5, mod6, mod7;
 
 	@FXML
-	private Group mod1;
+	private Rectangle mod1ring1, mod1ring2, mod1ring3, mod1ring4, mod1ring5;
 
 	@FXML
-	private Rectangle mod6ring2;
+	private Rectangle mod2ring1, mod2ring2, mod2ring3, mod2ring4, mod2ring5;
 
 	@FXML
-	private Rectangle mod6ring3;
+	private Rectangle mod3ring1, mod3ring2, mod3ring3, mod3ring4, mod3ring5;
 
 	@FXML
-	private Slider ring3Slider;
+	private Rectangle mod4ring1, mod4ring2, mod4ring3, mod4ring4, mod4ring5;
 
 	@FXML
-	private Rectangle mod6ring1;
+	private Rectangle mod5ring1, mod5ring2, mod5ring3, mod5ring4, mod5ring5;
 
 	@FXML
-	private Rectangle mod3ring3;
+	private Rectangle mod6ring1, mod6ring2, mod6ring3, mod6ring4, mod6ring5;
 
 	@FXML
-	private Slider ring5Slider;
+	private Rectangle mod7ring1, mod7ring2, mod7ring3, mod7ring4, mod7ring5;
 
 	@FXML
-	private Rectangle mod3ring1;
-
-	@FXML
-	private Rectangle mod3ring5;
-
-	@FXML
-	private Rectangle mod4ring1;
-
-	@FXML
-	private Rectangle mod7ring4;
-
-	@FXML
-	private Rectangle mod7ring3;
-
-	@FXML
-	private Rectangle mod2ring5;
-
-	@FXML
-	private Rectangle mod7ring2;
-
-	@FXML
-	private Rectangle mod2ring4;
-
-	@FXML
-	private Rectangle mod7ring1;
-
-	@FXML
-	private Rectangle mod2ring3;
-
-	@FXML
-	private Rectangle mod5ring4;
-
-	@FXML
-	private Rectangle mod2ring2;
-
-	@FXML
-	private Rectangle mod5ring3;
-
-	@FXML
-	private Rectangle mod2ring1;
-
-	@FXML
-	private Rectangle mod5ring5;
-
-	@FXML
-	private Rectangle mod5ring2;
-
-	@FXML
-	private Rectangle mod5ring1;
-
-	@FXML
-	private Rectangle mod7ring5;
-
-	@FXML
-	private Slider ring2Slider;
-
-	@FXML
-	private Rectangle mod1ring1;
-
-	@FXML
-	private Rectangle mod4ring2;
-
-	@FXML
-	private Rectangle mod1ring2;
-
-	@FXML
-	private Rectangle mod4ring3;
-
-	@FXML
-	private Rectangle mod4ring4;
-
-	@FXML
-	private Rectangle mod4ring5;
-
-	@FXML
-	private Rectangle mod1ring5;
-
-	@FXML
-	private Rectangle mod1ring3;
-
-	@FXML
-	private Rectangle mod1ring4;
+	private Slider ring1Slider, ring2Slider, ring3Slider, ring4Slider, ring5Slider;
 
 	@FXML
 	private QuadCurve bazookaB;
 
 	@FXML
-	private Line bazooka1;
+	private Line bazooka1, bazooka2, bazooka3, bazooka4, bazooka5;
 
 	@FXML
-	private Line bazooka2;
+	private Line peacock1, peacock2, peacock3, peacock4, peacock5, peacock6, peacock7, peacock8, peacock9;
 
 	@FXML
-	private Line bazooka3;
+	private Rectangle frontCurtain1, frontCurtain2, frontCurtain3, frontCurtain4, frontCurtain5, frontCurtain6,
+			frontCurtain7, frontCurtain8, frontCurtain9, frontCurtain10, frontCurtain11, frontCurtain12,
+			frontCurtain13, frontCurtain14;
 
 	@FXML
-	private Line bazooka4;
+	private Rectangle backCurtain1, backCurtain2, backCurtain3, backCurtain4, backCurtain5, backCurtain6, backCurtain7,
+			backCurtain8, backCurtain9, backCurtain10, backCurtain11, backCurtain12, backCurtain13, backCurtain14;
 
 	@FXML
-	private Line bazooka5;
+	private Line mod1sweep1, mod1sweep2;
 
 	@FXML
-	private Line peacock1;
+	private Line mod1candle1, mod1candle2, mod1candle3, mod1candle4, mod1candle5, mod1candle6;
 
 	@FXML
-	private Line peacock2;
+	private Line mod2sweep1, mod2sweep2;
 
 	@FXML
-	private Line peacock3;
+	private Line mod2candle1, mod2candle2, mod2candle3, mod2candle4, mod2candle5, mod2candle6;
 
 	@FXML
-	private Line peacock4;
+	private Line mod3sweep1, mod3sweep2;
 
 	@FXML
-	private Line peacock5;
+	private Line mod3candle1, mod3candle2, mod3candle3, mod3candle4, mod3candle5, mod3candle6;
 
 	@FXML
-	private Line peacock6;
+	private Line mod4sweep1, mod4sweep2;
 
 	@FXML
-	private Line peacock7;
+	private Line mod4candle1, mod4candle2, mod4candle3, mod4candle4, mod4candle5, mod4candle6;
 
 	@FXML
-	private Line peacock8;
+	private Line mod5sweep1, mod5sweep2;
 
 	@FXML
-	private Line peacock9;
+	private Line mod5candle1, mod5candle2, mod5candle3, mod5candle4, mod5candle5, mod5candle6;
 
 	@FXML
-	private Rectangle frontCurtain1;
+	private Line mod6sweep1, mod6sweep2;
 
 	@FXML
-	private Rectangle frontCurtain2;
+	private Line mod6candle1, mod6candle2, mod6candle3, mod6candle4, mod6candle5, mod6candle6;
 
 	@FXML
-	private Rectangle frontCurtain3;
+	private Line mod7sweep1, mod7sweep2;
 
 	@FXML
-	private Rectangle frontCurtain4;
-
-	@FXML
-	private Rectangle frontCurtain5;
-
-	@FXML
-	private Rectangle frontCurtain6;
-
-	@FXML
-	private Rectangle frontCurtain7;
-
-	@FXML
-	private Rectangle frontCurtain8;
-
-	@FXML
-	private Rectangle frontCurtain9;
-
-	@FXML
-	private Rectangle frontCurtain10;
-
-	@FXML
-	private Rectangle frontCurtain11;
-
-	@FXML
-	private Rectangle frontCurtain12;
-
-	@FXML
-	private Rectangle frontCurtain13;
-
-	@FXML
-	private Rectangle frontCurtain14;
-
-	@FXML
-	private Rectangle backCurtain1;
-
-	@FXML
-	private Rectangle backCurtain2;
-
-	@FXML
-	private Rectangle backCurtain3;
-
-	@FXML
-	private Rectangle backCurtain4;
-
-	@FXML
-	private Rectangle backCurtain5;
-
-	@FXML
-	private Rectangle backCurtain6;
-
-	@FXML
-	private Rectangle backCurtain7;
-
-	@FXML
-	private Rectangle backCurtain8;
-
-	@FXML
-	private Rectangle backCurtain9;
-
-	@FXML
-	private Rectangle backCurtain10;
-
-	@FXML
-	private Rectangle backCurtain11;
-
-	@FXML
-	private Rectangle backCurtain12;
-
-	@FXML
-	private Rectangle backCurtain13;
-
-	@FXML
-	private Rectangle backCurtain14;
-
-	@FXML
-	private Line mod1sweep1;
-
-	@FXML
-	private Line mod1sweep2;
-
-	@FXML
-	private Line mod1candle1;
-
-	@FXML
-	private Line mod1candle2;
-
-	@FXML
-	private Line mod1candle3;
-
-	@FXML
-	private Line mod1candle4;
-
-	@FXML
-	private Line mod1candle5;
-
-	@FXML
-	private Line mod1candle6;
-
-	@FXML
-	private Line mod2sweep1;
-
-	@FXML
-	private Line mod2sweep2;
-
-	@FXML
-	private Line mod2candle1;
-
-	@FXML
-	private Line mod2candle2;
-
-	@FXML
-	private Line mod2candle3;
-
-	@FXML
-	private Line mod2candle4;
-
-	@FXML
-	private Line mod2candle5;
-
-	@FXML
-	private Line mod2candle6;
-
-	@FXML
-	private Line mod3sweep1;
-
-	@FXML
-	private Line mod3sweep2;
-
-	@FXML
-	private Line mod3candle1;
-
-	@FXML
-	private Line mod3candle2;
-
-	@FXML
-	private Line mod3candle3;
-
-	@FXML
-	private Line mod3candle4;
-
-	@FXML
-	private Line mod3candle5;
-
-	@FXML
-	private Line mod3candle6;
-
-	@FXML
-	private Line mod4sweep1;
-
-	@FXML
-	private Line mod4sweep2;
-
-	@FXML
-	private Line mod4candle1;
-
-	@FXML
-	private Line mod4candle2;
-
-	@FXML
-	private Line mod4candle3;
-
-	@FXML
-	private Line mod4candle4;
-
-	@FXML
-	private Line mod4candle5;
-
-	@FXML
-	private Line mod4candle6;
-
-	@FXML
-	private Line mod5sweep1;
-
-	@FXML
-	private Line mod5sweep2;
-
-	@FXML
-	private Line mod5candle1;
-
-	@FXML
-	private Line mod5candle2;
-
-	@FXML
-	private Line mod5candle3;
-
-	@FXML
-	private Line mod5candle4;
-
-	@FXML
-	private Line mod5candle5;
-
-	@FXML
-	private Line mod5candle6;
-
-	@FXML
-	private Line mod6sweep1;
-
-	@FXML
-	private Line mod6sweep2;
-
-	@FXML
-	private Line mod6candle1;
-
-	@FXML
-	private Line mod6candle2;
-
-	@FXML
-	private Line mod6candle3;
-
-	@FXML
-	private Line mod6candle4;
-
-	@FXML
-	private Line mod6candle5;
-
-	@FXML
-	private Line mod6candle6;
-
-	@FXML
-	private Line mod7sweep1;
-
-	@FXML
-	private Line mod7sweep2;
-
-	@FXML
-	private Line mod7candle1;
-
-	@FXML
-	private Line mod7candle2;
-
-	@FXML
-	private Line mod7candle3;
-
-	@FXML
-	private Line mod7candle4;
-
-	@FXML
-	private Line mod7candle5;
-
-	@FXML
-	private Line mod7candle6;
+	private Line mod7candle1, mod7candle2, mod7candle3, mod7candle4, mod7candle5, mod7candle6;
 
 	@FXML
 	private Rectangle spoutRec;
