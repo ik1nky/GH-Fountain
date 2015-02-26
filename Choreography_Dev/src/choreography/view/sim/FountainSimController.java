@@ -282,7 +282,10 @@ public class FountainSimController implements Initializable {
                     // Apex has these two water features on the same address for
                     // some odd reason
                     case 7:
-                        if (actionsList.contains("SPOUT")) {
+                        for (String s : actionsList){
+                                System.err.println("ACTIONSSSSS: " + s + "    !!!!!!");
+                        }
+                        if (actionsList.contains("VOICE")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
                             drawSpout(level, lagTime);
                         }
@@ -306,9 +309,6 @@ public class FountainSimController implements Initializable {
 
                     // Draws the Front and Back Curtain, and the Peacock
                     case 9:
-                        for (String s : actionsList){
-                            System.out.println("ACTIONSSSSS: " + s + "    !!!!!!");
-                        }
 					if (actionsList.contains("FTCURT")) {
 						int level = FCWLib.getInstance().reverseGetLevel(f);
 						drawFtCurtain(level, lagTime);
