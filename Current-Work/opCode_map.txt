@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-Map<String, String> opCodes = new HashMap<String, String, String>();
+Map<String, String> opCodes = new HashMap<String, String>();
 
 
 opCodes.put("001", "Ring 1", "A1");
@@ -67,6 +67,78 @@ opCodes.put("157", "Back curtain (057) - fade up or down)", "L");
 opCodes.put("041", "Peacock Light Group B", "C1/K");
 opCodes.put("052", "Module A and B lights", "C1/K");
 opCodes.put("053", "All lights", "C1/K");
+
+// 501-541, 601-641 not implemented into map
+
+
+
+//Data lookup map
+Map<String, String> dataTable = new HashMap<String, String>();
+
+dataTable.put("001", "A1");
+dataTable.put("002", "A1");
+dataTable.put("003", "A1");
+dataTable.put("004", "A1");
+dataTable.put("005", "A1");
+dataTable.put("006", "A1");
+dataTable.put("007", "A1");
+dataTable.put("008", "A1");
+dataTable.put("009", "B");
+dataTable.put("016", "E");
+dataTable.put("017", "C1/K");
+dataTable.put("018", "C1/K");
+dataTable.put("019", "C1/K");
+dataTable.put("020", "C1/K");
+dataTable.put("021", "C1/K");
+dataTable.put("022", "C1/K");
+dataTable.put("023", "C1/K");
+dataTable.put("024", "C2");
+dataTable.put("025", "C1/K");
+dataTable.put("026", "C1/K");
+dataTable.put("027", "C1/K");
+dataTable.put("033", "D1");
+dataTable.put("034", "D1");
+dataTable.put("035", "J");
+dataTable.put("036", "J");
+dataTable.put("037", "J");
+dataTable.put("038", "D2");
+dataTable.put("039", "D2");
+dataTable.put("040", "D2");
+dataTable.put("042", "D3");
+dataTable.put("047", "A2");
+dataTable.put("048", "A1");
+dataTable.put("049", "C1/K");
+dataTable.put("050", "C1/K");
+dataTable.put("051", "C1/K");
+dataTable.put("054", "F");
+dataTable.put("055", "K");
+dataTable.put("056", "K");
+dataTable.put("057", "K");
+dataTable.put("069", "H");
+dataTable.put("080", "I");
+dataTable.put("085", "G");
+dataTable.put("086", "Time");
+dataTable.put("099", "M");
+
+dataTable.put("117", "L");
+dataTable.put("118", "L");
+dataTable.put("119", "L");
+dataTable.put("120", "L");
+dataTable.put("121", "L");
+dataTable.put("122", "L");
+dataTable.put("123", "L");
+
+dataTable.put("127", "L");
+dataTable.put("149", "L");
+dataTable.put("150", "L");
+dataTable.put("155", "L");
+dataTable.put("156", "L");
+dataTable.put("157", "L");
+
+//Legacy
+dataTable.put("041", "C1/K");
+dataTable.put("052", "C1/K");
+dataTable.put("053", "C1/K");
 
 // 501-541, 601-641 not implemented into map
 
