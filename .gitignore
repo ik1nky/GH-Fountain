@@ -1,6 +1,10 @@
 .metadata/
 .properties
-.idea
+/.idea
+/out
 *.properties
 *.htm
 Choreography_Dev/src/choreography/view/specialOperations/SpecialoperationsController.java
+*.iws
+workspace.xml
+tasks.xml

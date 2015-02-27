@@ -278,6 +278,7 @@ public class MusicPaneController {
 			numberLine.setPrefWidth(getTime() * 26);
 			numberLine.setUpperBound(roundedTime);
 			numberLine.setVisible(true);
+
 			songProgress.setText("0/" + roundedTime);
 		} catch (Exception ex) {
 
