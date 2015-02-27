@@ -278,7 +278,9 @@ public class MusicPaneController {
 			numberLine.setPrefWidth(getTime() * 26);
 			numberLine.setUpperBound(roundedTime);
 			numberLine.setVisible(true);
-			songProgress.setText("0/" + roundedTime);
+            songProgress.setText("0/" + roundedTime);
+
+
 		} catch (Exception ex) {
 
 			ex.printStackTrace();
@@ -311,8 +313,25 @@ public class MusicPaneController {
      */
 	public void updateProgress() {
 		final DecimalFormat f = new DecimalFormat("0.0");
+
 		try {
-			songProgress.setText(f.format(mediaPlayer.getCurrentTime().toSeconds()) + "/" + f.format(mediaPlayer.getTotalDuration().toSeconds()));
+            String timeInFormat = "";
+            int inMinutes = 0;
+
+            for(int i = 0; i < (int) mediaPlayer.getCurrentTime().toMinutes(); i++) {
+                inMinutes++;
+            }
+            timeInFormat = inMinutes + ":" + f.format((mediaPlayer.getCurrentTime().toSeconds() - inMinutes * 60));
+
+            String finalTimeInFormat = "";
+            int finalInMinutes = 0;
+
+            for(int i = 0; i < (int) mediaPlayer.getTotalDuration().toMinutes(); i++) {
+                finalInMinutes++;
+            }
+            finalTimeInFormat = finalInMinutes + ":" + f.format((mediaPlayer.getTotalDuration().toSeconds() - finalInMinutes*60));
+
+			songProgress.setText(timeInFormat + " / " + finalTimeInFormat);
 			duration = mediaPlayer.getMedia().getDuration();
 
 			double totalTime = mediaPlayer.getTotalDuration().toSeconds();
