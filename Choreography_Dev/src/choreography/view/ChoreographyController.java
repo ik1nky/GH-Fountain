@@ -108,10 +108,8 @@ public class ChoreographyController implements Initializable {
 	private MenuItem newItemMenuItem;
 	@FXML
 	private MenuItem openMusicMenuItem;
-	@FXML
-	private MenuItem openCTLMenuItem;
-//    @FXML
-//    private MenuItem OpenPerformanceMenuItem;
+//	@FXML
+//	private MenuItem openCTLMenuItem;
 	@FXML
 	private Menu openRecentMenuItemItem;
 	@FXML
@@ -282,12 +280,10 @@ public class ChoreographyController implements Initializable {
                 fcwOutput.setText("Loading CTL file ...");
                 try {
                     loadDefaultMap();
-//                   CtlLib.getInstance().openCtl();
                     CtlLib.getInstance().openCtl(file3);
-
-
                     cc.setfcwOutput("CTL file has loaded!");
                     SlidersController.getInstance().enableAllSliders();
+                    MusicPaneController.getInstance().getTimeSlider().setDisable(false);
                     SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
                 } catch (IOException ex) {
                     Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
@@ -314,67 +310,31 @@ public class ChoreographyController implements Initializable {
 
 		});
 
-		openCTLMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent t) {
-				fcwOutput.setText("Loading CTL file ...");
-				try {
-					loadDefaultMap();
-					CtlLib.getInstance().openCtl();
-					cc.setfcwOutput("CTL file has loaded!");
-                    SlidersController.getInstance().enableAllSliders();
-
-					/**TODO
-					 * Handling for if loaded ctl file is a legacy file
-					 */
-
-					SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
-				} catch (IOException ex) {
-					Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
-				} catch (NullPointerException e) {
-
-				} finally {fcwOutput.setText("Choreographer has loaded!");
-
-				}
-			}
-		});
-
-//        OpenPerformanceMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+//		openCTLMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 //
-//            @Override
-//            public void handle(ActionEvent event) {
-//                fcwOutput.setText("Loading music file ...");
-//				FileChooser fc = new FileChooser();
-//				fc.setTitle("Open Music");
-//				fc.setInitialDirectory(new File(System.getProperty("user.dir")));
-//				fc.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Music Files", "*.wav"));
-//				File file2 = fc.showOpenDialog(null);
-//				MusicPaneController.getInstance().selectMusic(file2);
-//				TimelineController.getInstance().initializeTimelines();
-//
-//                String ctl = (file2.getPath().substring(0, (file2.getPath().length() - 3))) + "ctl";
-//                File file3 = new File(ctl);
-//
-//                fcwOutput.setText("Loading CTL file ...");
-//                try {
-//                    loadDefaultMap();
-//                    CtlLib.getInstance().openCtl();
-//                    CtlLib.getInstance().openCtl(file3);
-//
-//
-//                    cc.setfcwOutput("CTL file has loaded!");
+//			@Override
+//			public void handle(ActionEvent t) {
+//				fcwOutput.setText("Loading CTL file ...");
+//				try {
+//					loadDefaultMap();
+//					CtlLib.getInstance().openCtl();
+//					cc.setfcwOutput("CTL file has loaded!");
 //                    SlidersController.getInstance().enableAllSliders();
-//                    SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
-//                } catch (IOException ex) {
-//                    Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
-//                } catch (NullPointerException e) {
 //
-//                } finally {
-//                    fcwOutput.setText("Choreographer has loaded!") ;
-//                }
-//            }
-//        });
+//					/**TODO
+//					 * Handling for if loaded ctl file is a legacy file
+//					 */
+//
+//					SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
+//				} catch (IOException ex) {
+//					Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
+//				} catch (NullPointerException e) {
+//
+//				} finally {fcwOutput.setText("Choreographer has loaded!");
+//
+//				}
+//			}
+//		});
 
 		/**
 		 * Turns on advanced features. 
@@ -949,7 +909,7 @@ public class ChoreographyController implements Initializable {
 		this.saveCTLMenuItem = saveCTLMenuItem;
 	}
 
-	public MenuItem getOpenCTLMenuItem() {
-		return openCTLMenuItem;
-	}
+//	public MenuItem getOpenCTLMenuItem() {
+//		return openCTLMenuItem;
+//	}
 }
