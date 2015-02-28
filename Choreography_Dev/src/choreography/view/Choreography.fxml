@@ -46,8 +46,8 @@
 									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
 						</MenuItem>						
-						<MenuItem fx:id="openCTLMenuItem" mnemonicParsing="false"
-							text="Open CTL" />
+						<!--<MenuItem fx:id="openCTLMenuItem" mnemonicParsing="false"-->
+							<!--text="Open CTL" />-->
 						<SeparatorMenuItem mnemonicParsing="false" />
 						<MenuItem fx:id="saveCTLMenuItem" mnemonicParsing="false"
 							text="Save CTL File">

@@ -206,106 +206,109 @@ public class FountainSimController implements Initializable {
 				}
 				switch (f.getAddr()) {
 
-				// Draws Ring 5
-				case 5:
-					if (actionsList.contains("MODULEA")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing5A(level, lagTime);
-					}
-					if (actionsList.contains("MODULEB")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing5B(level, lagTime);
-					}
-					break;
+                    // Draws Ring 5
+                    case 5:
+                        if (actionsList.contains("MODULEA")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing5A(level, lagTime);
+                        }
+                        if (actionsList.contains("MODULEB")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing5B(level, lagTime);
+                        }
+                        break;
 
-				// Draws Ring 4
-				case 4:
-					if (actionsList.contains("MODULEA")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing4A(level, lagTime);
-					}
-					if (actionsList.contains("MODULEB")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing4B(level, lagTime);
-					}
-					break;
+                    // Draws Ring 4
+                    case 4:
+                        if (actionsList.contains("MODULEA")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing4A(level, lagTime);
+                        }
+                        if (actionsList.contains("MODULEB")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing4B(level, lagTime);
+                        }
+                        break;
 
-				// Draws Ring 3
-				case 3:
-					if (actionsList.contains("MODULEA")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing3A(level, lagTime);
-					}
-					if (actionsList.contains("MODULEB")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing3B(level, lagTime);
-					}
-					break;
+                    // Draws Ring 3
+                    case 3:
+                        if (actionsList.contains("MODULEA")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing3A(level, lagTime);
+                        }
+                        if (actionsList.contains("MODULEB")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing3B(level, lagTime);
+                        }
+                        break;
 
-				// Draws Ring 2
-				case 2:
-					if (actionsList.contains("MODULEA")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing2A(level, lagTime);
-					}
-					if (actionsList.contains("MODULEB")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing2B(level, lagTime);
-					}
-					break;
+                    // Draws Ring 2
+                    case 2:
+                        if (actionsList.contains("MODULEA")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing2A(level, lagTime);
+                        }
+                        if (actionsList.contains("MODULEB")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing2B(level, lagTime);
+                        }
+                        break;
 
-				// Draws Ring 1
-				case 1:
-					if (actionsList.contains("MODULEA")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing1A(level, lagTime);
-					}
-					if (actionsList.contains("MODULEB")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawRing1B(level, lagTime);
-					}
-					break;
+                    // Draws Ring 1
+                    case 1:
+                        if (actionsList.contains("MODULEA")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing1A(level, lagTime);
+                        }
+                        if (actionsList.contains("MODULEB")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawRing1B(level, lagTime);
+                        }
+                        break;
 
-				// Draws Sweeps, does not do any animations
-				case 6:
-					if (actionsList.contains("MODULEA")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawSweepsA(level, lagTime);
-					}
-					if (actionsList.contains("MODULEB")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawSweepsB(level, lagTime);
-					}
-					break;
+                    // Draws Sweeps, does not do any animations
+                    case 6:
+                        if (actionsList.contains("MODULEA")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawSweepsA(level, lagTime);
+                        }
+                        if (actionsList.contains("MODULEB")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawSweepsB(level, lagTime);
+                        }
+                        break;
 
-				// Draws Spoud/Voice and Bazooka
-				// Apex has these two water features on the same address for
-				// some odd reason
-				case 7:
-					if (actionsList.contains("SPOUT")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawSpout(level, lagTime);
-					}
-					if (actionsList.contains("BAZOOKA")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawBazooka(level, lagTime);
-					}
-					break;
+                    // Draws Spoud/Voice and Bazooka
+                    // Apex has these two water features on the same address for
+                    // some odd reason
+                    case 7:
+                        for (String s : actionsList){
+                                System.err.println("ACTIONSSSSS: " + s + "    !!!!!!");
+                        }
+                        if (actionsList.contains("VOICE")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawSpout(level, lagTime);
+                        }
+                        if (actionsList.contains("BAZOOKA")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawBazooka(level, lagTime);
+                        }
+                        break;
 
-				// Draws the Candelabras
-				case 8:
-					if (actionsList.contains("MODULEA")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawCandlesA(level, lagTime);
-					}
-					if (actionsList.contains("MODULEB")) {
-						int level = FCWLib.getInstance().reverseGetLevel(f);
-						drawCandlesB(level, lagTime);
-					}
-					break;
+                    // Draws the Candelabras
+                    case 8:
+                        if (actionsList.contains("MODULEA")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawCandlesA(level, lagTime);
+                        }
+                        if (actionsList.contains("MODULEB")) {
+                            int level = FCWLib.getInstance().reverseGetLevel(f);
+                            drawCandlesB(level, lagTime);
+                        }
+                        break;
 
-				// Draws the Front and Back Curtain, and the Peacock
-				case 9:
+                    // Draws the Front and Back Curtain, and the Peacock
+                    case 9:
 					if (actionsList.contains("FTCURT")) {
 						int level = FCWLib.getInstance().reverseGetLevel(f);
 						drawFtCurtain(level, lagTime);
@@ -1749,9 +1752,12 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
+    /*
+     * peacock level is being called as 0 right before the draw, making it invisible.
+     */
 	public void drawPeacock(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
-
+        System.err.println("System reaches peacock call!");
 		KeyValue kv2 = null;
 		KeyValue kv3 = null;
 		KeyValue kv4 = null;
@@ -1821,7 +1827,7 @@ public class FountainSimController implements Initializable {
 			kv19 = new KeyValue(peacock9.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
 
 		} else {
-
+            System.err.println("Peacock ELSE");
 			kv2 = new KeyValue(peacock1.endXProperty(), (689 + (102.2 * level)), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(peacock1.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
 			kv4 = new KeyValue(peacock2.endXProperty(), (688 + (66.4 * level)), Interpolator.EASE_OUT);

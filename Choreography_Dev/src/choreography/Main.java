@@ -105,7 +105,7 @@ public class Main extends Application {
 							if (filePath.substring(filePath.length() - 4).equalsIgnoreCase(".wav")) {
 								MusicPaneController.getInstance().openMusicFile(file);
 								TimelineController.getInstance().initializeTimelines();
-								ChoreographyController.getInstance().getOpenCTLMenuItem().setDisable(false);
+//								ChoreographyController.getInstance().getOpenCTLMenuItem().setDisable(false);
 								MusicPaneController.getInstance().getPlayButton().setDisable(false);
 								MusicPaneController.getInstance().getResetButton().setDisable(false);
 							}
