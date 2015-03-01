@@ -809,7 +809,6 @@ public class TimelineController implements Initializable {
 				FountainSimController.getInstance().getBazooka1().setStroke(color);
 			}
 			if (channel == 24 || channel == 205) {
-				// FountainSimController.getInstance().getBackCurtain().setFill(color);
 				FountainSimController.getInstance().getBackCurtain1().setFill(color);
 				FountainSimController.getInstance().getBackCurtain2().setFill(color);
 				FountainSimController.getInstance().getBackCurtain3().setFill(color);

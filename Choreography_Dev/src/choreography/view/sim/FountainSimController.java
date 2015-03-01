@@ -1395,7 +1395,7 @@ public class FountainSimController implements Initializable {
 					break;
 					
 				case 501:
-					System.out.println("Fading!!!");
+					//System.out.println("Fading!!!");
 					crossFading[0][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod1ring4.getFill()));
 					crossFading[0][1]=ColorPaletteModel.getInstance().getColor(f.getData()%100);
 					break;
@@ -5150,5 +5150,6 @@ public class FountainSimController implements Initializable {
 		drawSpout(0, 0);
 		drawSweepsA(0, 0);
 		drawSweepsB(0, 0);
+		clearSweeps();
 	}
 }
