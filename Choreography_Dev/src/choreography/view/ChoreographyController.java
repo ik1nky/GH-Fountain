@@ -262,6 +262,13 @@ public class ChoreographyController implements Initializable {
 //			}
 //		});
 
+        /**
+         * Loads a music file selected from file chooser.
+         * Initializes timeline for selected music file, then loads
+         * ctl file with same name as music file.
+         *
+         * If ctl file does not exist, creates new ctl file.
+         */
         openMusicMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -276,6 +283,13 @@ public class ChoreographyController implements Initializable {
 
                 String ctl = (file2.getPath().substring(0, (file2.getPath().length() - 3))) + "ctl";
                 File file3 = new File(ctl);
+                if(!file3.exists()){
+                    try {
+                        file3.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
 
                 fcwOutput.setText("Loading CTL file ...");
                 try {
