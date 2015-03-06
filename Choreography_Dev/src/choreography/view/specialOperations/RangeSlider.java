@@ -94,7 +94,8 @@ public class RangeSlider extends Control {
      * {@inheritDoc}
      * @return 
      */
-    @Override protected String getUserAgentStylesheet() {
+    @Override
+    public String getUserAgentStylesheet() {
         return getClass().getResource("rangeslider.css").toExternalForm();
     }
     
