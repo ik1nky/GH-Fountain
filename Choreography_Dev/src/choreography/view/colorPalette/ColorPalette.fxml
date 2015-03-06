@@ -23,7 +23,7 @@
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#FF7272" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff0037" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff3205" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1900" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
@@ -31,10 +31,10 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc800" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3bff00" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00f000" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8F8FFF" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="AQUA" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0096ef" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#EF2BFF" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3b11ff" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9646ff" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d100c5" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
                </children>
