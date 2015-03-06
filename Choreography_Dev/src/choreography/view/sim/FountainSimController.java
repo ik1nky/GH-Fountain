@@ -1,5 +1,6 @@
 package choreography.view.sim;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -60,25 +61,10 @@ public class FountainSimController implements Initializable {
 	private Group mod1, mod2, mod3, mod4, mod5, mod6, mod7;
 
 	@FXML
-	private Rectangle mod1ring1, mod1ring2, mod1ring3, mod1ring4, mod1ring5;
-
-	@FXML
-	private Rectangle mod2ring1, mod2ring2, mod2ring3, mod2ring4, mod2ring5;
-
-	@FXML
-	private Rectangle mod3ring1, mod3ring2, mod3ring3, mod3ring4, mod3ring5;
-
-	@FXML
-	private Rectangle mod4ring1, mod4ring2, mod4ring3, mod4ring4, mod4ring5;
-
-	@FXML
-	private Rectangle mod5ring1, mod5ring2, mod5ring3, mod5ring4, mod5ring5;
-
-	@FXML
-	private Rectangle mod6ring1, mod6ring2, mod6ring3, mod6ring4, mod6ring5;
-
-	@FXML
-	private Rectangle mod7ring1, mod7ring2, mod7ring3, mod7ring4, mod7ring5;
+	private Rectangle mod1ring1, mod1ring2, mod1ring3, mod1ring4, mod1ring5, mod2ring1, mod2ring2, mod2ring3, mod2ring4,
+            mod2ring5, mod3ring1, mod3ring2, mod3ring3, mod3ring4, mod3ring5, mod4ring1, mod4ring2, mod4ring3,
+            mod4ring4, mod4ring5, mod5ring1, mod5ring2, mod5ring3, mod5ring4, mod5ring5, mod6ring1, mod6ring2,
+            mod6ring3, mod6ring4, mod6ring5, mod7ring1, mod7ring2, mod7ring3, mod7ring4, mod7ring5;
 
 	@FXML
 	private Slider ring1Slider, ring2Slider, ring3Slider, ring4Slider, ring5Slider;
@@ -102,49 +88,46 @@ public class FountainSimController implements Initializable {
 			backCurtain8, backCurtain9, backCurtain10, backCurtain11, backCurtain12, backCurtain13, backCurtain14;
 
 	@FXML
-	private Line mod1sweep1, mod1sweep2;
+	private Line mod1sweep1, mod1sweep2, mod2sweep1, mod2sweep2, mod3sweep1, mod3sweep2, mod4sweep1, mod4sweep2,
+            mod5sweep1, mod5sweep2, mod6sweep1, mod6sweep2, mod7sweep1, mod7sweep2;
 
 	@FXML
-	private Line mod1candle1, mod1candle2, mod1candle3, mod1candle4, mod1candle5, mod1candle6;
-
-	@FXML
-	private Line mod2sweep1, mod2sweep2;
-
-	@FXML
-	private Line mod2candle1, mod2candle2, mod2candle3, mod2candle4, mod2candle5, mod2candle6;
-
-	@FXML
-	private Line mod3sweep1, mod3sweep2;
-
-	@FXML
-	private Line mod3candle1, mod3candle2, mod3candle3, mod3candle4, mod3candle5, mod3candle6;
-
-	@FXML
-	private Line mod4sweep1, mod4sweep2;
-
-	@FXML
-	private Line mod4candle1, mod4candle2, mod4candle3, mod4candle4, mod4candle5, mod4candle6;
-
-	@FXML
-	private Line mod5sweep1, mod5sweep2;
-
-	@FXML
-	private Line mod5candle1, mod5candle2, mod5candle3, mod5candle4, mod5candle5, mod5candle6;
-
-	@FXML
-	private Line mod6sweep1, mod6sweep2;
-
-	@FXML
-	private Line mod6candle1, mod6candle2, mod6candle3, mod6candle4, mod6candle5, mod6candle6;
-
-	@FXML
-	private Line mod7sweep1, mod7sweep2;
-
-	@FXML
-	private Line mod7candle1, mod7candle2, mod7candle3, mod7candle4, mod7candle5, mod7candle6;
+	private Line mod1candle1, mod1candle2, mod1candle3, mod1candle4, mod1candle5, mod1candle6, mod2candle1, mod2candle2,
+            mod2candle3, mod2candle4, mod2candle5, mod2candle6, mod3candle1, mod3candle2, mod3candle3, mod3candle4,
+            mod3candle5, mod3candle6, mod4candle1, mod4candle2, mod4candle3, mod4candle4, mod4candle5, mod4candle6,
+            mod5candle1, mod5candle2, mod5candle3, mod5candle4, mod5candle5, mod5candle6, mod6candle1, mod6candle2,
+            mod6candle3, mod6candle4, mod6candle5, mod6candle6, mod7candle1, mod7candle2, mod7candle3, mod7candle4,
+            mod7candle5, mod7candle6;
 
 	@FXML
 	private Rectangle spoutRec;
+
+    /**
+     * Arrays used to make methods easier down the line.
+     */
+    private Rectangle[] modRings = {mod1ring1, mod1ring2, mod1ring3, mod1ring4, mod1ring5, mod2ring1, mod2ring2,
+            mod2ring3, mod2ring4, mod2ring5, mod3ring1, mod3ring2, mod3ring3, mod3ring4, mod3ring5, mod4ring1,
+            mod4ring2, mod4ring3, mod4ring4, mod4ring5, mod5ring1, mod5ring2, mod5ring3, mod5ring4, mod5ring5,
+            mod6ring1, mod6ring2, mod6ring3, mod6ring4, mod6ring5, mod7ring1, mod7ring2, mod7ring3, mod7ring4,
+            mod7ring5};
+
+    private Rectangle[] frontCurtains = {frontCurtain1, frontCurtain2, frontCurtain3, frontCurtain4, frontCurtain5,
+            frontCurtain6, frontCurtain7, frontCurtain8, frontCurtain9, frontCurtain10, frontCurtain11, frontCurtain12,
+            frontCurtain13, frontCurtain14};
+
+    private Rectangle[] backCurtains = {backCurtain1, backCurtain2, backCurtain3, backCurtain4, backCurtain5,
+            backCurtain6, backCurtain7, backCurtain8, backCurtain9, backCurtain10, backCurtain11, backCurtain12,
+            backCurtain13, backCurtain14};
+
+    private Line[] modSweeps = {mod1sweep1, mod1sweep2, mod2sweep1, mod2sweep2, mod3sweep1, mod3sweep2, mod4sweep1,
+            mod4sweep2, mod5sweep1, mod5sweep2, mod6sweep1, mod6sweep2, mod7sweep1, mod7sweep2};
+
+    private Line[] modCandles = {mod1candle1, mod1candle2, mod1candle3, mod1candle4, mod1candle5, mod1candle6,
+            mod2candle1, mod2candle2, mod2candle3, mod2candle4, mod2candle5, mod2candle6, mod3candle1, mod3candle2,
+            mod3candle3, mod3candle4, mod3candle5, mod3candle6, mod4candle1, mod4candle2, mod4candle3, mod4candle4,
+            mod4candle5, mod4candle6, mod5candle1, mod5candle2, mod5candle3, mod5candle4, mod5candle5, mod5candle6,
+            mod6candle1, mod6candle2, mod6candle3, mod6candle4, mod6candle5, mod6candle6, mod7candle1, mod7candle2,
+            mod7candle3, mod7candle4, mod7candle5, mod7candle6};
 
 	// Used to keep track of what the current motion is for the sweepers
 	private String sweepCommand = "None";
@@ -204,7 +187,41 @@ public class FountainSimController implements Initializable {
 				for (String s : actions) {
 					actionsList.add(s);
 				}
-				switch (f.getAddr()) {
+
+                int Addr = f.getAddr();
+
+                if(Addr < 6){
+                    Addr = 1;
+                } else if(Addr > 5 && Addr < 10){
+                    Addr = 2;
+                } else if(Addr > 33 && Addr < 48) {
+                    Addr = 3;
+                } else if(Addr > 500) {
+                    Addr = 4;
+                } else if(Addr == 99) {
+                    Addr = 5;
+                } else {
+
+                }
+
+                switch (Addr) {
+                    case 1:
+                        drawRings(f.getAddr(), actionsList, f, lagTime);
+                        break;
+                    case 2:
+                        drawOther(f.getAddr(), actionsList, f, lagTime);
+                        break;
+                    case 3:
+                        sweeperOperations(f.getAddr(), actionsList, f, lagTime, lv, rv, ls, rs, ll, rl);
+                    case 4:
+                        fadingOperations(f.getAddr(), f, fading, crossFading);
+                    case 5:
+                        resetAll();
+                        clearSweeps();
+                        break;
+                }
+
+				/*switch (f.getAddr()) {
 
                     // Draws Ring 5
                     case 5:
@@ -278,7 +295,7 @@ public class FountainSimController implements Initializable {
                         }
                         break;
 
-                    // Draws Spoud/Voice and Bazooka
+                    // Draws Spout/Voice and Bazooka
                     // Apex has these two water features on the same address for
                     // some odd reason
                     case 7:
@@ -330,20 +347,9 @@ public class FountainSimController implements Initializable {
 
 					// Stops all motions
 					if (actionsList.contains("OFFRESET")) {
-						mod1sweep1.getTransforms().clear();
-						mod2sweep1.getTransforms().clear();
-						mod3sweep1.getTransforms().clear();
-						mod4sweep1.getTransforms().clear();
-						mod5sweep1.getTransforms().clear();
-						mod6sweep1.getTransforms().clear();
-						mod7sweep1.getTransforms().clear();
-						mod1sweep2.getTransforms().clear();
-						mod2sweep2.getTransforms().clear();
-						mod3sweep2.getTransforms().clear();
-						mod4sweep2.getTransforms().clear();
-						mod5sweep2.getTransforms().clear();
-						mod6sweep2.getTransforms().clear();
-						mod7sweep2.getTransforms().clear();
+                        for(Line l : modSweeps){
+                            l.getTransforms().clear();
+                        }
 					}
 
 					// Animates the sweepers if the are paused or pauses them if
@@ -425,20 +431,9 @@ public class FountainSimController implements Initializable {
 				// Same as case 33 except sweepers move against each other.
 				case 34:
 					if (actionsList.contains("OFFRESET")) {
-						mod1sweep1.getTransforms().clear();
-						mod2sweep1.getTransforms().clear();
-						mod3sweep1.getTransforms().clear();
-						mod4sweep1.getTransforms().clear();
-						mod5sweep1.getTransforms().clear();
-						mod6sweep1.getTransforms().clear();
-						mod7sweep1.getTransforms().clear();
-						mod1sweep2.getTransforms().clear();
-						mod2sweep2.getTransforms().clear();
-						mod3sweep2.getTransforms().clear();
-						mod4sweep2.getTransforms().clear();
-						mod5sweep2.getTransforms().clear();
-						mod6sweep2.getTransforms().clear();
-						mod7sweep2.getTransforms().clear();
+                        for(Line l : modSweeps){
+                            l.getTransforms().clear();
+                        }
 					}
 					if (actionsList.contains("PLAYPAUSE")) {
 
@@ -508,7 +503,7 @@ public class FountainSimController implements Initializable {
 					}
 					break;
 
-				/*
+				*//*
 				 * New sweep commands that animates both left and right sweeps
 				 * Sweep type 1 is together and 2 is opposed Oscillating
 				 * sweepers are like a fan. -30...0...30...0...-30 repeat
@@ -524,7 +519,7 @@ public class FountainSimController implements Initializable {
 				 * will be implemented in a new javafx update. One possible
 				 * option is creating a virtual line. Given the complexity of
 				 * this option we did not implement it.
-				 */
+				 *//*
 				case 35:
 					// Action list contains what sweeper action is supposed to
 					// be occuring at each tenth of a second.
@@ -1233,13 +1228,11 @@ public class FountainSimController implements Initializable {
 						leftSweepSpeed = 1.8;
 					}
 					if (actionsList.contains("OFFRESET")) {
-						mod1sweep1.getTransforms().clear();
-						mod2sweep1.getTransforms().clear();
-						mod3sweep1.getTransforms().clear();
-						mod4sweep1.getTransforms().clear();
-						mod5sweep1.getTransforms().clear();
-						mod6sweep1.getTransforms().clear();
-						mod7sweep1.getTransforms().clear();
+						for(int i = 0; i < modSweeps.length; i++){
+                            if(i%2 == 0){
+                                modSweeps[i].getTransforms().clear();
+                            }
+                        }
 					}
 					if (actionsList.contains("PLAYPAUSE")) {
 
@@ -1270,13 +1263,11 @@ public class FountainSimController implements Initializable {
 						rightSweepSpeed = 1.8;
 					}
 					if (actionsList.contains("OFFRESET")) {
-						mod1sweep2.getTransforms().clear();
-						mod2sweep2.getTransforms().clear();
-						mod3sweep2.getTransforms().clear();
-						mod4sweep2.getTransforms().clear();
-						mod5sweep2.getTransforms().clear();
-						mod6sweep2.getTransforms().clear();
-						mod7sweep2.getTransforms().clear();
+                        for(int i = 1; i < modSweeps.length; i++){
+                            if(i%2 == 0){
+                                modSweeps[i].getTransforms().clear();
+                            }
+                        }
 					}
 					if (actionsList.contains("PLAYPAUSE")) {
 
@@ -1290,20 +1281,9 @@ public class FountainSimController implements Initializable {
 				// Controls the speeds of both sweepers
 				case 40:
 					if (actionsList.contains("OFFRESET")) {
-						mod1sweep1.getTransforms().clear();
-						mod2sweep1.getTransforms().clear();
-						mod3sweep1.getTransforms().clear();
-						mod4sweep1.getTransforms().clear();
-						mod5sweep1.getTransforms().clear();
-						mod6sweep1.getTransforms().clear();
-						mod7sweep1.getTransforms().clear();
-						mod1sweep2.getTransforms().clear();
-						mod2sweep2.getTransforms().clear();
-						mod3sweep2.getTransforms().clear();
-						mod4sweep2.getTransforms().clear();
-						mod5sweep2.getTransforms().clear();
-						mod6sweep2.getTransforms().clear();
-						mod7sweep2.getTransforms().clear();
+                        for(Line l : modSweeps){
+                            l.getTransforms().clear();
+                        }
 					}
 					if (actionsList.contains("PLAYPAUSE")) {
 						if (leftSweepTimeline.getStatus() == Animation.Status.PAUSED) {
@@ -1471,10 +1451,747 @@ public class FountainSimController implements Initializable {
 					resetAll();
 					clearSweeps();
 					break;
-				}
+				}*/
 			}
 		}
 	}
+
+    /**
+     *
+     * Handles drawing each of the rings
+     *
+     */
+    public void drawRings(int Addr, ArrayList<String> actionsList, FCW f, double lagTime){
+        int level = FCWLib.getInstance().reverseGetLevel(f);
+        if (actionsList.contains("MODULEA")) {
+            final Timeline timeline = new Timeline();
+            timeline.setCycleCount(1);
+            KeyFrame kf;
+
+            if(Addr == 1){
+                kf = getRing1AKeyFrames(level, lagTime);
+            } else if(Addr == 2){
+                kf = getRing2AKeyFrames(level, lagTime);
+            } else if(Addr == 3){
+                kf = getRing3AKeyFrames(level, lagTime);
+            } else if(Addr == 4){
+                kf = getRing4AKeyFrames(level, lagTime);
+            } else{
+                kf = getRing5AKeyFrames(level, lagTime);
+            }
+
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+        }
+        if (actionsList.contains("MODULEB")) {
+            final Timeline timeline = new Timeline();
+            timeline.setCycleCount(1);
+            KeyFrame kf;
+
+            if(Addr == 1){
+                kf = getRing1BKeyFrames(level, lagTime);
+            } else if(Addr == 2){
+                kf = getRing2BKeyFrames(level, lagTime);
+            } else if(Addr == 3){
+                kf = getRing3BKeyFrames(level, lagTime);
+            } else if(Addr == 4){
+                kf = getRing4BKeyFrames(level, lagTime);
+            } else{
+                kf = getRing5BKeyFrames(level, lagTime);
+            }
+
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+        }
+    }
+
+    /**
+     *
+     * Created to for reset all method
+     *
+     */
+    public void drawRingsReset(int r, char ab){
+        if(ab == 'a'){
+            final Timeline timeline = new Timeline();
+            timeline.setCycleCount(1);
+            KeyFrame kf;
+
+            if(r == 1){
+                kf = getRing1AKeyFrames(0, 0);
+            } else if(r == 2){
+                kf = getRing2AKeyFrames(0, 0);
+            } else if(r == 3){
+                kf = getRing3AKeyFrames(0, 0);
+            } else if(r == 4){
+                kf = getRing4AKeyFrames(0, 0);
+            } else{
+                kf = getRing5AKeyFrames(0, 0);
+            }
+
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+        } else if(ab == 'b'){
+            final Timeline timeline = new Timeline();
+            timeline.setCycleCount(1);
+            KeyFrame kf;
+
+            if(r == 1){
+                kf = getRing1BKeyFrames(0, 0);
+            } else if(r == 2){
+                kf = getRing2BKeyFrames(0, 0);
+            } else if(r == 3){
+                kf = getRing3BKeyFrames(0, 0);
+            } else if(r == 4){
+                kf = getRing4BKeyFrames(0, 0);
+            } else{
+                kf = getRing5BKeyFrames(0, 0);
+            }
+
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+        } else{
+
+        }
+    }
+
+    /**
+     *
+     * Each of these ten methods returns the key frames for their respective ring.
+     *
+     */
+    public KeyFrame getRing1AKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+    }
+
+    public KeyFrame getRing1BKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+    }
+
+    public KeyFrame getRing2AKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod1ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+    }
+
+    public KeyFrame getRing2BKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod2ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+    }
+
+    public KeyFrame getRing3AKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod1ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+    }
+
+    public KeyFrame getRing3BKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod2ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+    }
+
+    public KeyFrame getRing4AKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod1ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+    }
+
+    public KeyFrame getRing4BKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod2ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+    }
+
+    public KeyFrame getRing5AKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod1ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+    }
+
+    public KeyFrame getRing5BKeyFrames(int level, double lagTime){
+        final KeyValue kv1 = new KeyValue(mod2ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        return new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+    }
+
+    /*public void drawRing1A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing1B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing2A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing2B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing3A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing3B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing4A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing4B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing5A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing5B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }*/
+
+    public void drawOther(int Addr, ArrayList<String> actionsList, FCW f, double lagTime){
+        int level = FCWLib.getInstance().reverseGetLevel(f);
+        if(Addr == 6){
+            if (actionsList.contains("MODULEA")) {
+                drawSweepsA(level, lagTime);
+            }
+            if (actionsList.contains("MODULEB")) {
+                drawSweepsB(level, lagTime);
+            }
+        } else if(Addr == 7){
+            for (String s : actionsList){
+                System.err.println("ACTIONSSSSS: " + s + "    !!!!!!");
+            }
+            if (actionsList.contains("VOICE")) {
+                drawSpout(level, lagTime);
+            }
+            if (actionsList.contains("BAZOOKA")) {
+                drawBazooka(level, lagTime);
+            }
+        } else if(Addr == 8){
+            if (actionsList.contains("MODULEA")) {
+                drawCandlesA(level, lagTime);
+            }
+            if (actionsList.contains("MODULEB")) {
+                drawCandlesB(level, lagTime);
+            }
+        } else{
+            if (actionsList.contains("FTCURT")) {
+                drawFtCurtain(level, lagTime);
+            }
+            if (actionsList.contains("PEACOCK")) {
+                drawPeacock(level, lagTime);
+            }
+            if (actionsList.contains("BKCURT")) {
+                drawBkCurtain(level, lagTime);
+            }
+        }
+    }
+
+    public void drawSweepsA(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        sweepLevel = level;
+
+        KeyValue kv25 = null;
+        KeyValue kv26 = null;
+        KeyValue kv27 = null;
+        KeyValue kv28 = null;
+        KeyValue kv29 = null;
+        KeyValue kv30 = null;
+        KeyValue kv31 = null;
+        KeyValue kv32 = null;
+
+        mod1sweep1.setVisible(true);
+        mod1sweep2.setVisible(true);
+        mod3sweep1.setVisible(true);
+        mod3sweep2.setVisible(true);
+        mod5sweep1.setVisible(true);
+        mod5sweep2.setVisible(true);
+        mod7sweep1.setVisible(true);
+        mod7sweep2.setVisible(true);
+
+        if (level == 0) {
+            kv25 = new KeyValue(mod1sweep1.visibleProperty(), false);
+            kv26 = new KeyValue(mod1sweep2.visibleProperty(), false);
+
+            kv27 = new KeyValue(mod3sweep1.visibleProperty(), false);
+            kv28 = new KeyValue(mod3sweep2.visibleProperty(), false);
+
+            kv29 = new KeyValue(mod5sweep1.visibleProperty(), false);
+            kv30 = new KeyValue(mod5sweep2.visibleProperty(), false);
+
+            kv31 = new KeyValue(mod7sweep1.visibleProperty(), false);
+            kv32 = new KeyValue(mod7sweep2.visibleProperty(), false);
+        }
+
+        final KeyValue kv1 = new KeyValue(mod1sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod1sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv7 = new KeyValue(mod3sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv8 = new KeyValue(mod3sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv13 = new KeyValue(mod5sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv14 = new KeyValue(mod5sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv19 = new KeyValue(mod7sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv20 = new KeyValue(mod7sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(.5), kv1, kv2, kv7, kv8, kv13, kv14, kv14, kv19, kv20, kv25, kv26, kv27, kv28, kv29, kv30, kv31, kv32);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawSweepsB(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+
+        KeyValue kv15 = null;
+        KeyValue kv16 = null;
+        KeyValue kv17 = null;
+        KeyValue kv18 = null;
+        KeyValue kv19 = null;
+        KeyValue kv20 = null;
+
+        mod2sweep1.setVisible(true);
+        mod2sweep2.setVisible(true);
+        mod4sweep1.setVisible(true);
+        mod4sweep2.setVisible(true);
+        mod6sweep1.setVisible(true);
+        mod6sweep2.setVisible(true);
+
+        if (level == 0) {
+            kv15 = new KeyValue(mod2sweep1.visibleProperty(), false);
+            kv16 = new KeyValue(mod2sweep2.visibleProperty(), false);
+
+            kv17 = new KeyValue(mod4sweep1.visibleProperty(), false);
+            kv18 = new KeyValue(mod4sweep2.visibleProperty(), false);
+
+            kv19 = new KeyValue(mod6sweep1.visibleProperty(), false);
+            kv20 = new KeyValue(mod6sweep2.visibleProperty(), false);
+        }
+
+        final KeyValue kv1 = new KeyValue(mod2sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod2sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv7 = new KeyValue(mod4sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv8 = new KeyValue(mod4sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv13 = new KeyValue(mod6sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv14 = new KeyValue(mod6sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(.5), kv1, kv2, kv7, kv8, kv13, kv14, kv15, kv16, kv17, kv18, kv19, kv20);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawSpout(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(spoutRec.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawBazooka(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        KeyValue kv2 = null;
+        KeyValue kv3 = null;
+        KeyValue kv4 = null;
+        KeyValue kv5 = null;
+        KeyValue kv6 = null;
+        KeyValue kv7 = null;
+        KeyValue kv8 = null;
+        KeyValue kv9 = null;
+        KeyValue kv10 = null;
+        KeyValue kv11 = null;
+        KeyValue kv12 = null;
+        KeyValue kv13 = null;
+        KeyValue kv14 = null;
+        KeyValue kv15 = null;
+        KeyValue kv16 = null;
+        KeyValue kv17 = null;
+        KeyValue kv18 = null;
+        KeyValue kv19 = null;
+
+        timeline.setCycleCount(1);
+        if (level == 0) {
+
+            kv2 = new KeyValue(bazooka1.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
+            kv3 = new KeyValue(bazooka1.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
+            kv4 = new KeyValue(bazooka2.endXProperty(), (10 + 1320 - (100 * level)), Interpolator.EASE_OUT);
+            kv5 = new KeyValue(bazooka2.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
+
+            kv7 = new KeyValue(bazooka3.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
+            kv8 = new KeyValue(bazooka3.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
+            kv9 = new KeyValue(bazooka4.endXProperty(), (10 + 1320 - (100 * level)), Interpolator.EASE_OUT);
+            kv10 = new KeyValue(bazooka4.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
+
+            kv11 = new KeyValue(bazooka1.visibleProperty(), false);
+            kv12 = new KeyValue(bazooka2.visibleProperty(), false);
+            kv13 = new KeyValue(bazooka3.visibleProperty(), false);
+            kv14 = new KeyValue(bazooka4.visibleProperty(), false);
+        } else if (level == 1 || level == 2) {
+
+            bazooka1.setVisible(true);
+            bazooka2.setVisible(true);
+            bazooka3.setVisible(true);
+            bazooka4.setVisible(true);
+
+            kv2 = new KeyValue(bazooka1.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
+            kv3 = new KeyValue(bazooka1.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
+            kv4 = new KeyValue(bazooka2.endXProperty(), (1310 - (100 * level)), Interpolator.EASE_OUT);
+            kv5 = new KeyValue(bazooka2.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
+
+            kv8 = new KeyValue(bazooka3.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
+            kv9 = new KeyValue(bazooka3.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
+            kv10 = new KeyValue(bazooka4.endXProperty(), (1310 - (100 * level)), Interpolator.EASE_OUT);
+            kv11 = new KeyValue(bazooka4.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
+
+        }
+
+        else {
+
+            bazooka1.setVisible(true);
+            bazooka2.setVisible(true);
+            bazooka3.setVisible(true);
+            bazooka4.setVisible(true);
+            kv2 = new KeyValue(bazooka1.endXProperty(), (10 + (100 * 2)), Interpolator.EASE_OUT);
+            kv3 = new KeyValue(bazooka1.endYProperty(), (10 + (47 * 2)), Interpolator.EASE_OUT);
+            kv4 = new KeyValue(bazooka2.endXProperty(), (1310 - (100 * 2)), Interpolator.EASE_OUT);
+            kv5 = new KeyValue(bazooka2.endYProperty(), (12 + (47 * 2)), Interpolator.EASE_OUT);
+
+            kv8 = new KeyValue(bazooka3.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
+            kv9 = new KeyValue(bazooka3.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
+            kv10 = new KeyValue(bazooka4.endXProperty(), (1310 - (100 * level)), Interpolator.EASE_OUT);
+            kv11 = new KeyValue(bazooka4.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
+        }
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv19);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawCandlesA(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+
+        KeyValue kv25 = null;
+        KeyValue kv26 = null;
+        KeyValue kv27 = null;
+        KeyValue kv28 = null;
+        KeyValue kv29 = null;
+        KeyValue kv30 = null;
+        KeyValue kv31 = null;
+        KeyValue kv32 = null;
+        KeyValue kv33 = null;
+        KeyValue kv34 = null;
+        KeyValue kv35 = null;
+        KeyValue kv36 = null;
+        KeyValue kv37 = null;
+        KeyValue kv38 = null;
+        KeyValue kv39 = null;
+        KeyValue kv40 = null;
+        KeyValue kv41 = null;
+        KeyValue kv42 = null;
+        KeyValue kv43 = null;
+        KeyValue kv44 = null;
+        KeyValue kv45 = null;
+        KeyValue kv46 = null;
+        KeyValue kv47 = null;
+        KeyValue kv48 = null;
+        mod1candle1.setVisible(true);
+        mod1candle2.setVisible(true);
+        mod1candle3.setVisible(true);
+        mod1candle4.setVisible(true);
+        mod1candle5.setVisible(true);
+        mod1candle6.setVisible(true);
+        mod3candle1.setVisible(true);
+        mod3candle2.setVisible(true);
+        mod3candle3.setVisible(true);
+        mod3candle4.setVisible(true);
+        mod3candle5.setVisible(true);
+        mod3candle6.setVisible(true);
+        mod5candle1.setVisible(true);
+        mod5candle2.setVisible(true);
+        mod5candle3.setVisible(true);
+        mod5candle4.setVisible(true);
+        mod5candle5.setVisible(true);
+        mod5candle6.setVisible(true);
+        mod7candle1.setVisible(true);
+        mod7candle2.setVisible(true);
+        mod7candle3.setVisible(true);
+        mod7candle4.setVisible(true);
+        mod7candle5.setVisible(true);
+        mod7candle6.setVisible(true);
+
+        if (level == 0) {
+            kv25 = new KeyValue(mod1candle1.visibleProperty(), false);
+            kv26 = new KeyValue(mod1candle2.visibleProperty(), false);
+            kv27 = new KeyValue(mod1candle3.visibleProperty(), false);
+            kv28 = new KeyValue(mod1candle4.visibleProperty(), false);
+            kv29 = new KeyValue(mod1candle5.visibleProperty(), false);
+            kv30 = new KeyValue(mod1candle6.visibleProperty(), false);
+
+            kv31 = new KeyValue(mod3candle1.visibleProperty(), false);
+            kv32 = new KeyValue(mod3candle2.visibleProperty(), false);
+            kv33 = new KeyValue(mod3candle3.visibleProperty(), false);
+            kv34 = new KeyValue(mod3candle4.visibleProperty(), false);
+            kv35 = new KeyValue(mod3candle5.visibleProperty(), false);
+            kv36 = new KeyValue(mod3candle6.visibleProperty(), false);
+
+            kv37 = new KeyValue(mod5candle1.visibleProperty(), false);
+            kv38 = new KeyValue(mod5candle2.visibleProperty(), false);
+            kv39 = new KeyValue(mod5candle3.visibleProperty(), false);
+            kv40 = new KeyValue(mod5candle4.visibleProperty(), false);
+            kv41 = new KeyValue(mod5candle5.visibleProperty(), false);
+            kv42 = new KeyValue(mod5candle6.visibleProperty(), false);
+
+            kv43 = new KeyValue(mod7candle1.visibleProperty(), false);
+            kv44 = new KeyValue(mod7candle2.visibleProperty(), false);
+            kv45 = new KeyValue(mod7candle3.visibleProperty(), false);
+            kv46 = new KeyValue(mod7candle4.visibleProperty(), false);
+            kv47 = new KeyValue(mod7candle5.visibleProperty(), false);
+            kv48 = new KeyValue(mod7candle6.visibleProperty(), false);
+
+        }
+
+        final KeyValue kv1 = new KeyValue(mod1candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod1candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod1candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod1candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv5 = new KeyValue(mod1candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv6 = new KeyValue(mod1candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv7 = new KeyValue(mod3candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv8 = new KeyValue(mod3candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv9 = new KeyValue(mod3candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv10 = new KeyValue(mod3candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv11 = new KeyValue(mod3candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv12 = new KeyValue(mod3candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv13 = new KeyValue(mod5candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv14 = new KeyValue(mod5candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv15 = new KeyValue(mod5candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv16 = new KeyValue(mod5candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv17 = new KeyValue(mod5candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv18 = new KeyValue(mod5candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv19 = new KeyValue(mod7candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv20 = new KeyValue(mod7candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv21 = new KeyValue(mod7candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv22 = new KeyValue(mod7candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv23 = new KeyValue(mod7candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv24 = new KeyValue(mod7candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv19, kv20, kv21, kv22, kv23, kv24, kv25, kv26, kv27, kv28, kv29, kv30, kv31, kv32, kv33, kv34, kv35, kv36, kv37, kv38, kv39, kv40,
+                kv41, kv42, kv43, kv44, kv45, kv46, kv47, kv48);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawCandlesB(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+
+        KeyValue kv25 = null;
+        KeyValue kv26 = null;
+        KeyValue kv27 = null;
+        KeyValue kv28 = null;
+        KeyValue kv29 = null;
+        KeyValue kv30 = null;
+        KeyValue kv31 = null;
+        KeyValue kv32 = null;
+        KeyValue kv33 = null;
+        KeyValue kv34 = null;
+        KeyValue kv35 = null;
+        KeyValue kv36 = null;
+        KeyValue kv37 = null;
+        KeyValue kv38 = null;
+        KeyValue kv39 = null;
+        KeyValue kv40 = null;
+        KeyValue kv41 = null;
+        KeyValue kv42 = null;
+
+        mod2candle1.setVisible(true);
+        mod2candle2.setVisible(true);
+        mod2candle3.setVisible(true);
+        mod2candle4.setVisible(true);
+        mod2candle5.setVisible(true);
+        mod2candle6.setVisible(true);
+        mod4candle1.setVisible(true);
+        mod4candle2.setVisible(true);
+        mod4candle3.setVisible(true);
+        mod4candle4.setVisible(true);
+        mod4candle5.setVisible(true);
+        mod4candle6.setVisible(true);
+        mod6candle1.setVisible(true);
+        mod6candle2.setVisible(true);
+        mod6candle3.setVisible(true);
+        mod6candle4.setVisible(true);
+        mod6candle5.setVisible(true);
+        mod6candle6.setVisible(true);
+
+        if (level == 0) {
+            kv25 = new KeyValue(mod2candle1.visibleProperty(), false);
+            kv26 = new KeyValue(mod2candle2.visibleProperty(), false);
+            kv27 = new KeyValue(mod2candle3.visibleProperty(), false);
+            kv28 = new KeyValue(mod2candle4.visibleProperty(), false);
+            kv29 = new KeyValue(mod2candle5.visibleProperty(), false);
+            kv30 = new KeyValue(mod2candle6.visibleProperty(), false);
+
+            kv31 = new KeyValue(mod4candle1.visibleProperty(), false);
+            kv32 = new KeyValue(mod4candle2.visibleProperty(), false);
+            kv33 = new KeyValue(mod4candle3.visibleProperty(), false);
+            kv34 = new KeyValue(mod4candle4.visibleProperty(), false);
+            kv35 = new KeyValue(mod4candle5.visibleProperty(), false);
+            kv36 = new KeyValue(mod4candle6.visibleProperty(), false);
+
+            kv37 = new KeyValue(mod6candle1.visibleProperty(), false);
+            kv38 = new KeyValue(mod6candle2.visibleProperty(), false);
+            kv39 = new KeyValue(mod6candle3.visibleProperty(), false);
+            kv40 = new KeyValue(mod6candle4.visibleProperty(), false);
+            kv41 = new KeyValue(mod6candle5.visibleProperty(), false);
+            kv42 = new KeyValue(mod6candle6.visibleProperty(), false);
+
+        }
+
+        final KeyValue kv1 = new KeyValue(mod2candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod2candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod2candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod2candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv5 = new KeyValue(mod2candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv6 = new KeyValue(mod2candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv7 = new KeyValue(mod4candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv8 = new KeyValue(mod4candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv9 = new KeyValue(mod4candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv10 = new KeyValue(mod4candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv11 = new KeyValue(mod4candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv12 = new KeyValue(mod4candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyValue kv13 = new KeyValue(mod6candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv14 = new KeyValue(mod6candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv15 = new KeyValue(mod6candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv16 = new KeyValue(mod6candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv17 = new KeyValue(mod6candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv18 = new KeyValue(mod6candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv25, kv26, kv27, kv28, kv29, kv30, kv31, kv32, kv33, kv34, kv35, kv36, kv37, kv38, kv39, kv40, kv41, kv42);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
 
 	/*
 	 * Animation controller for the front curtain. All of the following methods
@@ -1516,6 +2233,119 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
+    /*
+     * peacock level is being called as 0 right before the draw, making it invisible.
+     */
+    public void drawPeacock(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        System.err.println("System reaches peacock call!");
+        KeyValue kv2 = null;
+        KeyValue kv3 = null;
+        KeyValue kv4 = null;
+        KeyValue kv5 = null;
+        KeyValue kv6 = null;
+        KeyValue kv7 = null;
+        KeyValue kv8 = null;
+        KeyValue kv9 = null;
+        KeyValue kv10 = null;
+        KeyValue kv11 = null;
+        KeyValue kv12 = null;
+        KeyValue kv13 = null;
+        KeyValue kv14 = null;
+        KeyValue kv15 = null;
+        KeyValue kv16 = null;
+        KeyValue kv17 = null;
+        KeyValue kv18 = null;
+        KeyValue kv19 = null;
+        KeyValue kv20 = null;
+        KeyValue kv21 = null;
+        KeyValue kv22 = null;
+        KeyValue kv23 = null;
+        KeyValue kv24 = null;
+        KeyValue kv25 = null;
+        KeyValue kv26 = null;
+        KeyValue kv27 = null;
+        KeyValue kv28 = null;
+
+        timeline.setCycleCount(1);
+        if (level > 0.0) {
+
+            peacock1.setVisible(true);
+            peacock2.setVisible(true);
+            peacock3.setVisible(true);
+            peacock4.setVisible(true);
+            peacock5.setVisible(true);
+            peacock6.setVisible(true);
+            peacock7.setVisible(true);
+            peacock8.setVisible(true);
+            peacock9.setVisible(true);
+
+            kv2 = new KeyValue(peacock1.endXProperty(), (689 + (102.2 * level)), Interpolator.EASE_OUT);
+            kv3 = new KeyValue(peacock1.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
+
+            kv4 = new KeyValue(peacock2.endXProperty(), (688 + (66.4 * level)), Interpolator.EASE_OUT);
+            kv5 = new KeyValue(peacock2.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
+
+            kv6 = new KeyValue(peacock3.endXProperty(), (683 + (38.4 * level)), Interpolator.EASE_OUT);
+            kv7 = new KeyValue(peacock3.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
+
+            kv8 = new KeyValue(peacock4.endXProperty(), (675 + (18 * level)), Interpolator.EASE_OUT);
+            kv9 = new KeyValue(peacock4.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
+
+            kv10 = new KeyValue(peacock5.endXProperty(), (665 + (0 * level)), Interpolator.EASE_OUT);
+            kv11 = new KeyValue(peacock5.endYProperty(), (40 + (40 * level)), Interpolator.EASE_OUT);
+
+            kv12 = new KeyValue(peacock6.endXProperty(), (655 + (-18 * level)), Interpolator.EASE_OUT);
+            kv13 = new KeyValue(peacock6.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
+
+            kv14 = new KeyValue(peacock7.endXProperty(), (647 + (-39.4 * level)), Interpolator.EASE_OUT);
+            kv15 = new KeyValue(peacock7.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
+
+            kv16 = new KeyValue(peacock8.endXProperty(), (643 + (-66.6 * level)), Interpolator.EASE_OUT);
+            kv17 = new KeyValue(peacock8.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
+
+            kv18 = new KeyValue(peacock9.endXProperty(), (642 + (-101.4 * level)), Interpolator.EASE_OUT);
+            kv19 = new KeyValue(peacock9.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
+
+        } else {
+            System.err.println("Peacock ELSE");
+            kv2 = new KeyValue(peacock1.endXProperty(), (689 + (102.2 * level)), Interpolator.EASE_OUT);
+            kv3 = new KeyValue(peacock1.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
+            kv4 = new KeyValue(peacock2.endXProperty(), (688 + (66.4 * level)), Interpolator.EASE_OUT);
+            kv5 = new KeyValue(peacock2.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
+            kv6 = new KeyValue(peacock3.endXProperty(), (683 + (38.4 * level)), Interpolator.EASE_OUT);
+            kv7 = new KeyValue(peacock3.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
+            kv8 = new KeyValue(peacock4.endXProperty(), (675 + (18 * level)), Interpolator.EASE_OUT);
+            kv9 = new KeyValue(peacock4.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
+            kv10 = new KeyValue(peacock5.endXProperty(), (665 + (0 * level)), Interpolator.EASE_OUT);
+            kv11 = new KeyValue(peacock5.endYProperty(), (40 + (40 * level)), Interpolator.EASE_OUT);
+            kv12 = new KeyValue(peacock6.endXProperty(), (655 + (-18 * level)), Interpolator.EASE_OUT);
+            kv13 = new KeyValue(peacock6.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
+            kv14 = new KeyValue(peacock7.endXProperty(), (647 + (-39.4 * level)), Interpolator.EASE_OUT);
+            kv15 = new KeyValue(peacock7.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
+            kv16 = new KeyValue(peacock8.endXProperty(), (643 + (-66.6 * level)), Interpolator.EASE_OUT);
+            kv17 = new KeyValue(peacock8.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
+            kv18 = new KeyValue(peacock9.endXProperty(), (642 + (-101.4 * level)), Interpolator.EASE_OUT);
+            kv19 = new KeyValue(peacock9.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
+
+            kv20 = new KeyValue(peacock1.visibleProperty(), false);
+            kv21 = new KeyValue(peacock2.visibleProperty(), false);
+            kv22 = new KeyValue(peacock3.visibleProperty(), false);
+            kv23 = new KeyValue(peacock4.visibleProperty(), false);
+            kv24 = new KeyValue(peacock5.visibleProperty(), false);
+            kv25 = new KeyValue(peacock6.visibleProperty(), false);
+            kv26 = new KeyValue(peacock7.visibleProperty(), false);
+            kv27 = new KeyValue(peacock8.visibleProperty(), false);
+            kv28 = new KeyValue(peacock9.visibleProperty(), false);
+
+        }
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv19, kv20, kv21, kv22, kv23, kv24, kv25, kv26, kv27, kv28);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+
+    }
+
 	public void drawBkCurtain(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
@@ -1539,428 +2369,1116 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
-	public void drawRing1A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing1B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing2A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing2B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing3A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing3B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing4A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing4B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing5A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing5B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawSpout(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(spoutRec.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawBazooka(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		KeyValue kv2 = null;
-		KeyValue kv3 = null;
-		KeyValue kv4 = null;
-		KeyValue kv5 = null;
-		KeyValue kv6 = null;
-		KeyValue kv7 = null;
-		KeyValue kv8 = null;
-		KeyValue kv9 = null;
-		KeyValue kv10 = null;
-		KeyValue kv11 = null;
-		KeyValue kv12 = null;
-		KeyValue kv13 = null;
-		KeyValue kv14 = null;
-		KeyValue kv15 = null;
-		KeyValue kv16 = null;
-		KeyValue kv17 = null;
-		KeyValue kv18 = null;
-		KeyValue kv19 = null;
-
-		timeline.setCycleCount(1);
-		if (level == 0) {
-
-			kv2 = new KeyValue(bazooka1.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
-			kv3 = new KeyValue(bazooka1.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
-			kv4 = new KeyValue(bazooka2.endXProperty(), (10 + 1320 - (100 * level)), Interpolator.EASE_OUT);
-			kv5 = new KeyValue(bazooka2.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
-
-			kv7 = new KeyValue(bazooka3.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
-			kv8 = new KeyValue(bazooka3.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
-			kv9 = new KeyValue(bazooka4.endXProperty(), (10 + 1320 - (100 * level)), Interpolator.EASE_OUT);
-			kv10 = new KeyValue(bazooka4.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
-
-			kv11 = new KeyValue(bazooka1.visibleProperty(), false);
-			kv12 = new KeyValue(bazooka2.visibleProperty(), false);
-			kv13 = new KeyValue(bazooka3.visibleProperty(), false);
-			kv14 = new KeyValue(bazooka4.visibleProperty(), false);
-		} else if (level == 1 || level == 2) {
-
-			bazooka1.setVisible(true);
-			bazooka2.setVisible(true);
-			bazooka3.setVisible(true);
-			bazooka4.setVisible(true);
-
-			kv2 = new KeyValue(bazooka1.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
-			kv3 = new KeyValue(bazooka1.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
-			kv4 = new KeyValue(bazooka2.endXProperty(), (1310 - (100 * level)), Interpolator.EASE_OUT);
-			kv5 = new KeyValue(bazooka2.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
-
-			kv8 = new KeyValue(bazooka3.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
-			kv9 = new KeyValue(bazooka3.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
-			kv10 = new KeyValue(bazooka4.endXProperty(), (1310 - (100 * level)), Interpolator.EASE_OUT);
-			kv11 = new KeyValue(bazooka4.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
-
-		}
-
-		else {
-
-			bazooka1.setVisible(true);
-			bazooka2.setVisible(true);
-			bazooka3.setVisible(true);
-			bazooka4.setVisible(true);
-			kv2 = new KeyValue(bazooka1.endXProperty(), (10 + (100 * 2)), Interpolator.EASE_OUT);
-			kv3 = new KeyValue(bazooka1.endYProperty(), (10 + (47 * 2)), Interpolator.EASE_OUT);
-			kv4 = new KeyValue(bazooka2.endXProperty(), (1310 - (100 * 2)), Interpolator.EASE_OUT);
-			kv5 = new KeyValue(bazooka2.endYProperty(), (12 + (47 * 2)), Interpolator.EASE_OUT);
-
-			kv8 = new KeyValue(bazooka3.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
-			kv9 = new KeyValue(bazooka3.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
-			kv10 = new KeyValue(bazooka4.endXProperty(), (1310 - (100 * level)), Interpolator.EASE_OUT);
-			kv11 = new KeyValue(bazooka4.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
-		}
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv19);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-    /*
-     * peacock level is being called as 0 right before the draw, making it invisible.
-     */
-	public void drawPeacock(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-        System.err.println("System reaches peacock call!");
-		KeyValue kv2 = null;
-		KeyValue kv3 = null;
-		KeyValue kv4 = null;
-		KeyValue kv5 = null;
-		KeyValue kv6 = null;
-		KeyValue kv7 = null;
-		KeyValue kv8 = null;
-		KeyValue kv9 = null;
-		KeyValue kv10 = null;
-		KeyValue kv11 = null;
-		KeyValue kv12 = null;
-		KeyValue kv13 = null;
-		KeyValue kv14 = null;
-		KeyValue kv15 = null;
-		KeyValue kv16 = null;
-		KeyValue kv17 = null;
-		KeyValue kv18 = null;
-		KeyValue kv19 = null;
-		KeyValue kv20 = null;
-		KeyValue kv21 = null;
-		KeyValue kv22 = null;
-		KeyValue kv23 = null;
-		KeyValue kv24 = null;
-		KeyValue kv25 = null;
-		KeyValue kv26 = null;
-		KeyValue kv27 = null;
-		KeyValue kv28 = null;
-
-		timeline.setCycleCount(1);
-		if (level > 0.0) {
-
-			peacock1.setVisible(true);
-			peacock2.setVisible(true);
-			peacock3.setVisible(true);
-			peacock4.setVisible(true);
-			peacock5.setVisible(true);
-			peacock6.setVisible(true);
-			peacock7.setVisible(true);
-			peacock8.setVisible(true);
-			peacock9.setVisible(true);
-
-			kv2 = new KeyValue(peacock1.endXProperty(), (689 + (102.2 * level)), Interpolator.EASE_OUT);
-			kv3 = new KeyValue(peacock1.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
-
-			kv4 = new KeyValue(peacock2.endXProperty(), (688 + (66.4 * level)), Interpolator.EASE_OUT);
-			kv5 = new KeyValue(peacock2.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
-
-			kv6 = new KeyValue(peacock3.endXProperty(), (683 + (38.4 * level)), Interpolator.EASE_OUT);
-			kv7 = new KeyValue(peacock3.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
-
-			kv8 = new KeyValue(peacock4.endXProperty(), (675 + (18 * level)), Interpolator.EASE_OUT);
-			kv9 = new KeyValue(peacock4.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
-
-			kv10 = new KeyValue(peacock5.endXProperty(), (665 + (0 * level)), Interpolator.EASE_OUT);
-			kv11 = new KeyValue(peacock5.endYProperty(), (40 + (40 * level)), Interpolator.EASE_OUT);
-
-			kv12 = new KeyValue(peacock6.endXProperty(), (655 + (-18 * level)), Interpolator.EASE_OUT);
-			kv13 = new KeyValue(peacock6.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
-
-			kv14 = new KeyValue(peacock7.endXProperty(), (647 + (-39.4 * level)), Interpolator.EASE_OUT);
-			kv15 = new KeyValue(peacock7.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
-
-			kv16 = new KeyValue(peacock8.endXProperty(), (643 + (-66.6 * level)), Interpolator.EASE_OUT);
-			kv17 = new KeyValue(peacock8.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
-
-			kv18 = new KeyValue(peacock9.endXProperty(), (642 + (-101.4 * level)), Interpolator.EASE_OUT);
-			kv19 = new KeyValue(peacock9.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
-
-		} else {
-            System.err.println("Peacock ELSE");
-			kv2 = new KeyValue(peacock1.endXProperty(), (689 + (102.2 * level)), Interpolator.EASE_OUT);
-			kv3 = new KeyValue(peacock1.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
-			kv4 = new KeyValue(peacock2.endXProperty(), (688 + (66.4 * level)), Interpolator.EASE_OUT);
-			kv5 = new KeyValue(peacock2.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
-			kv6 = new KeyValue(peacock3.endXProperty(), (683 + (38.4 * level)), Interpolator.EASE_OUT);
-			kv7 = new KeyValue(peacock3.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
-			kv8 = new KeyValue(peacock4.endXProperty(), (675 + (18 * level)), Interpolator.EASE_OUT);
-			kv9 = new KeyValue(peacock4.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
-			kv10 = new KeyValue(peacock5.endXProperty(), (665 + (0 * level)), Interpolator.EASE_OUT);
-			kv11 = new KeyValue(peacock5.endYProperty(), (40 + (40 * level)), Interpolator.EASE_OUT);
-			kv12 = new KeyValue(peacock6.endXProperty(), (655 + (-18 * level)), Interpolator.EASE_OUT);
-			kv13 = new KeyValue(peacock6.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
-			kv14 = new KeyValue(peacock7.endXProperty(), (647 + (-39.4 * level)), Interpolator.EASE_OUT);
-			kv15 = new KeyValue(peacock7.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
-			kv16 = new KeyValue(peacock8.endXProperty(), (643 + (-66.6 * level)), Interpolator.EASE_OUT);
-			kv17 = new KeyValue(peacock8.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
-			kv18 = new KeyValue(peacock9.endXProperty(), (642 + (-101.4 * level)), Interpolator.EASE_OUT);
-			kv19 = new KeyValue(peacock9.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
-
-			kv20 = new KeyValue(peacock1.visibleProperty(), false);
-			kv21 = new KeyValue(peacock2.visibleProperty(), false);
-			kv22 = new KeyValue(peacock3.visibleProperty(), false);
-			kv23 = new KeyValue(peacock4.visibleProperty(), false);
-			kv24 = new KeyValue(peacock5.visibleProperty(), false);
-			kv25 = new KeyValue(peacock6.visibleProperty(), false);
-			kv26 = new KeyValue(peacock7.visibleProperty(), false);
-			kv27 = new KeyValue(peacock8.visibleProperty(), false);
-			kv28 = new KeyValue(peacock9.visibleProperty(), false);
-
-		}
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv19, kv20, kv21, kv22, kv23, kv24, kv25, kv26, kv27, kv28);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-
-	}
-
-	public void drawSweepsA(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		sweepLevel = level;
-
-		KeyValue kv25 = null;
-		KeyValue kv26 = null;
-		KeyValue kv27 = null;
-		KeyValue kv28 = null;
-		KeyValue kv29 = null;
-		KeyValue kv30 = null;
-		KeyValue kv31 = null;
-		KeyValue kv32 = null;
-
-		mod1sweep1.setVisible(true);
-		mod1sweep2.setVisible(true);
-		mod3sweep1.setVisible(true);
-		mod3sweep2.setVisible(true);
-		mod5sweep1.setVisible(true);
-		mod5sweep2.setVisible(true);
-		mod7sweep1.setVisible(true);
-		mod7sweep2.setVisible(true);
-
-		if (level == 0) {
-			kv25 = new KeyValue(mod1sweep1.visibleProperty(), false);
-			kv26 = new KeyValue(mod1sweep2.visibleProperty(), false);
-
-			kv27 = new KeyValue(mod3sweep1.visibleProperty(), false);
-			kv28 = new KeyValue(mod3sweep2.visibleProperty(), false);
-
-			kv29 = new KeyValue(mod5sweep1.visibleProperty(), false);
-			kv30 = new KeyValue(mod5sweep2.visibleProperty(), false);
-
-			kv31 = new KeyValue(mod7sweep1.visibleProperty(), false);
-			kv32 = new KeyValue(mod7sweep2.visibleProperty(), false);
-		}
-
-		final KeyValue kv1 = new KeyValue(mod1sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod1sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv7 = new KeyValue(mod3sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv8 = new KeyValue(mod3sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv13 = new KeyValue(mod5sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv14 = new KeyValue(mod5sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv19 = new KeyValue(mod7sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv20 = new KeyValue(mod7sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(.5), kv1, kv2, kv7, kv8, kv13, kv14, kv14, kv19, kv20, kv25, kv26, kv27, kv28, kv29, kv30, kv31, kv32);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawSweepsB(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-
-		KeyValue kv15 = null;
-		KeyValue kv16 = null;
-		KeyValue kv17 = null;
-		KeyValue kv18 = null;
-		KeyValue kv19 = null;
-		KeyValue kv20 = null;
-
-		mod2sweep1.setVisible(true);
-		mod2sweep2.setVisible(true);
-		mod4sweep1.setVisible(true);
-		mod4sweep2.setVisible(true);
-		mod6sweep1.setVisible(true);
-		mod6sweep2.setVisible(true);
-
-		if (level == 0) {
-			kv15 = new KeyValue(mod2sweep1.visibleProperty(), false);
-			kv16 = new KeyValue(mod2sweep2.visibleProperty(), false);
-
-			kv17 = new KeyValue(mod4sweep1.visibleProperty(), false);
-			kv18 = new KeyValue(mod4sweep2.visibleProperty(), false);
-
-			kv19 = new KeyValue(mod6sweep1.visibleProperty(), false);
-			kv20 = new KeyValue(mod6sweep2.visibleProperty(), false);
-		}
-
-		final KeyValue kv1 = new KeyValue(mod2sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod2sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv7 = new KeyValue(mod4sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv8 = new KeyValue(mod4sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv13 = new KeyValue(mod6sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv14 = new KeyValue(mod6sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(.5), kv1, kv2, kv7, kv8, kv13, kv14, kv15, kv16, kv17, kv18, kv19, kv20);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
+    public void sweeperOperations(int Addr, ArrayList<String> actionsList, FCW f, double lagTime, int lv, int rv, int ls, int rs, int ll, int rl){
+        switch(Addr) {
+            case 33:
+                sweepersMovingTogether(actionsList, ls, rs, ll, rl);
+                break;
+            case 34:
+                sweepersMovingAgainst(actionsList, ls, rs, ll, rl);
+                break;
+            case 35:
+                newSweeperCommands(actionsList, lv, rv, ls, rs, ll, rl);
+                break;
+            case 36:
+                sweepersLeftIndependent(actionsList, lv, rv, ls, rs, ll, rl);
+                break;
+            case 37:
+                sweepersRightIndependent(actionsList, lv, rv, ls, rs, ll, rl);
+                break;
+            case 38:
+                rightSweepersSpeed(actionsList);
+                break;
+            case 39:
+                leftSweepersSpeed(actionsList);
+                break;
+            case 40:
+                bothSweepersSpeed(actionsList);
+                break;
+            case 42:
+                if (actionsList.contains("TOGETHER")) {
+                    setSweepType(1);
+                }
+                if (actionsList.contains("OPPOSED")) {
+                    setSweepType(2);
+                }
+                if (actionsList.contains("INDEPENDENT")) {
+                    setSweepType(0);
+                }
+                break;
+            case 48:
+                weddingCakeFormation(actionsList, f, lagTime);
+                break;
+        }
+    }
+
+    public void sweepersMovingTogether(ArrayList<String> actionsList, int ls, int rs, int ll, int rl){
+        // Stops all motions
+        if (actionsList.contains("OFFRESET")) {
+            for(Line l : modSweeps){
+                l.getTransforms().clear();
+            }
+        }
+
+        // Animates the sweepers if the are paused or pauses them if
+        // they are moving
+        if (actionsList.contains("PLAYPAUSE")) {
+
+            if (leftSweepTimeline.getStatus() == Animation.Status.PAUSED) {
+                leftSweepTimeline.pause();
+                rightSweepTimeline.pause();
+            } else {
+                leftSweepTimeline.play();
+                rightSweepTimeline.play();
+            }
+        }
+        if (actionsList.contains("LARGO")) {
+            leftSweepTimeline.setRate(0.2);
+            leftSweepSpeed = 4.0;
+            rightSweepTimeline.setRate(0.2);
+            rightSweepSpeed = 4.0;
+        }
+        if (actionsList.contains("ADAGIO")) {
+            leftSweepTimeline.setRate(0.5);
+            leftSweepSpeed = 3.0;
+            rightSweepTimeline.setRate(0.5);
+            rightSweepSpeed = 3.0;
+        }
+        if (actionsList.contains("ANDANTE")) {
+            leftSweepTimeline.setRate(0.8);
+            leftSweepSpeed = 2.5;
+            rightSweepTimeline.setRate(0.8);
+            rightSweepSpeed = 2.5;
+        }
+        if (actionsList.contains("MODERATO")) {
+            leftSweepTimeline.setRate(1.0);
+            leftSweepSpeed = 1.0;
+            rightSweepTimeline.setRate(1.0);
+            rightSweepSpeed = 1.0;
+        }
+        if (actionsList.contains("ALLEGRETO")) {
+            leftSweepTimeline.setRate(1.3);
+            leftSweepSpeed = 1.8;
+            rightSweepTimeline.setRate(1.3);
+            rightSweepSpeed = 1.8;
+        }
+        if (actionsList.contains("ALLEGRO")) {
+            leftSweepTimeline.setRate(1.5);
+            leftSweepSpeed = 1.6;
+            rightSweepTimeline.setRate(1.5);
+            rightSweepSpeed = 1.6;
+        }
+        if (actionsList.contains("PRESTO")) {
+            leftSweepTimeline.setRate(1.8);
+            leftSweepSpeed = 1.5;
+            rightSweepTimeline.setRate(1.8);
+            rightSweepSpeed = 1.5;
+        }
+
+        // Animates the sweepers in a sweeping motion from -30 to 30
+        // degrees
+        if (actionsList.contains("SHORT")) {
+            if (sweepCommand != "SHORT") {
+                sweepCommand = "SHORT";
+                sweepLeftSweeps(ls, rs);
+                sweepRightSweeps(ls, rs);
+            }
+        }
+
+        // Animates the sweepers in a sweeping motion from -45 to 45
+        // degrees
+        if (actionsList.contains("LONG")) {
+            if (sweepCommand != "LONG") {
+                sweepCommand = "LONG";
+                sweepLeftSweeps(ll, rl);
+                sweepRightSweeps(ll, rl);
+            }
+        }
+    }
+
+    public void sweepersMovingAgainst(ArrayList<String> actionsList, int ls, int rs, int ll, int rl){
+        if (actionsList.contains("OFFRESET")) {
+            for(Line l : modSweeps){
+                l.getTransforms().clear();
+            }
+        }
+        if (actionsList.contains("PLAYPAUSE")) {
+
+            if (leftSweepTimeline.getStatus() == Animation.Status.PAUSED) {
+                leftSweepTimeline.pause();
+                rightSweepTimeline.pause();
+            } else {
+                leftSweepTimeline.play();
+                rightSweepTimeline.play();
+            }
+        }
+        if (actionsList.contains("LARGO")) {
+            leftSweepTimeline.setRate(0.2);
+            leftSweepSpeed = 4.0;
+            rightSweepTimeline.setRate(0.2);
+            rightSweepSpeed = 4.0;
+        }
+        if (actionsList.contains("ADAGIO")) {
+            leftSweepTimeline.setRate(0.5);
+            leftSweepSpeed = 3.0;
+            rightSweepTimeline.setRate(0.5);
+            rightSweepSpeed = 3.0;
+        }
+        if (actionsList.contains("ANDANTE")) {
+            leftSweepTimeline.setRate(0.8);
+            leftSweepSpeed = 2.5;
+            rightSweepTimeline.setRate(0.8);
+            rightSweepSpeed = 2.5;
+        }
+        if (actionsList.contains("MODERATO")) {
+            leftSweepTimeline.setRate(1.0);
+            leftSweepSpeed = 1.0;
+            rightSweepTimeline.setRate(1.0);
+            rightSweepSpeed = 1.0;
+        }
+        if (actionsList.contains("ALLEGRETO")) {
+            leftSweepTimeline.setRate(1.3);
+            leftSweepSpeed = 1.8;
+            rightSweepTimeline.setRate(1.3);
+            rightSweepSpeed = 1.8;
+        }
+        if (actionsList.contains("ALLEGRO")) {
+            leftSweepTimeline.setRate(1.5);
+            leftSweepSpeed = 1.6;
+            rightSweepTimeline.setRate(1.5);
+            rightSweepSpeed = 1.6;
+        }
+        if (actionsList.contains("PRESTO")) {
+            leftSweepTimeline.setRate(1.8);
+            leftSweepSpeed = 1.5;
+            rightSweepTimeline.setRate(1.8);
+            rightSweepSpeed = 1.5;
+        }
+        if (actionsList.contains("SHORT")) {
+            if (sweepCommand != "SHORT") {
+                sweepCommand = "SHORT";
+                sweepLeftSweeps(ls, rs);
+                sweepRightSweeps(rs, ls);
+            }
+        }
+        if (actionsList.contains("LONG")) {
+            if (sweepCommand != "LONG") {
+                sweepCommand = "LONG";
+                sweepLeftSweeps(ll, rl);
+                sweepRightSweeps(rl, ll);
+            }
+        }
+    }
+
+    public void newSweeperCommands(ArrayList<String> actionsList, int lv, int rv, int ls, int rs, int ll, int rl){
+        // Action list contains what sweeper action is supposed to
+        // be occuring at each tenth of a second.
+        if (actionsList.contains("RIGHTSHORTLEFTLONG")) { // 39
+            // Checks to make sure the most recent command is not
+            // rs,ll. If true, then nothing, else make current
+            // command rs, ll and animate sweepers accordingly
+            if (sweepCommand != "RIGHTSHORTLEFTLONG") {
+                sweepCommand = "RIGHTSHORTLEFTLONG";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rs, ll);
+                    sweepRightSweeps(rs, ll);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rs, ll);
+                    sweepRightSweeps(ll, rs);
+                }
+            }
+        }
+        if (actionsList.contains("RIGHTSHORTLEFTSHORT")) { // 38
+            if (sweepCommand != "RIGHTSHORTLEFTSHORT") {
+                sweepCommand = "RIGHTSHORTLEFTSHORT";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rs, ls);
+                    sweepRightSweeps(rs, ls);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rs, ls);
+                    sweepRightSweeps(ls, rs);
+                }
+            }
+        }
+        if (actionsList.contains("RIGHTLONGLEFTLONG")) { // 23
+            if (sweepCommand != "RIGHTLONGLEFTLONG") {
+                sweepCommand = "RIGHTLONGLEFTLONG";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rl, ll);
+                    sweepRightSweeps(rl, ll);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rl, ll);
+                    sweepRightSweeps(ll, rs);
+                }
+            }
+        }
+        if (actionsList.contains("HOLDRIGHTLONG")) { // 17
+            if (sweepCommand != "HOLDRIGHTLONG") {
+                sweepCommand = "HOLDRIGHTLONG";
+                sweepLeftSweeps(rl, rl);
+                sweepRightSweeps(rl, rl);
+            }
+        }
+        if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
+            if (sweepCommand != "HOLDRIGHTSHORT") {
+                sweepCommand = "HOLDRIGHTSHORT";
+                sweepLeftSweeps(rs, rs);
+                sweepRightSweeps(rs, rs);
+            }
+        }
+        if (actionsList.contains("HOLDLEFTLONG")) { // 119
+            if (sweepCommand != "HOLDLEFTLONG") {
+                sweepCommand = "HOLDLEFTLONG";
+                sweepLeftSweeps(ll, ll);
+                sweepRightSweeps(ll, ll);
+            }
+        }
+        if (actionsList.contains("HOLDLEFTSHORT")) { // 102
+            if (sweepCommand != "HOLDLEFTSHORT") {
+                sweepCommand = "HOLDLEFTSHORT";
+                sweepLeftSweeps(ls, ls);
+                sweepRightSweeps(ls, ls);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGRIGHTVERYSHORT")) { // 19
+            if (sweepCommand != "RIGHTLONGRIGHTVERYSHORT") {
+                sweepCommand = "RIGHTLONGRIGHTVERYSHORT";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rl, rv);
+                    sweepRightSweeps(rl, rv);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rl, rv);
+                    sweepRightSweeps(rv, rl);
+                }
+            }
+        }
+        if (actionsList.contains("RIGHTLONGCENTER")) { // 20
+            if (sweepCommand != "RIGHTLONGCENTER") {
+                sweepCommand = "RIGHTLONGCENTER";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rl, 0);
+                    sweepRightSweeps(rl, 0);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rl, 0);
+                    sweepRightSweeps(0, rl);
+                }
+            }
+        }
+        if (actionsList.contains("RIGHTSHORTCENTER")) { // 36
+            if (sweepCommand != "RIGHTSHORTCENTER") {
+                sweepCommand = "RIGHTSHORTCENTER";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rs, 0);
+                    sweepRightSweeps(rs, 0);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rs, 0);
+                    sweepRightSweeps(0, rs);
+                }
+            }
+        }
+        if (actionsList.contains("RIGHTLONGLEFTSHORT")) { // 22
+            if (sweepCommand != "RIGHTLONGLEFTSHORT") {
+                sweepCommand = "RIGHTLONGLEFTSHORT";
+                if (sweepType == 1 || sweepType == 0) {
+                    sweepLeftSweeps(rl, ls);
+                    sweepRightSweeps(rl, ls);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rl, ls);
+                    sweepRightSweeps(ls, rl);
+                }
+            }
+        }
+        if (actionsList.contains("HOLDCENTER")) { // 0,68
+            if (sweepCommand != "HOLDCENTER") {
+                sweepCommand = "HOLDCENTER";
+                sweepLeftSweeps(0, 0);
+                sweepRightSweeps(0, 0);
+            }
+        }
+        if (actionsList.contains("CENTERLEFTSHORT")) { // 70
+            if (sweepCommand != "CENTERLEFTSHORT") {
+                sweepCommand = "CENTERLEFTSHORT";
+                if (sweepType == 1 || sweepType == 0) {
+                    sweepLeftSweeps(0, ls);
+                    sweepRightSweeps(0, ls);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(0, ls);
+                    sweepRightSweeps(ls, 0);
+                }
+            }
+        }
+        if (actionsList.contains("OSCLEFTVERYSHORT")) { // 69
+            if (sweepCommand != "OSCLEFTVERYSHORT") {
+                sweepCommand = "OSCLEFTVERYSHORT";
+                if (sweepType == 1) {
+                    oscillateLeftSweeps(lv, 0);
+                    oscillateRightSweeps(lv, 0);
+                }
+                if (sweepType == 2) {
+                    oscillateLeftSweeps(lv, 0);
+                    oscillateRightSweeps(0, lv);
+                }
+            }
+        }
+        if (actionsList.contains("RIGHTLONGLEFTVERYSHORT")) { // 21
+            if (sweepCommand != "RIGHTLONGLEFTVERYSHORT") {
+                sweepCommand = "RIGHTLONGLEFTVERYSHORT";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rl, lv);
+                    sweepRightSweeps(rl, lv);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rl, lv);
+                    sweepRightSweeps(lv, rl);
+                }
+            }
+        }
+        if (actionsList.contains("RIGHTSHORTLEFTVERYSHORT")) { // 37
+            if (sweepCommand != "RIGHTSHORTLEFTVERYSHORT") {
+                sweepCommand = "RIGHTSHORTLEFTVERYSHORT";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rs, lv);
+                    sweepRightSweeps(rs, lv);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rs, lv);
+                    sweepRightSweeps(lv, rs);
+                }
+            }
+        }
+        if (actionsList.contains("RIGHTVERYSHORTLEFTSHORT")) { // 54
+            if (sweepCommand != "RIGHTVERYSHORTLEFTSHORT") {
+                sweepCommand = "RIGHTVERYSHORTLEFTSHORT";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rv, ls);
+                    sweepRightSweeps(rv, ls);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rv, ls);
+                    sweepRightSweeps(ls, rv);
+                }
+            }
+        }
+        if (actionsList.contains("RIGHTVERYSHORTLEFTLONG")) { // 55
+            if (sweepCommand != "RIGHTVERYSHORTLEFTLONG") {
+                sweepCommand = "RIGHTVERYSHORTLEFTLONG";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(rv, ll);
+                    sweepRightSweeps(rv, ll);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(rv, ll);
+                    sweepRightSweeps(ll, rv);
+                }
+            }
+        }
+        if (actionsList.contains("CENTERLEFTLONG")) { // 71
+            if (sweepCommand != "CENTERLEFTLONG") {
+                sweepCommand = "CENTERLEFTLONG";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(0, ll);
+                    sweepRightSweeps(0, ll);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(0, ll);
+                    sweepRightSweeps(ll, 0);
+                }
+            }
+        }
+        if (actionsList.contains("LEFTVERYSHORTLEFTLONG")) { // 87
+            if (sweepCommand != "LEFTVERYSHORTLEFTLONG") {
+                sweepCommand = "LEFTVERYSHORTLEFTLONG";
+                if (sweepType == 1) {
+                    sweepLeftSweeps(lv, ll);
+                    sweepRightSweeps(lv, ll);
+                }
+                if (sweepType == 2) {
+                    sweepLeftSweeps(lv, ll);
+                    sweepRightSweeps(ll, lv);
+                }
+            }
+        }
+        if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
+            if (sweepCommand != "HOLDRIGHTVERYSHORT") {
+                sweepCommand = "HOLDRIGHTVERYSHORT";
+                if (sweepType == 1) {
+                    oscillateLeftSweeps(rv, rv);
+                    sweepRightSweeps(rv, rv);
+                }
+                if (sweepType == 2) {
+                    oscillateLeftSweeps(rv, rv);
+                    oscillateRightSweeps(rv, rv);
+                }
+            }
+        }
+        if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
+            if (sweepCommand != "HOLDLEFTVERYSHORT") {
+                sweepCommand = "HOLDLEFTVERYSHORT";
+                if (sweepType == 1) {
+                    oscillateLeftSweeps(lv, lv);
+                    oscillateRightSweeps(lv, lv);
+                }
+                if (sweepType == 2) {
+                    oscillateLeftSweeps(lv, lv);
+                    oscillateRightSweeps(lv, lv);
+                }
+            }
+        }
+        if (actionsList.contains("OSCRIGHTLONG")) { // 18
+            if (sweepCommand != "OSCRIGHTLONG") {
+                sweepCommand = "OSCRIGHTLONG";
+                if (sweepType == 1) {
+                    oscillateLeftSweeps(rl, rs);
+                    oscillateRightSweeps(rl, rs);
+                }
+                if (sweepType == 2) {
+                    oscillateLeftSweeps(rl, rs);
+                    oscillateRightSweeps(rs, rl);
+                }
+            }
+        }
+        if (actionsList.contains("OSCRIGHTSHORT")) { // 35
+            if (sweepCommand != "OSCRIGHTSHORT") {
+                sweepCommand = "OSCRIGHTSHORT";
+                if (sweepType == 1) {
+                    oscillateLeftSweeps(rs, rv);
+                    oscillateRightSweeps(rs, rv);
+                }
+                if (sweepType == 2) {
+                    oscillateLeftSweeps(rs, rv);
+                    oscillateRightSweeps(rv, rs);
+                }
+            }
+        }
+        if (actionsList.contains("OSCRIGHTVERYSHORT")) { // 52
+            if (sweepCommand != "OSCRIGHTVERYSHORT") {
+                sweepCommand = "OSCRIGHTVERYSHORT";
+                if (sweepType == 1) {
+                    oscillateLeftSweeps(rv, 0);
+                    oscillateRightSweeps(rv, 0);
+                }
+                if (sweepType == 2) {
+                    oscillateLeftSweeps(rv, 0);
+                    oscillateRightSweeps(0, rv);
+                }
+            }
+        }
+        if (actionsList.contains("OSCCENTER")) { // 53
+            if (sweepCommand != "OSCCENTER") {
+                sweepCommand = "OSCCENTER";
+                if (sweepType == 1) {
+                    oscillateLeftSweeps(lv, rv);
+                    oscillateRightSweeps(lv, rv);
+                }
+                if (sweepType == 2) {
+                    oscillateLeftSweeps(lv, rv);
+                    oscillateRightSweeps(rv, lv);
+                }
+            }
+        }
+        if (actionsList.contains("OSCLEFTSHORT")) { // 86
+            if (sweepCommand != "OSCLEFTSHORT") {
+                sweepCommand = "OSCLEFTSHORT";
+                if (sweepType == 1) {
+                    oscillateLeftSweeps(ls, lv);
+                    oscillateRightSweeps(ls, lv);
+                }
+                if (sweepType == 2) {
+                    oscillateLeftSweeps(ls, lv);
+                    oscillateRightSweeps(lv, ls);
+                }
+            }
+        }
+        if (actionsList.contains("OSCLEFTLONG")) { // 103
+            if (sweepCommand != "OSCLEFTLONG") {
+                sweepCommand = "OSCLEFTLONG";
+                if (sweepType == 1) {
+                    oscillateLeftSweeps(ll, ls);
+                    oscillateRightSweeps(ll, ls);
+                }
+                if (sweepType == 2) {
+                    oscillateLeftSweeps(ll, ls);
+                    oscillateRightSweeps(ls, ll);
+                }
+            }
+        }
+    }
+
+    public void sweepersLeftIndependent(ArrayList<String> actionsList, int lv, int rv, int ls, int rs, int ll, int rl){
+        if (actionsList.contains("RIGHTSHORTLEFTLONG")) { // 39
+            if (sweepCommand != "RIGHTSHORTLEFTLONG") {
+                sweepCommand = "RIGHTSHORTLEFTLONG";
+                sweepLeftSweeps(rs, ll);
+            }
+        }
+        if (actionsList.contains("RIGHTSHORTLEFTSHORT")) { // 38
+            if (sweepCommand != "RIGHTSHORTLEFTSHORT") {
+                sweepCommand = "RIGHTSHORTLEFTSHORT";
+                sweepLeftSweeps(rs, ls);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGLEFTLONG")) { // 23
+            if (sweepCommand != "RIGHTLONGLEFTLONG") {
+                sweepCommand = "RIGHTLONGLEFTLONG";
+                sweepLeftSweeps(rl, ll);
+            }
+        }
+        if (actionsList.contains("HOLDRIGHTLONG")) { // 17
+            if (sweepCommand != "HOLDRIGHTLONG") {
+                sweepCommand = "HOLDRIGHTLONG";
+                sweepLeftSweeps(rl, rl);
+            }
+        }
+        if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
+            if (sweepCommand != "HOLDRIGHTSHORT") {
+                sweepCommand = "HOLDRIGHTSHORT";
+                sweepLeftSweeps(rs, rs);
+            }
+        }
+        if (actionsList.contains("HOLDLEFTLONG")) { // 119
+            if (sweepCommand != "HOLDLEFTLONG") {
+                sweepCommand = "HOLDLEFTLONG";
+                sweepLeftSweeps(ll, ll);
+            }
+        }
+        if (actionsList.contains("HOLDLEFTSHORT")) { // 102
+            if (sweepCommand != "HOLDLEFTSHORT") {
+                sweepCommand = "HOLDLEFTSHORT";
+                sweepLeftSweeps(ls, ls);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGRIGHTVERYSHORT")) { // 19
+            if (sweepCommand != "RIGHTLONGRIGHTVERYSHORT") {
+                sweepCommand = "RIGHTLONGRIGHTVERYSHORT";
+                sweepLeftSweeps(rl, rv);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGCENTER")) { // 20
+            if (sweepCommand != "RIGHTLONGCENTER") {
+                sweepCommand = "RIGHTLONGCENTER";
+                sweepLeftSweeps(rl, 0);
+            }
+        }
+        if (actionsList.contains("RIGHTSHORTCENTER")) { // 36
+            if (sweepCommand != "RIGHTSHORTCENTER") {
+                sweepCommand = "RIGHTSHORTCENTER";
+                sweepLeftSweeps(rs, 0);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGLEFTSHORT")) { // 22
+            if (sweepCommand != "RIGHTLONGLEFTSHORT") {
+                sweepCommand = "RIGHTLONGLEFTSHORT";
+                sweepLeftSweeps(rl, ls);
+            }
+        }
+        if (actionsList.contains("HOLDCENTER")) { // 0,68
+            if (sweepCommand != "HOLDCENTER") {
+                sweepCommand = "HOLDCENTER";
+                sweepLeftSweeps(0, 0);
+            }
+        }
+        if (actionsList.contains("CENTERLEFTSHORT")) { // 70
+            if (sweepCommand != "CENTERLEFTSHORT") {
+                sweepCommand = "CENTERLEFTSHORT";
+                sweepLeftSweeps(0, ls);
+            }
+        }
+        if (actionsList.contains("OSCLEFTVERYSHORT")) { // 69
+            if (sweepCommand != "OSCLEFTVERYSHORT") {
+                sweepCommand = "OSCLEFTVERYSHORT";
+                oscillateLeftSweeps(lv, 0);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGLEFTVERYSHORT")) { // 21
+            if (sweepCommand != "RIGHTLONGLEFTVERYSHORT") {
+                sweepCommand = "RIGHTLONGLEFTVERYSHORT";
+                sweepLeftSweeps(rl, lv);
+            }
+        }
+        if (actionsList.contains("RIGHTSHORTLEFTVERYSHORT")) { // 37
+            if (sweepCommand != "RIGHTSHORTLEFTVERYSHORT") {
+                sweepCommand = "RIGHTSHORTLEFTVERYSHORT";
+                sweepLeftSweeps(rs, lv);
+            }
+        }
+        if (actionsList.contains("RIGHTVERYSHORTLEFTSHORT")) { // 54
+            if (sweepCommand != "RIGHTVERYSHORTLEFTSHORT") {
+                sweepCommand = "RIGHTVERYSHORTLEFTSHORT";
+                sweepLeftSweeps(rv, ls);
+            }
+        }
+        if (actionsList.contains("RIGHTVERYSHORTLEFTLONG")) { // 55
+            if (sweepCommand != "RIGHTVERYSHORTLEFTLONG") {
+                sweepCommand = "RIGHTVERYSHORTLEFTLONG";
+                sweepLeftSweeps(rv, ll);
+            }
+        }
+        if (actionsList.contains("CENTERLEFTLONG")) { // 71
+            if (sweepCommand != "CENTERLEFTLONG") {
+                sweepCommand = "CENTERLEFTLONG";
+                sweepLeftSweeps(0, ll);
+            }
+        }
+        if (actionsList.contains("LEFTVERYSHORTLEFTLONG")) { // 87
+            if (sweepCommand != "LEFTVERYSHORTLEFTLONG") {
+                sweepCommand = "LEFTVERYSHORTLEFTLONG";
+                sweepLeftSweeps(lv, ll);
+            }
+        }
+        if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
+            if (sweepCommand != "HOLDRIGHTVERYSHORT") {
+                sweepCommand = "HOLDRIGHTVERYSHORT";
+                oscillateLeftSweeps(rv, rv);
+            }
+        }
+        if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
+            if (sweepCommand != "HOLDLEFTVERYSHORT") {
+                sweepCommand = "HOLDLEFTVERYSHORT";
+                oscillateLeftSweeps(lv, lv);
+            }
+        }
+        if (actionsList.contains("OSCRIGHTLONG")) { // 18
+            if (sweepCommand != "OSCRIGHTLONG") {
+                sweepCommand = "OSCRIGHTLONG";
+                oscillateLeftSweeps(rl, rs);
+            }
+        }
+        if (actionsList.contains("OSCRIGHTSHORT")) { // 35
+            if (sweepCommand != "OSCRIGHTSHORT") {
+                sweepCommand = "OSCRIGHTSHORT";
+                oscillateLeftSweeps(rs, rv);
+            }
+        }
+        if (actionsList.contains("OSCRIGHTVERYSHORT")) { // 52
+            if (sweepCommand != "OSCRIGHTVERYSHORT") {
+                sweepCommand = "OSCRIGHTVERYSHORT";
+                oscillateLeftSweeps(rv, 0);
+            }
+        }
+        if (actionsList.contains("OSCCENTER")) { // 53
+            if (sweepCommand != "OSCCENTER") {
+                sweepCommand = "OSCCENTER";
+                oscillateLeftSweeps(lv, rv);
+            }
+        }
+        if (actionsList.contains("OSCLEFTSHORT")) { // 86
+            if (sweepCommand != "OSCLEFTSHORT") {
+                sweepCommand = "OSCLEFTSHORT";
+                oscillateLeftSweeps(ls, lv);
+            }
+        }
+        if (actionsList.contains("OSCLEFTLONG")) { // 103
+            if (sweepCommand != "OSCLEFTLONG") {
+                sweepCommand = "OSCLEFTLONG";
+                oscillateLeftSweeps(ll, ls);
+            }
+        }
+    }
+
+    public void sweepersRightIndependent(ArrayList<String> actionsList, int lv, int rv, int ls, int rs, int ll, int rl){
+        if (actionsList.contains("RIGHTSHORTLEFTLONG")) { // 39
+            if (sweepCommand != "RIGHTSHORTLEFTLONG") {
+                sweepCommand = "RIGHTSHORTLEFTLONG";
+                sweepRightSweeps(rs, ll);
+            }
+        }
+        if (actionsList.contains("RIGHTSHORTLEFTSHORT")) { // 38
+            if (sweepCommand != "RIGHTSHORTLEFTSHORT") {
+                sweepCommand = "RIGHTSHORTLEFTSHORT";
+                sweepRightSweeps(rs, ls);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGLEFTLONG")) { // 23
+            if (sweepCommand != "RIGHTLONGLEFTLONG") {
+                sweepCommand = "RIGHTLONGLEFTLONG";
+                sweepRightSweeps(rl, ll);
+            }
+        }
+        if (actionsList.contains("HOLDRIGHTLONG")) { // 17
+            if (sweepCommand != "HOLDRIGHTLONG") {
+                sweepCommand = "HOLDRIGHTLONG";
+                sweepRightSweeps(rl, rl);
+            }
+        }
+        if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
+            if (sweepCommand != "HOLDRIGHTSHORT") {
+                sweepCommand = "HOLDRIGHTSHORT";
+                sweepRightSweeps(rs, rs);
+            }
+        }
+        if (actionsList.contains("HOLDLEFTLONG")) { // 119
+            if (sweepCommand != "HOLDLEFTLONG") {
+                sweepCommand = "HOLDLEFTLONG";
+                sweepRightSweeps(ll, ll);
+            }
+        }
+        if (actionsList.contains("HOLDLEFTSHORT")) { // 102
+            if (sweepCommand != "HOLDLEFTSHORT") {
+                sweepCommand = "HOLDLEFTSHORT";
+                sweepRightSweeps(ls, ls);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGRIGHTVERYSHORT")) { // 19
+            if (sweepCommand != "RIGHTLONGRIGHTVERYSHORT") {
+                sweepCommand = "RIGHTLONGRIGHTVERYSHORT";
+                sweepRightSweeps(rl, rv);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGCENTER")) { // 20
+            if (sweepCommand != "RIGHTLONGCENTER") {
+                sweepCommand = "RIGHTLONGCENTER";
+                sweepRightSweeps(rl, 0);
+            }
+        }
+        if (actionsList.contains("RIGHTSHORTCENTER")) { // 36
+            if (sweepCommand != "RIGHTSHORTCENTER") {
+                sweepCommand = "RIGHTSHORTCENTER";
+                sweepRightSweeps(rs, 0);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGLEFTSHORT")) { // 22
+            if (sweepCommand != "RIGHTLONGLEFTSHORT") {
+                sweepCommand = "RIGHTLONGLEFTSHORT";
+                sweepRightSweeps(rl, ls);
+            }
+        }
+        if (actionsList.contains("HOLDCENTER")) { // 0,68
+            if (sweepCommand != "HOLDCENTER") {
+                sweepCommand = "HOLDCENTER";
+                sweepRightSweeps(0, 0);
+            }
+        }
+        if (actionsList.contains("CENTERLEFTSHORT")) { // 70
+            if (sweepCommand != "CENTERLEFTSHORT") {
+                sweepCommand = "CENTERLEFTSHORT";
+                sweepRightSweeps(0, ls);
+            }
+        }
+        if (actionsList.contains("OSCLEFTVERYSHORT")) { // 69
+            if (sweepCommand != "OSCLEFTVERYSHORT") {
+                sweepCommand = "OSCLEFTVERYSHORT";
+                oscillateRightSweeps(lv, 0);
+            }
+        }
+        if (actionsList.contains("RIGHTLONGLEFTVERYSHORT")) { // 21
+            if (sweepCommand != "RIGHTLONGLEFTVERYSHORT") {
+                sweepCommand = "RIGHTLONGLEFTVERYSHORT";
+                sweepRightSweeps(rl, lv);
+
+            }
+        }
+        if (actionsList.contains("RIGHTSHORTLEFTVERYSHORT")) { // 37
+            if (sweepCommand != "RIGHTSHORTLEFTVERYSHORT") {
+                sweepCommand = "RIGHTSHORTLEFTVERYSHORT";
+                sweepRightSweeps(rs, lv);
+            }
+        }
+        if (actionsList.contains("RIGHTVERYSHORTLEFTSHORT")) { // 54
+            if (sweepCommand != "RIGHTVERYSHORTLEFTSHORT") {
+                sweepCommand = "RIGHTVERYSHORTLEFTSHORT";
+                sweepRightSweeps(rv, ls);
+            }
+        }
+        if (actionsList.contains("RIGHTVERYSHORTLEFTLONG")) { // 55
+            if (sweepCommand != "RIGHTVERYSHORTLEFTLONG") {
+                sweepCommand = "RIGHTVERYSHORTLEFTLONG";
+                sweepRightSweeps(rv, ll);
+            }
+        }
+        if (actionsList.contains("CENTERLEFTLONG")) { // 71
+            if (sweepCommand != "CENTERLEFTLONG") {
+                sweepCommand = "CENTERLEFTLONG";
+                sweepRightSweeps(0, ll);
+            }
+        }
+        if (actionsList.contains("LEFTVERYSHORTLEFTLONG")) { // 87
+            if (sweepCommand != "LEFTVERYSHORTLEFTLONG") {
+                sweepCommand = "LEFTVERYSHORTLEFTLONG";
+                sweepRightSweeps(lv, ll);
+            }
+        }
+        if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
+            if (sweepCommand != "HOLDRIGHTVERYSHORT") {
+                sweepCommand = "HOLDRIGHTVERYSHORT";
+                oscillateRightSweeps(rv, rv);
+            }
+        }
+        if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
+            if (sweepCommand != "HOLDLEFTVERYSHORT") {
+                sweepCommand = "HOLDLEFTVERYSHORT";
+                oscillateRightSweeps(lv, lv);
+            }
+        }
+        if (actionsList.contains("OSCRIGHTLONG")) { // 18
+            if (sweepCommand != "OSCRIGHTLONG") {
+                sweepCommand = "OSCRIGHTLONG";
+                oscillateRightSweeps(rl, rs);
+            }
+        }
+        if (actionsList.contains("OSCRIGHTSHORT")) { // 35
+            if (sweepCommand != "OSCRIGHTSHORT") {
+                sweepCommand = "OSCRIGHTSHORT";
+                oscillateRightSweeps(rs, rv);
+            }
+        }
+        if (actionsList.contains("OSCRIGHTVERYSHORT")) { // 52
+            if (sweepCommand != "OSCRIGHTVERYSHORT") {
+                sweepCommand = "OSCRIGHTVERYSHORT";
+                oscillateRightSweeps(rv, 0);
+            }
+        }
+        if (actionsList.contains("OSCCENTER")) { // 53
+            if (sweepCommand != "OSCCENTER") {
+                sweepCommand = "OSCCENTER";
+                oscillateRightSweeps(lv, rv);
+            }
+        }
+        if (actionsList.contains("OSCLEFTSHORT")) { // 86
+            if (sweepCommand != "OSCLEFTSHORT") {
+                sweepCommand = "OSCLEFTSHORT";
+                oscillateRightSweeps(ls, lv);
+            }
+        }
+        if (actionsList.contains("OSCLEFTLONG")) { // 103
+            if (sweepCommand != "OSCLEFTLONG") {
+                sweepCommand = "OSCLEFTLONG";
+                oscillateRightSweeps(ll, ls);
+            }
+        }
+    }
+
+    public void rightSweepersSpeed(ArrayList<String> actionsList){
+        if (actionsList.contains("LARGO")) {
+            leftSweepTimeline.setRate(0.2);
+            leftSweepSpeed = 4.0;
+        }
+        if (actionsList.contains("ANDANTE")) {
+            leftSweepTimeline.setRate(0.8);
+            leftSweepSpeed = 3.0;
+        }
+        if (actionsList.contains("ALLEGRETO")) {
+            leftSweepTimeline.setRate(1.3);
+            leftSweepSpeed = 2.25;
+        }
+        if (actionsList.contains("PRESTO")) {
+            leftSweepTimeline.setRate(1.8);
+            leftSweepSpeed = 1.8;
+        }
+        if (actionsList.contains("OFFRESET")) {
+            for(int i = 0; i < modSweeps.length; i++){
+                if(i%2 == 0){
+                    modSweeps[i].getTransforms().clear();
+                }
+            }
+        }
+        if (actionsList.contains("PLAYPAUSE")) {
+
+            if (leftSweepTimeline.getStatus() == Animation.Status.PAUSED) {
+                leftSweepTimeline.play();
+            } else {
+                leftSweepTimeline.pause();
+            }
+        }
+    }
+
+    public void leftSweepersSpeed(ArrayList<String> actionsList){
+        if (actionsList.contains("LARGO")) {
+            rightSweepTimeline.setRate(0.2);
+            rightSweepSpeed = 4.0;
+        }
+        if (actionsList.contains("ANDANTE")) {
+            rightSweepTimeline.setRate(0.8);
+            rightSweepSpeed = 3.0;
+        }
+        if (actionsList.contains("ALLEGRETO")) {
+            rightSweepTimeline.setRate(1.3);
+            rightSweepSpeed = 2.25;
+        }
+        if (actionsList.contains("PRESTO")) {
+            rightSweepTimeline.setRate(1.8);
+            rightSweepSpeed = 1.8;
+        }
+        if (actionsList.contains("OFFRESET")) {
+            for(int i = 1; i < modSweeps.length; i++){
+                if(i%2 == 0){
+                    modSweeps[i].getTransforms().clear();
+                }
+            }
+        }
+        if (actionsList.contains("PLAYPAUSE")) {
+
+            if (rightSweepTimeline.getStatus() == Animation.Status.PAUSED) {
+                rightSweepTimeline.play();
+            } else {
+                rightSweepTimeline.pause();
+            }
+        }
+    }
+
+    public void bothSweepersSpeed(ArrayList<String> actionsList){
+        if (actionsList.contains("OFFRESET")) {
+            for(Line l : modSweeps){
+                l.getTransforms().clear();
+            }
+        }
+        if (actionsList.contains("PLAYPAUSE")) {
+            if (leftSweepTimeline.getStatus() == Animation.Status.PAUSED) {
+                leftSweepTimeline.pause();
+                rightSweepTimeline.pause();
+            } else {
+                leftSweepTimeline.play();
+                rightSweepTimeline.play();
+            }
+        }
+        if (actionsList.contains("LARGO")) {
+            leftSweepTimeline.setRate(0.2);
+            leftSweepSpeed = 4.0;
+            rightSweepTimeline.setRate(0.2);
+            rightSweepSpeed = 4.0;
+        }
+        if (actionsList.contains("ADAGIO")) {
+            leftSweepTimeline.setRate(0.5);
+            leftSweepSpeed = 3.0;
+            rightSweepTimeline.setRate(0.5);
+            rightSweepSpeed = 3.0;
+        }
+        if (actionsList.contains("ANDANTE")) {
+            leftSweepTimeline.setRate(0.8);
+            leftSweepSpeed = 2.5;
+            rightSweepTimeline.setRate(0.8);
+            rightSweepSpeed = 2.5;
+        }
+        if (actionsList.contains("MODERATO")) {
+            leftSweepTimeline.setRate(1.0);
+            leftSweepSpeed = 1.0;
+            rightSweepTimeline.setRate(1.0);
+            rightSweepSpeed = 1.0;
+        }
+        if (actionsList.contains("ALLEGRETO")) {
+            leftSweepTimeline.setRate(1.3);
+            leftSweepSpeed = 1.8;
+            rightSweepTimeline.setRate(1.3);
+            rightSweepSpeed = 1.8;
+        }
+        if (actionsList.contains("ALLEGRO")) {
+            leftSweepTimeline.setRate(1.5);
+            leftSweepSpeed = 1.6;
+            rightSweepTimeline.setRate(1.5);
+            rightSweepSpeed = 1.6;
+        }
+        if (actionsList.contains("PRESTO")) {
+            leftSweepTimeline.setRate(1.8);
+            leftSweepSpeed = 1.5;
+            rightSweepTimeline.setRate(1.8);
+            rightSweepSpeed = 1.5;
+        }
+    }
+
+    public void weddingCakeFormation(ArrayList<String> actionsList, FCW f, double lagTime){
+        if (actionsList.contains("MODULEA")) {
+            int level = FCWLib.getInstance().reverseGetLevel(f);
+            // Left over code from first group, not sure if needed
+            if (level == 6) {
+                drawMultiA(level - 1, lagTime);
+                drawSweepsA(level - 1, lagTime);
+            } else {
+                drawMultiA(level, lagTime);
+            }
+        }
+        if (actionsList.contains("MODULEB")) {
+            int level = FCWLib.getInstance().reverseGetLevel(f);
+            if (level == 6) {
+                drawMultiB(level - 1, lagTime);
+                drawSweepsB(level - 1, lagTime);
+            } else {
+                drawMultiB(level, lagTime);
+            }
+        }
+    }
+
+    public void fadingOperations(int Addr, FCW f, double[][] fading, Color[][] crossFading){
+        switch(Addr) {
+            case 501:
+                System.out.println("Fading!!!");
+                crossFading[0][0] = ColorPaletteModel.getInstance().getColor(ColorPaletteModel.getInstance().checkColor(mod1ring4.getFill()));
+                crossFading[0][1] = ColorPaletteModel.getInstance().getColor(f.getData() % 100);
+                break;
+            case 601:
+                fading[0][0] = f.getData() / 10;
+                fading[0][1] = mod1.getOpacity();
+                fading[0][2] = ((int) f.getData()) / 100;
+                fadeModule(1, fading[0][0], fading[0][1], fading[0][2], crossFading[0][0], crossFading[0][1]);
+                break;
+            case 502:
+                crossFading[1][0] = ColorPaletteModel.getInstance().getColor(ColorPaletteModel.getInstance().checkColor(mod2ring4.getFill()));
+                crossFading[1][1] = ColorPaletteModel.getInstance().getColor(f.getData() % 100);
+                break;
+            case 602:
+                fading[1][0] = f.getData() / 10;
+                fading[1][1] = mod1.getOpacity();
+                fading[1][2] = ((int) f.getData()) / 100;
+                fadeModule(2, fading[1][0], fading[1][1], fading[1][2], crossFading[1][0], crossFading[1][1]);
+                break;
+            case 503:
+                crossFading[2][0] = ColorPaletteModel.getInstance().getColor(ColorPaletteModel.getInstance().checkColor(mod3ring4.getFill()));
+                crossFading[2][1] = ColorPaletteModel.getInstance().getColor(f.getData() % 100);
+                break;
+            case 603:
+                fading[2][0] = f.getData() / 10;
+                fading[2][1] = mod1.getOpacity();
+                fading[2][2] = ((int) f.getData()) / 100;
+                fadeModule(3, fading[2][0], fading[2][1], fading[2][2], crossFading[2][0], crossFading[2][1]);
+                break;
+            case 504:
+                crossFading[3][0] = ColorPaletteModel.getInstance().getColor(ColorPaletteModel.getInstance().checkColor(mod4ring4.getFill()));
+                crossFading[3][1] = ColorPaletteModel.getInstance().getColor(f.getData() % 100);
+                break;
+            case 604:
+                fading[3][0] = f.getData() / 10;
+                fading[3][1] = mod1.getOpacity();
+                fading[3][2] = ((int) f.getData()) / 100;
+                fadeModule(4, fading[3][0], fading[3][1], fading[3][2], crossFading[3][0], crossFading[3][1]);
+                break;
+            case 505:
+                crossFading[4][0] = ColorPaletteModel.getInstance().getColor(ColorPaletteModel.getInstance().checkColor(mod5ring4.getFill()));
+                crossFading[4][1] = ColorPaletteModel.getInstance().getColor(f.getData() % 100);
+                break;
+            case 605:
+                fading[4][0] = f.getData() / 10;
+                fading[4][1] = mod1.getOpacity();
+                fading[4][2] = ((int) f.getData()) / 100;
+                fadeModule(5, fading[4][0], fading[4][1], fading[4][2], crossFading[4][0], crossFading[4][1]);
+                break;
+            case 506:
+                crossFading[5][0] = ColorPaletteModel.getInstance().getColor(ColorPaletteModel.getInstance().checkColor(mod6ring4.getFill()));
+                crossFading[5][1] = ColorPaletteModel.getInstance().getColor(f.getData() % 100);
+                break;
+            case 606:
+                fading[5][0] = f.getData() / 10;
+                fading[5][1] = mod1.getOpacity();
+                fading[5][2] = ((int) f.getData()) / 100;
+                fadeModule(6, fading[5][0], fading[5][1], fading[5][2], crossFading[5][0], crossFading[5][1]);
+                break;
+            case 507:
+                crossFading[6][0] = ColorPaletteModel.getInstance().getColor(ColorPaletteModel.getInstance().checkColor(mod7ring4.getFill()));
+                crossFading[6][1] = ColorPaletteModel.getInstance().getColor(f.getData() % 100);
+                break;
+            case 607:
+                fading[6][0] = f.getData() / 10;
+                fading[6][1] = mod1.getOpacity();
+                fading[6][2] = ((int) f.getData()) / 100;
+                fadeModule(7, fading[6][0], fading[6][1], fading[6][2], crossFading[6][0], crossFading[6][1]);
+                break;
+        }
+    }
 
 	public void sweepLeftSweeps(double leftLimit, double rightLimit) {
 		leftSweepTimeline = new Timeline();
@@ -2626,124 +4144,6 @@ public class FountainSimController implements Initializable {
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 		}
 		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv5, kv6, kv7, kv9, kv10, kv11, kv13, kv14, kv15, kv17, kv18, kv19);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawCandlesA(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-
-		KeyValue kv25 = null;
-		KeyValue kv26 = null;
-		KeyValue kv27 = null;
-		KeyValue kv28 = null;
-		KeyValue kv29 = null;
-		KeyValue kv30 = null;
-		KeyValue kv31 = null;
-		KeyValue kv32 = null;
-		KeyValue kv33 = null;
-		KeyValue kv34 = null;
-		KeyValue kv35 = null;
-		KeyValue kv36 = null;
-		KeyValue kv37 = null;
-		KeyValue kv38 = null;
-		KeyValue kv39 = null;
-		KeyValue kv40 = null;
-		KeyValue kv41 = null;
-		KeyValue kv42 = null;
-		KeyValue kv43 = null;
-		KeyValue kv44 = null;
-		KeyValue kv45 = null;
-		KeyValue kv46 = null;
-		KeyValue kv47 = null;
-		KeyValue kv48 = null;
-		mod1candle1.setVisible(true);
-		mod1candle2.setVisible(true);
-		mod1candle3.setVisible(true);
-		mod1candle4.setVisible(true);
-		mod1candle5.setVisible(true);
-		mod1candle6.setVisible(true);
-		mod3candle1.setVisible(true);
-		mod3candle2.setVisible(true);
-		mod3candle3.setVisible(true);
-		mod3candle4.setVisible(true);
-		mod3candle5.setVisible(true);
-		mod3candle6.setVisible(true);
-		mod5candle1.setVisible(true);
-		mod5candle2.setVisible(true);
-		mod5candle3.setVisible(true);
-		mod5candle4.setVisible(true);
-		mod5candle5.setVisible(true);
-		mod5candle6.setVisible(true);
-		mod7candle1.setVisible(true);
-		mod7candle2.setVisible(true);
-		mod7candle3.setVisible(true);
-		mod7candle4.setVisible(true);
-		mod7candle5.setVisible(true);
-		mod7candle6.setVisible(true);
-
-		if (level == 0) {
-			kv25 = new KeyValue(mod1candle1.visibleProperty(), false);
-			kv26 = new KeyValue(mod1candle2.visibleProperty(), false);
-			kv27 = new KeyValue(mod1candle3.visibleProperty(), false);
-			kv28 = new KeyValue(mod1candle4.visibleProperty(), false);
-			kv29 = new KeyValue(mod1candle5.visibleProperty(), false);
-			kv30 = new KeyValue(mod1candle6.visibleProperty(), false);
-
-			kv31 = new KeyValue(mod3candle1.visibleProperty(), false);
-			kv32 = new KeyValue(mod3candle2.visibleProperty(), false);
-			kv33 = new KeyValue(mod3candle3.visibleProperty(), false);
-			kv34 = new KeyValue(mod3candle4.visibleProperty(), false);
-			kv35 = new KeyValue(mod3candle5.visibleProperty(), false);
-			kv36 = new KeyValue(mod3candle6.visibleProperty(), false);
-
-			kv37 = new KeyValue(mod5candle1.visibleProperty(), false);
-			kv38 = new KeyValue(mod5candle2.visibleProperty(), false);
-			kv39 = new KeyValue(mod5candle3.visibleProperty(), false);
-			kv40 = new KeyValue(mod5candle4.visibleProperty(), false);
-			kv41 = new KeyValue(mod5candle5.visibleProperty(), false);
-			kv42 = new KeyValue(mod5candle6.visibleProperty(), false);
-
-			kv43 = new KeyValue(mod7candle1.visibleProperty(), false);
-			kv44 = new KeyValue(mod7candle2.visibleProperty(), false);
-			kv45 = new KeyValue(mod7candle3.visibleProperty(), false);
-			kv46 = new KeyValue(mod7candle4.visibleProperty(), false);
-			kv47 = new KeyValue(mod7candle5.visibleProperty(), false);
-			kv48 = new KeyValue(mod7candle6.visibleProperty(), false);
-
-		}
-
-		final KeyValue kv1 = new KeyValue(mod1candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod1candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod1candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod1candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv5 = new KeyValue(mod1candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv6 = new KeyValue(mod1candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv7 = new KeyValue(mod3candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv8 = new KeyValue(mod3candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv9 = new KeyValue(mod3candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv10 = new KeyValue(mod3candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv11 = new KeyValue(mod3candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv12 = new KeyValue(mod3candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv13 = new KeyValue(mod5candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv14 = new KeyValue(mod5candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv15 = new KeyValue(mod5candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv16 = new KeyValue(mod5candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv17 = new KeyValue(mod5candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv18 = new KeyValue(mod5candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv19 = new KeyValue(mod7candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv20 = new KeyValue(mod7candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv21 = new KeyValue(mod7candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv22 = new KeyValue(mod7candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv23 = new KeyValue(mod7candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv24 = new KeyValue(mod7candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv19, kv20, kv21, kv22, kv23, kv24, kv25, kv26, kv27, kv28, kv29, kv30, kv31, kv32, kv33, kv34, kv35, kv36, kv37, kv38, kv39, kv40,
-				kv41, kv42, kv43, kv44, kv45, kv46, kv47, kv48);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
 	}
@@ -3778,98 +5178,6 @@ public class FountainSimController implements Initializable {
 
 	}
 
-	public void drawCandlesB(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-
-		KeyValue kv25 = null;
-		KeyValue kv26 = null;
-		KeyValue kv27 = null;
-		KeyValue kv28 = null;
-		KeyValue kv29 = null;
-		KeyValue kv30 = null;
-		KeyValue kv31 = null;
-		KeyValue kv32 = null;
-		KeyValue kv33 = null;
-		KeyValue kv34 = null;
-		KeyValue kv35 = null;
-		KeyValue kv36 = null;
-		KeyValue kv37 = null;
-		KeyValue kv38 = null;
-		KeyValue kv39 = null;
-		KeyValue kv40 = null;
-		KeyValue kv41 = null;
-		KeyValue kv42 = null;
-
-		mod2candle1.setVisible(true);
-		mod2candle2.setVisible(true);
-		mod2candle3.setVisible(true);
-		mod2candle4.setVisible(true);
-		mod2candle5.setVisible(true);
-		mod2candle6.setVisible(true);
-		mod4candle1.setVisible(true);
-		mod4candle2.setVisible(true);
-		mod4candle3.setVisible(true);
-		mod4candle4.setVisible(true);
-		mod4candle5.setVisible(true);
-		mod4candle6.setVisible(true);
-		mod6candle1.setVisible(true);
-		mod6candle2.setVisible(true);
-		mod6candle3.setVisible(true);
-		mod6candle4.setVisible(true);
-		mod6candle5.setVisible(true);
-		mod6candle6.setVisible(true);
-
-		if (level == 0) {
-			kv25 = new KeyValue(mod2candle1.visibleProperty(), false);
-			kv26 = new KeyValue(mod2candle2.visibleProperty(), false);
-			kv27 = new KeyValue(mod2candle3.visibleProperty(), false);
-			kv28 = new KeyValue(mod2candle4.visibleProperty(), false);
-			kv29 = new KeyValue(mod2candle5.visibleProperty(), false);
-			kv30 = new KeyValue(mod2candle6.visibleProperty(), false);
-
-			kv31 = new KeyValue(mod4candle1.visibleProperty(), false);
-			kv32 = new KeyValue(mod4candle2.visibleProperty(), false);
-			kv33 = new KeyValue(mod4candle3.visibleProperty(), false);
-			kv34 = new KeyValue(mod4candle4.visibleProperty(), false);
-			kv35 = new KeyValue(mod4candle5.visibleProperty(), false);
-			kv36 = new KeyValue(mod4candle6.visibleProperty(), false);
-
-			kv37 = new KeyValue(mod6candle1.visibleProperty(), false);
-			kv38 = new KeyValue(mod6candle2.visibleProperty(), false);
-			kv39 = new KeyValue(mod6candle3.visibleProperty(), false);
-			kv40 = new KeyValue(mod6candle4.visibleProperty(), false);
-			kv41 = new KeyValue(mod6candle5.visibleProperty(), false);
-			kv42 = new KeyValue(mod6candle6.visibleProperty(), false);
-
-		}
-
-		final KeyValue kv1 = new KeyValue(mod2candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod2candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod2candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod2candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv5 = new KeyValue(mod2candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv6 = new KeyValue(mod2candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv7 = new KeyValue(mod4candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv8 = new KeyValue(mod4candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv9 = new KeyValue(mod4candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv10 = new KeyValue(mod4candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv11 = new KeyValue(mod4candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv12 = new KeyValue(mod4candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyValue kv13 = new KeyValue(mod6candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv14 = new KeyValue(mod6candle2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv15 = new KeyValue(mod6candle3.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv16 = new KeyValue(mod6candle4.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv17 = new KeyValue(mod6candle5.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv18 = new KeyValue(mod6candle6.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv25, kv26, kv27, kv28, kv29, kv30, kv31, kv32, kv33, kv34, kv35, kv36, kv37, kv38, kv39, kv40, kv41, kv42);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		assert fountainPane != null : "fx:id=\"fountainPane\" was not injected: check your FXML file 'fountainSim.fxml'.";
@@ -3892,7 +5200,6 @@ public class FountainSimController implements Initializable {
 		assert ring5Slider != null : "fx:id=\"ring5Slider\" was not injected: check your FXML file 'fountainSim.fxml'.";
 
 		instance = this;
-
 	}
 
 	public Rectangle getMod7ring5() {
@@ -5137,16 +6444,26 @@ public class FountainSimController implements Initializable {
 		drawMultiA(0, 0);
 		drawMultiB(0, 0);
 		drawPeacock(0, 0);
-		drawRing1A(0, 0);
-		drawRing1B(0, 0);
-		drawRing2A(0, 0);
-		drawRing2B(0, 0);
-		drawRing3A(0, 0);
-		drawRing3B(0, 0);
-		drawRing4A(0, 0);
-		drawRing4B(0, 0);
-		drawRing5A(0, 0);
-		drawRing5B(0, 0);
+        drawRingsReset(1, 'a');
+        drawRingsReset(1, 'b');
+        drawRingsReset(2, 'a');
+        drawRingsReset(2, 'b');
+        drawRingsReset(3, 'a');
+        drawRingsReset(3, 'b');
+        drawRingsReset(4, 'a');
+        drawRingsReset(4, 'b');
+        drawRingsReset(5, 'a');
+        drawRingsReset(5, 'b');
+//		drawRing1A(0, 0);
+//		drawRing1B(0, 0);
+//		drawRing2A(0, 0);
+//		drawRing2B(0, 0);
+//		drawRing3A(0, 0);
+//		drawRing3B(0, 0);
+//		drawRing4A(0, 0);
+//		drawRing4B(0, 0);
+//		drawRing5A(0, 0);
+//		drawRing5B(0, 0);
 		drawSpout(0, 0);
 		drawSweepsA(0, 0);
 		drawSweepsB(0, 0);
