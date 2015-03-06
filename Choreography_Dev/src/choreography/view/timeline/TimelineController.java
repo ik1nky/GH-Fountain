@@ -1113,67 +1113,67 @@ public class TimelineController implements Initializable {
 				// !color.equals(Color.LIGHTGRAY)){
 
 				// }
-				if (FountainSimController.getInstance().getBackCurtain1().getFill().equals(Color.LIGHTGRAY) && !color.equals(Color.LIGHTGRAY)) {
-					FountainSimController.getInstance().getBackCurtain1().setFill(color);
-					FountainSimController.getInstance().getBackCurtain2().setFill(color);
-					FountainSimController.getInstance().getBackCurtain3().setFill(color);
-					FountainSimController.getInstance().getBackCurtain4().setFill(color);
-					FountainSimController.getInstance().getBackCurtain5().setFill(color);
-					FountainSimController.getInstance().getBackCurtain6().setFill(color);
-					FountainSimController.getInstance().getBackCurtain9().setFill(color);
-					FountainSimController.getInstance().getBackCurtain10().setFill(color);
-					FountainSimController.getInstance().getBackCurtain11().setFill(color);
-					FountainSimController.getInstance().getBackCurtain12().setFill(color);
-					FountainSimController.getInstance().getBackCurtain13().setFill(color);
-					FountainSimController.getInstance().getBackCurtain14().setFill(color);
-
-					FountainSimController.getInstance().getBackCurtain1().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain2().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain3().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain4().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain5().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain6().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain9().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain10().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain11().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain12().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain13().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain14().setStroke(color);
-
-					FountainSimController.getInstance().getBackCurtain7().setFill(color);
-					FountainSimController.getInstance().getBackCurtain8().setFill(color);
-					FountainSimController.getInstance().getBackCurtain7().setStroke(color);
-					FountainSimController.getInstance().getBackCurtain8().setStroke(color);
-				}
-				FountainSimController.getInstance().getFrontCurtain1().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain2().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain3().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain4().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain5().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain6().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain7().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain8().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain9().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain10().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain11().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain12().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain13().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain14().setFill(color);
-
-				FountainSimController.getInstance().getFrontCurtain1().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain2().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain3().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain4().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain5().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain6().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain7().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain8().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain9().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain10().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain11().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain12().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain13().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain14().setStroke(color);
+//				if (FountainSimController.getInstance().getBackCurtain1().getFill().equals(Color.LIGHTGRAY) && !color.equals(Color.LIGHTGRAY)) {
+//					FountainSimController.getInstance().getBackCurtain1().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain2().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain3().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain4().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain5().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain6().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain9().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain10().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain11().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain12().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain13().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain14().setFill(color);
+//
+//					FountainSimController.getInstance().getBackCurtain1().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain2().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain3().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain4().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain5().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain6().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain9().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain10().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain11().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain12().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain13().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain14().setStroke(color);
+//
+//					FountainSimController.getInstance().getBackCurtain7().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain8().setFill(color);
+//					FountainSimController.getInstance().getBackCurtain7().setStroke(color);
+//					FountainSimController.getInstance().getBackCurtain8().setStroke(color);
+//				}
+//				FountainSimController.getInstance().getFrontCurtain1().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain2().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain3().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain4().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain5().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain6().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain7().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain8().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain9().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain10().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain11().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain12().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain13().setFill(color);
+//				FountainSimController.getInstance().getFrontCurtain14().setFill(color);
+//
+//				FountainSimController.getInstance().getFrontCurtain1().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain2().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain3().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain4().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain5().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain6().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain7().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain8().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain9().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain10().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain11().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain12().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain13().setStroke(color);
+//				FountainSimController.getInstance().getFrontCurtain14().setStroke(color);
 			}
 			else if (channel == 160) {
 				FountainSimController.getInstance().getFrontCurtain2().setFill(color);
