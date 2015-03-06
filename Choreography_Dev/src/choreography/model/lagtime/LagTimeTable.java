@@ -34,17 +34,13 @@ public class LagTimeTable {
 	 *
 	 * @return
 	 */
-	public static ArrayList<LagTime> getDelays() {
-		return delays;
-	}
+	public static ArrayList<LagTime> getDelays() { return delays; }
 
 	/**
 	 *
 	 * @param delayTimes
 	 */
-	public static void setLagTimes(ArrayList<LagTime> delayTimes) {
-		LagTimeTable.delays = delayTimes;
-	}
+	public static void setLagTimes(ArrayList<LagTime> delayTimes) { LagTimeTable.delays = delayTimes; }
 
 	
 	/**
