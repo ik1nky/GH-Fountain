@@ -711,7 +711,6 @@ public class TimelineController implements Initializable {
 				FountainSimController.getInstance().getMod1sweep1().setStroke(color);
 				FountainSimController.getInstance().getMod1sweep2().setStroke(color);
 				FountainSimController.getInstance().getBazooka2().setStroke(color);
-
 			}
 			else if (channel == 18 || channel == 115) {
 				FountainSimController.getInstance().getMod2ring1().setFill(color);
@@ -994,7 +993,6 @@ public class TimelineController implements Initializable {
 			}
 			else if ((channel == 51 || channel == 250) && !color.equals(Color.LIGHTGRAY)) {
 				// Module A and B
-
 					FountainSimController.getInstance().getMod1ring1().setFill(color);
 					FountainSimController.getInstance().getMod1ring2().setFill(color);
 					FountainSimController.getInstance().getMod1ring3().setFill(color);
