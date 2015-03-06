@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Choreography_Dev/Choreography_Dev.iml" filepath="$PROJECT_DIR$/Choreography_Dev/Choreography_Dev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GH-Fountain.iml" filepath="$PROJECT_DIR$/GH-Fountain.iml" />
     </modules>
   </component>
 </project>
