@@ -185,45 +185,138 @@ public class CtlLib {
                     * */
                     //Group A
                     if(Integer.parseInt(tokens[0]) == 49){
-                        fcw = new FCW(17, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(19, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(21, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(23, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
+                        boolean set17 = true;
+                        boolean set19 = true;
+                        boolean set21 = true;
+                        boolean set23 = true;
+
+                        for(String command2 : commandTokens)
+                        {
+                            String[] tokens2 = command2.split("-");
+                            if(Integer.parseInt(tokens2[0]) == 17) {
+                                set17 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 19){
+                                set19 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 21) {
+                                set21 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 23){
+                                set23 = false;
+                            }
+                        }
+
+                        if(set17) {
+                            fcw = new FCW(17, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set19) {
+                            fcw = new FCW(19, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set21) {
+                            fcw = new FCW(21, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set23) {
+                            fcw = new FCW(23, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
                     }//Group B
                     else if(Integer.parseInt(tokens[0]) == 50){
-                        fcw = new FCW(18, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(20, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(22, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
+                        boolean set18 = true;
+                        boolean set20 = true;
+                        boolean set22 = true;
+
+
+                        for(String command2 : commandTokens)
+                        {
+                            String[] tokens2 = command2.split("-");
+                            if(Integer.parseInt(tokens2[0]) == 19){
+                                set18 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 21) {
+                                set20 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 23){
+                                set22 = false;
+                            }
+                        }
+                        if(set18) {
+                            fcw = new FCW(18, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set20) {
+                            fcw = new FCW(20, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set22) {
+                            fcw = new FCW(22, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
                     }//Group A/B
                     else if(Integer.parseInt(tokens[0]) == 51){
-                        fcw = new FCW(17, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(19, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(21, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(23, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(18, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(20, Integer.parseInt(tokens[1]));
-                        fcws.add(fcw);
-                        fcw = new FCW(22, Integer.parseInt(tokens[1]));
+                        //Group A
+                        boolean set17 = true;
+                        boolean set19 = true;
+                        boolean set21 = true;
+                        boolean set23 = true;
+
+                        //Group B
+                        boolean set18 = true;
+                        boolean set20 = true;
+                        boolean set22 = true;
+
+                        for(String command2 : commandTokens)
+                        {
+                            String[] tokens2 = command2.split("-");
+                            if(Integer.parseInt(tokens2[0]) == 17) {
+                                set17 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 19){
+                                set19 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 21) {
+                                set21 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 23){
+                                set23 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 19){
+                                set18 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 21) {
+                                set20 = false;
+                            }else if(Integer.parseInt(tokens2[0]) == 23){
+                                set22 = false;
+                            }
+                        }
+
+                        if(set17) {
+                            fcw = new FCW(17, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set19) {
+                            fcw = new FCW(19, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set21) {
+                            fcw = new FCW(21, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set23) {
+                            fcw = new FCW(23, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set18) {
+                            fcw = new FCW(18, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set20) {
+                            fcw = new FCW(20, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                        if(set22) {
+                            fcw = new FCW(22, Integer.parseInt(tokens[1]));
+                            fcws.add(fcw);
+                        }
+                    } else {
                         fcws.add(fcw);
                     }
-
-
-
-					fcws.add(fcw);
+                    events.put(totalTimeinTenthSecs, fcws);
 				}
-				events.put(totalTimeinTenthSecs, fcws);
+                //events.put(totalTimeinTenthSecs, fcws);
 			}
 			// checks to see if time is to be compensated based on checking the first line in the file.
 			// If it is, call reversePostDate to "reverse" the modification by moving up the water
