@@ -150,7 +150,6 @@ public class Timeline {
 	 * @param mod
 	 * @param start
 	 * @param end
-	 * @param index
 	 * @param color
 	 * @param intensity
 	 */
