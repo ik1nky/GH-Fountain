@@ -178,6 +178,49 @@ public class CtlLib {
 					String[] tokens = command.split("-");
 					fcw = new FCW(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
 
+                    /* The following if statements parse out the A, B, and A/B function groups.
+                    *  Instead of using these op codes we will just set the corresponding groups individually.
+                    *  This gets rid of any ambiguity between the order of precedence between individual lights
+                    *  and the group lighting.
+                    * */
+                    //Group A
+                    if(Integer.parseInt(tokens[0]) == 49){
+                        fcw = new FCW(17, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(19, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(21, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(23, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                    }//Group B
+                    else if(Integer.parseInt(tokens[0]) == 50){
+                        fcw = new FCW(18, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(20, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(22, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                    }//Group A/B
+                    else if(Integer.parseInt(tokens[0]) == 51){
+                        fcw = new FCW(17, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(19, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(21, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(23, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(18, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(20, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                        fcw = new FCW(22, Integer.parseInt(tokens[1]));
+                        fcws.add(fcw);
+                    }
+
+
+
 					fcws.add(fcw);
 				}
 				events.put(totalTimeinTenthSecs, fcws);
