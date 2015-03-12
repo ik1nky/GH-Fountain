@@ -151,6 +151,7 @@ public class Timeline {
 	 * @param start
 	 * @param end
 	 * @param index
+	 * @param color
 	 * @param intensity
 	 */
 	public void setFadeFcw(int mod, int start, int end, int color, int intensity) {
