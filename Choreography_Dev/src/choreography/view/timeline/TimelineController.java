@@ -690,6 +690,7 @@ public class TimelineController implements Initializable {
 	public void updateColors(int time) {
 		SortedMap<Integer, SortedMap<Integer, Integer>> channelColorMap = timeline.getChannelColorMap();
 		for (int channel : channelColorMap.keySet()) {
+
 			if (time == MusicPaneController.SONG_TIME)
 				time = time - 1;
 			Paint color = lightRecArray[time][lightRowLookupNumber(channel)].getFill();
@@ -736,30 +737,30 @@ public class TimelineController implements Initializable {
 			else if (channel == 190 || channel == 194 || channel == 195) {
 				FountainSimController.getInstance().getSpoutRec().setFill(color);
 			}
-			else if (channel == 49 && !color.equals(Color.LIGHTGRAY)) {
-				// Module A
-				setMod1(color);
-				setMod3(color);
-				setMod5(color);
-				setMod7(color);
-			}
-			else if (channel == 50 && !color.equals(Color.LIGHTGRAY)) {
-				// Module B
-				setMod2(color);
-				setMod4(color);
-				setMod6(color);
-			}
-			else if ((channel == 51 || channel == 250) && !color.equals(Color.LIGHTGRAY)) {
-				setMod1(color);
-				setMod2(color);
-				setMod3(color);
-				setMod4(color);
-				setMod5(color);
-				setMod6(color);
-				setMod7(color);
-				setPeacockA(color);
-				setPeacockB(color);
-			}
+//			else if (channel == 49 && !color.equals(Color.LIGHTGRAY)) {
+//				// Module A
+//				setMod1(color);
+//				setMod3(color);
+//				setMod5(color);
+//				setMod7(color);
+//			}
+//			else if (channel == 50 && !color.equals(Color.LIGHTGRAY)) {
+//				// Module B
+//				setMod2(color);
+//				setMod4(color);
+//				setMod6(color);
+//			}
+//			else if ((channel == 51 || channel == 250) && !color.equals(Color.LIGHTGRAY)) {
+//				setMod1(color);
+//				setMod2(color);
+//				setMod3(color);
+//				setMod4(color);
+//				setMod5(color);
+//				setMod6(color);
+//				setMod7(color);
+//				setPeacockA(color);
+//				setPeacockB(color);
+//			}
 			else if (channel == 160) {
 				FountainSimController.getInstance().getFrontCurtain2().setFill(color);
 				FountainSimController.getInstance().getFrontCurtain4().setFill(color);
@@ -1185,22 +1186,22 @@ public class TimelineController implements Initializable {
 			newName = "Auto Cateloged Formations (water + light)"; // TODO
 																	// needed?
 			break;
-		case "INTERCHANGEAB":
+		/*case "INTERCHANGEAB":
 			newName = "Interchange A+B module formations (water + light)"; // TODO
 																			// needed?
-			break;
+			break;*/
 		case "OFF":
 			newName = "Off"; // TODO needed?
 			break;
-		case "MODULEA":
-			newName = "Module A";
-			break;
-		case "MODULEB":
-			newName = "Module B";
-			break;
-		case "CONNECTAB":
-			newName = "Connect A + B";
-			break;
+//		case "MODULEA":
+//			newName = "Module A";
+//			break;
+//		case "MODULEB":
+//			newName = "Module B";
+//			break;
+//		case "CONNECTAB":
+//			newName = "Connect A + B";
+//			break;
 		case "OFFRESET":
 			newName = "Hold Center";
 			break;
