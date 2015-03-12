@@ -455,7 +455,6 @@ public final class FCWLib {
 	public synchronized String[] reverseLookupData(FCW f) {
 		Integer[] values;
 		String table = searchFunctionTables(f.getAddr());
-        System.out.println("!!!!!!!     " + table + "     !!!!!");
 		switch (table) {
 		case "TableTime":
 			return new String[] { Integer.toString(f.getData()) };

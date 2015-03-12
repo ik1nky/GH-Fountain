@@ -1757,7 +1757,6 @@ public class FountainSimController implements Initializable {
      */
 	public void drawPeacock(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
-        System.err.println("System reaches peacock call!");
 		KeyValue kv2 = null;
 		KeyValue kv3 = null;
 		KeyValue kv4 = null;
@@ -1827,7 +1826,6 @@ public class FountainSimController implements Initializable {
 			kv19 = new KeyValue(peacock9.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
 
 		} else {
-            System.err.println("Peacock ELSE");
 			kv2 = new KeyValue(peacock1.endXProperty(), (689 + (102.2 * level)), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(peacock1.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
 			kv4 = new KeyValue(peacock2.endXProperty(), (688 + (66.4 * level)), Interpolator.EASE_OUT);
