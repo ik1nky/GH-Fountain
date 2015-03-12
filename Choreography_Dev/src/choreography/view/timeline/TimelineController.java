@@ -994,7 +994,7 @@ public class TimelineController implements Initializable {
 			}
 			else if ((channel == 51 || channel == 250) && !color.equals(Color.LIGHTGRAY)) {
 				// Module A and B
-
+                System.err.println("Ran a AB");
 					FountainSimController.getInstance().getMod1ring1().setFill(color);
 					FountainSimController.getInstance().getMod1ring2().setFill(color);
 					FountainSimController.getInstance().getMod1ring3().setFill(color);
@@ -1098,15 +1098,15 @@ public class TimelineController implements Initializable {
 					FountainSimController.getInstance().getMod6sweep2().setStroke(color);
 					FountainSimController.getInstance().getBazooka3().setStroke(color);
 
-					FountainSimController.getInstance().getPeacock1().setStroke(color);
-					FountainSimController.getInstance().getPeacock2().setStroke(color);
-					FountainSimController.getInstance().getPeacock3().setStroke(color);
-					FountainSimController.getInstance().getPeacock4().setStroke(color);
-					FountainSimController.getInstance().getPeacock5().setStroke(color);
-					FountainSimController.getInstance().getPeacock6().setStroke(color);
-					FountainSimController.getInstance().getPeacock7().setStroke(color);
-					FountainSimController.getInstance().getPeacock8().setStroke(color);
-					FountainSimController.getInstance().getPeacock9().setStroke(color);
+//					FountainSimController.getInstance().getPeacock1().setStroke(color);
+//					FountainSimController.getInstance().getPeacock2().setStroke(color);
+//					FountainSimController.getInstance().getPeacock3().setStroke(color);
+//					FountainSimController.getInstance().getPeacock4().setStroke(color);
+//					FountainSimController.getInstance().getPeacock5().setStroke(color);
+//					FountainSimController.getInstance().getPeacock6().setStroke(color);
+//					FountainSimController.getInstance().getPeacock7().setStroke(color);
+//					FountainSimController.getInstance().getPeacock8().setStroke(color);
+//					FountainSimController.getInstance().getPeacock9().setStroke(color);
 
 				// if
 				// (FountainSimController.getInstance().getFrontCurtain1().getFill().equals(Color.LIGHTGRAY)&&

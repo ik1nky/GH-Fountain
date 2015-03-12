@@ -749,6 +749,9 @@ public class ChoreographyController implements Initializable {
 			@Override
 			public void run() {
 				Platform.runLater(() -> {
+
+                    //Update update colors with a second parameter. This parameter should be time in seconds which is already kept treack of in this class.
+                    // The time passed will allow
 					TimelineController.getInstance().updateColors(MusicPaneController.getInstance().getTenthsTime());
 				});
 			}
