@@ -280,13 +280,10 @@ public class Timeline {
 		}
 	}
 
-	private void insertIntoTimeline(
-			SortedMap<Integer, ArrayList<FCW>> srcTimeline, Integer i, FCW f) {
-
+	private void insertIntoTimeline( SortedMap<Integer, ArrayList<FCW>> srcTimeline, Integer i, FCW f) {
 		if (srcTimeline.containsKey(i)) {
 			for (FCW currentF : srcTimeline.get(i)) {
 				if (currentF.equals(f)) {
-
 				}
 			}
 			srcTimeline.get(i).add(f);
@@ -295,11 +292,9 @@ public class Timeline {
 			newFcw.add(f);
 			srcTimeline.put(i, newFcw);
 		}
-
 	}
 
-	private void startAndEndPoints(
-			SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
+	private void startAndEndPoints( SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
 		ConcurrentSkipListMap<Integer, ArrayList<FCW>> lightTimeline = (ConcurrentSkipListMap<Integer, ArrayList<FCW>>) getLightTimeline();
 		for (Integer timeIndex : lightTimeline.keySet()) {
 			SortedMap<Integer, Integer> newMap = new ConcurrentSkipListMap<>();
@@ -364,7 +359,6 @@ public class Timeline {
 
 		}
 		// }
-
 	}
 
 	public void sendTimelineInstanceToSim(int time) {
@@ -378,7 +372,6 @@ public class Timeline {
 			FountainSimController.getInstance().drawFcw(
 					waterTimeline.get(closestKey));
 		}
-
 	}
 
 	// public void updateColorsLists(int time){
@@ -399,9 +392,7 @@ public class Timeline {
 		// true, MusicPaneController.getInstance().SONG_TIME, true));
 	}
 
-	private boolean checkForCollision(
-			SortedMap<Integer, ArrayList<FCW>> timeline, int pointInTime,
-			FCW query) {
+	private boolean checkForCollision( SortedMap<Integer, ArrayList<FCW>> timeline, int pointInTime, FCW query) {
 		boolean result = false;
 		if (timeline.containsKey(pointInTime)) {
 			for (FCW f : timeline.get(pointInTime)) {
