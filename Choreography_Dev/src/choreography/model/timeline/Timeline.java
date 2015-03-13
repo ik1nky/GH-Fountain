@@ -288,7 +288,7 @@ public void fillTheSpaces(
         SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
 
         for (Integer channel : channelMap.keySet()) {
-            int start, end, color;
+            int start, end, color, end2;
 			SortedMap<Integer, Integer> newMap = new ConcurrentSkipListMap<>();
 			SortedMap<Integer, Integer> newMap17 = new ConcurrentSkipListMap<>();
 			SortedMap<Integer, Integer> newMap18 = new ConcurrentSkipListMap<>();
@@ -306,66 +306,157 @@ public void fillTheSpaces(
                         color = channelMap.get(channel).get(tenth);
                         Iterator<Entry<Integer, Integer>> it;
 						if(channel == 49) {
+							System.out.println("hit 49 at " + start);
 							Iterator<Entry<Integer, Integer>> it2 = channelMap.get(49).tailMap(start + 1).entrySet().iterator();
 
 							it = channelMap.get(17).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap17, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap17, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap17, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(19).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap19, start, end, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap19, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap19, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(21).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap21, start, end, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap21, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap21, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(23).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap23, start, end, color);
-						} else if(channel == 50) {
+							if(end <= end2) {
+								setLightFcwWithRange(newMap23, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap23, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
+
+						}
+						if(channel == 50) {
+							System.out.println("hit 50 at " + tenth);
+
 							Iterator<Entry<Integer, Integer>> it2 = channelMap.get(50).tailMap(start + 1).entrySet().iterator();
 
 							it = channelMap.get(18).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap18, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap18, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap18, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(20).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap20, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap20, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap20, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(22).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap22, start, end, color);
-						} else if (channel == 51) {
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap22, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap22, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
+
+
+						}
+						if (channel == 51) {
+							System.out.println("hit 51 at " + tenth);
+
 							Iterator<Entry<Integer, Integer>> it2 = channelMap.get(51).tailMap(start + 1).entrySet().iterator();
 							it = channelMap.get(17).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap17, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap17, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap17, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(19).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap19, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap19, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap19, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(21).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap21, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap21, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap21, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(23).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap23, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap23, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap23, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(18).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap18, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap18, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap18, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(20).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap20, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap20, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap20, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 
 							it = channelMap.get(22).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							setLightFcwWithRange(newMap22, start, end, color);
+							end2 = getEndTime(it2, it, start, color);
+							if(end <= end2) {
+								setLightFcwWithRange(newMap22, start, end, color);
+							} else {
+								setLightFcwWithRange(newMap22, start, end2, color);
+							}
+							System.out.println("end: " + end + " end2: " + end2);
 						}
                     }
 					if (channel == 49) {
@@ -434,24 +525,24 @@ public void fillTheSpaces(
 				}
 			}
 		}
-		while (it2.hasNext()) {
-			Entry<Integer, Integer> timeColor = it2.next();
-			if (timeColor.getValue() == 0 && timeColor.getKey() != start) {
-				end2 = timeColor.getKey();
-				if(end2 >= start) {
-					break;
-				}
-			} else if (timeColor.getValue() != color) {
-				end2 = timeColor.getKey();// - 1;
-				if(end2 >= start) {
-					break;
-				}
-			}
-		}
-		System.out.println("end: " + end + " end2: " + end2);
-		if(end2 != 0 && end2 <= end) {
-			return end2;
-		}
+//		while (it2.hasNext()) {
+//			Entry<Integer, Integer> timeColor = it2.next();
+//			if (timeColor.getValue() == 0 && timeColor.getKey() != start) {
+//				end2 = timeColor.getKey();
+//				if(end2 >= start) {
+//					break;
+//				}
+//			} else if (timeColor.getValue() != color) {
+//				end2 = timeColor.getKey();// - 1;
+//				if(end2 >= start) {
+//					break;
+//				}
+//			}
+//		}
+//		System.out.println("end: " + end + " end2: " + end2);
+//		if(end2 != 0 && end2 <= end) {
+//			return end2;
+//		}
 		return end;
 	}
 
