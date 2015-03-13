@@ -184,7 +184,7 @@ public class CtlLib {
                     *  and the group lighting.
                     * */
                     //Group A
-                    if(Integer.parseInt(tokens[0]) == 49) {
+                    /*if(Integer.parseInt(tokens[0]) == 49) {
                         boolean set17 = true;
                         boolean set19 = true;
                         boolean set21 = true;
@@ -313,7 +313,8 @@ public class CtlLib {
                         }
                     } else {
                         fcws.add(fcw);
-                    }
+                    }*/
+                    fcws.add(fcw);
 
                     //events.put(totalTimeinTenthSecs, fcws);
 				}

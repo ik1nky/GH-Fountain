@@ -253,7 +253,7 @@ public class Timeline {
 	 * }
 	 */
 
-	public void fillTheSpaces(
+	/*public void fillTheSpaces(
 			SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
 		for (Integer channel : channelMap.keySet()) {
 			int start, end, color;
@@ -282,7 +282,66 @@ public class Timeline {
 				channelMap.get(channel).putAll(newMap);
 			}
 		}
-	}
+	}*/
+
+public void fillTheSpaces(
+        SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
+
+        for (Integer channel : channelMap.keySet()) {
+            int start, end, color;
+            SortedMap<Integer, Integer> newMap = new ConcurrentSkipListMap<>();
+            if(channel == 51 || channel == 50 || channel == 49) {
+                //This part will need to be done for each moduel within the corresponding group(ie group a --> modules 1,3,5,7)
+                for (Integer tenth : channelMap.get(channel).keySet()) {
+                    if (channelMap.get(channel).get(tenth) != 0) {
+                        start = tenth;
+                        color = channelMap.get(channel).get(tenth);
+                        Iterator<Entry<Integer, Integer>> it = channelMap
+                                .get(channel).tailMap(start + 1).entrySet()
+                                .iterator();
+                        while (it.hasNext()) {
+                            Entry<Integer, Integer> timeColor = it.next();
+                            if (timeColor.getValue() == 0
+                                    && timeColor.getKey() != start) {
+                                end = start;
+                                setLightFcwWithRange(newMap, start, end, color);
+                                break;
+                            } else if (timeColor.getValue() != color) {
+                                end = start;// - 1;
+                                setLightFcwWithRange(newMap, start, end, color);
+                                break;
+                            }
+                        }
+                    }
+                    channelMap.get(channel).putAll(newMap);
+                }
+            }else{
+                for (Integer tenth : channelMap.get(channel).keySet()) {
+                    if (channelMap.get(channel).get(tenth) != 0) {
+                        start = tenth;
+                        color = channelMap.get(channel).get(tenth);
+                        Iterator<Entry<Integer, Integer>> it = channelMap
+                                .get(channel).tailMap(start + 1).entrySet()
+                                .iterator();
+                        while (it.hasNext()) {
+                            Entry<Integer, Integer> timeColor = it.next();
+                            if (timeColor.getValue() == 0
+                                    && timeColor.getKey() != start) {
+                                end = timeColor.getKey();
+                                setLightFcwWithRange(newMap, start, end, color);
+                                break;
+                            } else if (timeColor.getValue() != color) {
+                                end = timeColor.getKey();// - 1;
+                                setLightFcwWithRange(newMap, start, end, color);
+                                break;
+                            }
+                        }
+                    }
+                    channelMap.get(channel).putAll(newMap);
+                }
+            }
+        }
+    }
 
 	private void insertIntoTimeline( SortedMap<Integer, ArrayList<FCW>> srcTimeline, Integer i, FCW f) {
 		if (srcTimeline.containsKey(i)) {
