@@ -207,7 +207,7 @@ public final class FCWLib {
 					addresses.add(new Integer(tokens[i]));
 				}
 				functionTables.put(addresses, tokens[0].trim());
-                System.err.println("Function tables token.trim     " + tokens[0].trim());
+
 			}
 		}
 	}

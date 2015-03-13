@@ -230,11 +230,11 @@ public class CtlLib {
                         for(String command2 : commandTokens)
                         {
                             String[] tokens2 = command2.split("-");
-                            if(Integer.parseInt(tokens2[0]) == 19){
+                            if(Integer.parseInt(tokens2[0]) == 18){
                                 set18 = false;
-                            }else if(Integer.parseInt(tokens2[0]) == 21) {
+                            }else if(Integer.parseInt(tokens2[0]) == 20) {
                                 set20 = false;
-                            }else if(Integer.parseInt(tokens2[0]) == 23){
+                            }else if(Integer.parseInt(tokens2[0]) == 22){
                                 set22 = false;
                             }
                         }
@@ -274,11 +274,11 @@ public class CtlLib {
                                 set21 = false;
                             }else if(Integer.parseInt(tokens2[0]) == 23){
                                 set23 = false;
-                            }else if(Integer.parseInt(tokens2[0]) == 19){
+                            }else if(Integer.parseInt(tokens2[0]) == 18){
                                 set18 = false;
-                            }else if(Integer.parseInt(tokens2[0]) == 21) {
+                            }else if(Integer.parseInt(tokens2[0]) == 20) {
                                 set20 = false;
-                            }else if(Integer.parseInt(tokens2[0]) == 23){
+                            }else if(Integer.parseInt(tokens2[0]) == 22){
                                 set22 = false;
                             }
                         }

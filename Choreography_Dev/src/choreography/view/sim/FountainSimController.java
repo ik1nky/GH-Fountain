@@ -279,11 +279,10 @@ public class FountainSimController implements Initializable {
                         break;
 
                     // Draws Spoud/Voice and Bazooka
-                    // Apex has these two water features on the same address for
-                    // some odd reason
+                    // Apex has these two water features on the same address for.err
                     case 7:
                         for (String s : actionsList){
-                                System.err.println("ACTIONSSSSS: " + s + "    !!!!!!");
+
                         }
                         if (actionsList.contains("VOICE")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -1372,7 +1371,7 @@ public class FountainSimController implements Initializable {
 					break;
 				// Legacy Command
 				// Water Modules W1-W6 & Wedding Cake formation
-				case 48:
+				/*case 48:
 					if (actionsList.contains("MODULEA")) {
 						int level = FCWLib.getInstance().reverseGetLevel(f);
 						// Left over code from first group, not sure if needed
@@ -1393,7 +1392,7 @@ public class FountainSimController implements Initializable {
 						}
 					}
 					break;
-					
+					*/
 				case 501:
 					System.out.println("Fading!!!");
 					crossFading[0][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod1ring4.getFill()));
