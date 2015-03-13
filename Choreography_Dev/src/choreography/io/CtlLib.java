@@ -210,7 +210,7 @@ public class CtlLib {
                         }
                         if(set19) {
                             fcw = new FCW(19, Integer.parseInt(tokens[1]));
-                            fcws.add(fcw);
+							fcws.add(fcw);
                         }
                         if(set21) {
                             fcw = new FCW(21, Integer.parseInt(tokens[1]));
@@ -314,9 +314,10 @@ public class CtlLib {
                     } else {
                         fcws.add(fcw);
                     }
-                    events.put(totalTimeinTenthSecs, fcws);
+
+                    //events.put(totalTimeinTenthSecs, fcws);
 				}
-                //events.put(totalTimeinTenthSecs, fcws);
+                events.put(totalTimeinTenthSecs, fcws);
 			}
 			// checks to see if time is to be compensated based on checking the first line in the file.
 			// If it is, call reversePostDate to "reverse" the modification by moving up the water
