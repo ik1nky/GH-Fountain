@@ -388,7 +388,6 @@ public void fillTheSpaces(
 						channelMap.get(22).putAll(newMap22);
 						channelMap.get(23).putAll(newMap23);
 					}
-
                 }
             } else{
                 for (Integer tenth : channelMap.get(channel).keySet()) {
@@ -425,19 +424,32 @@ public void fillTheSpaces(
 			Entry<Integer, Integer> timeColor = it.next();
 			if (timeColor.getValue() == 0 && timeColor.getKey() != start) {
 				end = timeColor.getKey();
+				if(end >= start) {
+					break;
+				}
 			} else if (timeColor.getValue() != color) {
 				end = timeColor.getKey();// - 1;
+				if(end >= start) {
+					break;
+				}
 			}
 		}
 		while (it2.hasNext()) {
 			Entry<Integer, Integer> timeColor = it2.next();
 			if (timeColor.getValue() == 0 && timeColor.getKey() != start) {
 				end2 = timeColor.getKey();
+				if(end2 >= start) {
+					break;
+				}
 			} else if (timeColor.getValue() != color) {
 				end2 = timeColor.getKey();// - 1;
+				if(end2 >= start) {
+					break;
+				}
 			}
 		}
-		if(end2 <= end) {
+		System.out.println("end: " + end + " end2: " + end2);
+		if(end2 != 0 && end2 <= end) {
 			return end2;
 		}
 		return end;
