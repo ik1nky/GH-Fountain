@@ -86,12 +86,7 @@ public class ChoreographyController implements Initializable {
 	private static ChoreographyController cc;
 	private ConcurrentSkipListMap<Integer, ArrayList<FCW>> events;
 	private File saveLocation;
-	private boolean isSaved;
-	private boolean isAdvanced;
-	private boolean isSelected = false;
-	private boolean lookUp = true;
-	private boolean toggleSimulation = true;
-	private boolean shiftPressed = false;
+	private boolean isSaved, isAdvanced, isSelected = false, lookUp = true, toggleSimulation = true, shiftPressed = false;
 	private int time;
 	GridPane gridpaneBeatMarks;
 	Rectangle[] beatMarkRecArray;
@@ -99,71 +94,24 @@ public class ChoreographyController implements Initializable {
 	Timer sliderTimer = new Timer("progressTimer", true);
 
 	@FXML
-	private VBox csGUI;
+	private VBox csGUI, vboxParent;
 	@FXML
 	private Label fcwOutput;
 	@FXML
-	private Menu fileMenu;
+	private Menu fileMenu, openRecentMenuItemItem;
 	@FXML
-	private MenuItem newItemMenuItem;
-	@FXML
-	private MenuItem openMusicMenuItem;
+	private MenuItem newItemMenuItem, openMusicMenuItem, closeMenuItem, saveCTLMenuItem, saveMenuItem, saveAsMenuItem,
+			revertMenuItem, advancedCheckMenuItem, quitMenuItem, addChannelsMenuItem, undoMenuItem, redoMenuItem,
+			cutMenuItem, copyMenuItem, pasteMenuItem, deleteMenuItem, selectAllMenuItem, unselectAllMenuItem,
+			aboutMenuItem, setLagTimesMenuItem, openGhmfMenuItem, splitSimulationMenuItem, showSimulationMenuItem;
 //	@FXML
 //	private MenuItem openCTLMenuItem;
 	@FXML
-	private Menu openRecentMenuItemItem;
-	@FXML
-	private MenuItem closeMenuItem;
-	@FXML
-	private MenuItem saveCTLMenuItem;
-	@FXML
-	private MenuItem saveMenuItem;
-	@FXML
-	private MenuItem saveAsMenuItem;
-	@FXML
-	private MenuItem revertMenuItem;
-	@FXML
-	private MenuItem advancedCheckMenuItem;
-	@FXML
-	private MenuItem quitMenuItem;
-	@FXML
-	private Menu editMenu;
-	@FXML
-	private MenuItem addChannelsMenuItem;
-	@FXML
-	private MenuItem undoMenuItem;
-	@FXML
-	private MenuItem redoMenuItem;
-	@FXML
-	private MenuItem cutMenuItem;
-	@FXML
-	private MenuItem copyMenuItem;
-	@FXML
-	private MenuItem pasteMenuItem;
-	@FXML
-	private MenuItem deleteMenuItem;
-	@FXML
-	private MenuItem selectAllMenuItem;
-	@FXML
-	private MenuItem unselectAllMenuItem;
-	@FXML
-	private Menu helpMenu;
-	@FXML
-	private MenuItem aboutMenuItem;
-	@FXML
-	private MenuItem setLagTimesMenuItem;
+	private Menu editMenu, helpMenu;
 	@FXML
 	private ToggleButton selectionButton;
 	@FXML
 	private ScrollPane beatMarkScrollPane;
-	@FXML
-	private MenuItem openGhmfMenuItem;
-	@FXML
-	private MenuItem splitSimulationMenuItem;
-	@FXML
-	private MenuItem showSimulationMenuItem;
-	@FXML
-	private VBox vboxParent;
 	@FXML
 	private Pane simPane;
 	
