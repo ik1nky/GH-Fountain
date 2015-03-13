@@ -476,7 +476,6 @@ public final class FCWLib {
 		case "TableD3":
 			values = new Integer[] { 2, 1 };
 			break;
-
 		case "TableE":
 			values = new Integer[] { 8, 4, 2 };
 			break;
