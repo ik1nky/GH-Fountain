@@ -236,7 +236,7 @@ public class MusicPaneController {
 	}
 
 	public void resetSongProgress() {
-		songProgress.setText("0.0");
+		songProgress.setText("0:00.0");
 	}
 
 	public void resetTimeLabel() {
@@ -278,7 +278,7 @@ public class MusicPaneController {
 			numberLine.setPrefWidth(getTime() * 26);
 			numberLine.setUpperBound(roundedTime);
 			numberLine.setVisible(true);
-            songProgress.setText("0/" + roundedTime);
+            songProgress.setText("0:00.0/" + roundedTime);
 
 
 		} catch (Exception ex) {
@@ -321,15 +321,24 @@ public class MusicPaneController {
             for(int i = 0; i < (int) mediaPlayer.getCurrentTime().toMinutes(); i++) {
                 inMinutes++;
             }
-            timeInFormat = inMinutes + ":" + f.format((mediaPlayer.getCurrentTime().toSeconds() - inMinutes * 60));
+			String inSeconds = f.format((mediaPlayer.getCurrentTime().toSeconds() - inMinutes * 60));
+			if(inSeconds.length() == 3) {
+				inSeconds = "0" + inSeconds;
+			}
+			timeInFormat = inMinutes + ":" + inSeconds;
 
-            String finalTimeInFormat = "";
+            String finalTimeInFormat;
             int finalInMinutes = 0;
 
             for(int i = 0; i < (int) mediaPlayer.getTotalDuration().toMinutes(); i++) {
                 finalInMinutes++;
             }
-            finalTimeInFormat = finalInMinutes + ":" + f.format((mediaPlayer.getTotalDuration().toSeconds() - finalInMinutes*60));
+			String finalInSeconds = f.format((mediaPlayer.getTotalDuration().toSeconds() - finalInMinutes * 60));
+			if(finalInSeconds.length() == 3) {
+				finalInSeconds = "0" + finalInSeconds;
+			}
+			finalTimeInFormat = finalInMinutes + ":" + finalInSeconds;
+
 
 			songProgress.setText(timeInFormat + " / " + finalTimeInFormat);
 			duration = mediaPlayer.getMedia().getDuration();

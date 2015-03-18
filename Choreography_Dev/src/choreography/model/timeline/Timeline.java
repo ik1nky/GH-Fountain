@@ -117,7 +117,6 @@ public class Timeline {
 					lightTimeline.put(i, lightActions);
 				}
 			}
-
 		}
 		return lightTimeline;
 	}
@@ -192,7 +191,6 @@ public class Timeline {
 		setLightFcwWithRange(channel, start, end, f.getData());
 
 		TimelineController.getInstance().rePaintLightTimeline();
-
 	}
 
 	/**
@@ -243,7 +241,6 @@ public class Timeline {
 		insertIntoTimeline(timeline, pointInTime, f);
 
 		TimelineController.getInstance().rePaintWaterTimeline();
-
 		// waterTimeline.get(pointInTime).add(f);
 	}
 
@@ -284,9 +281,7 @@ public class Timeline {
 		}
 	}*/
 
-public void fillTheSpaces(
-        SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
-
+public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
         for (Integer channel : channelMap.keySet()) {
             int start, end, color, end2;
 			SortedMap<Integer, Integer> newMap = new ConcurrentSkipListMap<>();
@@ -347,7 +342,7 @@ public void fillTheSpaces(
 							System.out.println("end: " + end + " end2: " + end2);
 
 						}
-						if(channel == 50) {
+						else if(channel == 50) {
 							System.out.println("hit 50 at " + tenth);
 
 							Iterator<Entry<Integer, Integer>> it2 = channelMap.get(50).tailMap(start + 1).entrySet().iterator();
@@ -384,7 +379,7 @@ public void fillTheSpaces(
 
 
 						}
-						if (channel == 51) {
+						else if (channel == 51) {
 							System.out.println("hit 51 at " + tenth);
 
 							Iterator<Entry<Integer, Integer>> it2 = channelMap.get(51).tailMap(start + 1).entrySet().iterator();
@@ -606,7 +601,6 @@ public void fillTheSpaces(
 		}
 
 		return address.size();
-
 	}
 
 	// private void populateLightFcwArray() {
@@ -622,7 +616,6 @@ public void fillTheSpaces(
 			// SlidersController.getInstance().setSlidersWithFcw(waterTimeline.get(closestKey));
 			SlidersController.getInstance().setSlidersWithFcw(
 					statefulTimeline.getStatefulTimelineMap().get(closestKey));
-
 		}
 		// }
 	}
@@ -639,7 +632,6 @@ public void fillTheSpaces(
 					waterTimeline.get(closestKey));
 		}
 	}
-
 	// public void updateColorsLists(int time){
 	// for (int channel: channelColorMap.keySet()){
 	// for()
@@ -663,7 +655,6 @@ public void fillTheSpaces(
 		if (timeline.containsKey(pointInTime)) {
 			for (FCW f : timeline.get(pointInTime)) {
 				if (f.getAddr() == query.getAddr()) {
-
 					String[] fActions = FCWLib.getInstance().reverseLookupData(
 							f);
 					String[] queryActions = FCWLib.getInstance()
@@ -714,9 +705,7 @@ public void fillTheSpaces(
 	 * timeline.clear(); insertFcwsIntoTimeline(lightTimeline);
 	 * insertFcwsIntoTimeline(waterTimeline); timeline = result; }
 	 */
-
-	public void insertFcwsIntoTimeline(
-			SortedMap<Integer, ArrayList<FCW>> srcTimeline) {
+	public void insertFcwsIntoTimeline(SortedMap<Integer, ArrayList<FCW>> srcTimeline) {
 		for (Integer timeIndex : srcTimeline.keySet()) {
 			for (FCW f : srcTimeline.get(timeIndex)) {
 				insertIntoTimeline(timeline, timeIndex, f);
