@@ -49,7 +49,7 @@ public class MarkLib {
      * @return
      */
     public static FilePayload createFilePayload() {
-        marks = ChoreographyController.getInstance().getBeatmarks();
+        //marks = ChoreographyController.getInstance().getBeatmarks();
         StringBuilder sb = new StringBuilder();
         for(Integer mark: marks) {
             if(mark != null) {

@@ -91,8 +91,8 @@ public class GhmfLibrary {
 
             MapLib.openMap(map);
             CtlLib.getInstance().openCtl(ctl);
-            if(marks != null) 
-                ChoreographyController.getInstance().setBeatmarks(MarkLib.readMarks(marks));
+            //if(marks != null)
+               // ChoreographyController.getInstance().setBeatmarks(MarkLib.readMarks(marks));
         } catch (NullPointerException e){
             throw new IllegalArgumentException("Your GHMF archive was corrupted or missing files.");
         }

@@ -170,7 +170,7 @@
 						<HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-1.0"
 							prefHeight="15.0" prefWidth="1329.0" visible="true">
 							<children>
-								<Label maxWidth="-Infinity" minWidth="-Infinity"
+								<!-- <Label maxWidth="-Infinity" minWidth="-Infinity"
 									prefWidth="60.0" text="Beat Marks:">
 									<font>
 										<Font name="System Bold Italic" size="10.0" />
@@ -187,7 +187,7 @@
 									<HBox.margin>
 										<Insets left="10.0" />
 									</HBox.margin>
-								</ScrollPane>
+								</ScrollPane> -->
 							</children>
 							<padding>
 								<Insets />
