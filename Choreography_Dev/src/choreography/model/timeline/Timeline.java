@@ -17,6 +17,7 @@ import choreography.view.timeline.TimelineController;
 
 
 
+
 /**
  * The Timeline class holds the information at what time which slider has to be
  * triggered.
@@ -281,7 +282,7 @@ public class Timeline {
 		}
 	}*/
 
-public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
+	public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
         for (Integer channel : channelMap.keySet()) {
             int start, end, color, end2;
 			SortedMap<Integer, Integer> newMap = new ConcurrentSkipListMap<>();
@@ -294,7 +295,7 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
 			SortedMap<Integer, Integer> newMap23 = new ConcurrentSkipListMap<>();
 
             if(channel == 51 || channel == 50 || channel == 49) {
-                //This part will need to be done for each moduel within the corresponding group(ie group a --> modules 1,3,5,7)
+                //This part will need to be done for each module within the corresponding group(ie group a --> modules 1,3,5,7)
                 for (Integer tenth : channelMap.get(channel).keySet()) {
                     if (channelMap.get(channel).get(tenth) != 0) {
                         start = tenth;
@@ -359,7 +360,7 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
 
 							it = channelMap.get(20).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
+
 							if(end <= end2) {
 								setLightFcwWithRange(newMap20, start, end, color);
 							} else {
@@ -369,7 +370,7 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
 
 							it = channelMap.get(22).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
+
 							if(end <= end2) {
 								setLightFcwWithRange(newMap22, start, end, color);
 							} else {
@@ -395,7 +396,7 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
 
 							it = channelMap.get(19).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
+
 							if(end <= end2) {
 								setLightFcwWithRange(newMap19, start, end, color);
 							} else {
@@ -405,7 +406,7 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
 
 							it = channelMap.get(21).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
+
 							if(end <= end2) {
 								setLightFcwWithRange(newMap21, start, end, color);
 							} else {
@@ -415,7 +416,7 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
 
 							it = channelMap.get(23).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
+
 							if(end <= end2) {
 								setLightFcwWithRange(newMap23, start, end, color);
 							} else {
@@ -425,7 +426,7 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
 
 							it = channelMap.get(18).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
+
 							if(end <= end2) {
 								setLightFcwWithRange(newMap18, start, end, color);
 							} else {
@@ -435,7 +436,7 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
 
 							it = channelMap.get(20).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
+
 							if(end <= end2) {
 								setLightFcwWithRange(newMap20, start, end, color);
 							} else {
@@ -445,7 +446,7 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
 
 							it = channelMap.get(22).tailMap(start + 1).entrySet().iterator();
 							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
+
 							if(end <= end2) {
 								setLightFcwWithRange(newMap22, start, end, color);
 							} else {
@@ -504,40 +505,35 @@ public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channe
     }
 
 	public int getEndTime(Iterator<Entry<Integer, Integer>> it, Iterator<Entry<Integer, Integer>> it2, int start, int color) {
-		int end = 0, end2 = 0;
+		int end = 0;
+
+//		it2 = it;
+//		while(it2.hasNext()) {
+//			Entry<Integer, Integer> timeColor = it.next();
+//			System.out.println(timeColor.getKey());
+//		}
 
 		while (it.hasNext()) {
 			Entry<Integer, Integer> timeColor = it.next();
-			if (timeColor.getValue() == 0 && timeColor.getKey() != start) {
-				end = timeColor.getKey();
-				if(end >= start) {
-					break;
-				}
-			} else if (timeColor.getValue() != color) {
-				end = timeColor.getKey();// - 1;
-				if(end >= start) {
-					break;
+			if(timeColor.getKey() != start + 1 && timeColor.getKey() != start + 2) {
+				if (timeColor.getValue() == 0 && timeColor.getKey() != start) {
+					end = timeColor.getKey();
+					if (end == start + 1) {
+						timeColor = it.next();
+						end = timeColor.getKey();
+					}
+					if (end >= start) {
+						break;
+					}
+				} else if (timeColor.getValue() != color) {
+					end = timeColor.getKey();// - 1;
+					if (end >= start) {
+						break;
+					}
 				}
 			}
 		}
-//		while (it2.hasNext()) {
-//			Entry<Integer, Integer> timeColor = it2.next();
-//			if (timeColor.getValue() == 0 && timeColor.getKey() != start) {
-//				end2 = timeColor.getKey();
-//				if(end2 >= start) {
-//					break;
-//				}
-//			} else if (timeColor.getValue() != color) {
-//				end2 = timeColor.getKey();// - 1;
-//				if(end2 >= start) {
-//					break;
-//				}
-//			}
-//		}
-//		System.out.println("end: " + end + " end2: " + end2);
-//		if(end2 != 0 && end2 <= end) {
-//			return end2;
-//		}
+
 		return end;
 	}
 

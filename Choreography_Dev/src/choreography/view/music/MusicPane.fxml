@@ -8,6 +8,8 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-stylesheet ../application.css?>
 
+<!--<?import choreography.view.specialOperations.RangeSliderSkin.ThumbPane?>-->
+
 <VBox id="csGUI" fx:id="musicPane" maxHeight="-Infinity" prefHeight="88.0" prefWidth="1190.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="choreography.view.music.MusicPaneController">
   <children>
     <VBox id="VBox" alignment="CENTER" fillWidth="true" spacing="2.0">
@@ -65,7 +67,7 @@
     </VBox>
     <HBox fillHeight="false" minHeight="-Infinity" prefHeight="20.0" prefWidth="1190.0" snapToPixel="false" spacing="0.0">
       <children>
-        <Label fx:id="songProgress" alignment="CENTER_LEFT" contentDisplay="LEFT" labelFor="$songProgress" minWidth="-Infinity" prefWidth="83.0" text="0.0" HBox.hgrow="SOMETIMES">
+        <Label fx:id="songProgress" alignment="CENTER_LEFT" contentDisplay="LEFT"  minWidth="-Infinity" prefWidth="83.0" text="0.0" HBox.hgrow="SOMETIMES">
           <font>
             <Font name="System Bold" size="12.0" />
           </font>
@@ -80,7 +82,7 @@
         </Slider>
       </children>
       <padding>
-        <Insets fx:id="x1" />
+        <!--<Insets fx:id="x1" /-->
       </padding>
     </HBox>
   </children>
