@@ -48,18 +48,18 @@ public class MarkLib {
      * Prepares information to be put into a file
      * @return
      */
-    public static FilePayload createFilePayload() {
-        //marks = ChoreographyController.getInstance().getBeatmarks();
-        StringBuilder sb = new StringBuilder();
-        for(Integer mark: marks) {
-            if(mark != null) {
-                sb.append(mark);
-                sb.append(System.lineSeparator());
-            }
-        }
-        return new FilePayload(MusicPaneController.getInstance().getMusicName()
-                + ".marks", sb.toString().getBytes());
-    }
+//    public static FilePayload createFilePayload() {
+//        //marks = ChoreographyController.getInstance().getBeatmarks();
+//        StringBuilder sb = new StringBuilder();
+////        for(Integer mark: marks) {
+////            if(mark != null) {
+////                sb.append(mark);
+////                sb.append(System.lineSeparator());
+////            }
+////        }
+////        return new FilePayload(MusicPaneController.getInstance().getMusicName()
+////                + ".marks", sb.toString().getBytes());
+//    }
     
     
 }
