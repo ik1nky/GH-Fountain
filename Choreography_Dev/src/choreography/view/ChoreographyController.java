@@ -532,8 +532,8 @@ public class ChoreographyController implements Initializable {
 			FilePayload ctl = CtlLib.getInstance().createFilePayload(TimelineController.getInstance().getTimeline().getTimeline());
 			FilePayload map = MapLib.createFilePayload();
 			FilePayload music = MusicPaneController.getInstance().createFilePayload();
-			FilePayload marks = MarkLib.createFilePayload();
-			isSaved = GhmfLibrary.writeGhmfZip(saveLocation, ctl, map, music, marks);
+			//FilePayload marks = MarkLib.createFilePayload();
+			isSaved = GhmfLibrary.writeGhmfZip(saveLocation, ctl, map, music);
 		} catch (IOException ex) {
 			Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
 		}
