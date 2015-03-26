@@ -87,8 +87,8 @@
 						<MenuItem id="addChannelsMenuItem" fx:id="addChannelsMenuItem"
 							mnemonicParsing="false" onAction="#addChannels" text="Add Channels"
 							visible="true" />
-						<MenuItem fx:id="setLagTimesMenuItem" mnemonicParsing="false"
-							onAction="#openLagTimeDialog" text="Set Lag Times" visible="false" />
+						<!--<MenuItem fx:id="setLagTimesMenuItem" mnemonicParsing="false"
+							onAction="#openLagTimeDialog" text="Set Lag Times" visible="false" />-->
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="View">
@@ -146,25 +146,8 @@
 						</Pane>
 
 
-						<fx:include source="sliders/Sliders.fxml" fillHeight="true"
-							maxHeight="-Infinity" maxWidth="-1.0" minHeight="-Infinity"
-							minWidth="-Infinity" prefHeight="150.0" VBox.vgrow="NEVER">
-							<padding>
-								<Insets left="10.0" right="10.0" top="10.0" />
-							</padding>
-							<stylesheets>
-								<URL value="@application.css" />
-							</stylesheets>
-						</fx:include>
-						<fx:include source="music/MusicPane.fxml" maxHeight="-Infinity"
-							maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity"
-							prefHeight="88.0" VBox.vgrow="NEVER">
-							<padding>
-								<Insets right="2.0" />
-							</padding>
-							<stylesheets>
-								<URL value="@application.css" />
-							</stylesheets>
+						<fx:include source="sliders/Sliders.fxml"> </fx:include>
+						<fx:include source="music/MusicPane.fxml" >
 						</fx:include>
 
 						<HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-1.0"
@@ -197,16 +180,7 @@
 							</VBox.margin>
 						</HBox>
 
-						<fx:include source="timeline/Timeline.fxml" alignment="TOP_LEFT"
-							gridLinesVisible="false" maxHeight="-Infinity" maxWidth="-1.0"
-							minWidth="-Infinity" prefHeight="200.0" prefWidth="1190.0"
-							VBox.vgrow="NEVER">
-							<padding>
-								<Insets left="5.0" right="5.0" top="-1.0" />
-							</padding>
-							<stylesheets>
-								<URL value="@application.css" />
-							</stylesheets>
+						<fx:include source="timeline/Timeline.fxml" >
 						</fx:include>
 
 						<GridPane id="GridPane" fx:id="progressIndicator"
