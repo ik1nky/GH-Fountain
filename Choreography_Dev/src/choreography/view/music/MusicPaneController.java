@@ -266,16 +266,32 @@ public class MusicPaneController {
 			AudioWaveformCreator awc = new AudioWaveformCreator(url, "out.png");
 
 			setTime(awc.getTime());
+
 			DecimalFormat f = new DecimalFormat("0.0");
+
+           // /*original
 			roundedTime = Double.parseDouble(f.format(getTime()));
 			setTime(getTimeFactor() * Double.parseDouble(f.format(getTime())));
 			SONG_TIME = (int) getTime();
+            System.err.println("song time"+getTime());
 			TimelineController.getInstance().getTimeline().setTime(SONG_TIME);
+			//*/
+//            SONG_TIME = (int) getTime();
+//            roundedTime = Double.parseDouble(f.format(SONG_TIME));
+//            setTime(getTimeFactor() * Double.parseDouble(f.format(SONG_TIME)));
+//            TimelineController.getInstance().getTimeline().setTime(SONG_TIME);
+
 			TimelineController.getInstance().setTimelineGridPane();
 			TimelineController.getInstance().setWaterGridPane();
 			//ChoreographyController.getInstance().setBeatMarkGridPane();
-			numberLine.setMinWidth(getTime() * 26);
-			numberLine.setPrefWidth(getTime() * 26);
+
+           // /*original
+//			numberLine.setMinWidth(getTime() * 26);
+//			numberLine.setPrefWidth(getTime() * 26);
+			//*/
+            numberLine.setMinWidth(SONG_TIME * 26);
+            numberLine.setPrefWidth(SONG_TIME * 26);
+
 			numberLine.setUpperBound(roundedTime);
 			numberLine.setVisible(true);
             songProgress.setText("0:00.0/" + roundedTime);
@@ -359,10 +375,17 @@ public class MusicPaneController {
 			 * Therefore the 1.51 is a hacky fix that alleviates and hides the problem,
 			 * but doesn't totally fix it.
 			 */
-			double hValue = (100 * percentComplete) / (100 - 1.51);
+			//double hValue = (100 * percentComplete) / (100 - 1.51);
+            //double hValue = (100 * percentComplete) / (100 - 1.51);
+            //Double maxPort = TimelineController.getInstance().getScrollPane().getHmax();;
+            //Double widthPort = TimelineController.getInstance().getScrollPane().getViewportBounds().getHeight();
+            //System.err.println("percent visible " + widthPort/maxPort + "\t" + maxPort + "\t" + widthPort);
+
+            //Double hValue = 100*percentComplete/(100 - (widthPort/maxPort));
+            Double hValue = percentComplete;
 
 			TimelineController.getInstance().getScrollPane().setHvalue(hValue);
-			timeSlider.setValue(percentComplete);
+			timeSlider.setValue(hValue);
 			waterTimeline.setHvalue(hValue);
 			//ChoreographyController.getInstance().getBeatMarkScrollPane().setHvalue(hValue);
 			timeLabel.setHvalue(hValue);
