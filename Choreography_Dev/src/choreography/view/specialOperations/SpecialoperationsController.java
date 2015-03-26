@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import choreography.model.timeline.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -342,7 +343,20 @@ public class SpecialoperationsController implements Initializable {
 				AL.add(onOff);
 				String[] actions = AL.toArray(new String[1]);
 				FCW f = FCWLib.getInstance().getFCW("VOICE", actions);
+
+                ArrayList<String> AL2 = new ArrayList<>(3);
+                if(onOff.equals("ON")){
+                    AL2.add("OFF");
+                }else{
+                    AL2.add("ON");
+                }
+                String[] actions2 = AL2.toArray(new String[1]);
+                FCW f2 = FCWLib.getInstance().getFCW("VOICE", actions2);
+
 				int tenths = MusicPaneController.getInstance().getTenthsTime();
+                if(ChoreographyController.getInstance().getEventTimeline().get(tenths).contains(f2)){
+                    ChoreographyController.getInstance().getEventTimeline().get(tenths).remove(f2);
+                }
 				TimelineController.getInstance().getTimeline().setWaterFcwAtPoint(tenths, f);
 				TimelineController.getInstance().rePaintWaterTimeline();
 				ChoreographyController.getInstance().setfcwOutput(f.toString());
@@ -501,7 +515,6 @@ public class SpecialoperationsController implements Initializable {
 		case "HOLDLEFTLONG":
 			setSweeps(slider, 0, 0);
 			break;
-
 		}
 	}
 
