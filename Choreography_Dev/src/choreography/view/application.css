@@ -10,6 +10,9 @@
 }
 
 .slider .thumb{
+    -fx-z-index: -1;
+    -fx-position:relative;
     -fx-background-image :url("../../resources/redline.png");
     -fx-maxHeight: 250;
+
 }
