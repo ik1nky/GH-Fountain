@@ -49,7 +49,7 @@
 						<!--<MenuItem fx:id="openCTLMenuItem" mnemonicParsing="false"-->
 							<!--text="Open CTL" />-->
 						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem fx:id="saveCTLMenuItem" mnemonicParsing="false"
+						<MenuItem fx:id="saveCTLMenuItem" mnemonicParsing="true"
 							text="Save CTL File">
 							<accelerator>
 								<KeyCodeCombination alt="UP" code="C"
