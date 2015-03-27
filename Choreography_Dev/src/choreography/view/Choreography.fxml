@@ -54,6 +54,7 @@
 							<accelerator>
 								<KeyCodeCombination alt="UP" code="C"
 									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+
 							</accelerator>
 						</MenuItem>
 						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false"

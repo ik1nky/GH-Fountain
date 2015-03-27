@@ -107,13 +107,13 @@ public class CtlLib {
 			// Time compensated file
 			case "GHMF":
 				isTimeCompensated = true;
-				ChoreographyController.getInstance().getSaveCTLMenuItem().setDisable(true);
+				ChoreographyController.getInstance().getSaveCTLMenuItem().setDisable(false);
 				break;
 
 			// Non Time compensated file, Legacy File
 			default:
 				isTimeCompensated = false;
-				ChoreographyController.getInstance().getSaveCTLMenuItem().setDisable(true);
+				ChoreographyController.getInstance().getSaveCTLMenuItem().setDisable(false);
 				break;
 			}
 			String text = null;
