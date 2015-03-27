@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
-
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.FillTransition;
@@ -46,103 +45,71 @@ public class FountainSimController implements Initializable {
 
 	@FXML
 	private ResourceBundle resources;
-
 	@FXML
 	private URL location;
-
 	@FXML
 	private Pane fountainPane;
-
 	@FXML
 	private MenuButton ring5Level;
-
 	@FXML
 	private Group mod1, mod2, mod3, mod4, mod5, mod6, mod7;
-
 	@FXML
 	private Rectangle mod1ring1, mod1ring2, mod1ring3, mod1ring4, mod1ring5;
-
 	@FXML
 	private Rectangle mod2ring1, mod2ring2, mod2ring3, mod2ring4, mod2ring5;
-
 	@FXML
 	private Rectangle mod3ring1, mod3ring2, mod3ring3, mod3ring4, mod3ring5;
-
 	@FXML
 	private Rectangle mod4ring1, mod4ring2, mod4ring3, mod4ring4, mod4ring5;
-
 	@FXML
 	private Rectangle mod5ring1, mod5ring2, mod5ring3, mod5ring4, mod5ring5;
-
 	@FXML
 	private Rectangle mod6ring1, mod6ring2, mod6ring3, mod6ring4, mod6ring5;
-
 	@FXML
 	private Rectangle mod7ring1, mod7ring2, mod7ring3, mod7ring4, mod7ring5;
-
 	@FXML
 	private Slider ring1Slider, ring2Slider, ring3Slider, ring4Slider, ring5Slider;
-
 	@FXML
 	private QuadCurve bazookaB;
-
 	@FXML
 	private Line bazooka1, bazooka2, bazooka3, bazooka4, bazooka5;
-
 	@FXML
 	private Line peacock1, peacock2, peacock3, peacock4, peacock5, peacock6, peacock7, peacock8, peacock9;
-
 	@FXML
 	private Rectangle frontCurtain1, frontCurtain2, frontCurtain3, frontCurtain4, frontCurtain5, frontCurtain6,
 			frontCurtain7, frontCurtain8, frontCurtain9, frontCurtain10, frontCurtain11, frontCurtain12,
 			frontCurtain13, frontCurtain14;
-
 	@FXML
 	private Rectangle backCurtain1, backCurtain2, backCurtain3, backCurtain4, backCurtain5, backCurtain6, backCurtain7,
 			backCurtain8, backCurtain9, backCurtain10, backCurtain11, backCurtain12, backCurtain13, backCurtain14;
-
 	@FXML
 	private Line mod1sweep1, mod1sweep2;
-
 	@FXML
 	private Line mod1candle1, mod1candle2, mod1candle3, mod1candle4, mod1candle5, mod1candle6;
-
 	@FXML
 	private Line mod2sweep1, mod2sweep2;
-
 	@FXML
 	private Line mod2candle1, mod2candle2, mod2candle3, mod2candle4, mod2candle5, mod2candle6;
-
 	@FXML
 	private Line mod3sweep1, mod3sweep2;
-
 	@FXML
 	private Line mod3candle1, mod3candle2, mod3candle3, mod3candle4, mod3candle5, mod3candle6;
-
 	@FXML
 	private Line mod4sweep1, mod4sweep2;
-
 	@FXML
 	private Line mod4candle1, mod4candle2, mod4candle3, mod4candle4, mod4candle5, mod4candle6;
-
 	@FXML
 	private Line mod5sweep1, mod5sweep2;
-
 	@FXML
 	private Line mod5candle1, mod5candle2, mod5candle3, mod5candle4, mod5candle5, mod5candle6;
-
 	@FXML
 	private Line mod6sweep1, mod6sweep2;
-
 	@FXML
 	private Line mod6candle1, mod6candle2, mod6candle3, mod6candle4, mod6candle5, mod6candle6;
-
 	@FXML
 	private Line mod7sweep1, mod7sweep2;
-
 	@FXML
 	private Line mod7candle1, mod7candle2, mod7candle3, mod7candle4, mod7candle5, mod7candle6;
-
 	@FXML
 	private Rectangle spoutRec;
 
@@ -210,7 +177,7 @@ public class FountainSimController implements Initializable {
                     case 5:
                         if (actionsList.contains("MODULEA")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
-                            drawRing5A(level, lagTime);
+                            drawRing5A(level, lagTime/10);
                         }
                         if (actionsList.contains("MODULEB")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -222,7 +189,7 @@ public class FountainSimController implements Initializable {
                     case 4:
                         if (actionsList.contains("MODULEA")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
-                            drawRing4A(level, lagTime);
+                            drawRing4A(level, lagTime/10);
                         }
                         if (actionsList.contains("MODULEB")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -234,7 +201,7 @@ public class FountainSimController implements Initializable {
                     case 3:
                         if (actionsList.contains("MODULEA")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
-                            drawRing3A(level, lagTime);
+                            drawRing3A(level, lagTime/10);
                         }
                         if (actionsList.contains("MODULEB")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -246,7 +213,7 @@ public class FountainSimController implements Initializable {
                     case 2:
                         if (actionsList.contains("MODULEA")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
-                            drawRing2A(level, lagTime);
+                            drawRing2A(level, lagTime/10);
                         }
                         if (actionsList.contains("MODULEB")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -258,7 +225,7 @@ public class FountainSimController implements Initializable {
                     case 1:
                         if (actionsList.contains("MODULEA")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
-                            drawRing1A(level, lagTime);
+                            drawRing1A(level, lagTime/10);
                         }
                         if (actionsList.contains("MODULEB")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -298,7 +265,7 @@ public class FountainSimController implements Initializable {
                     case 8:
                         if (actionsList.contains("MODULEA")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
-                            drawCandlesA(level, lagTime);
+                            drawCandlesA(level, lagTime/10);
                         }
                         if (actionsList.contains("MODULEB")) {
                             int level = FCWLib.getInstance().reverseGetLevel(f);
