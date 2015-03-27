@@ -38,7 +38,6 @@
 						</MenuItem>							
 						<MenuItem fx:id="OpenColorMapMenuItem" mnemonicParsing="false"
 							onAction="#openMapFileMenuItemHandler" text="Open Color Map" />
-							
 						<MenuItem fx:id="openMusicMenuItem" mnemonicParsing="false"
 							text="Open Music...">
 							<accelerator>
@@ -54,6 +53,7 @@
 							<accelerator>
 								<KeyCodeCombination alt="UP" code="C"
 									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+
 							</accelerator>
 						</MenuItem>
 						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false"
@@ -68,6 +68,13 @@
 							<accelerator>
 								<KeyCodeCombination alt="UP" code="S"
 									control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+						<MenuItem fx:id="updateCtlMenuItem" mnemonicParsing="false"
+							text="Update Ctl File">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="U"
+									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
 						</MenuItem>
 						<SeparatorMenuItem mnemonicParsing="false" />

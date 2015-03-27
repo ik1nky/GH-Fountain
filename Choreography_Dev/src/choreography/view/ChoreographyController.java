@@ -103,7 +103,8 @@ public class ChoreographyController implements Initializable {
 	private MenuItem newItemMenuItem, openMusicMenuItem, closeMenuItem, saveCTLMenuItem, saveMenuItem, saveAsMenuItem,
 			revertMenuItem, advancedCheckMenuItem, quitMenuItem, addChannelsMenuItem, undoMenuItem, redoMenuItem,
 			cutMenuItem, copyMenuItem, pasteMenuItem, deleteMenuItem, selectAllMenuItem, unselectAllMenuItem,
-			aboutMenuItem, setLagTimesMenuItem, openGhmfMenuItem, splitSimulationMenuItem, showSimulationMenuItem;
+			aboutMenuItem, setLagTimesMenuItem, openGhmfMenuItem, splitSimulationMenuItem, showSimulationMenuItem,
+			updateCtlMenuItem;
 //	@FXML
 //	private MenuItem openCTLMenuItem;
 	@FXML
@@ -166,6 +167,14 @@ public class ChoreographyController implements Initializable {
 			}
 		});
 
+		updateCtlMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				updateCtlMenuItem.setDisable(false);
+				System.out.println("got the update ctl menu Item");
+			}
+		});
+
 		/**
 		 * Menu option to hide or display the simulator on the main view. 
 		 */
@@ -192,7 +201,7 @@ public class ChoreographyController implements Initializable {
 		/**
 		 * Loads a music file selected from file chooser.
 		 * Initializes timeline for selected music file, and enables the
-		 * ability to open a ctl file. 
+		 * ability to open a ctl file.
 		 */
 //		openMusicMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 //			@Override
@@ -313,7 +322,7 @@ public class ChoreographyController implements Initializable {
 				TimelineController.getInstance().rePaintLightTimeline();
 			}
 		});
-		
+
 		/**
 		 * When quit is clicked, displays confirmation dialog, then prompts user to save. 
 		 */
@@ -346,14 +355,12 @@ public class ChoreographyController implements Initializable {
 				fc.setInitialDirectory(new File(System.getProperty("user.dir")));
 				saveLocation = fc.showSaveDialog(null);
 				if (saveLocation != null) {
-					String extension = ".ctl";
 					String filePath = saveLocation.getAbsolutePath();
-					
 					// Check if save file has .ctl extension to prevent extra .ctl from being appened to file name
-					if(filePath.contains(extension)){
+					if(filePath.contains(".ctl")){
 						saveLocation = new File(saveLocation.getAbsoluteFile() + "");
 					} else {
-						saveLocation = new File(saveLocation.getAbsoluteFile() + extension);
+						saveLocation = new File(saveLocation.getAbsoluteFile() + ".ctl");
 					}
 					isSaved = true;
 				} else {
@@ -422,8 +429,8 @@ public class ChoreographyController implements Initializable {
 					e.printStackTrace();
 				}
 
-				
-				// System.exit(0); If we don't want previous window to remain open, call this line. 
+
+				// System.exit(0); If we don't want previous window to remain open, call this line.
 			}
 
 		});
@@ -746,9 +753,9 @@ public class ChoreographyController implements Initializable {
 			Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
+
 	/**
-	 * Returns current instance of beat marks 
+	 * Returns current instance of beat marks
 	 */
 //	public ScrollPane getBeatMarkScrollPane() {
 //		return this.beatMarkScrollPane;
