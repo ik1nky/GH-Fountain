@@ -171,6 +171,7 @@ public class ChoreographyController implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 				updateCtlMenuItem.setDisable(false);
+				System.out.println("got the update ctl menu Item");
 			}
 		});
 

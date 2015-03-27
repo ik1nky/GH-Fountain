@@ -72,6 +72,10 @@
 						</MenuItem>
 						<MenuItem fx:id="updateCtlMenuItem" mnemonicParsing="false"
 							text="Update Ctl File">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="U"
+									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
 						</MenuItem>
 						<SeparatorMenuItem mnemonicParsing="false" />
 						<MenuItem fx:id="quitMenuItem" mnemonicParsing="false"
