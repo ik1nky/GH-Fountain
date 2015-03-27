@@ -103,7 +103,8 @@ public class ChoreographyController implements Initializable {
 	private MenuItem newItemMenuItem, openMusicMenuItem, closeMenuItem, saveCTLMenuItem, saveMenuItem, saveAsMenuItem,
 			revertMenuItem, advancedCheckMenuItem, quitMenuItem, addChannelsMenuItem, undoMenuItem, redoMenuItem,
 			cutMenuItem, copyMenuItem, pasteMenuItem, deleteMenuItem, selectAllMenuItem, unselectAllMenuItem,
-			aboutMenuItem, setLagTimesMenuItem, openGhmfMenuItem, splitSimulationMenuItem, showSimulationMenuItem;
+			aboutMenuItem, setLagTimesMenuItem, openGhmfMenuItem, splitSimulationMenuItem, showSimulationMenuItem,
+			updateCtlMenuItem;
 //	@FXML
 //	private MenuItem openCTLMenuItem;
 	@FXML
@@ -163,6 +164,13 @@ public class ChoreographyController implements Initializable {
 						addSimulation();
 					}
 				});
+			}
+		});
+
+		updateCtlMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				updateCtlMenuItem.setDisable(false);
 			}
 		});
 
