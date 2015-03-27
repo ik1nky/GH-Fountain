@@ -300,6 +300,7 @@ public final class FCWLib {
 	private synchronized int getCommandsForAction(String[] actions, String table, int data) {
 		for (String action : actions) {
 			action = action.toUpperCase();
+			System.out.println(action + " " + table + " " + data);
 			int value = tableCommands.get(table).get(action);
 			data += value;
 		}
