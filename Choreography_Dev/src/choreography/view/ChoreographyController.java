@@ -662,7 +662,7 @@ public class ChoreographyController implements Initializable {
 					MusicPaneController.getInstance().updateProgress();
 				});
 			}
-		}, 0l, 1251);
+		}, 0l, 125l);
 	}
 
 	/**
