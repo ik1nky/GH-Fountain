@@ -602,18 +602,15 @@ public class Timeline {
 	// private void populateLightFcwArray() {
 
 	public void sendTimelineInstanceToSliders(int time) {
-		// if(waterTimeline.containsKey(time)) {
-		int closestKey = 0;
+        int closestKey = 0;
 		ConcurrentSkipListMap<Integer, ArrayList<FCW>> waterTimeline = (ConcurrentSkipListMap<Integer, ArrayList<FCW>>) getWaterTimeline();
 		if (time == 0) {
 			closestKey = time;
 		} else if (!waterTimeline.isEmpty()) {
 			closestKey = waterTimeline.floorKey(time);
-			// SlidersController.getInstance().setSlidersWithFcw(waterTimeline.get(closestKey));
 			SlidersController.getInstance().setSlidersWithFcw(
 					statefulTimeline.getStatefulTimelineMap().get(closestKey));
 		}
-		// }
 	}
 
 	public void sendTimelineInstanceToSim(int time) {
