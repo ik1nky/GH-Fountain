@@ -662,7 +662,7 @@ public class ChoreographyController implements Initializable {
 					MusicPaneController.getInstance().updateProgress();
 				});
 			}
-		}, 0l, 1251);
+		}, 0l, 125l);
 	}
 
 	/**
@@ -675,8 +675,9 @@ public class ChoreographyController implements Initializable {
 			@Override
 			public void run() {
 				Platform.runLater(() -> {
-					//TimelineController.getInstance().fireSubmapToSim();
-					//TimelineController.getInstance().fireSliderChangeEvent();
+					// TimelineController.getInstance().fireSubmapToSim();
+					// TimelineController.getInstance().fireSliderChangeEvent();
+					// Timeline.getInstance().drawSim(MusicPaneController.getInstance().getTenthsTime());
 				});
 			}
 		}, 0l, 20000l);

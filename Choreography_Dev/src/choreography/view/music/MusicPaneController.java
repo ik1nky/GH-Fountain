@@ -155,7 +155,6 @@ public class MusicPaneController {
 			ChoreographyController.getInstance().startPollingTimeSliderAlgorithm();
 			ChoreographyController.getInstance().startPollingSimAlgorithm();
 			ChoreographyController.getInstance().startPollingColorAlgorithm();
-            ChoreographyController.getInstance().startPollingSlidersAlgorithm();
 			SlidersController.getInstance().resetAllSliders();
 		}
 
@@ -416,7 +415,6 @@ public class MusicPaneController {
 				}
 			}
 		});
-        timeSlider.setDisable(true);
 		this.timeFactor = 10;
 		instance = this;
 	}

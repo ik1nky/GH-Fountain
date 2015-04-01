@@ -156,6 +156,12 @@ public class FountainSimController implements Initializable {
 				double lagTime = 0;
 				FCW f = it.next();
 				String[] actions = FCWLib.getInstance().reverseLookupData(f);
+				final int ll = -45; // Left Long
+				final int ls = -30; // Left Short
+				final int lv = -15; // Left Very Short
+				final int rl = 45; // Right Long
+				final int rs = 30; // Right Short
+				final int rv = 15; // Right Very Short
 				double fading [][] = new double [7][3];
 				Color crossFading[][] = new Color [7][2];
 				if (f.getIsWater() && f.getAddr() != 99) {
@@ -165,8 +171,7 @@ public class FountainSimController implements Initializable {
 				for (String s : actions) {
 					actionsList.add(s);
 				}
-
-				/*switch (f.getAddr()) {
+				switch (f.getAddr()) {
 
                     // Draws Ring 5
                     case 5:
@@ -367,8 +372,8 @@ public class FountainSimController implements Initializable {
 					if (actionsList.contains("SHORT")) {
 						if (sweepCommand != "SHORT") {
 							sweepCommand = "SHORT";
-							sweepLeftSweeps(-30, 30);
-							sweepRightSweeps(-30, 30);
+							sweepLeftSweeps(ls, rs);
+							sweepRightSweeps(ls, rs);
 						}
 					}
 
@@ -377,8 +382,8 @@ public class FountainSimController implements Initializable {
 					if (actionsList.contains("LONG")) {
 						if (sweepCommand != "LONG") {
 							sweepCommand = "LONG";
-							sweepLeftSweeps(-45, 45);
-							sweepRightSweeps(-45, 45);
+							sweepLeftSweeps(ll, rl);
+							sweepRightSweeps(ll, rl);
 						}
 					}
 					break;
@@ -456,20 +461,20 @@ public class FountainSimController implements Initializable {
 					if (actionsList.contains("SHORT")) {
 						if (sweepCommand != "SHORT") {
 							sweepCommand = "SHORT";
-							sweepLeftSweeps(-30, 30);
-							sweepRightSweeps(30, -30);
+							sweepLeftSweeps(ls, rs);
+							sweepRightSweeps(rs, ls);
 						}
 					}
 					if (actionsList.contains("LONG")) {
 						if (sweepCommand != "LONG") {
 							sweepCommand = "LONG";
-							sweepLeftSweeps(-45, 45);
-							sweepRightSweeps(45, -45);
+							sweepLeftSweeps(ll, rl);
+							sweepRightSweeps(rl, ll);
 						}
 					}
 					break;
 
-				*//*
+				/*
 				 * New sweep commands that animates both left and right sweeps
 				 * Sweep type 1 is together and 2 is opposed Oscillating
 				 * sweepers are like a fan. -30...0...30...0...-30 repeat
@@ -485,7 +490,7 @@ public class FountainSimController implements Initializable {
 				 * will be implemented in a new javafx update. One possible
 				 * option is creating a virtual line. Given the complexity of
 				 * this option we did not implement it.
-				 *//*
+				 */
 				case 35:
 					// Action list contains what sweeper action is supposed to
 					// be occuring at each tenth of a second.
@@ -496,12 +501,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTSHORTLEFTLONG") {
 							sweepCommand = "RIGHTSHORTLEFTLONG";
 							if (sweepType == 1) {
-								sweepLeftSweeps(30, -45);
-								sweepRightSweeps(30, -45);
+								sweepLeftSweeps(rs, ll);
+								sweepRightSweeps(rs, ll);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(30, -45);
-								sweepRightSweeps(-45, 30);
+								sweepLeftSweeps(rs, ll);
+								sweepRightSweeps(ll, rs);
 							}
 						}
 					}
@@ -509,12 +514,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTSHORTLEFTSHORT") {
 							sweepCommand = "RIGHTSHORTLEFTSHORT";
 							if (sweepType == 1) {
-								sweepLeftSweeps(30, -30);
-								sweepRightSweeps(30, -30);
+								sweepLeftSweeps(rs, ls);
+								sweepRightSweeps(rs, ls);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(30, -30);
-								sweepRightSweeps(-30, 30);
+								sweepLeftSweeps(rs, ls);
+								sweepRightSweeps(ls, rs);
 							}
 						}
 					}
@@ -522,53 +527,53 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTLONGLEFTLONG") {
 							sweepCommand = "RIGHTLONGLEFTLONG";
 							if (sweepType == 1) {
-								sweepLeftSweeps(45, -45);
-								sweepRightSweeps(45, -45);
+								sweepLeftSweeps(rl, ll);
+								sweepRightSweeps(rl, ll);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(45, -45);
-								sweepRightSweeps(-45, 45);
+								sweepLeftSweeps(rl, ll);
+								sweepRightSweeps(ll, rs);
 							}
 						}
 					}
 					if (actionsList.contains("HOLDRIGHTLONG")) { // 17
 						if (sweepCommand != "HOLDRIGHTLONG") {
 							sweepCommand = "HOLDRIGHTLONG";
-							sweepLeftSweeps(45, 45);
-							sweepRightSweeps(45, 45);
+							sweepLeftSweeps(rl, rl);
+							sweepRightSweeps(rl, rl);
 						}
 					}
 					if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
 						if (sweepCommand != "HOLDRIGHTSHORT") {
 							sweepCommand = "HOLDRIGHTSHORT";
-							sweepLeftSweeps(30, 30);
-							sweepRightSweeps(30, 30);
+							sweepLeftSweeps(rs, rs);
+							sweepRightSweeps(rs, rs);
 						}
 					}
 					if (actionsList.contains("HOLDLEFTLONG")) { // 119
 						if (sweepCommand != "HOLDLEFTLONG") {
 							sweepCommand = "HOLDLEFTLONG";
-							sweepLeftSweeps(-45, -45);
-							sweepRightSweeps(-45, -45);
+							sweepLeftSweeps(ll, ll);
+							sweepRightSweeps(ll, ll);
 						}
 					}
 					if (actionsList.contains("HOLDLEFTSHORT")) { // 102
 						if (sweepCommand != "HOLDLEFTSHORT") {
 							sweepCommand = "HOLDLEFTSHORT";
-							sweepLeftSweeps(-30, -30);
-							sweepRightSweeps(-30, -30);
+							sweepLeftSweeps(ls, ls);
+							sweepRightSweeps(ls, ls);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGRIGHTVERYSHORT")) { // 19
 						if (sweepCommand != "RIGHTLONGRIGHTVERYSHORT") {
 							sweepCommand = "RIGHTLONGRIGHTVERYSHORT";
 							if (sweepType == 1) {
-								sweepLeftSweeps(45, 15);
-								sweepRightSweeps(45, 15);
+								sweepLeftSweeps(rl, rv);
+								sweepRightSweeps(rl, rv);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(45, 15);
-								sweepRightSweeps(15, 45);
+								sweepLeftSweeps(rl, rv);
+								sweepRightSweeps(rv, rl);
 							}
 						}
 					}
@@ -576,12 +581,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTLONGCENTER") {
 							sweepCommand = "RIGHTLONGCENTER";
 							if (sweepType == 1) {
-								sweepLeftSweeps(45, 0);
-								sweepRightSweeps(45, 0);
+								sweepLeftSweeps(rl, 0);
+								sweepRightSweeps(rl, 0);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(45, 0);
-								sweepRightSweeps(0, 45);
+								sweepLeftSweeps(rl, 0);
+								sweepRightSweeps(0, rl);
 							}
 						}
 					}
@@ -589,12 +594,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTSHORTCENTER") {
 							sweepCommand = "RIGHTSHORTCENTER";
 							if (sweepType == 1) {
-								sweepLeftSweeps(30, 0);
-								sweepRightSweeps(30, 0);
+								sweepLeftSweeps(rs, 0);
+								sweepRightSweeps(rs, 0);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(30, 0);
-								sweepRightSweeps(0, 30);
+								sweepLeftSweeps(rs, 0);
+								sweepRightSweeps(0, rs);
 							}
 						}
 					}
@@ -602,12 +607,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTLONGLEFTSHORT") {
 							sweepCommand = "RIGHTLONGLEFTSHORT";
 							if (sweepType == 1 || sweepType == 0) {
-								sweepLeftSweeps(45, -30);
-								sweepRightSweeps(45, -30);
+								sweepLeftSweeps(rl, ls);
+								sweepRightSweeps(rl, ls);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(45, -30);
-								sweepRightSweeps(-30, 45);
+								sweepLeftSweeps(rl, ls);
+								sweepRightSweeps(ls, rl);
 							}
 						}
 					}
@@ -622,12 +627,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "CENTERLEFTSHORT") {
 							sweepCommand = "CENTERLEFTSHORT";
 							if (sweepType == 1 || sweepType == 0) {
-								sweepLeftSweeps(0, -30);
-								sweepRightSweeps(0, -30);
+								sweepLeftSweeps(0, ls);
+								sweepRightSweeps(0, ls);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(0, -30);
-								sweepRightSweeps(-30, 0);
+								sweepLeftSweeps(0, ls);
+								sweepRightSweeps(ls, 0);
 							}
 						}
 					}
@@ -635,12 +640,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "OSCLEFTVERYSHORT") {
 							sweepCommand = "OSCLEFTVERYSHORT";
 							if (sweepType == 1) {
-								oscillateLeftSweeps(-15, 0);
-								oscillateRightSweeps(-15, 0);
+								oscillateLeftSweeps(lv, 0);
+								oscillateRightSweeps(lv, 0);
 							}
 							if (sweepType == 2) {
-								oscillateLeftSweeps(-15, 0);
-								oscillateRightSweeps(0, -15);
+								oscillateLeftSweeps(lv, 0);
+								oscillateRightSweeps(0, lv);
 							}
 						}
 					}
@@ -648,12 +653,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTLONGLEFTVERYSHORT") {
 							sweepCommand = "RIGHTLONGLEFTVERYSHORT";
 							if (sweepType == 1) {
-								sweepLeftSweeps(45, -15);
-								sweepRightSweeps(45, -15);
+								sweepLeftSweeps(rl, lv);
+								sweepRightSweeps(rl, lv);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(45, -15);
-								sweepRightSweeps(-15, 45);
+								sweepLeftSweeps(rl, lv);
+								sweepRightSweeps(lv, rl);
 							}
 						}
 					}
@@ -661,12 +666,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTSHORTLEFTVERYSHORT") {
 							sweepCommand = "RIGHTSHORTLEFTVERYSHORT";
 							if (sweepType == 1) {
-								sweepLeftSweeps(30, -15);
-								sweepRightSweeps(30, -15);
+								sweepLeftSweeps(rs, lv);
+								sweepRightSweeps(rs, lv);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(30, -15);
-								sweepRightSweeps(-15, 30);
+								sweepLeftSweeps(rs, lv);
+								sweepRightSweeps(lv, rs);
 							}
 						}
 					}
@@ -674,12 +679,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTVERYSHORTLEFTSHORT") {
 							sweepCommand = "RIGHTVERYSHORTLEFTSHORT";
 							if (sweepType == 1) {
-								sweepLeftSweeps(15, -30);
-								sweepRightSweeps(15, -30);
+								sweepLeftSweeps(rv, ls);
+								sweepRightSweeps(rv, ls);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(15, -30);
-								sweepRightSweeps(-30, 15);
+								sweepLeftSweeps(rv, ls);
+								sweepRightSweeps(ls, rv);
 							}
 						}
 					}
@@ -687,12 +692,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "RIGHTVERYSHORTLEFTLONG") {
 							sweepCommand = "RIGHTVERYSHORTLEFTLONG";
 							if (sweepType == 1) {
-								sweepLeftSweeps(15, -45);
-								sweepRightSweeps(15, -45);
+								sweepLeftSweeps(rv, ll);
+								sweepRightSweeps(rv, ll);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(15, -45);
-								sweepRightSweeps(-45, 15);
+								sweepLeftSweeps(rv, ll);
+								sweepRightSweeps(ll, rv);
 							}
 						}
 					}
@@ -700,12 +705,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "CENTERLEFTLONG") {
 							sweepCommand = "CENTERLEFTLONG";
 							if (sweepType == 1) {
-								sweepLeftSweeps(0, -45);
-								sweepRightSweeps(0, -45);
+								sweepLeftSweeps(0, ll);
+								sweepRightSweeps(0, ll);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(0, -45);
-								sweepRightSweeps(-45, 0);
+								sweepLeftSweeps(0, ll);
+								sweepRightSweeps(ll, 0);
 							}
 						}
 					}
@@ -713,12 +718,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "LEFTVERYSHORTLEFTLONG") {
 							sweepCommand = "LEFTVERYSHORTLEFTLONG";
 							if (sweepType == 1) {
-								sweepLeftSweeps(-15, -45);
-								sweepRightSweeps(-15, -45);
+								sweepLeftSweeps(lv, ll);
+								sweepRightSweeps(lv, ll);
 							}
 							if (sweepType == 2) {
-								sweepLeftSweeps(-15, -45);
-								sweepRightSweeps(-45, -15);
+								sweepLeftSweeps(lv, ll);
+								sweepRightSweeps(ll, lv);
 							}
 						}
 					}
@@ -726,12 +731,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "HOLDRIGHTVERYSHORT") {
 							sweepCommand = "HOLDRIGHTVERYSHORT";
 							if (sweepType == 1) {
-								oscillateLeftSweeps(15, 15);
-								sweepRightSweeps(15, 15);
+								oscillateLeftSweeps(rv, rv);
+								sweepRightSweeps(rv, rv);
 							}
 							if (sweepType == 2) {
-								oscillateLeftSweeps(15, 15);
-								oscillateRightSweeps(15, 15);
+								oscillateLeftSweeps(rv, rv);
+								oscillateRightSweeps(rv, rv);
 							}
 						}
 					}
@@ -739,12 +744,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "HOLDLEFTVERYSHORT") {
 							sweepCommand = "HOLDLEFTVERYSHORT";
 							if (sweepType == 1) {
-								oscillateLeftSweeps(-15, -15);
-								oscillateRightSweeps(-15, -15);
+								oscillateLeftSweeps(lv, lv);
+								oscillateRightSweeps(lv, lv);
 							}
 							if (sweepType == 2) {
-								oscillateLeftSweeps(-15, -15);
-								oscillateRightSweeps(-15, -15);
+								oscillateLeftSweeps(lv, lv);
+								oscillateRightSweeps(lv, lv);
 							}
 						}
 					}
@@ -752,12 +757,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "OSCRIGHTLONG") {
 							sweepCommand = "OSCRIGHTLONG";
 							if (sweepType == 1) {
-								oscillateLeftSweeps(45, 30);
-								oscillateRightSweeps(45, 30);
+								oscillateLeftSweeps(rl, rs);
+								oscillateRightSweeps(rl, rs);
 							}
 							if (sweepType == 2) {
-								oscillateLeftSweeps(45, 30);
-								oscillateRightSweeps(30, 45);
+								oscillateLeftSweeps(rl, rs);
+								oscillateRightSweeps(rs, rl);
 							}
 						}
 					}
@@ -765,12 +770,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "OSCRIGHTSHORT") {
 							sweepCommand = "OSCRIGHTSHORT";
 							if (sweepType == 1) {
-								oscillateLeftSweeps(30, 15);
-								oscillateRightSweeps(30, 15);
+								oscillateLeftSweeps(rs, rv);
+								oscillateRightSweeps(rs, rv);
 							}
 							if (sweepType == 2) {
-								oscillateLeftSweeps(30, 15);
-								oscillateRightSweeps(15, 30);
+								oscillateLeftSweeps(rs, rv);
+								oscillateRightSweeps(rv, rs);
 							}
 						}
 					}
@@ -778,12 +783,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "OSCRIGHTVERYSHORT") {
 							sweepCommand = "OSCRIGHTVERYSHORT";
 							if (sweepType == 1) {
-								oscillateLeftSweeps(15, 0);
-								oscillateRightSweeps(15, 0);
+								oscillateLeftSweeps(rv, 0);
+								oscillateRightSweeps(rv, 0);
 							}
 							if (sweepType == 2) {
-								oscillateLeftSweeps(15, 0);
-								oscillateRightSweeps(0, 15);
+								oscillateLeftSweeps(rv, 0);
+								oscillateRightSweeps(0, rv);
 							}
 						}
 					}
@@ -791,12 +796,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "OSCCENTER") {
 							sweepCommand = "OSCCENTER";
 							if (sweepType == 1) {
-								oscillateLeftSweeps(-15, 15);
-								oscillateRightSweeps(-15, 15);
+								oscillateLeftSweeps(lv, rv);
+								oscillateRightSweeps(lv, rv);
 							}
 							if (sweepType == 2) {
-								oscillateLeftSweeps(-15, 15);
-								oscillateRightSweeps(15, -15);
+								oscillateLeftSweeps(lv, rv);
+								oscillateRightSweeps(rv, lv);
 							}
 						}
 					}
@@ -804,12 +809,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "OSCLEFTSHORT") {
 							sweepCommand = "OSCLEFTSHORT";
 							if (sweepType == 1) {
-								oscillateLeftSweeps(-30, -15);
-								oscillateRightSweeps(-30, -15);
+								oscillateLeftSweeps(ls, lv);
+								oscillateRightSweeps(ls, lv);
 							}
 							if (sweepType == 2) {
-								oscillateLeftSweeps(-30, -15);
-								oscillateRightSweeps(-15, -30);
+								oscillateLeftSweeps(ls, lv);
+								oscillateRightSweeps(lv, ls);
 							}
 						}
 					}
@@ -817,12 +822,12 @@ public class FountainSimController implements Initializable {
 						if (sweepCommand != "OSCLEFTLONG") {
 							sweepCommand = "OSCLEFTLONG";
 							if (sweepType == 1) {
-								oscillateLeftSweeps(-45, -30);
-								oscillateRightSweeps(-45, -30);
+								oscillateLeftSweeps(ll, ls);
+								oscillateRightSweeps(ll, ls);
 							}
 							if (sweepType == 2) {
-								oscillateLeftSweeps(-45, -30);
-								oscillateRightSweeps(-30, -45);
+								oscillateLeftSweeps(ll, ls);
+								oscillateRightSweeps(ls, ll);
 							}
 						}
 					}
@@ -834,67 +839,67 @@ public class FountainSimController implements Initializable {
 					if (actionsList.contains("RIGHTSHORTLEFTLONG")) { // 39
 						if (sweepCommand != "RIGHTSHORTLEFTLONG") {
 							sweepCommand = "RIGHTSHORTLEFTLONG";
-							sweepLeftSweeps(30, -45);
+							sweepLeftSweeps(rs, ll);
 						}
 					}
 					if (actionsList.contains("RIGHTSHORTLEFTSHORT")) { // 38
 						if (sweepCommand != "RIGHTSHORTLEFTSHORT") {
 							sweepCommand = "RIGHTSHORTLEFTSHORT";
-							sweepLeftSweeps(30, -30);
+							sweepLeftSweeps(rs, ls);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGLEFTLONG")) { // 23
 						if (sweepCommand != "RIGHTLONGLEFTLONG") {
 							sweepCommand = "RIGHTLONGLEFTLONG";
-							sweepLeftSweeps(45, -45);
+							sweepLeftSweeps(rl, ll);
 						}
 					}
 					if (actionsList.contains("HOLDRIGHTLONG")) { // 17
 						if (sweepCommand != "HOLDRIGHTLONG") {
 							sweepCommand = "HOLDRIGHTLONG";
-							sweepLeftSweeps(45, 45);
+							sweepLeftSweeps(rl, rl);
 						}
 					}
 					if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
 						if (sweepCommand != "HOLDRIGHTSHORT") {
 							sweepCommand = "HOLDRIGHTSHORT";
-							sweepLeftSweeps(30, 30);
+							sweepLeftSweeps(rs, rs);
 						}
 					}
 					if (actionsList.contains("HOLDLEFTLONG")) { // 119
 						if (sweepCommand != "HOLDLEFTLONG") {
 							sweepCommand = "HOLDLEFTLONG";
-							sweepLeftSweeps(-45, -45);
+							sweepLeftSweeps(ll, ll);
 						}
 					}
 					if (actionsList.contains("HOLDLEFTSHORT")) { // 102
 						if (sweepCommand != "HOLDLEFTSHORT") {
 							sweepCommand = "HOLDLEFTSHORT";
-							sweepLeftSweeps(-30, -30);
+							sweepLeftSweeps(ls, ls);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGRIGHTVERYSHORT")) { // 19
 						if (sweepCommand != "RIGHTLONGRIGHTVERYSHORT") {
 							sweepCommand = "RIGHTLONGRIGHTVERYSHORT";
-							sweepLeftSweeps(45, 15);
+							sweepLeftSweeps(rl, rv);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGCENTER")) { // 20
 						if (sweepCommand != "RIGHTLONGCENTER") {
 							sweepCommand = "RIGHTLONGCENTER";
-							sweepLeftSweeps(45, 0);
+							sweepLeftSweeps(rl, 0);
 						}
 					}
 					if (actionsList.contains("RIGHTSHORTCENTER")) { // 36
 						if (sweepCommand != "RIGHTSHORTCENTER") {
 							sweepCommand = "RIGHTSHORTCENTER";
-							sweepLeftSweeps(30, 0);
+							sweepLeftSweeps(rs, 0);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGLEFTSHORT")) { // 22
 						if (sweepCommand != "RIGHTLONGLEFTSHORT") {
 							sweepCommand = "RIGHTLONGLEFTSHORT";
-							sweepLeftSweeps(45, -30);
+							sweepLeftSweeps(rl, ls);
 						}
 					}
 					if (actionsList.contains("HOLDCENTER")) { // 0,68
@@ -906,97 +911,97 @@ public class FountainSimController implements Initializable {
 					if (actionsList.contains("CENTERLEFTSHORT")) { // 70
 						if (sweepCommand != "CENTERLEFTSHORT") {
 							sweepCommand = "CENTERLEFTSHORT";
-							sweepLeftSweeps(0, -30);
+							sweepLeftSweeps(0, ls);
 						}
 					}
 					if (actionsList.contains("OSCLEFTVERYSHORT")) { // 69
 						if (sweepCommand != "OSCLEFTVERYSHORT") {
 							sweepCommand = "OSCLEFTVERYSHORT";
-							oscillateLeftSweeps(-15, 0);
+							oscillateLeftSweeps(lv, 0);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGLEFTVERYSHORT")) { // 21
 						if (sweepCommand != "RIGHTLONGLEFTVERYSHORT") {
 							sweepCommand = "RIGHTLONGLEFTVERYSHORT";
-							sweepLeftSweeps(45, -15);
+							sweepLeftSweeps(rl, lv);
 						}
 					}
 					if (actionsList.contains("RIGHTSHORTLEFTVERYSHORT")) { // 37
 						if (sweepCommand != "RIGHTSHORTLEFTVERYSHORT") {
 							sweepCommand = "RIGHTSHORTLEFTVERYSHORT";
-							sweepLeftSweeps(30, -15);
+							sweepLeftSweeps(rs, lv);
 						}
 					}
 					if (actionsList.contains("RIGHTVERYSHORTLEFTSHORT")) { // 54
 						if (sweepCommand != "RIGHTVERYSHORTLEFTSHORT") {
 							sweepCommand = "RIGHTVERYSHORTLEFTSHORT";
-							sweepLeftSweeps(15, -30);
+							sweepLeftSweeps(rv, ls);
 						}
 					}
 					if (actionsList.contains("RIGHTVERYSHORTLEFTLONG")) { // 55
 						if (sweepCommand != "RIGHTVERYSHORTLEFTLONG") {
 							sweepCommand = "RIGHTVERYSHORTLEFTLONG";
-							sweepLeftSweeps(15, -45);
+							sweepLeftSweeps(rv, ll);
 						}
 					}
 					if (actionsList.contains("CENTERLEFTLONG")) { // 71
 						if (sweepCommand != "CENTERLEFTLONG") {
 							sweepCommand = "CENTERLEFTLONG";
-							sweepLeftSweeps(0, -45);
+							sweepLeftSweeps(0, ll);
 						}
 					}
 					if (actionsList.contains("LEFTVERYSHORTLEFTLONG")) { // 87
 						if (sweepCommand != "LEFTVERYSHORTLEFTLONG") {
 							sweepCommand = "LEFTVERYSHORTLEFTLONG";
-							sweepLeftSweeps(-15, -45);
+							sweepLeftSweeps(lv, ll);
 						}
 					}
 					if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
 						if (sweepCommand != "HOLDRIGHTVERYSHORT") {
 							sweepCommand = "HOLDRIGHTVERYSHORT";
-							oscillateLeftSweeps(15, 15);
+							oscillateLeftSweeps(rv, rv);
 						}
 					}
 					if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
 						if (sweepCommand != "HOLDLEFTVERYSHORT") {
 							sweepCommand = "HOLDLEFTVERYSHORT";
-							oscillateLeftSweeps(-15, -15);
+							oscillateLeftSweeps(lv, lv);
 						}
 					}
 					if (actionsList.contains("OSCRIGHTLONG")) { // 18
 						if (sweepCommand != "OSCRIGHTLONG") {
 							sweepCommand = "OSCRIGHTLONG";
-							oscillateLeftSweeps(45, 30);
+							oscillateLeftSweeps(rl, rs);
 						}
 					}
 					if (actionsList.contains("OSCRIGHTSHORT")) { // 35
 						if (sweepCommand != "OSCRIGHTSHORT") {
 							sweepCommand = "OSCRIGHTSHORT";
-							oscillateLeftSweeps(30, 15);
+							oscillateLeftSweeps(rs, rv);
 						}
 					}
 					if (actionsList.contains("OSCRIGHTVERYSHORT")) { // 52
 						if (sweepCommand != "OSCRIGHTVERYSHORT") {
 							sweepCommand = "OSCRIGHTVERYSHORT";
-							oscillateLeftSweeps(15, 0);
+							oscillateLeftSweeps(rv, 0);
 						}
 					}
 					if (actionsList.contains("OSCCENTER")) { // 53
 						if (sweepCommand != "OSCCENTER") {
 							sweepCommand = "OSCCENTER";
-							oscillateLeftSweeps(-15, 15);
+							oscillateLeftSweeps(lv, rv);
 						}
 					}
 					if (actionsList.contains("OSCLEFTSHORT")) { // 86
 						if (sweepCommand != "OSCLEFTSHORT") {
 							sweepCommand = "OSCLEFTSHORT";
-							oscillateLeftSweeps(-30, -15);
+							oscillateLeftSweeps(ls, lv);
 						}
 					}
 					if (actionsList.contains("OSCLEFTLONG")) { // 103
 						if (sweepCommand != "OSCLEFTLONG") {
 							sweepCommand = "OSCLEFTLONG";
-							oscillateLeftSweeps(-45, -30);
+							oscillateLeftSweeps(ll, ls);
 						}
 					}
 
@@ -1007,67 +1012,67 @@ public class FountainSimController implements Initializable {
 					if (actionsList.contains("RIGHTSHORTLEFTLONG")) { // 39
 						if (sweepCommand != "RIGHTSHORTLEFTLONG") {
 							sweepCommand = "RIGHTSHORTLEFTLONG";
-							sweepRightSweeps(30, -45);
+							sweepRightSweeps(rs, ll);
 						}
 					}
 					if (actionsList.contains("RIGHTSHORTLEFTSHORT")) { // 38
 						if (sweepCommand != "RIGHTSHORTLEFTSHORT") {
 							sweepCommand = "RIGHTSHORTLEFTSHORT";
-							sweepRightSweeps(30, -30);
+							sweepRightSweeps(rs, ls);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGLEFTLONG")) { // 23
 						if (sweepCommand != "RIGHTLONGLEFTLONG") {
 							sweepCommand = "RIGHTLONGLEFTLONG";
-							sweepRightSweeps(45, -45);
+							sweepRightSweeps(rl, ll);
 						}
 					}
 					if (actionsList.contains("HOLDRIGHTLONG")) { // 17
 						if (sweepCommand != "HOLDRIGHTLONG") {
 							sweepCommand = "HOLDRIGHTLONG";
-							sweepRightSweeps(45, 45);
+							sweepRightSweeps(rl, rl);
 						}
 					}
 					if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
 						if (sweepCommand != "HOLDRIGHTSHORT") {
 							sweepCommand = "HOLDRIGHTSHORT";
-							sweepRightSweeps(30, 30);
+							sweepRightSweeps(rs, rs);
 						}
 					}
 					if (actionsList.contains("HOLDLEFTLONG")) { // 119
 						if (sweepCommand != "HOLDLEFTLONG") {
 							sweepCommand = "HOLDLEFTLONG";
-							sweepRightSweeps(-45, -45);
+							sweepRightSweeps(ll, ll);
 						}
 					}
 					if (actionsList.contains("HOLDLEFTSHORT")) { // 102
 						if (sweepCommand != "HOLDLEFTSHORT") {
 							sweepCommand = "HOLDLEFTSHORT";
-							sweepRightSweeps(-30, -30);
+							sweepRightSweeps(ls, ls);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGRIGHTVERYSHORT")) { // 19
 						if (sweepCommand != "RIGHTLONGRIGHTVERYSHORT") {
 							sweepCommand = "RIGHTLONGRIGHTVERYSHORT";
-							sweepRightSweeps(45, 15);
+							sweepRightSweeps(rl, rv);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGCENTER")) { // 20
 						if (sweepCommand != "RIGHTLONGCENTER") {
 							sweepCommand = "RIGHTLONGCENTER";
-							sweepRightSweeps(45, 0);
+							sweepRightSweeps(rl, 0);
 						}
 					}
 					if (actionsList.contains("RIGHTSHORTCENTER")) { // 36
 						if (sweepCommand != "RIGHTSHORTCENTER") {
 							sweepCommand = "RIGHTSHORTCENTER";
-							sweepRightSweeps(30, 0);
+							sweepRightSweeps(rs, 0);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGLEFTSHORT")) { // 22
 						if (sweepCommand != "RIGHTLONGLEFTSHORT") {
 							sweepCommand = "RIGHTLONGLEFTSHORT";
-							sweepRightSweeps(45, -30);
+							sweepRightSweeps(rl, ls);
 						}
 					}
 					if (actionsList.contains("HOLDCENTER")) { // 0,68
@@ -1079,98 +1084,98 @@ public class FountainSimController implements Initializable {
 					if (actionsList.contains("CENTERLEFTSHORT")) { // 70
 						if (sweepCommand != "CENTERLEFTSHORT") {
 							sweepCommand = "CENTERLEFTSHORT";
-							sweepRightSweeps(0, -30);
+							sweepRightSweeps(0, ls);
 						}
 					}
 					if (actionsList.contains("OSCLEFTVERYSHORT")) { // 69
 						if (sweepCommand != "OSCLEFTVERYSHORT") {
 							sweepCommand = "OSCLEFTVERYSHORT";
-							oscillateRightSweeps(-15, 0);
+							oscillateRightSweeps(lv, 0);
 						}
 					}
 					if (actionsList.contains("RIGHTLONGLEFTVERYSHORT")) { // 21
 						if (sweepCommand != "RIGHTLONGLEFTVERYSHORT") {
 							sweepCommand = "RIGHTLONGLEFTVERYSHORT";
-							sweepRightSweeps(45, -15);
+							sweepRightSweeps(rl, lv);
 
 						}
 					}
 					if (actionsList.contains("RIGHTSHORTLEFTVERYSHORT")) { // 37
 						if (sweepCommand != "RIGHTSHORTLEFTVERYSHORT") {
 							sweepCommand = "RIGHTSHORTLEFTVERYSHORT";
-							sweepRightSweeps(30, -15);
+							sweepRightSweeps(rs, lv);
 						}
 					}
 					if (actionsList.contains("RIGHTVERYSHORTLEFTSHORT")) { // 54
 						if (sweepCommand != "RIGHTVERYSHORTLEFTSHORT") {
 							sweepCommand = "RIGHTVERYSHORTLEFTSHORT";
-							sweepRightSweeps(15, -30);
+							sweepRightSweeps(rv, ls);
 						}
 					}
 					if (actionsList.contains("RIGHTVERYSHORTLEFTLONG")) { // 55
 						if (sweepCommand != "RIGHTVERYSHORTLEFTLONG") {
 							sweepCommand = "RIGHTVERYSHORTLEFTLONG";
-							sweepRightSweeps(15, -45);
+							sweepRightSweeps(rv, ll);
 						}
 					}
 					if (actionsList.contains("CENTERLEFTLONG")) { // 71
 						if (sweepCommand != "CENTERLEFTLONG") {
 							sweepCommand = "CENTERLEFTLONG";
-							sweepRightSweeps(0, -45);
+							sweepRightSweeps(0, ll);
 						}
 					}
 					if (actionsList.contains("LEFTVERYSHORTLEFTLONG")) { // 87
 						if (sweepCommand != "LEFTVERYSHORTLEFTLONG") {
 							sweepCommand = "LEFTVERYSHORTLEFTLONG";
-							sweepRightSweeps(-15, -45);
+							sweepRightSweeps(lv, ll);
 						}
 					}
 					if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
 						if (sweepCommand != "HOLDRIGHTVERYSHORT") {
 							sweepCommand = "HOLDRIGHTVERYSHORT";
-							oscillateRightSweeps(15, 15);
+							oscillateRightSweeps(rv, rv);
 						}
 					}
 					if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
 						if (sweepCommand != "HOLDLEFTVERYSHORT") {
 							sweepCommand = "HOLDLEFTVERYSHORT";
-							oscillateRightSweeps(-15, -15);
+							oscillateRightSweeps(lv, lv);
 						}
 					}
 					if (actionsList.contains("OSCRIGHTLONG")) { // 18
 						if (sweepCommand != "OSCRIGHTLONG") {
 							sweepCommand = "OSCRIGHTLONG";
-							oscillateRightSweeps(45, 30);
+							oscillateRightSweeps(rl, rs);
 						}
 					}
 					if (actionsList.contains("OSCRIGHTSHORT")) { // 35
 						if (sweepCommand != "OSCRIGHTSHORT") {
 							sweepCommand = "OSCRIGHTSHORT";
-							oscillateRightSweeps(30, 15);
+							oscillateRightSweeps(rs, rv);
 						}
 					}
 					if (actionsList.contains("OSCRIGHTVERYSHORT")) { // 52
 						if (sweepCommand != "OSCRIGHTVERYSHORT") {
 							sweepCommand = "OSCRIGHTVERYSHORT";
-							oscillateRightSweeps(15, 0);
+							oscillateRightSweeps(rv, 0);
 						}
 					}
 					if (actionsList.contains("OSCCENTER")) { // 53
 						if (sweepCommand != "OSCCENTER") {
 							sweepCommand = "OSCCENTER";
-							oscillateRightSweeps(-15, 15);
+							oscillateRightSweeps(lv, rv);
 						}
 					}
 					if (actionsList.contains("OSCLEFTSHORT")) { // 86
 						if (sweepCommand != "OSCLEFTSHORT") {
 							sweepCommand = "OSCLEFTSHORT";
-							oscillateRightSweeps(-30, -15);
+							oscillateRightSweeps(ls, lv);
 						}
 					}
 					if (actionsList.contains("OSCLEFTLONG")) { // 103
 						if (sweepCommand != "OSCLEFTLONG") {
 							sweepCommand = "OSCLEFTLONG";
-							oscillateRightSweeps(-45, -30);
+							oscillateRightSweeps(ll, ls);
 						}
 					}
 
@@ -1333,7 +1338,7 @@ public class FountainSimController implements Initializable {
 					break;
 				// Legacy Command
 				// Water Modules W1-W6 & Wedding Cake formation
-				*//*case 48:
+				/*case 48:
 					if (actionsList.contains("MODULEA")) {
 						int level = FCWLib.getInstance().reverseGetLevel(f);
 						// Left over code from first group, not sure if needed
@@ -1354,7 +1359,7 @@ public class FountainSimController implements Initializable {
 						}
 					}
 					break;
-					*//*
+					*/
 				case 501:
 					System.out.println("Fading!!!");
 					crossFading[0][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod1ring4.getFill()));
@@ -1432,41 +1437,7 @@ public class FountainSimController implements Initializable {
 					resetAll();
 					clearSweeps();
 					break;
-				}*/
-
-                int addr = f.getAddr();
-                int choice = 0;
-                if(addr >= 1 && addr <= 5){
-                    choice = 1; // Draw Ring
-                } else if(addr >= 6 && addr <= 9){
-                    choice = 2; // Draw Other
-                } else if(addr >= 33 && addr <= 42 && addr != 41){
-                    choice = 3; // Sweeper Commands
-                } else if((addr >= 501 && addr <= 507) || (addr >= 601 && addr <= 607)){
-                    choice = 4; // Fading Commands
-                } else if(addr == 99){
-                    choice = 5; // Reset
-                }
-
-                switch(choice){
-                    case 1:
-                        drawRings(actionsList, f, lagTime, addr);
-                        break;
-                    case 2:
-                        drawOther(actionsList, f, lagTime, addr);
-                        break;
-                    case 3:
-                        sweeperCommands(actionsList, addr);
-                        break;
-                    case 4:
-                        fadingCommands(crossFading, fading, f, addr);
-                        break;
-                    case 5:
-                        resetAll();
-                        clearSweeps();
-                        break;
-                }
-
+				}
 			}
 		}
 	}
@@ -1533,265 +1504,6 @@ public class FountainSimController implements Initializable {
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
 	}
-
-    public void drawRings(ArrayList<String> actionsList, FCW f, double lagTime, int op){
-        if (actionsList.contains("MODULEA")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            String s = op + "A";
-            drawRing(level, lagTime, s);
-        }
-        if (actionsList.contains("MODULEB")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            String s = op + "B";
-            drawRing(level, lagTime, s);
-        }
-    }
-
-    public void drawOther(ArrayList<String> actionsList, FCW f, double lagTime, int op){
-        switch(op){
-            case 6:
-                drawSweeps(actionsList, f, lagTime);
-                break;
-            case 7:
-                drawSpoutVoiceBazooka(actionsList, f, lagTime);
-                break;
-            case 8:
-                drawCandelabras(actionsList, f, lagTime);
-                break;
-            case 9:
-                drawFrontBackCurtain(actionsList, f, lagTime);
-                break;
-        }
-    }
-
-    public void sweeperCommands(ArrayList<String> actionsList, int op){
-        if(op == 33 || op == 34){
-            legacySweepsControl(actionsList, op);
-        } else if(op == 35 || op == 36 || op == 37){
-            newSweeperControl(actionsList, op);
-        } else if(op == 38 || op == 39 || op == 40){
-            sweeperSpeedControl(actionsList, op);
-        } else if(op == 42){
-            if (actionsList.contains("TOGETHER")) {
-                setSweepType(1);
-            }
-            if (actionsList.contains("OPPOSED")) {
-                setSweepType(2);
-            }
-            if (actionsList.contains("INDEPENDENT")) {
-                setSweepType(0);
-            }
-        } else{
-
-        }
-    }
-
-    public void fadingCommands(Color crossFading[][], double fading[][], FCW f, int op){
-        switch(op){
-            case 501:
-                System.out.println("Fading!!!");
-                crossFading[0][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod1ring4.getFill()));
-                crossFading[0][1]=ColorPaletteModel.getInstance().getColor(f.getData()%100);
-                break;
-            case 601:
-                fading[0][0]=f.getData()/10;
-                fading[0][1]=mod1.getOpacity();
-                fading[0][2]= ((int) f.getData()) / 100;
-                fadeModule(1, fading[0][0], fading[0][1], fading[0][2], crossFading[0][0], crossFading[0][1]);
-                break;
-            case 502:
-                crossFading[1][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod2ring4.getFill()));
-                crossFading[1][1]=ColorPaletteModel.getInstance().getColor(f.getData()%100);
-                break;
-            case 602:
-                fading[1][0]=f.getData()/10;
-                fading[1][1]=mod1.getOpacity();
-                fading[1][2]= ((int) f.getData()) / 100;
-                fadeModule(2, fading[1][0], fading[1][1], fading[1][2], crossFading[1][0], crossFading[1][1]);
-                break;
-            case 503:
-                crossFading[2][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod3ring4.getFill()));
-                crossFading[2][1]=ColorPaletteModel.getInstance().getColor(f.getData()%100);
-                break;
-            case 603:
-                fading[2][0]=f.getData()/10;
-                fading[2][1]=mod1.getOpacity();
-                fading[2][2]= ((int) f.getData()) / 100;
-                fadeModule(3, fading[2][0], fading[2][1], fading[2][2], crossFading[2][0], crossFading[2][1]);
-                break;
-            case 504:
-                crossFading[3][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod4ring4.getFill()));
-                crossFading[3][1]=ColorPaletteModel.getInstance().getColor(f.getData()%100);
-                break;
-            case 604:
-                fading[3][0]=f.getData()/10;
-                fading[3][1]=mod1.getOpacity();
-                fading[3][2]= ((int) f.getData()) / 100;
-                fadeModule(4, fading[3][0], fading[3][1], fading[3][2], crossFading[3][0], crossFading[3][1]);
-                break;
-            case 505:
-                crossFading[4][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod5ring4.getFill()));
-                crossFading[4][1]=ColorPaletteModel.getInstance().getColor(f.getData()%100);
-                break;
-            case 605:
-                fading[4][0]=f.getData()/10;
-                fading[4][1]=mod1.getOpacity();
-                fading[4][2]= ((int) f.getData()) / 100;
-                fadeModule(5, fading[4][0], fading[4][1], fading[4][2], crossFading[4][0], crossFading[4][1]);
-                break;
-            case 506:
-                crossFading[5][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod6ring4.getFill()));
-                crossFading[5][1]=ColorPaletteModel.getInstance().getColor(f.getData()%100);
-                break;
-            case 606:
-                fading[5][0]=f.getData()/10;
-                fading[5][1]=mod1.getOpacity();
-                fading[5][2]= ((int) f.getData()) / 100;
-                fadeModule(6, fading[5][0], fading[5][1], fading[5][2], crossFading[5][0], crossFading[5][1]);
-                break;
-            case 507:
-                crossFading[6][0]=ColorPaletteModel.getInstance().getColor( ColorPaletteModel.getInstance().checkColor(mod7ring4.getFill()));
-                crossFading[6][1]=ColorPaletteModel.getInstance().getColor(f.getData()%100);
-                break;
-            case 607:
-                fading[6][0]=f.getData()/10;
-                fading[6][1]=mod1.getOpacity();
-                fading[6][2]= ((int) f.getData()) / 100;
-                fadeModule(7, fading[6][0], fading[6][1], fading[6][2], crossFading[6][0], crossFading[6][1]);
-                break;
-        }
-    }
-
-    public void drawRing(int level, double lagTime, String ring){
-        final Timeline timeline = new Timeline();
-        timeline.setCycleCount(1);
-        KeyFrame kf;
-
-        switch(ring){
-            case "1A":
-                kf = get1AKeyFrame(level, lagTime);
-                break;
-            case "1B":
-                kf = get1BKeyFrame(level, lagTime);
-                break;
-            case "2A":
-                kf = get2AKeyFrame(level, lagTime);
-                break;
-            case "2B":
-                kf = get2BKeyFrame(level, lagTime);
-                break;
-            case "3A":
-                kf = get3AKeyFrame(level, lagTime);
-                break;
-            case "3B":
-                kf = get3BKeyFrame(level, lagTime);
-                break;
-            case "4A":
-                kf = get4AKeyFrame(level, lagTime);
-                break;
-            case "4B":
-                kf = get4BKeyFrame(level, lagTime);
-                break;
-            case "5A":
-                kf = get5AKeyFrame(level, lagTime);
-                break;
-            case "5B":
-                kf = get5BKeyFrame(level, lagTime);
-                break;
-
-            // This default should never get hit
-            default:
-                kf = new KeyFrame(Duration.seconds(lagTime));
-        }
-
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
-    }
-
-    public KeyFrame get1AKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv4 = new KeyValue(mod7ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-        return kf;
-    }
-
-    public KeyFrame get1BKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-        return kf;
-    }
-
-    public KeyFrame get2AKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod1ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod3ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod5ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv4 = new KeyValue(mod7ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-        return kf;
-    }
-
-    public KeyFrame get2BKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod2ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod4ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod6ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-        return kf;
-    }
-
-    public KeyFrame get3AKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod1ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod3ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod5ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv4 = new KeyValue(mod7ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-        return kf;
-    }
-
-    public KeyFrame get3BKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod2ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod4ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod6ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-        return kf;
-    }
-
-    public KeyFrame get4AKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod1ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod3ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod5ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv4 = new KeyValue(mod7ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-        return kf;
-    }
-
-    public KeyFrame get4BKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod2ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod4ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod6ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-        return kf;
-    }
-
-    public KeyFrame get5AKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod1ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod3ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv4 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-        return kf;
-    }
-
-    public KeyFrame get5BKeyFrame(int level, double lagTime){
-        final KeyValue kv1 = new KeyValue(mod2ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv2 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyValue kv3 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-        return kf;
-    }
 
 	public void drawRing1A(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
@@ -1916,767 +1628,6 @@ public class FountainSimController implements Initializable {
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
 	}
-
-    public void drawSweeps(ArrayList<String> actionsList, FCW f, double lagTime){
-        if (actionsList.contains("MODULEA")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            drawSweepsA(level, lagTime);
-        }
-        if (actionsList.contains("MODULEB")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            drawSweepsB(level, lagTime);
-        }
-    }
-
-    public void drawSpoutVoiceBazooka(ArrayList<String> actionsList, FCW f, double lagTime){
-        if (actionsList.contains("VOICE")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            drawSpout(level, lagTime);
-        }
-        if (actionsList.contains("BAZOOKA")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            drawBazooka(level, lagTime);
-        }
-    }
-
-    public void drawCandelabras(ArrayList<String> actionsList, FCW f, double lagTime){
-        if (actionsList.contains("MODULEA")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            drawCandlesA(level, lagTime);
-        }
-        if (actionsList.contains("MODULEB")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            drawCandlesB(level, lagTime);
-        }
-    }
-
-    public void drawFrontBackCurtain(ArrayList<String> actionsList, FCW f, double lagTime){
-        if (actionsList.contains("FTCURT")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            drawFtCurtain(level, lagTime);
-        }
-        if (actionsList.contains("PEACOCK")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            drawPeacock(level, lagTime);
-        }
-        if (actionsList.contains("BKCURT")) {
-            int level = FCWLib.getInstance().reverseGetLevel(f);
-            drawBkCurtain(level, lagTime);
-        }
-    }
-
-    public void legacySweepsControl(ArrayList<String> actionsList, int op){
-        // Stops all motions
-        if (actionsList.contains("OFFRESET")) {
-            mod1sweep1.getTransforms().clear();
-            mod2sweep1.getTransforms().clear();
-            mod3sweep1.getTransforms().clear();
-            mod4sweep1.getTransforms().clear();
-            mod5sweep1.getTransforms().clear();
-            mod6sweep1.getTransforms().clear();
-            mod7sweep1.getTransforms().clear();
-            mod1sweep2.getTransforms().clear();
-            mod2sweep2.getTransforms().clear();
-            mod3sweep2.getTransforms().clear();
-            mod4sweep2.getTransforms().clear();
-            mod5sweep2.getTransforms().clear();
-            mod6sweep2.getTransforms().clear();
-            mod7sweep2.getTransforms().clear();
-        }
-
-        // Animates the sweepers if the are paused or pauses them if
-        // they are moving
-        if (actionsList.contains("PLAYPAUSE")) {
-
-            if (leftSweepTimeline.getStatus() == Animation.Status.PAUSED) {
-                leftSweepTimeline.pause();
-                rightSweepTimeline.pause();
-            } else {
-                leftSweepTimeline.play();
-                rightSweepTimeline.play();
-            }
-        }
-        if (actionsList.contains("LARGO")) {
-            leftSweepTimeline.setRate(0.2);
-            leftSweepSpeed = 4.0;
-            rightSweepTimeline.setRate(0.2);
-            rightSweepSpeed = 4.0;
-        }
-        if (actionsList.contains("ADAGIO")) {
-            leftSweepTimeline.setRate(0.5);
-            leftSweepSpeed = 3.0;
-            rightSweepTimeline.setRate(0.5);
-            rightSweepSpeed = 3.0;
-        }
-        if (actionsList.contains("ANDANTE")) {
-            leftSweepTimeline.setRate(0.8);
-            leftSweepSpeed = 2.5;
-            rightSweepTimeline.setRate(0.8);
-            rightSweepSpeed = 2.5;
-        }
-        if (actionsList.contains("MODERATO")) {
-            leftSweepTimeline.setRate(1.0);
-            leftSweepSpeed = 1.0;
-            rightSweepTimeline.setRate(1.0);
-            rightSweepSpeed = 1.0;
-        }
-        if (actionsList.contains("ALLEGRETO")) {
-            leftSweepTimeline.setRate(1.3);
-            leftSweepSpeed = 1.8;
-            rightSweepTimeline.setRate(1.3);
-            rightSweepSpeed = 1.8;
-        }
-        if (actionsList.contains("ALLEGRO")) {
-            leftSweepTimeline.setRate(1.5);
-            leftSweepSpeed = 1.6;
-            rightSweepTimeline.setRate(1.5);
-            rightSweepSpeed = 1.6;
-        }
-        if (actionsList.contains("PRESTO")) {
-            leftSweepTimeline.setRate(1.8);
-            leftSweepSpeed = 1.5;
-            rightSweepTimeline.setRate(1.8);
-            rightSweepSpeed = 1.5;
-        }
-
-        if(op == 33){
-            // Animates the sweepers in a sweeping motion from -30 to 30
-            // degrees
-            if (actionsList.contains("SHORT")) {
-                if (sweepCommand != "SHORT") {
-                    sweepCommand = "SHORT";
-                    sweepLeftSweeps(-30, 30);
-                    sweepRightSweeps(-30, 30);
-                }
-            }
-
-            // Animates the sweepers in a sweeping motion from -45 to 45
-            // degrees
-            if (actionsList.contains("LONG")) {
-                if (sweepCommand != "LONG") {
-                    sweepCommand = "LONG";
-                    sweepLeftSweeps(-45, 45);
-                    sweepRightSweeps(-45, 45);
-                }
-            }
-        }
-
-        if(op == 34){
-            if (actionsList.contains("SHORT")) {
-                if (sweepCommand != "SHORT") {
-                    sweepCommand = "SHORT";
-                    sweepLeftSweeps(-30, 30);
-                    sweepRightSweeps(30, -30);
-                }
-            }
-            if (actionsList.contains("LONG")) {
-                if (sweepCommand != "LONG") {
-                    sweepCommand = "LONG";
-                    sweepLeftSweeps(-45, 45);
-                    sweepRightSweeps(45, -45);
-                }
-            }
-        }
-    }
-
-    public void newSweeperControl(ArrayList<String> actionsList, int op){
-        // Action list contains what sweeper action is supposed to
-        // be occuring at each tenth of a second.
-        if (actionsList.contains("RIGHTSHORTLEFTLONG")) { // 39
-            // Checks to make sure the most recent command is not
-            // rs,ll. If true, then nothing, else make current
-            // command rs, ll and animate sweepers accordingly
-            if (sweepCommand != "RIGHTSHORTLEFTLONG") {
-                sweepCommand = "RIGHTSHORTLEFTLONG";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(30, -45);
-                        sweepRightSweeps(30, -45);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(30, -45);
-                        sweepRightSweeps(-45, 30);
-                    }
-                } else if(op == 36){
-                    sweepLeftSweeps(30, -45);
-                } else{
-                    sweepRightSweeps(30, -45);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTSHORTLEFTSHORT")) { // 38
-            if (sweepCommand != "RIGHTSHORTLEFTSHORT") {
-                sweepCommand = "RIGHTSHORTLEFTSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(30, -30);
-                        sweepRightSweeps(30, -30);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(30, -30);
-                        sweepRightSweeps(-30, 30);
-                    }
-                } else if(op == 36){
-                    sweepLeftSweeps(30, -30);
-                } else{
-                    sweepRightSweeps(30, -30);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTLONGLEFTLONG")) { // 23
-            if (sweepCommand != "RIGHTLONGLEFTLONG") {
-                sweepCommand = "RIGHTLONGLEFTLONG";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(45, -45);
-                        sweepRightSweeps(45, -45);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(45, -45);
-                        sweepRightSweeps(-45, 45);
-                    }
-                } else if(op == 36){
-                    sweepLeftSweeps(45, -45);
-                } else{
-                    sweepRightSweeps(45, -45);
-                }
-            }
-        }
-        if (actionsList.contains("HOLDRIGHTLONG")) { // 17
-            if (sweepCommand != "HOLDRIGHTLONG") {
-                sweepCommand = "HOLDRIGHTLONG";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(45, 45);
-                }
-                if(op == 35 || op == 37) {
-                    sweepRightSweeps(45, 45);
-                }
-            }
-        }
-        if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
-            if (sweepCommand != "HOLDRIGHTSHORT") {
-                sweepCommand = "HOLDRIGHTSHORT";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(30, 30);
-                }
-                if(op == 35 || op == 37) {
-                    sweepRightSweeps(30, 30);
-                }
-            }
-        }
-        if (actionsList.contains("HOLDLEFTLONG")) { // 119
-            if (sweepCommand != "HOLDLEFTLONG") {
-                sweepCommand = "HOLDLEFTLONG";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(-45, -45);
-                }
-                if(op == 35 || op == 37) {
-                    sweepRightSweeps(-45, -45);
-                }
-            }
-        }
-        if (actionsList.contains("HOLDLEFTSHORT")) { // 102
-            if (sweepCommand != "HOLDLEFTSHORT") {
-                sweepCommand = "HOLDLEFTSHORT";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(-30, -30);
-                }
-                if(op == 35 || op == 36) {
-                    sweepRightSweeps(-30, -30);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTLONGRIGHTVERYSHORT")) { // 19
-            if (sweepCommand != "RIGHTLONGRIGHTVERYSHORT") {
-                sweepCommand = "RIGHTLONGRIGHTVERYSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(45, 15);
-                        sweepRightSweeps(45, 15);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(45, 15);
-                        sweepRightSweeps(15, 45);
-                    }
-                } else if(op == 36){
-                    sweepLeftSweeps(45, 15);
-                } else {
-                    sweepRightSweeps(45, 15);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTLONGCENTER")) { // 20
-            if (sweepCommand != "RIGHTLONGCENTER") {
-                sweepCommand = "RIGHTLONGCENTER";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(45, 0);
-                        sweepRightSweeps(45, 0);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(45, 0);
-                        sweepRightSweeps(0, 45);
-                    }
-                } else if(op == 36){
-                    sweepLeftSweeps(45, 0);
-                } else {
-                    sweepRightSweeps(45, 0);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTSHORTCENTER")) { // 36
-            if (sweepCommand != "RIGHTSHORTCENTER") {
-                sweepCommand = "RIGHTSHORTCENTER";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(30, 0);
-                        sweepRightSweeps(30, 0);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(30, 0);
-                        sweepRightSweeps(0, 30);
-                    }
-                } else if(op == 36){
-                    sweepLeftSweeps(30, 0);
-                } else {
-                    sweepRightSweeps(30, 0);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTLONGLEFTSHORT")) { // 22
-            if (sweepCommand != "RIGHTLONGLEFTSHORT") {
-                sweepCommand = "RIGHTLONGLEFTSHORT";
-                if(op == 35) {
-                    if (sweepType == 1 || sweepType == 0) {
-                        sweepLeftSweeps(45, -30);
-                        sweepRightSweeps(45, -30);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(45, -30);
-                        sweepRightSweeps(-30, 45);
-                    }
-                } else if(op == 36){
-                    sweepLeftSweeps(45, -30);
-                } else {
-                    sweepRightSweeps(45, -30);
-                }
-            }
-        }
-        if (actionsList.contains("HOLDCENTER")) { // 0,68
-            if (sweepCommand != "HOLDCENTER") {
-                sweepCommand = "HOLDCENTER";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(0, 0);
-                }
-                if(op == 35 || op == 37) {
-                    sweepRightSweeps(0, 0);
-                }
-            }
-        }
-        if (actionsList.contains("CENTERLEFTSHORT")) { // 70
-            if (sweepCommand != "CENTERLEFTSHORT") {
-                sweepCommand = "CENTERLEFTSHORT";
-                if(op == 35) {
-                    if (sweepType == 1 || sweepType == 0) {
-                        sweepLeftSweeps(0, -30);
-                        sweepRightSweeps(0, -30);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(0, -30);
-                        sweepRightSweeps(-30, 0);
-                    }
-                } else if(op == 36) {
-                    sweepLeftSweeps(0, -30);
-                } else {
-                    sweepRightSweeps(0, -30);
-                }
-            }
-        }
-        if (actionsList.contains("OSCLEFTVERYSHORT")) { // 69
-            if (sweepCommand != "OSCLEFTVERYSHORT") {
-                sweepCommand = "OSCLEFTVERYSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(-15, 0);
-                        oscillateRightSweeps(-15, 0);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(-15, 0);
-                        oscillateRightSweeps(0, -15);
-                    }
-                } else if(op == 36){
-                    oscillateLeftSweeps(-15, 0);
-                } else {
-                    oscillateRightSweeps(-15, 0);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTLONGLEFTVERYSHORT")) { // 21
-            if (sweepCommand != "RIGHTLONGLEFTVERYSHORT") {
-                sweepCommand = "RIGHTLONGLEFTVERYSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(45, -15);
-                        sweepRightSweeps(45, -15);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(45, -15);
-                        sweepRightSweeps(-15, 45);
-                    }
-                } else if(op == 36) {
-                    sweepLeftSweeps(45, -15);
-                } else {
-                    sweepRightSweeps(45, -15);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTSHORTLEFTVERYSHORT")) { // 37
-            if (sweepCommand != "RIGHTSHORTLEFTVERYSHORT") {
-                sweepCommand = "RIGHTSHORTLEFTVERYSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(30, -15);
-                        sweepRightSweeps(30, -15);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(30, -15);
-                        sweepRightSweeps(-15, 30);
-                    }
-                } else if(op == 36) {
-                    sweepLeftSweeps(30, -15);
-                } else {
-                    sweepRightSweeps(30, -15);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTVERYSHORTLEFTSHORT")) { // 54
-            if (sweepCommand != "RIGHTVERYSHORTLEFTSHORT") {
-                sweepCommand = "RIGHTVERYSHORTLEFTSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(15, -30);
-                        sweepRightSweeps(15, -30);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(15, -30);
-                        sweepRightSweeps(-30, 15);
-                    }
-                } else if(op == 36){
-                    sweepLeftSweeps(15, -30);
-                } else {
-                    sweepRightSweeps(15, -30);
-                }
-            }
-        }
-        if (actionsList.contains("RIGHTVERYSHORTLEFTLONG")) { // 55
-            if (sweepCommand != "RIGHTVERYSHORTLEFTLONG") {
-                sweepCommand = "RIGHTVERYSHORTLEFTLONG";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(15, -45);
-                        sweepRightSweeps(15, -45);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(15, -45);
-                        sweepRightSweeps(-45, 15);
-                    }
-                } else if(op == 36) {
-                    sweepLeftSweeps(15, -45);
-                } else {
-                    sweepRightSweeps(15, -45);
-                }
-            }
-        }
-        if (actionsList.contains("CENTERLEFTLONG")) { // 71
-            if (sweepCommand != "CENTERLEFTLONG") {
-                sweepCommand = "CENTERLEFTLONG";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(0, -45);
-                        sweepRightSweeps(0, -45);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(0, -45);
-                        sweepRightSweeps(-45, 0);
-                    }
-                } else if(op == 36) {
-                    sweepLeftSweeps(0, -45);
-                } else {
-                    sweepRightSweeps(0, -45);
-                }
-            }
-        }
-        if (actionsList.contains("LEFTVERYSHORTLEFTLONG")) { // 87
-            if (sweepCommand != "LEFTVERYSHORTLEFTLONG") {
-                sweepCommand = "LEFTVERYSHORTLEFTLONG";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        sweepLeftSweeps(-15, -45);
-                        sweepRightSweeps(-15, -45);
-                    }
-                    if (sweepType == 2) {
-                        sweepLeftSweeps(-15, -45);
-                        sweepRightSweeps(-45, -15);
-                    }
-                } else if(op == 36) {
-                    sweepLeftSweeps(-15, -45);
-                } else {
-                    sweepRightSweeps(-15, -45);
-                }
-            }
-        }
-        if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
-            if (sweepCommand != "HOLDRIGHTVERYSHORT") {
-                sweepCommand = "HOLDRIGHTVERYSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(15, 15);
-                        oscillateRightSweeps(15, 15);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(15, 15);
-                        oscillateRightSweeps(15, 15);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(15, 15);
-                } else {
-                    oscillateRightSweeps(15, 15);
-                }
-            }
-        }
-        if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
-            if (sweepCommand != "HOLDLEFTVERYSHORT") {
-                sweepCommand = "HOLDLEFTVERYSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(-15, -15);
-                        oscillateRightSweeps(-15, -15);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(-15, -15);
-                        oscillateRightSweeps(-15, -15);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(-15, -15);
-                } else {
-                    oscillateRightSweeps(-15, -15);
-                }
-            }
-        }
-        if (actionsList.contains("OSCRIGHTLONG")) { // 18
-            if (sweepCommand != "OSCRIGHTLONG") {
-                sweepCommand = "OSCRIGHTLONG";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(45, 30);
-                        oscillateRightSweeps(45, 30);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(45, 30);
-                        oscillateRightSweeps(30, 45);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(45, 30);
-                } else {
-                    oscillateRightSweeps(45, 30);
-                }
-            }
-        }
-        if (actionsList.contains("OSCRIGHTSHORT")) { // 35
-            if (sweepCommand != "OSCRIGHTSHORT") {
-                sweepCommand = "OSCRIGHTSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(30, 15);
-                        oscillateRightSweeps(30, 15);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(30, 15);
-                        oscillateRightSweeps(15, 30);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(30, 15);
-                } else {
-                    oscillateRightSweeps(30, 15);
-                }
-            }
-        }
-        if (actionsList.contains("OSCRIGHTVERYSHORT")) { // 52
-            if (sweepCommand != "OSCRIGHTVERYSHORT") {
-                sweepCommand = "OSCRIGHTVERYSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(15, 0);
-                        oscillateRightSweeps(15, 0);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(15, 0);
-                        oscillateRightSweeps(0, 15);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(15, 0);
-                } else {
-                    oscillateRightSweeps(15, 0);
-                }
-            }
-        }
-        if (actionsList.contains("OSCCENTER")) { // 53
-            if (sweepCommand != "OSCCENTER") {
-                sweepCommand = "OSCCENTER";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(-15, 15);
-                        oscillateRightSweeps(-15, 15);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(-15, 15);
-                        oscillateRightSweeps(15, -15);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(-15, 15);
-                } else {
-                    oscillateRightSweeps(-15, 15);
-                }
-            }
-        }
-        if (actionsList.contains("OSCLEFTSHORT")) { // 86
-            if (sweepCommand != "OSCLEFTSHORT") {
-                sweepCommand = "OSCLEFTSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(-30, -15);
-                        oscillateRightSweeps(-30, -15);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(-30, -15);
-                        oscillateRightSweeps(-15, -30);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(-30, -15);
-                } else {
-                    oscillateRightSweeps(-30, -15);
-                }
-            }
-        }
-        if (actionsList.contains("OSCLEFTLONG")) { // 103
-            if (sweepCommand != "OSCLEFTLONG") {
-                sweepCommand = "OSCLEFTLONG";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(-45, -30);
-                        oscillateRightSweeps(-45, -30);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(-45, -30);
-                        oscillateRightSweeps(-30, -45);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(-45, -30);
-                } else {
-                    oscillateRightSweeps(-45, -30);
-                }
-            }
-        }
-    }
-
-    public void sweeperSpeedControl(ArrayList<String> actionsList, int op){
-        if (actionsList.contains("OFFRESET")) {
-            if(op == 38 || op == 40) {
-                mod1sweep1.getTransforms().clear();
-                mod2sweep1.getTransforms().clear();
-                mod3sweep1.getTransforms().clear();
-                mod4sweep1.getTransforms().clear();
-                mod5sweep1.getTransforms().clear();
-                mod6sweep1.getTransforms().clear();
-                mod7sweep1.getTransforms().clear();
-            }
-
-            if(op == 39 || op == 40) {
-                mod1sweep2.getTransforms().clear();
-                mod2sweep2.getTransforms().clear();
-                mod3sweep2.getTransforms().clear();
-                mod4sweep2.getTransforms().clear();
-                mod5sweep2.getTransforms().clear();
-                mod6sweep2.getTransforms().clear();
-                mod7sweep2.getTransforms().clear();
-            }
-        }
-        if (actionsList.contains("PLAYPAUSE")) {
-            if (leftSweepTimeline.getStatus() == Animation.Status.PAUSED) {
-                if(op == 38 || op == 40) {
-                    leftSweepTimeline.pause();
-                }
-                if(op == 39 || op == 40) {
-                    rightSweepTimeline.pause();
-                }
-            } else {
-                if(op == 38 || op == 40) {
-                    leftSweepTimeline.play();
-                }
-                if(op == 38 || op == 40) {
-                    rightSweepTimeline.play();
-                }
-            }
-        }
-        if (actionsList.contains("LARGO")) {
-            if(op == 38 || op == 40) {
-                leftSweepTimeline.setRate(0.2);
-                leftSweepSpeed = 4.0;
-            }
-            if(op == 39 || op == 40) {
-                rightSweepTimeline.setRate(0.2);
-                rightSweepSpeed = 4.0;
-            }
-        }
-        if (actionsList.contains("ADAGIO")) {
-            leftSweepTimeline.setRate(0.5);
-            leftSweepSpeed = 3.0;
-            rightSweepTimeline.setRate(0.5);
-            rightSweepSpeed = 3.0;
-        }
-        if (actionsList.contains("ANDANTE")) {
-            if(op == 38 || op == 40) {
-                leftSweepTimeline.setRate(0.8);
-                leftSweepSpeed = 2.5;
-            }
-            if(op == 39 || op == 40) {
-                rightSweepTimeline.setRate(0.8);
-                rightSweepSpeed = 2.5;
-            }
-        }
-        if (actionsList.contains("MODERATO")) {
-            leftSweepTimeline.setRate(1.0);
-            leftSweepSpeed = 1.0;
-            rightSweepTimeline.setRate(1.0);
-            rightSweepSpeed = 1.0;
-        }
-        if (actionsList.contains("ALLEGRETO")) {
-            if(op == 38 || op == 40) {
-                leftSweepTimeline.setRate(1.3);
-                leftSweepSpeed = 1.8;
-            }
-            if(op == 39 || op == 40) {
-                rightSweepTimeline.setRate(1.3);
-                rightSweepSpeed = 1.8;
-            }
-        }
-        if (actionsList.contains("ALLEGRO")) {
-            leftSweepTimeline.setRate(1.5);
-            leftSweepSpeed = 1.6;
-            rightSweepTimeline.setRate(1.5);
-            rightSweepSpeed = 1.6;
-        }
-        if (actionsList.contains("PRESTO")) {
-            if(op == 38 || op == 40) {
-                leftSweepTimeline.setRate(1.8);
-                leftSweepSpeed = 1.5;
-            }
-            if(op == 39 || op == 40) {
-                rightSweepTimeline.setRate(1.8);
-                rightSweepSpeed = 1.5;
-            }
-        }
-    }
 
 	public void drawSpout(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
