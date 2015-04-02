@@ -167,6 +167,8 @@ public final class FCWLib {
 				return; // Exit
 			} else {
 				String[] tokens = line.split(", "); // split into components
+//				System.out.println(tokens[0].trim());
+//				System.out.println(tokens[1].trim());
 				waterAddress.put(tokens[0].trim(), new Integer(tokens[1].trim())); // add
 																					// them
 			}
@@ -300,9 +302,20 @@ public final class FCWLib {
 	private synchronized int getCommandsForAction(String[] actions, String table, int data) {
 		for (String action : actions) {
 			action = action.toUpperCase();
-			System.out.println(action + " " + table + " " + data);
-			int value = tableCommands.get(table).get(action);
-			data += value;
+			if(action == "0" && data == 0) {
+				//action = "1";
+			}
+			else {
+				System.out.println(action + " " + table + " " + data);
+
+				if(action == "SPOUT") {
+					data = 32;
+				}
+				int value = tableCommands.get(table).get(action);
+				data += value;
+				System.out.println(action + " " + table + " " + data);
+			}
+
 		}
 		return data;
 	}
@@ -510,8 +523,10 @@ public final class FCWLib {
 
 		for (Entry<String, Integer> entry : tableCommands.get(table).entrySet()) {
 			for (Integer i : flags) {
-				if (entry.getValue().equals(i))
+				if (entry.getValue().equals(i)) {
+					System.out.println(entry.getKey());
 					actions.add(entry.getKey());
+				}
 			}
 		}
 
