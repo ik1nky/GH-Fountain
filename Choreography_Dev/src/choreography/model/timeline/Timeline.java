@@ -128,10 +128,10 @@ public class Timeline {
 	 */
 	public void setTimeline(
 			ConcurrentSkipListMap<Integer, ArrayList<FCW>> timeline) {
-        for (Entry<Integer, ArrayList<FCW>> entry : timeline.entrySet())
-        {
-            System.out.println("Time "+entry.getKey() + "  OP: " + entry.getValue());
-        }
+//        for (Entry<Integer, ArrayList<FCW>> entry : timeline.entrySet())
+//        {
+//            System.out.println("Time "+entry.getKey() + "  OP: " + entry.getValue());
+//        }
 		this.timeline = timeline;
 		statefulTimeline.loadExistingTimeline(timeline);
 
