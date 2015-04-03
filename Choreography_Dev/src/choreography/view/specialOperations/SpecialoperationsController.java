@@ -362,7 +362,8 @@ public class SpecialoperationsController implements Initializable {
 				ArrayList<String> AL = new ArrayList<>(3);
 				AL.add(onOff);
 				String[] actions = AL.toArray(new String[1]);
-				FCW f = FCWLib.getInstance().getFCW("VOICE", actions);
+				//FCW f = FCWLib.getInstance().getFCW("VOICE", actions);
+                FCW f = FCWLib.getInstance().getFCW("SPOUT", actions);
 
                 ArrayList<String> AL2 = new ArrayList<>(3);
                 if(onOff.equals("ON")){
@@ -371,7 +372,8 @@ public class SpecialoperationsController implements Initializable {
                     AL2.add("ON");
                 }
                 String[] actions2 = AL2.toArray(new String[1]);
-                FCW f2 = FCWLib.getInstance().getFCW("VOICE", actions2);
+                //FCW f2 = FCWLib.getInstance().getFCW("VOICE", actions2);
+                FCW f2 = FCWLib.getInstance().getFCW("SPOUT", actions2);
 
 				int tenths = MusicPaneController.getInstance().getTenthsTime();
                 if(ChoreographyController.getInstance().getEventTimeline().get(tenths).contains(f2)){

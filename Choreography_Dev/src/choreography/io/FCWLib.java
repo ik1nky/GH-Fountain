@@ -308,9 +308,9 @@ public final class FCWLib {
 			else {
 				System.out.println(action + " " + table + " " + data);
 
-				if(action == "SPOUT") {
+				/*if(action == "SPOUT") {
 					data = 32;
-				}
+				}*/
 				int value = tableCommands.get(table).get(action);
 				data += value;
 				System.out.println(action + " " + table + " " + data);

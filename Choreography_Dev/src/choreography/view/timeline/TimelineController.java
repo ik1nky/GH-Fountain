@@ -1207,7 +1207,7 @@ public class TimelineController implements Initializable {
 			break;
 		// From functions table
 		case "VOICE":
-			newName = "Auto Cateloged Formations (water + light)"; // TODO
+			newName = "VOICE"; // TODO
 																	// needed?
 			break;
 		/*case "INTERCHANGEAB":

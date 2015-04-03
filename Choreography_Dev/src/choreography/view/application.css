@@ -9,12 +9,10 @@
     -fx-text-fill: #2d3e4c;
 }
 
-.slider#time .thumb{
-    -fx-background-size: 200;
-    -fx-z-index: -1;
-    -fx-position:relative;
-    -fx-background-image :url("../../resources/redline.png");
-    -fx-maxHeight: 250;
+.slider#time .thumb {
+    -fx-background-image: url("../../resources/redline.png");
+    -fx-padding: 7;
+
 }
 .slider .thumb{
 
