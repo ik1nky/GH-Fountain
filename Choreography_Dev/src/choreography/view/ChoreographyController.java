@@ -106,8 +106,8 @@ public class ChoreographyController implements Initializable {
 			cutMenuItem, copyMenuItem, pasteMenuItem, deleteMenuItem, selectAllMenuItem, unselectAllMenuItem,
 			aboutMenuItem, setLagTimesMenuItem, openGhmfMenuItem, splitSimulationMenuItem, showSimulationMenuItem,
 			updateCtlMenuItem;
-//	@FXML
-//	private MenuItem openCTLMenuItem;
+	@FXML
+	private MenuItem openCTLMenuItem;
 	@FXML
 	private Menu editMenu, helpMenu;
 	@FXML
@@ -287,31 +287,31 @@ public class ChoreographyController implements Initializable {
 
 		});
 
-//		openCTLMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-//
-//			@Override
-//			public void handle(ActionEvent t) {
-//				fcwOutput.setText("Loading CTL file ...");
-//				try {
-//					loadDefaultMap();
-//					CtlLib.getInstance().openCtl();
-//					cc.setfcwOutput("CTL file has loaded!");
-//                    SlidersController.getInstance().enableAllSliders();
-//
-//					/**TODO
-//					 * Handling for if loaded ctl file is a legacy file
-//					 */
-//
-//					SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
-//				} catch (IOException ex) {
-//					Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
-//				} catch (NullPointerException e) {
-//
-//				} finally {fcwOutput.setText("Choreographer has loaded!");
-//
-//				}
-//			}
-//		});
+		openCTLMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent t) {
+				fcwOutput.setText("Loading CTL file ...");
+				try {
+					loadDefaultMap();
+					CtlLib.getInstance().openCtl();
+					cc.setfcwOutput("CTL file has loaded!");
+                    SlidersController.getInstance().enableAllSliders();
+
+					/**TODO
+					 * Handling for if loaded ctl file is a legacy file
+					 */
+
+					SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
+				} catch (IOException ex) {
+					Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
+				} catch (NullPointerException e) {
+
+				} finally {fcwOutput.setText("Choreographer has loaded!");
+
+				}
+			}
+		});
 
 		/**
 		 * Turns on advanced features. 
