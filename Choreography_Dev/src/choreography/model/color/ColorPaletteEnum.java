@@ -15,14 +15,14 @@ package choreography.model.color;
 public enum ColorPaletteEnum {
 	
     RED ("#FF0000"), 
-    ORANGE ("#FF1900"), 
+    ORANGE ("#FF7700"),
     YELLOW ("#FFC800"), 
     GREEN ("#00F000"), 
     BLUE ("#0000FF"), 
     VIOLET ("#EF2BFF"),
     LIGHTRED ("#FF7272"),
-    LIGHTORANGE ("#FF3205"), 
-    LIGHTYELLOW ("#FFFF08"), 
+    LIGHTORANGE ("#F59745"),
+    LIGHTYELLOW ("#FFFF08"),
     LIGHTGREEN ("#3BFF00"), 
     LIGHTBLUE ("#8F8FFF"),
     LIGHTVIOLET ("#9646FF"), 
