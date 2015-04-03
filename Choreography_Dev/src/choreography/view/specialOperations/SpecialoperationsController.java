@@ -56,6 +56,9 @@ public class SpecialoperationsController implements Initializable {
 	@FXML
 	private CheckBox voiceCheckbox;
 
+    @FXML
+    private CheckBox groupCheckbox;
+
 	@FXML
 	private AnchorPane bSweepsPane;
 
@@ -326,6 +329,23 @@ public class SpecialoperationsController implements Initializable {
 				TimelineController.getInstance().getTimeline().setWaterFcwAtPoint(MusicPaneController.getInstance().getTenthsTime(), f);
 			}
 		});
+        groupCheckbox.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                if (groupCheckbox.isSelected()) {
+                    //setGroupOnOff(true);
+                    TimelineController.getInstance().toggleSetByGroup(true);
+                } else {
+                    TimelineController.getInstance().toggleSetByGroup(false);
+                }
+
+                TimelineController.getInstance().setLabelGridPane(TimelineController.getInstance().getChannelAddresses());
+                TimelineController.getInstance().setTimelineGridPane();
+                TimelineController.getInstance().rePaintLightTimeline();
+                System.out.println("Toggle group button checked");
+            }
+        });
 
 		voiceCheckbox.setOnAction(new EventHandler<ActionEvent>() {
 

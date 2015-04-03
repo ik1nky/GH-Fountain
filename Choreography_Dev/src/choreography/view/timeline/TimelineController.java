@@ -1,13 +1,7 @@
 package choreography.view.timeline;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.SortedMap;
+import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import javafx.beans.value.ChangeListener;
@@ -62,6 +56,7 @@ public class TimelineController implements Initializable {
 
 	private Integer[] channelAddresses;
 	boolean oldRecHasValue = false;
+    boolean sort_by_group = false;
 	Rectangle oldRec = new Rectangle();
 	Rectangle copyWaterRec = new Rectangle();
 	int copyWaterLocation = 0;
@@ -344,6 +339,10 @@ public class TimelineController implements Initializable {
 		rePaintLightTimeline();
 	}
 
+    public Integer[] getChannelAddresses(){
+        return channelAddresses;
+    }
+
 	/**
 	 * Sets channelAddresses and labelNames to match what is in
 	 * timeline.getChannelColormap().keySet()
@@ -374,7 +373,9 @@ public class TimelineController implements Initializable {
 		}
 		channelAddresses = channelAddressesSet.toArray(new Integer[1]);
 	}
-
+    public void toggleSetByGroup(boolean b){
+        sort_by_group = b;
+    }
 	/**
 	 * Adds constraints and words to the labels on the side of the light grid
 	 * timeline. Also adds listeners to the labelScrollPane and
@@ -390,6 +391,28 @@ public class TimelineController implements Initializable {
 		// todo take care of magic numbers
 		int LABEL_HEIGHT = 26;
 		int LABEL_WIDTH = 98;
+
+        //Adjust the label ordering here!!!!
+        Arrays.sort(addresses);
+
+        //Sort by A/B grouping
+        Integer[] sort_by = {17,19,21,23,18,20,22};
+        int count = 0;
+        int address_space = 0;
+        //Implement a button for this
+        if(sort_by_group) {
+
+            for (int i = 0; i < sort_by.length; i++) {
+                for (int j = 0; j < addresses.length; j++) {
+                    if (addresses[j] == sort_by[i]) {
+                        Integer temp = addresses[i];
+                        addresses[i] = addresses[j];
+                        addresses[j] = temp;
+                    }
+                }
+            }
+        }
+
 
 		// set up the width and height of the labels
 		timelineLabelPane.getColumnConstraints().add(new ColumnConstraints(LABEL_WIDTH));
@@ -417,6 +440,7 @@ public class TimelineController implements Initializable {
 			}
 		});
 		labelScrollPane.setContent(timelineLabelPane);
+        System.out.println("Group checkbox selected in the set label pane");
 	}
 
 	/**

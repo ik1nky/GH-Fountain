@@ -38,6 +38,8 @@ public enum CannonEnum {
 
 	SPOUT("SPOUT"),
 
+    VOICE("VOICE"),
+
 	BKFTCURT("BKFTCURT");
 
 	private final String name;
