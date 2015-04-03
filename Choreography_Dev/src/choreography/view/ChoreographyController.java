@@ -73,6 +73,7 @@ import choreography.view.sim.FountainSimController;
 import choreography.view.sliders.SlidersController;
 import choreography.view.specialOperations.SpecialoperationsController;
 import choreography.view.timeline.TimelineController;
+import choreography.io.CTLUpdater;
 
 /**
  * FXML Controller class
@@ -172,6 +173,11 @@ public class ChoreographyController implements Initializable {
 			public void handle(ActionEvent event) {
 				updateCtlMenuItem.setDisable(false);
 				System.out.println("got the update ctl menu Item");
+                /*CTLUpdater app2 = CTLUpdater.newInstance();
+                Stage anotherStage = new Stage();
+                app2.start(anotherStage);
+                */
+                CTLUpdater.updateCTL();
 			}
 		});
 

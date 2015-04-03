@@ -62,6 +62,8 @@ public class CannonFactory {
 			return new Bazooka(0, "BAZOOKA");
 		case SPOUT:
 			return new Spout(0, "SPOUT");
+        case VOICE:
+            return new Spout(0, "VOICE");
 		case PEACOCK:
 			return new Peacock(0, "PEACOCK");
 		default:

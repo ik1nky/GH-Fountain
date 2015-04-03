@@ -473,7 +473,7 @@ public final class FCWLib {
 		case "TableTime":
 			return new String[] { Integer.toString(f.getData()) };
 		case "TableA":
-			values = new Integer[] { 64, 32, 16, 8, 6, 5, 4, 3, 2, 1 };
+			values = new Integer[] { 64, 32, 16, 8, 6, 5, 4, 3, 2, 1, 0 };
 			break;
         case "TableB":
             values = new Integer[] {96, 32, 16, 5, 4, 3, 2, 1};
