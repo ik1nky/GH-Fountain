@@ -524,7 +524,7 @@ public final class FCWLib {
 		for (Entry<String, Integer> entry : tableCommands.get(table).entrySet()) {
 			for (Integer i : flags) {
 				if (entry.getValue().equals(i)) {
-					System.out.println(entry.getKey());
+					//System.out.println(entry.getKey());
 					actions.add(entry.getKey());
 				}
 			}
