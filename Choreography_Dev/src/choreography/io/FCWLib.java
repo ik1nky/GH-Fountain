@@ -506,7 +506,7 @@ public final class FCWLib {
 			values = new Integer[] { 64, 32, 16, 2, 1 };
 			break;
 		case "TableJ":
-			values = new Integer[] { 102, 86, 85, 70, 69, 68, 54, 53, 52, 51, 38, 37, 36, 35, 34, 22, 21, 20, 19, 18, 17, 6, 5, 4, 3, 2, 1 };
+			values = new Integer[] { 119, 102, 86, 85, 70, 69, 68, 54, 53, 52, 51, 38, 37, 36, 35, 34, 22, 21, 20, 19, 18, 17, 6, 5, 4, 3, 2, 1 };
 			break;
         case "TableO":
             values = new Integer[] {99, 98, 97};

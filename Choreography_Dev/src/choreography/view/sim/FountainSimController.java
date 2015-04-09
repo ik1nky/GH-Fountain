@@ -126,6 +126,14 @@ public class FountainSimController implements Initializable {
 	private double leftSweepSpeed = 1;
 	private double rightSweepSpeed = 1;
 
+	private static final int rightLong = 45;
+	private static final int rightShort = 30;
+	private static final int rightVeryShort = 15;
+	private static final int center = 0;
+	private static final int leftVeryShort = -15;
+	private static final int leftShort = -30;
+	private static final int leftLong = -45;
+
 	private ConcurrentNavigableMap<Integer, ArrayList<FCW>> bufferedFcws = new ConcurrentSkipListMap<Integer, ArrayList<FCW>>();
 
 	public static FountainSimController getInstance() {
@@ -146,7 +154,7 @@ public class FountainSimController implements Initializable {
 	 * moment of time. There is a switch statement where each case is a
 	 * different address. This switch statement is extremely long, 1000's of
 	 * lines. It could use a lot of refactoring, but it does work correctly.
-	 * 
+	 *
 	 * @param fcws
 	 */
 	public void drawFcw(ArrayList<FCW> fcws) {
@@ -2082,6 +2090,9 @@ public class FountainSimController implements Initializable {
     public void newSweeperControl(ArrayList<String> actionsList, int op){
         // Action list contains what sweeper action is supposed to
         // be occuring at each tenth of a second.
+		for(int i = 0; i < actionsList.size(); i++) {
+			System.out.println(actionsList.get(i));
+		}
         if (actionsList.contains("RIGHTSHORTLEFTLONG")) { // 39
             // Checks to make sure the most recent command is not
             // rs,ll. If true, then nothing, else make current
@@ -2090,17 +2101,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTSHORTLEFTLONG";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(30, -45);
-                        sweepRightSweeps(30, -45);
+                        sweepLeftSweeps(rightShort, leftLong);
+                        sweepRightSweeps(rightShort, leftLong);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(30, -45);
-                        sweepRightSweeps(-45, 30);
+                        sweepLeftSweeps(rightShort, leftLong);
+                        sweepRightSweeps(leftLong, rightShort);
                     }
                 } else if(op == 36){
-                    sweepLeftSweeps(30, -45);
+                    sweepLeftSweeps(rightShort, leftLong);
                 } else{
-                    sweepRightSweeps(30, -45);
+                    sweepRightSweeps(rightShort, leftLong);
                 }
             }
         }
@@ -2109,17 +2120,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTSHORTLEFTSHORT";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(30, -30);
-                        sweepRightSweeps(30, -30);
+                        sweepLeftSweeps(rightShort, leftShort);
+                        sweepRightSweeps(rightShort, leftShort);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(30, -30);
-                        sweepRightSweeps(-30, 30);
+                        sweepLeftSweeps(rightShort, leftShort);
+                        sweepRightSweeps(leftShort, rightShort);
                     }
                 } else if(op == 36){
-                    sweepLeftSweeps(30, -30);
+                    sweepLeftSweeps(rightShort, leftShort);
                 } else{
-                    sweepRightSweeps(30, -30);
+                    sweepRightSweeps(rightShort, leftShort);
                 }
             }
         }
@@ -2128,61 +2139,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTLONGLEFTLONG";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(45, -45);
-                        sweepRightSweeps(45, -45);
+                        sweepLeftSweeps(rightLong, leftLong);
+                        sweepRightSweeps(rightLong, leftLong);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(45, -45);
-                        sweepRightSweeps(-45, 45);
+                        sweepLeftSweeps(rightLong, leftLong);
+                        sweepRightSweeps(leftLong, rightLong);
                     }
                 } else if(op == 36){
-                    sweepLeftSweeps(45, -45);
+                    sweepLeftSweeps(rightLong, leftLong);
                 } else{
-                    sweepRightSweeps(45, -45);
-                }
-            }
-        }
-        else if (actionsList.contains("HOLDRIGHTLONG")) { // 17
-            if (sweepCommand != "HOLDRIGHTLONG") {
-                sweepCommand = "HOLDRIGHTLONG";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(45, 45);
-                }
-                if(op == 35 || op == 37) {
-                    sweepRightSweeps(45, 45);
-                }
-            }
-        }
-       else if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
-            if (sweepCommand != "HOLDRIGHTSHORT") {
-                sweepCommand = "HOLDRIGHTSHORT";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(30, 30);
-                }
-                if(op == 35 || op == 37) {
-                    sweepRightSweeps(30, 30);
-                }
-            }
-        }
-        else if (actionsList.contains("HOLDLEFTLONG")) { // 119
-            if (sweepCommand != "HOLDLEFTLONG") {
-                sweepCommand = "HOLDLEFTLONG";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(-45, -45);
-                }
-                if(op == 35 || op == 37) {
-                    sweepRightSweeps(-45, -45);
-                }
-            }
-        }
-        else if (actionsList.contains("HOLDLEFTSHORT")) { // 102
-            if (sweepCommand != "HOLDLEFTSHORT") {
-                sweepCommand = "HOLDLEFTSHORT";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(-30, -30);
-                }
-                if(op == 35 || op == 36) {
-                    sweepRightSweeps(-30, -30);
+                    sweepRightSweeps(rightLong, leftLong);
                 }
             }
         }
@@ -2191,17 +2158,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTLONGRIGHTVERYSHORT";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(45, 15);
-                        sweepRightSweeps(45, 15);
+                        sweepLeftSweeps(rightLong, rightVeryShort);
+                        sweepRightSweeps(rightLong, rightVeryShort);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(45, 15);
-                        sweepRightSweeps(15, 45);
+                        sweepLeftSweeps(rightLong, rightVeryShort);
+                        sweepRightSweeps(rightVeryShort, rightLong);
                     }
                 } else if(op == 36){
-                    sweepLeftSweeps(45, 15);
+                    sweepLeftSweeps(rightLong, rightVeryShort);
                 } else {
-                    sweepRightSweeps(45, 15);
+                    sweepRightSweeps(rightLong, rightVeryShort);
                 }
             }
         }
@@ -2210,17 +2177,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTLONGCENTER";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(45, 0);
-                        sweepRightSweeps(45, 0);
+                        sweepLeftSweeps(rightLong, center);
+                        sweepRightSweeps(rightLong, center);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(45, 0);
-                        sweepRightSweeps(0, 45);
+                        sweepLeftSweeps(rightLong, center);
+                        sweepRightSweeps(center, rightLong);
                     }
                 } else if(op == 36){
-                    sweepLeftSweeps(45, 0);
+                    sweepLeftSweeps(rightLong, center);
                 } else {
-                    sweepRightSweeps(45, 0);
+                    sweepRightSweeps(rightLong, center);
                 }
             }
         }
@@ -2229,17 +2196,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTSHORTCENTER";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(30, 0);
-                        sweepRightSweeps(30, 0);
+                        sweepLeftSweeps(rightShort, center);
+                        sweepRightSweeps(rightShort, center);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(30, 0);
-                        sweepRightSweeps(0, 30);
+                        sweepLeftSweeps(rightShort, center);
+                        sweepRightSweeps(center, rightShort);
                     }
                 } else if(op == 36){
-                    sweepLeftSweeps(30, 0);
+                    sweepLeftSweeps(rightShort, center);
                 } else {
-                    sweepRightSweeps(30, 0);
+                    sweepRightSweeps(rightShort, center);
                 }
             }
         }
@@ -2248,28 +2215,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTLONGLEFTSHORT";
                 if(op == 35) {
                     if (sweepType == 1 || sweepType == 0) {
-                        sweepLeftSweeps(45, -30);
-                        sweepRightSweeps(45, -30);
+                        sweepLeftSweeps(rightLong, leftShort);
+                        sweepRightSweeps(rightLong, leftShort);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(45, -30);
-                        sweepRightSweeps(-30, 45);
+                        sweepLeftSweeps(rightLong, leftShort);
+                        sweepRightSweeps(leftShort, rightLong);
                     }
                 } else if(op == 36){
-                    sweepLeftSweeps(45, -30);
+                    sweepLeftSweeps(rightLong, leftShort);
                 } else {
-                    sweepRightSweeps(45, -30);
-                }
-            }
-        }
-        else if (actionsList.contains("HOLDCENTER")) { // 0,68
-            if (sweepCommand != "HOLDCENTER") {
-                sweepCommand = "HOLDCENTER";
-                if(op == 35 || op == 36) {
-                    sweepLeftSweeps(0, 0);
-                }
-                if(op == 35 || op == 37) {
-                    sweepRightSweeps(0, 0);
+                    sweepRightSweeps(rightLong, leftShort);
                 }
             }
         }
@@ -2278,17 +2234,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "CENTERLEFTSHORT";
                 if(op == 35) {
                     if (sweepType == 1 || sweepType == 0) {
-                        sweepLeftSweeps(0, -30);
-                        sweepRightSweeps(0, -30);
+                        sweepLeftSweeps(center, leftShort);
+                        sweepRightSweeps(center, leftShort);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(0, -30);
-                        sweepRightSweeps(-30, 0);
+                        sweepLeftSweeps(center, leftShort);
+                        sweepRightSweeps(leftShort, center);
                     }
                 } else if(op == 36) {
-                    sweepLeftSweeps(0, -30);
+                    sweepLeftSweeps(center, leftShort);
                 } else {
-                    sweepRightSweeps(0, -30);
+                    sweepRightSweeps(center, leftShort);
                 }
             }
         }
@@ -2297,17 +2253,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "OSCLEFTVERYSHORT";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        oscillateLeftSweeps(-15, 0);
-                        oscillateRightSweeps(-15, 0);
+                        oscillateLeftSweeps(leftVeryShort, center);
+                        oscillateRightSweeps(leftVeryShort, center);
                     }
                     if (sweepType == 2) {
-                        oscillateLeftSweeps(-15, 0);
-                        oscillateRightSweeps(0, -15);
+                        oscillateLeftSweeps(leftVeryShort, center);
+                        oscillateRightSweeps(center, leftVeryShort);
                     }
                 } else if(op == 36){
-                    oscillateLeftSweeps(-15, 0);
+                    oscillateLeftSweeps(leftVeryShort, center);
                 } else {
-                    oscillateRightSweeps(-15, 0);
+                    oscillateRightSweeps(leftVeryShort, center);
                 }
             }
         }
@@ -2316,17 +2272,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTLONGLEFTVERYSHORT";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(45, -15);
-                        sweepRightSweeps(45, -15);
+                        sweepLeftSweeps(rightLong, leftVeryShort);
+                        sweepRightSweeps(rightLong, leftVeryShort);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(45, -15);
-                        sweepRightSweeps(-15, 45);
+                        sweepLeftSweeps(rightLong, leftVeryShort);
+                        sweepRightSweeps(leftVeryShort, rightLong);
                     }
                 } else if(op == 36) {
-                    sweepLeftSweeps(45, -15);
+                    sweepLeftSweeps(rightLong, leftVeryShort);
                 } else {
-                    sweepRightSweeps(45, -15);
+                    sweepRightSweeps(rightLong, leftVeryShort);
                 }
             }
         }
@@ -2335,17 +2291,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTSHORTLEFTVERYSHORT";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(30, -15);
-                        sweepRightSweeps(30, -15);
+                        sweepLeftSweeps(rightShort, leftVeryShort);
+                        sweepRightSweeps(rightShort, leftVeryShort);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(30, -15);
-                        sweepRightSweeps(-15, 30);
+                        sweepLeftSweeps(rightShort, leftVeryShort);
+                        sweepRightSweeps(leftVeryShort, rightShort);
                     }
                 } else if(op == 36) {
-                    sweepLeftSweeps(30, -15);
+                    sweepLeftSweeps(rightShort, leftVeryShort);
                 } else {
-                    sweepRightSweeps(30, -15);
+                    sweepRightSweeps(rightShort, leftVeryShort);
                 }
             }
         }
@@ -2354,17 +2310,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTVERYSHORTLEFTSHORT";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(15, -30);
-                        sweepRightSweeps(15, -30);
+                        sweepLeftSweeps(rightVeryShort, leftShort);
+                        sweepRightSweeps(rightVeryShort, leftShort);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(15, -30);
-                        sweepRightSweeps(-30, 15);
+                        sweepLeftSweeps(rightVeryShort, leftShort);
+                        sweepRightSweeps(leftShort, rightVeryShort);
                     }
                 } else if(op == 36){
-                    sweepLeftSweeps(15, -30);
+                    sweepLeftSweeps(rightVeryShort, leftShort);
                 } else {
-                    sweepRightSweeps(15, -30);
+                    sweepRightSweeps(rightVeryShort, leftShort);
                 }
             }
         }
@@ -2373,17 +2329,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "RIGHTVERYSHORTLEFTLONG";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(15, -45);
-                        sweepRightSweeps(15, -45);
+                        sweepLeftSweeps(rightVeryShort, leftLong);
+                        sweepRightSweeps(rightVeryShort, leftLong);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(15, -45);
-                        sweepRightSweeps(-45, 15);
+                        sweepLeftSweeps(rightVeryShort, leftLong);
+                        sweepRightSweeps(leftLong, rightVeryShort);
                     }
                 } else if(op == 36) {
-                    sweepLeftSweeps(15, -45);
+                    sweepLeftSweeps(rightVeryShort, leftLong);
                 } else {
-                    sweepRightSweeps(15, -45);
+                    sweepRightSweeps(rightVeryShort, leftLong);
                 }
             }
         }
@@ -2392,17 +2348,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "CENTERLEFTLONG";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(0, -45);
-                        sweepRightSweeps(0, -45);
+                        sweepLeftSweeps(center, leftLong);
+                        sweepRightSweeps(center, leftLong);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(0, -45);
-                        sweepRightSweeps(-45, 0);
+                        sweepLeftSweeps(center, leftLong);
+                        sweepRightSweeps(leftLong, center);
                     }
                 } else if(op == 36) {
-                    sweepLeftSweeps(0, -45);
+                    sweepLeftSweeps(center, leftLong);
                 } else {
-                    sweepRightSweeps(0, -45);
+                    sweepRightSweeps(center, leftLong);
                 }
             }
         }
@@ -2411,55 +2367,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "LEFTVERYSHORTLEFTLONG";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        sweepLeftSweeps(-15, -45);
-                        sweepRightSweeps(-15, -45);
+                        sweepLeftSweeps(leftVeryShort, leftLong);
+                        sweepRightSweeps(leftVeryShort, leftLong);
                     }
                     if (sweepType == 2) {
-                        sweepLeftSweeps(-15, -45);
-                        sweepRightSweeps(-45, -15);
+                        sweepLeftSweeps(leftVeryShort, leftLong);
+                        sweepRightSweeps(leftLong, leftVeryShort);
                     }
                 } else if(op == 36) {
-                    sweepLeftSweeps(-15, -45);
+                    sweepLeftSweeps(leftVeryShort, leftLong);
                 } else {
-                    sweepRightSweeps(-15, -45);
-                }
-            }
-        }
-        else if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
-            if (sweepCommand != "HOLDRIGHTVERYSHORT") {
-                sweepCommand = "HOLDRIGHTVERYSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(15, 15);
-                        oscillateRightSweeps(15, 15);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(15, 15);
-                        oscillateRightSweeps(15, 15);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(15, 15);
-                } else {
-                    oscillateRightSweeps(15, 15);
-                }
-            }
-        }
-        else if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
-            if (sweepCommand != "HOLDLEFTVERYSHORT") {
-                sweepCommand = "HOLDLEFTVERYSHORT";
-                if(op == 35) {
-                    if (sweepType == 1) {
-                        oscillateLeftSweeps(-15, -15);
-                        oscillateRightSweeps(-15, -15);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(-15, -15);
-                        oscillateRightSweeps(-15, -15);
-                    }
-                } else if(op == 36) {
-                    oscillateLeftSweeps(-15, -15);
-                } else {
-                    oscillateRightSweeps(-15, -15);
+                    sweepRightSweeps(leftVeryShort, leftLong);
                 }
             }
         }
@@ -2468,17 +2386,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "OSCRIGHTLONG";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        oscillateLeftSweeps(45, 30);
-                        oscillateRightSweeps(45, 30);
+                        oscillateLeftSweeps(rightLong, rightShort);
+                        oscillateRightSweeps(rightLong, rightShort);
                     }
                     if (sweepType == 2) {
-                        oscillateLeftSweeps(45, 30);
-                        oscillateRightSweeps(30, 45);
+                        oscillateLeftSweeps(rightLong, rightShort);
+                        oscillateRightSweeps(rightShort, rightLong);
                     }
                 } else if(op == 36) {
-                    oscillateLeftSweeps(45, 30);
+                    oscillateLeftSweeps(rightLong, rightShort);
                 } else {
-                    oscillateRightSweeps(45, 30);
+                    oscillateRightSweeps(rightLong, rightShort);
                 }
             }
         }
@@ -2487,17 +2405,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "OSCRIGHTSHORT";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        oscillateLeftSweeps(30, 15);
-                        oscillateRightSweeps(30, 15);
+                        oscillateLeftSweeps(rightShort, rightVeryShort);
+                        oscillateRightSweeps(rightShort, rightVeryShort);
                     }
                     if (sweepType == 2) {
-                        oscillateLeftSweeps(30, 15);
-                        oscillateRightSweeps(15, 30);
+                        oscillateLeftSweeps(rightShort, rightVeryShort);
+                        oscillateRightSweeps(rightVeryShort, rightShort);
                     }
                 } else if(op == 36) {
-                    oscillateLeftSweeps(30, 15);
+                    oscillateLeftSweeps(rightShort, rightVeryShort);
                 } else {
-                    oscillateRightSweeps(30, 15);
+                    oscillateRightSweeps(rightShort, rightVeryShort);
                 }
             }
         }
@@ -2506,17 +2424,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "OSCRIGHTVERYSHORT";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        oscillateLeftSweeps(15, 0);
-                        oscillateRightSweeps(15, 0);
+                        oscillateLeftSweeps(rightVeryShort, center);
+                        oscillateRightSweeps(rightVeryShort, center);
                     }
                     if (sweepType == 2) {
-                        oscillateLeftSweeps(15, 0);
-                        oscillateRightSweeps(0, 15);
+                        oscillateLeftSweeps(rightVeryShort, center);
+                        oscillateRightSweeps(center, rightVeryShort);
                     }
                 } else if(op == 36) {
-                    oscillateLeftSweeps(15, 0);
+                    oscillateLeftSweeps(rightVeryShort, center);
                 } else {
-                    oscillateRightSweeps(15, 0);
+                    oscillateRightSweeps(rightVeryShort, center);
                 }
             }
         }
@@ -2525,17 +2443,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "OSCCENTER";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        oscillateLeftSweeps(-15, 15);
-                        oscillateRightSweeps(-15, 15);
+                        oscillateLeftSweeps(leftVeryShort, rightVeryShort);
+                        oscillateRightSweeps(leftVeryShort, rightVeryShort);
                     }
                     if (sweepType == 2) {
-                        oscillateLeftSweeps(-15, 15);
-                        oscillateRightSweeps(15, -15);
+                        oscillateLeftSweeps(leftVeryShort, rightVeryShort);
+                        oscillateRightSweeps(rightVeryShort, leftVeryShort);
                     }
                 } else if(op == 36) {
-                    oscillateLeftSweeps(-15, 15);
+                    oscillateLeftSweeps(leftVeryShort, rightVeryShort);
                 } else {
-                    oscillateRightSweeps(-15, 15);
+                    oscillateRightSweeps(leftVeryShort, rightVeryShort);
                 }
             }
         }
@@ -2544,17 +2462,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "OSCLEFTSHORT";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        oscillateLeftSweeps(-30, -15);
-                        oscillateRightSweeps(-30, -15);
+                        oscillateLeftSweeps(leftShort, leftVeryShort);
+                        oscillateRightSweeps(leftShort, leftVeryShort);
                     }
                     if (sweepType == 2) {
-                        oscillateLeftSweeps(-30, -15);
-                        oscillateRightSweeps(-15, -30);
+                        oscillateLeftSweeps(leftShort, leftVeryShort);
+                        oscillateRightSweeps(leftVeryShort, leftShort);
                     }
                 } else if(op == 36) {
-                    oscillateLeftSweeps(-30, -15);
+                    oscillateLeftSweeps(leftShort, leftVeryShort);
                 } else {
-                    oscillateRightSweeps(-30, -15);
+                    oscillateRightSweeps(leftShort, leftVeryShort);
                 }
             }
         }
@@ -2563,17 +2481,99 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "OSCLEFTLONG";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        oscillateLeftSweeps(-45, -30);
-                        oscillateRightSweeps(-45, -30);
+                        oscillateLeftSweeps(leftLong, leftShort);
+                        oscillateRightSweeps(leftLong, leftShort);
                     }
                     if (sweepType == 2) {
-                        oscillateLeftSweeps(-45, -30);
-                        oscillateRightSweeps(-30, -45);
+                        oscillateLeftSweeps(leftLong, leftShort);
+                        oscillateRightSweeps(leftShort, leftLong);
                     }
                 } else if(op == 36) {
-                    oscillateLeftSweeps(-45, -30);
+                    oscillateLeftSweeps(leftLong, leftShort);
                 } else {
-                    oscillateRightSweeps(-45, -30);
+                    oscillateRightSweeps(leftLong, leftShort);
+                }
+            }
+        }
+				/*
+				 *
+				 *Putting all the holds in one spot to make it easier to see
+				 *
+				 */
+				else if (actionsList.contains("HOLDRIGHTLONG")) { // 17
+            if (sweepCommand != "HOLDRIGHTLONG") {
+                sweepCommand = "HOLDRIGHTLONG";
+                if(op == 35 || op == 36) {
+                    sweepLeftSweeps(rightLong, rightLong);
+                }
+                if(op == 35 || op == 37) {
+                    sweepRightSweeps(rightLong, rightLong);
+                }
+            }
+        }
+       else if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
+            if (sweepCommand != "HOLDRIGHTSHORT") {
+                sweepCommand = "HOLDRIGHTSHORT";
+                if(op == 35 || op == 36) {
+                    sweepLeftSweeps(rightShort, rightShort);
+                }
+                if(op == 35 || op == 37) {
+                    sweepRightSweeps(rightShort, rightShort);
+                }
+            }
+        }
+        else if (actionsList.contains("HOLDLEFTLONG")) { // 119
+            if (sweepCommand != "HOLDLEFTLONG") {
+                sweepCommand = "HOLDLEFTLONG";
+                if(op == 35 || op == 36) {
+                    sweepLeftSweeps(leftLong, leftLong);
+                }
+                if(op == 35 || op == 37) {
+                    sweepRightSweeps(leftLong, leftLong);
+                }
+            }
+        }
+        else if (actionsList.contains("HOLDLEFTSHORT")) { // 102
+            if (sweepCommand != "HOLDLEFTSHORT") {
+                sweepCommand = "HOLDLEFTSHORT";
+                if(op == 35 || op == 36) {
+                    sweepLeftSweeps(leftShort, leftShort);
+                }
+                if(op == 35 || op == 37) {
+                    sweepRightSweeps(leftShort, leftShort);
+                }
+            }
+        }
+        else if (actionsList.contains("HOLDCENTER")) { // 0,68
+            if (sweepCommand != "HOLDCENTER") {
+                sweepCommand = "HOLDCENTER";
+                if(op == 35 || op == 36) {
+                    sweepLeftSweeps(center, center);
+                }
+                if(op == 35 || op == 37) {
+                    sweepRightSweeps(center, center);
+                }
+            }
+        }
+        else if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
+            if (sweepCommand != "HOLDRIGHTVERYSHORT") {
+                sweepCommand = "HOLDRIGHTVERYSHORT";
+								if(op == 35 || op == 36) {
+                    sweepLeftSweeps(rightVeryShort, rightVeryShort);
+                }
+                if(op == 35 || op == 37) {
+                    sweepRightSweeps(rightVeryShort, rightVeryShort);
+                }
+            }
+        }
+        else if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
+            if (sweepCommand != "HOLDLEFTVERYSHORT") {
+                sweepCommand = "HOLDLEFTVERYSHORT";
+								if(op == 35 || op == 36) {
+                    sweepLeftSweeps(leftVeryShort, leftVeryShort);
+                }
+                if(op == 35 || op == 37) {
+                    sweepRightSweeps(leftVeryShort, leftVeryShort);
                 }
             }
         }
@@ -3774,7 +3774,7 @@ public class FountainSimController implements Initializable {
 	 *            The starting color
 	 * @param stop
 	 *            The ending color of the fade
-	 * 
+	 *
 	 *            Bazooka's still need a little work.
 	 */
 	/**
