@@ -2443,17 +2443,17 @@ public class FountainSimController implements Initializable {
                 sweepCommand = "OSCCENTER";
                 if(op == 35) {
                     if (sweepType == 1) {
-                        oscillateLeftSweeps(leftVeryShort, rightVeryShort);
-                        oscillateRightSweeps(leftVeryShort, rightVeryShort);
-                    }
-                    if (sweepType == 2) {
-                        oscillateLeftSweeps(leftVeryShort, rightVeryShort);
+                        oscillateLeftSweeps(rightVeryShort, leftVeryShort);
                         oscillateRightSweeps(rightVeryShort, leftVeryShort);
                     }
+                    if (sweepType == 2) {
+                        oscillateLeftSweeps(rightVeryShort, leftVeryShort);
+                        oscillateRightSweeps(leftVeryShort, rightVeryShort);
+                    }
                 } else if(op == 36) {
-                    oscillateLeftSweeps(leftVeryShort, rightVeryShort);
+                    oscillateLeftSweeps(rightVeryShort, leftVeryShort);
                 } else {
-                    oscillateRightSweeps(leftVeryShort, rightVeryShort);
+                    oscillateRightSweeps(rightVeryShort, leftVeryShort);
                 }
             }
         }
