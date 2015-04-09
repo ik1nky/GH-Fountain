@@ -2104,7 +2104,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTSHORTLEFTSHORT")) { // 38
+        else if (actionsList.contains("RIGHTSHORTLEFTSHORT")) { // 38
             if (sweepCommand != "RIGHTSHORTLEFTSHORT") {
                 sweepCommand = "RIGHTSHORTLEFTSHORT";
                 if(op == 35) {
@@ -2123,7 +2123,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTLONGLEFTLONG")) { // 23
+        else if (actionsList.contains("RIGHTLONGLEFTLONG")) { // 23
             if (sweepCommand != "RIGHTLONGLEFTLONG") {
                 sweepCommand = "RIGHTLONGLEFTLONG";
                 if(op == 35) {
@@ -2142,7 +2142,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("HOLDRIGHTLONG")) { // 17
+        else if (actionsList.contains("HOLDRIGHTLONG")) { // 17
             if (sweepCommand != "HOLDRIGHTLONG") {
                 sweepCommand = "HOLDRIGHTLONG";
                 if(op == 35 || op == 36) {
@@ -2153,7 +2153,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
+       else if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
             if (sweepCommand != "HOLDRIGHTSHORT") {
                 sweepCommand = "HOLDRIGHTSHORT";
                 if(op == 35 || op == 36) {
@@ -2164,7 +2164,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("HOLDLEFTLONG")) { // 119
+        else if (actionsList.contains("HOLDLEFTLONG")) { // 119
             if (sweepCommand != "HOLDLEFTLONG") {
                 sweepCommand = "HOLDLEFTLONG";
                 if(op == 35 || op == 36) {
@@ -2175,7 +2175,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("HOLDLEFTSHORT")) { // 102
+        else if (actionsList.contains("HOLDLEFTSHORT")) { // 102
             if (sweepCommand != "HOLDLEFTSHORT") {
                 sweepCommand = "HOLDLEFTSHORT";
                 if(op == 35 || op == 36) {
@@ -2186,7 +2186,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTLONGRIGHTVERYSHORT")) { // 19
+        else if (actionsList.contains("RIGHTLONGRIGHTVERYSHORT")) { // 19
             if (sweepCommand != "RIGHTLONGRIGHTVERYSHORT") {
                 sweepCommand = "RIGHTLONGRIGHTVERYSHORT";
                 if(op == 35) {
@@ -2205,7 +2205,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTLONGCENTER")) { // 20
+       else if (actionsList.contains("RIGHTLONGCENTER")) { // 20
             if (sweepCommand != "RIGHTLONGCENTER") {
                 sweepCommand = "RIGHTLONGCENTER";
                 if(op == 35) {
@@ -2224,7 +2224,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTSHORTCENTER")) { // 36
+        else if (actionsList.contains("RIGHTSHORTCENTER")) { // 36
             if (sweepCommand != "RIGHTSHORTCENTER") {
                 sweepCommand = "RIGHTSHORTCENTER";
                 if(op == 35) {
@@ -2243,7 +2243,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTLONGLEFTSHORT")) { // 22
+        else if (actionsList.contains("RIGHTLONGLEFTSHORT")) { // 22
             if (sweepCommand != "RIGHTLONGLEFTSHORT") {
                 sweepCommand = "RIGHTLONGLEFTSHORT";
                 if(op == 35) {
@@ -2262,7 +2262,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("HOLDCENTER")) { // 0,68
+        else if (actionsList.contains("HOLDCENTER")) { // 0,68
             if (sweepCommand != "HOLDCENTER") {
                 sweepCommand = "HOLDCENTER";
                 if(op == 35 || op == 36) {
@@ -2273,7 +2273,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("CENTERLEFTSHORT")) { // 70
+        else if (actionsList.contains("CENTERLEFTSHORT")) { // 70
             if (sweepCommand != "CENTERLEFTSHORT") {
                 sweepCommand = "CENTERLEFTSHORT";
                 if(op == 35) {
@@ -2292,7 +2292,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("OSCLEFTVERYSHORT")) { // 69
+        else if (actionsList.contains("OSCLEFTVERYSHORT")) { // 69
             if (sweepCommand != "OSCLEFTVERYSHORT") {
                 sweepCommand = "OSCLEFTVERYSHORT";
                 if(op == 35) {
@@ -2311,7 +2311,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTLONGLEFTVERYSHORT")) { // 21
+        else if (actionsList.contains("RIGHTLONGLEFTVERYSHORT")) { // 21
             if (sweepCommand != "RIGHTLONGLEFTVERYSHORT") {
                 sweepCommand = "RIGHTLONGLEFTVERYSHORT";
                 if(op == 35) {
@@ -2330,7 +2330,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTSHORTLEFTVERYSHORT")) { // 37
+        else if (actionsList.contains("RIGHTSHORTLEFTVERYSHORT")) { // 37
             if (sweepCommand != "RIGHTSHORTLEFTVERYSHORT") {
                 sweepCommand = "RIGHTSHORTLEFTVERYSHORT";
                 if(op == 35) {
@@ -2349,7 +2349,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTVERYSHORTLEFTSHORT")) { // 54
+        else if (actionsList.contains("RIGHTVERYSHORTLEFTSHORT")) { // 54
             if (sweepCommand != "RIGHTVERYSHORTLEFTSHORT") {
                 sweepCommand = "RIGHTVERYSHORTLEFTSHORT";
                 if(op == 35) {
@@ -2368,7 +2368,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("RIGHTVERYSHORTLEFTLONG")) { // 55
+        else if (actionsList.contains("RIGHTVERYSHORTLEFTLONG")) { // 55
             if (sweepCommand != "RIGHTVERYSHORTLEFTLONG") {
                 sweepCommand = "RIGHTVERYSHORTLEFTLONG";
                 if(op == 35) {
@@ -2387,7 +2387,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("CENTERLEFTLONG")) { // 71
+        else if (actionsList.contains("CENTERLEFTLONG")) { // 71
             if (sweepCommand != "CENTERLEFTLONG") {
                 sweepCommand = "CENTERLEFTLONG";
                 if(op == 35) {
@@ -2406,7 +2406,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("LEFTVERYSHORTLEFTLONG")) { // 87
+        else if (actionsList.contains("LEFTVERYSHORTLEFTLONG")) { // 87
             if (sweepCommand != "LEFTVERYSHORTLEFTLONG") {
                 sweepCommand = "LEFTVERYSHORTLEFTLONG";
                 if(op == 35) {
@@ -2425,7 +2425,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
+        else if (actionsList.contains("HOLDRIGHTVERYSHORT")) { // 51
             if (sweepCommand != "HOLDRIGHTVERYSHORT") {
                 sweepCommand = "HOLDRIGHTVERYSHORT";
                 if(op == 35) {
@@ -2444,7 +2444,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
+        else if (actionsList.contains("HOLDLEFTVERYSHORT")) { // 85
             if (sweepCommand != "HOLDLEFTVERYSHORT") {
                 sweepCommand = "HOLDLEFTVERYSHORT";
                 if(op == 35) {
@@ -2463,7 +2463,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("OSCRIGHTLONG")) { // 18
+        else if (actionsList.contains("OSCRIGHTLONG")) { // 18
             if (sweepCommand != "OSCRIGHTLONG") {
                 sweepCommand = "OSCRIGHTLONG";
                 if(op == 35) {
@@ -2482,7 +2482,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("OSCRIGHTSHORT")) { // 35
+        else if (actionsList.contains("OSCRIGHTSHORT")) { // 35
             if (sweepCommand != "OSCRIGHTSHORT") {
                 sweepCommand = "OSCRIGHTSHORT";
                 if(op == 35) {
@@ -2501,7 +2501,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("OSCRIGHTVERYSHORT")) { // 52
+        else if (actionsList.contains("OSCRIGHTVERYSHORT")) { // 52
             if (sweepCommand != "OSCRIGHTVERYSHORT") {
                 sweepCommand = "OSCRIGHTVERYSHORT";
                 if(op == 35) {
@@ -2520,7 +2520,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("OSCCENTER")) { // 53
+        else if (actionsList.contains("OSCCENTER")) { // 53
             if (sweepCommand != "OSCCENTER") {
                 sweepCommand = "OSCCENTER";
                 if(op == 35) {
@@ -2539,7 +2539,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("OSCLEFTSHORT")) { // 86
+        else if (actionsList.contains("OSCLEFTSHORT")) { // 86
             if (sweepCommand != "OSCLEFTSHORT") {
                 sweepCommand = "OSCLEFTSHORT";
                 if(op == 35) {
@@ -2558,7 +2558,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-        if (actionsList.contains("OSCLEFTLONG")) { // 103
+        else if (actionsList.contains("OSCLEFTLONG")) { // 103
             if (sweepCommand != "OSCLEFTLONG") {
                 sweepCommand = "OSCLEFTLONG";
                 if(op == 35) {
