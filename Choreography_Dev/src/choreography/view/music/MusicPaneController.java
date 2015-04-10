@@ -103,8 +103,7 @@ public class MusicPaneController {
 	private Button playButton, resetButton;
 
 	/**
-	 *
-	 * @return
+	 * Returns the instance of MusicPaneController
 	 */
 	public static MusicPaneController getInstance() {
 		if (instance == null)
@@ -146,7 +145,7 @@ public class MusicPaneController {
 	@FXML
 	void playSong(ActionEvent event) {
 
-		// Makes sure the music is noat already playing
+		// Makes sure the music is not already playing
 		if (mediaPlayer.statusProperty().getValue() == Status.PAUSED || mediaPlayer.statusProperty().getValue() == Status.STOPPED || mediaPlayer.statusProperty().getValue() == Status.READY) {
 			mediaPlayer.play();
 			FountainSimController.getInstance().playLeftSweep();
@@ -155,7 +154,6 @@ public class MusicPaneController {
 			ChoreographyController.getInstance().startPollingTimeSliderAlgorithm();
 			ChoreographyController.getInstance().startPollingSimAlgorithm();
 			ChoreographyController.getInstance().startPollingColorAlgorithm();
-            //ChoreographyController.getInstance().startPollingSlidersAlgorithm();
 			SlidersController.getInstance().resetAllSliders();
 		}
 
@@ -198,8 +196,7 @@ public class MusicPaneController {
 	}
 
 	/**
-	 *
-	 * @return
+	 * Getters for MediaPlayer, WaterTimeline and LabelPane
 	 */
 	public MediaPlayer getMediaPlayer() {
 		return mediaPlayer;
@@ -232,6 +229,9 @@ public class MusicPaneController {
 			songName.setText("No File Selected");
 	}
 
+    /**
+     * Methods used for resetting the music pane controller
+     */
 	public void resetSongName() {
 		songName.setText("No File Selected");
 	}
@@ -244,6 +244,9 @@ public class MusicPaneController {
 		timeLabel.setContent(null);
 	}
 
+    /**
+     * Disables the play and reset buttons
+     */
 	public void disablePlaybackButtons() {
 		playButton.setDisable(true);
 		resetButton.setDisable(true);
@@ -252,8 +255,6 @@ public class MusicPaneController {
 	/**
 	 * Takes in a music file and loads it into the program. It then calculates
 	 * times and sets up the light timeline
-	 * 
-	 * @param file2
 	 */
 	public void loadMusicFile(File file2) {
 		URL url = null;
@@ -305,6 +306,9 @@ public class MusicPaneController {
 		notFirst = true;
 	}
 
+    /**
+     * Opens a music file given by file2
+     */
 	public void openMusicFile(File file2) {
 		music2 = new Music();
 		if (file2 != null) {
@@ -396,8 +400,10 @@ public class MusicPaneController {
 
 	}
 
+    /**
+     * This method is called by the FXMLLoader when initialization is complete
+     */
 	@FXML
-	// This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
 		assert colorPicker != null : "fx:id=\"colorPicker\" was not injected: check your FXML file 'MusicPane.fxml'.";
 		assert musicPane != null : "fx:id=\"musicPane\" was not injected: check your FXML file 'MusicPane.fxml'.";
@@ -443,20 +449,33 @@ public class MusicPaneController {
 		return time;
 	}
 
+    /**
+     * @param time
+     *          the time to set
+     */
 	public void setTime(double time) {
 		this.time = time;
 	}
 
+    /**
+     * @return time in tenths of a second
+     */
 	public int getTenthsTime() {
 		double wholeTime = timeSlider.getValue() / 100 * time;
 		int tenths = (int) wholeTime;
 		return tenths;
 	}
 
+    /**
+     * @return the timeslider
+     */
 	public Slider getTimeSlider() {
 		return timeSlider;
 	}
 
+    /**
+     * @return the name of the music file
+     */
 	public String getMusicName() {
 		return music2.getName().substring(0, music2.getName().length() - 4).replaceAll("\\d*$", "");
 	}
@@ -490,6 +509,10 @@ public class MusicPaneController {
 		notFirst = false;
 	}
 
+    /**
+     * Resets the music pane
+     * Stops the music and resets everything
+     */
 	public void resetAll() {
 		stopMusic();
 		timeSlider.setValue(0);
@@ -499,18 +522,32 @@ public class MusicPaneController {
 		FountainSimController.getInstance().resetAll();
 	}
 
+    /**
+     * @return the play/pause button
+     */
 	public Button getPlayButton() {
 		return playButton;
 	}
 
+    /**
+     * @param playButton
+     *          The play/pause button
+     */
 	public void setPlayButton(Button playButton) {
 		this.playButton = playButton;
 	}
 
+    /**
+     * @return the reset button
+     */
 	public Button getResetButton() {
 		return resetButton;
 	}
 
+    /**
+     * @param resetButton
+     *          The button used to reset the music pane
+     */
 	public void setResetButton(Button resetButton) {
 		this.resetButton = resetButton;
 	}

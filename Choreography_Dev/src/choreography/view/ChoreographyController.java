@@ -89,8 +89,6 @@ public class ChoreographyController implements Initializable {
 	private File saveLocation;
 	private boolean isSaved, isAdvanced, isSelected = false, lookUp = true, toggleSimulation = true, shiftPressed = false;
 	private int time;
-	GridPane gridpaneBeatMarks;
-	Rectangle[] beatMarkRecArray;
 	Timer timelineTimer = new Timer("progressTimer", true);
 	Timer sliderTimer = new Timer("progressTimer", true);
 
@@ -112,8 +110,6 @@ public class ChoreographyController implements Initializable {
 	private Menu editMenu, helpMenu;
 	@FXML
 	private ToggleButton selectionButton;
-	//@FXML
-	//private ScrollPane beatMarkScrollPane;
 	@FXML
 	private Pane simPane;
 	
@@ -125,18 +121,6 @@ public class ChoreographyController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-//		//beatMarkScrollPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//			public void handle(KeyEvent ke) {
-//
-//				if (ke.getCode() == KeyCode.SPACE) {
-//					beatMarkRecArray[MusicPaneController.getInstance().getTenthsTime()].setFill(Color.BLACK);
-//					ke.consume();
-//				}
-//
-//			}
-//
-//		});
-
 		/**
 		 * Detaches simulator from main view, displays it in a new window. 
 		 */
@@ -204,27 +188,6 @@ public class ChoreographyController implements Initializable {
 
 		});
 
-		/**
-		 * Loads a music file selected from file chooser.
-		 * Initializes timeline for selected music file, and enables the
-		 * ability to open a ctl file.
-		 */
-//		openMusicMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-//			@Override
-//			public void handle(ActionEvent arg0) {
-//				fcwOutput.setText("Loading music file ...");
-//				FileChooser fc = new FileChooser();
-//				fc.setTitle("Open Music");
-//				fc.setInitialDirectory(new File(System.getProperty("user.dir")));
-//				fc.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Music Files", "*.wav"));
-//				File file2 = fc.showOpenDialog(null);
-//				MusicPaneController.getInstance().selectMusic(file2);
-//				TimelineController.getInstance().initializeTimelines();
-//				openCTLMenuItem.setDisable(false);
-//				fcwOutput.setText("Choreographer has loaded!");
-//			}
-//		});
-
         /**
          * Loads a music file selected from file chooser.
          * Initializes timeline for selected music file, then loads
@@ -285,32 +248,6 @@ public class ChoreographyController implements Initializable {
 
 			}
 
-		});
-
-		openCTLMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent t) {
-				fcwOutput.setText("Loading CTL file ...");
-				try {
-					loadDefaultMap();
-					CtlLib.getInstance().openCtl();
-					cc.setfcwOutput("CTL file has loaded!");
-                    SlidersController.getInstance().enableAllSliders();
-
-					/**TODO
-					 * Handling for if loaded ctl file is a legacy file
-					 */
-
-					SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
-				} catch (IOException ex) {
-					Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
-				} catch (NullPointerException e) {
-
-				} finally {fcwOutput.setText("Choreographer has loaded!");
-
-				}
-			}
 		});
 
 		/**
@@ -469,7 +406,6 @@ public class ChoreographyController implements Initializable {
 
 		events = new ConcurrentSkipListMap<>();
 		fcwOutput.setText("Choreographer has loaded!");
-//		openCTLMenuItem.setDisable(true);
 		cc = this;
 	}
 
@@ -760,65 +696,6 @@ public class ChoreographyController implements Initializable {
 	}
 
 	/**
-	 * Returns current instance of beat marks
-	 */
-//	public ScrollPane getBeatMarkScrollPane() {
-//		return this.beatMarkScrollPane;
-//	}
-//
-//	public void setBeatMarkGridPane() {
-//		gridpaneBeatMarks = new GridPane();
-//
-//		time = MusicPaneController.SONG_TIME;
-//
-//		gridpaneBeatMarks.setGridLinesVisible(true);
-//		beatMarkRecArray = new Rectangle[time];
-//
-//		for (int i = 0; i < time; i++) {
-//			gridpaneBeatMarks.getColumnConstraints().add(new ColumnConstraints(26));
-//			if (i < 1) { // because the array is not square this needs to be
-//							// here
-//				gridpaneBeatMarks.getRowConstraints().add(new RowConstraints(26));
-//			}
-//
-//			beatMarkRecArray[i] = new Rectangle(25, 25, Color.LIGHTGREY);
-//			gridpaneBeatMarks.add(beatMarkRecArray[i], i, 0);
-//			int testI = i;
-//			beatMarkRecArray[i].setOnMousePressed(new EventHandler<MouseEvent>() {
-//				@Override
-//				public void handle(MouseEvent me) {
-//					beatMarkRecArray[testI].setFill(Color.LIGHTGRAY);
-//				}
-//			});
-//
-//		}
-//
-//		beatMarkScrollPane.setContent(gridpaneBeatMarks);
-//	}
-//
-//	public Integer[] getBeatmarks() {
-//		Integer[] beatMarksArray = new Integer[beatMarkRecArray.length];
-//		for (int i = 0; i < beatMarkRecArray.length; i++) {
-//			if (beatMarkRecArray[i].getFill() == Color.LIGHTGREY) {
-//				beatMarksArray[i] = 0;
-//			} else {
-//				beatMarksArray[i] = 1;
-//			}
-//		}
-//		return beatMarksArray;
-//	}
-//
-//	public void setBeatmarks(Integer[] beatmarksArray) {
-//		for (int i = 0; i < beatmarksArray.length; i++) {
-//			if (beatmarksArray[i] == 0) {
-//				beatMarkRecArray[i].setFill(Color.LIGHTGREY);
-//			} else {
-//				beatMarkRecArray[i].setFill(Color.BLACK);
-//			}
-//		}
-//	}
-
-	/**
 	 * For loading a ghmf file
 	 * 
 	 * TODO Not yet tested
@@ -886,8 +763,4 @@ public class ChoreographyController implements Initializable {
 	public void setSaveCTLMenuItem(MenuItem saveCTLMenuItem) {
 		this.saveCTLMenuItem = saveCTLMenuItem;
 	}
-
-//	public MenuItem getOpenCTLMenuItem() {
-//		return openCTLMenuItem;
-//	}
 }
