@@ -152,6 +152,9 @@ public class ChoreographyController implements Initializable {
 			}
 		});
 
+        /**
+         * Updates the CTL file according to outdated_op_codes.txt
+         */
 		updateCtlMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -289,7 +292,9 @@ public class ChoreographyController implements Initializable {
 			}
 		});
 
-
+        /**
+         * Saves the CTL file
+         */
 		saveCTLMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
@@ -314,7 +319,6 @@ public class ChoreographyController implements Initializable {
 		});
 		
 		saveMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent t) {
 				if (isSaved) {
