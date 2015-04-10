@@ -822,9 +822,6 @@ public class FountainSimController implements Initializable {
     public void newSweeperControl(ArrayList<String> actionsList, int op){
         // Action list contains what sweeper action is supposed to
         // be occuring at each tenth of a second.
-		for(int i = 0; i < actionsList.size(); i++) {
-			System.out.println(actionsList.get(i));
-		}
         if (actionsList.contains("RIGHTSHORTLEFTLONG")) { // 39
             // Checks to make sure the most recent command is not
             // rs,ll. If true, then nothing, else make current

@@ -167,10 +167,6 @@ public class TimelineController implements Initializable {
 			FCW off = new FCW(channelAddresses[channelIndex], 0);
 			lightRecArray[timeIndex][channelIndex].setFill(Color.LIGHTGRAY);
 			timeline.setLightFcw(off, timeIndex, timeIndex + length);// not sure
-			// if
-			// length
-			// is
-			// needed?
 		}
 
 	}
@@ -319,7 +315,6 @@ public class TimelineController implements Initializable {
 		 */
 		// all of the strobe, fades, and the initial 10
 		Integer[] specialChannels = new Integer[] {
-				// 17, 18, 19, 20, 21, 22, 23, 24, 27, 200,
 				16, 101, 102, 103, 106, 107, 108, 111, 112, 113, 116, 117, 118, 121, 122, 123, 126, 127, 128, 131, 132, 133, 136, 137, 138, 141, 142, 143, 191, 192, 193, 201, 202, 203, 206, 207, 208, 231, 232, 233, 251, 252, 253 };
 
 		return specialChannels;
@@ -1190,8 +1185,7 @@ public class TimelineController implements Initializable {
 			break;
 		// From functions table
 		case "VOICE":
-			newName = "VOICE"; // TODO
-																	// needed?
+			newName = "VOICE"; // TODO needed?
 			break;
 		case "OFF":
 			newName = "Off"; // TODO needed?
