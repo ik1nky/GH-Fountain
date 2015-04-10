@@ -54,19 +54,10 @@ public class FountainSimController implements Initializable {
 	@FXML
 	private Group mod1, mod2, mod3, mod4, mod5, mod6, mod7;
 	@FXML
-	private Rectangle mod1ring1, mod1ring2, mod1ring3, mod1ring4, mod1ring5;
-	@FXML
-	private Rectangle mod2ring1, mod2ring2, mod2ring3, mod2ring4, mod2ring5;
-	@FXML
-	private Rectangle mod3ring1, mod3ring2, mod3ring3, mod3ring4, mod3ring5;
-	@FXML
-	private Rectangle mod4ring1, mod4ring2, mod4ring3, mod4ring4, mod4ring5;
-	@FXML
-	private Rectangle mod5ring1, mod5ring2, mod5ring3, mod5ring4, mod5ring5;
-	@FXML
-	private Rectangle mod6ring1, mod6ring2, mod6ring3, mod6ring4, mod6ring5;
-	@FXML
-	private Rectangle mod7ring1, mod7ring2, mod7ring3, mod7ring4, mod7ring5;
+	private Rectangle mod1ring1, mod1ring2, mod1ring3, mod1ring4, mod1ring5, mod2ring1, mod2ring2, mod2ring3, mod2ring4,
+            mod2ring5, mod3ring1, mod3ring2, mod3ring3, mod3ring4, mod3ring5, mod4ring1, mod4ring2, mod4ring3,
+            mod4ring4, mod4ring5, mod5ring1, mod5ring2, mod5ring3, mod5ring4, mod5ring5, mod6ring1, mod6ring2,
+            mod6ring3, mod6ring4, mod6ring5, mod7ring1, mod7ring2, mod7ring3, mod7ring4, mod7ring5;
 	@FXML
 	private Slider ring1Slider, ring2Slider, ring3Slider, ring4Slider, ring5Slider;
 	@FXML
@@ -83,33 +74,15 @@ public class FountainSimController implements Initializable {
 	private Rectangle backCurtain1, backCurtain2, backCurtain3, backCurtain4, backCurtain5, backCurtain6, backCurtain7,
 			backCurtain8, backCurtain9, backCurtain10, backCurtain11, backCurtain12, backCurtain13, backCurtain14;
 	@FXML
-	private Line mod1sweep1, mod1sweep2;
+	private Line mod1sweep1, mod1sweep2, mod2sweep1, mod2sweep2, mod3sweep1, mod3sweep2, mod4sweep1, mod4sweep2,
+            mod5sweep1, mod5sweep2, mod6sweep1, mod6sweep2, mod7sweep1, mod7sweep2;
 	@FXML
-	private Line mod1candle1, mod1candle2, mod1candle3, mod1candle4, mod1candle5, mod1candle6;
-	@FXML
-	private Line mod2sweep1, mod2sweep2;
-	@FXML
-	private Line mod2candle1, mod2candle2, mod2candle3, mod2candle4, mod2candle5, mod2candle6;
-	@FXML
-	private Line mod3sweep1, mod3sweep2;
-	@FXML
-	private Line mod3candle1, mod3candle2, mod3candle3, mod3candle4, mod3candle5, mod3candle6;
-	@FXML
-	private Line mod4sweep1, mod4sweep2;
-	@FXML
-	private Line mod4candle1, mod4candle2, mod4candle3, mod4candle4, mod4candle5, mod4candle6;
-	@FXML
-	private Line mod5sweep1, mod5sweep2;
-	@FXML
-	private Line mod5candle1, mod5candle2, mod5candle3, mod5candle4, mod5candle5, mod5candle6;
-	@FXML
-	private Line mod6sweep1, mod6sweep2;
-	@FXML
-	private Line mod6candle1, mod6candle2, mod6candle3, mod6candle4, mod6candle5, mod6candle6;
-	@FXML
-	private Line mod7sweep1, mod7sweep2;
-	@FXML
-	private Line mod7candle1, mod7candle2, mod7candle3, mod7candle4, mod7candle5, mod7candle6;
+	private Line mod1candle1, mod1candle2, mod1candle3, mod1candle4, mod1candle5, mod1candle6, mod2candle1, mod2candle2,
+            mod2candle3, mod2candle4, mod2candle5, mod2candle6, mod3candle1, mod3candle2, mod3candle3, mod3candle4,
+            mod3candle5, mod3candle6,mod4candle1, mod4candle2, mod4candle3, mod4candle4, mod4candle5, mod4candle6,
+            mod5candle1, mod5candle2, mod5candle3, mod5candle4, mod5candle5, mod5candle6, mod6candle1, mod6candle2,
+            mod6candle3, mod6candle4, mod6candle5, mod6candle6, mod7candle1, mod7candle2, mod7candle3, mod7candle4,
+            mod7candle5, mod7candle6;
 	@FXML
 	private Rectangle spoutRec;
 
@@ -174,6 +147,8 @@ public class FountainSimController implements Initializable {
 					actionsList.add(s);
 				}
 
+                // This if-else and switch determines which type of op-code we have and which
+                // method should be used to execute it
                 int addr = f.getAddr();
                 int choice = 0;
                 if(addr >= 1 && addr <= 5){
@@ -251,6 +226,7 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
+    // Animation controller for the back curtain
 	public void drawBkCurtain(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
@@ -268,12 +244,13 @@ public class FountainSimController implements Initializable {
 		final KeyValue kv12 = new KeyValue(backCurtain12.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
 		final KeyValue kv13 = new KeyValue(backCurtain13.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
 		final KeyValue kv14 = new KeyValue(backCurtain14.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-
 		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
 	}
 
+    // Animation controller for the rings. The ring to be drawn is determined by op
+    // and whether actionsList contains either module a or b
     public void drawRings(ArrayList<String> actionsList, FCW f, double lagTime, int op){
         if (actionsList.contains("MODULEA")) {
             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -287,31 +264,33 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // Handler for drawing objects other than the rings
     public void drawOther(ArrayList<String> actionsList, FCW f, double lagTime, int op){
         switch(op){
-            case 6:
+            case 6: //Draw the sweepers
                 drawSweeps(actionsList, f, lagTime);
                 break;
-            case 7:
+            case 7: //Draw either spout, voice or bazooka
                 drawSpoutVoiceBazooka(actionsList, f, lagTime);
                 break;
-            case 8:
+            case 8: //Draw the candelabras
                 drawCandelabras(actionsList, f, lagTime);
                 break;
-            case 9:
+            case 9: //Draw either the front or back curtains or the peacock
                 drawFrontBackCurtain(actionsList, f, lagTime);
                 break;
         }
     }
 
+    // Handler for all sweeper commands
     public void sweeperCommands(ArrayList<String> actionsList, int op){
-        if(op == 33 || op == 34){
+        if(op == 33 || op == 34){ //Legacy sweeper commands, together and opposed
             legacySweepsControl(actionsList, op);
-        } else if(op == 35 || op == 36 || op == 37){
+        } else if(op == 35 || op == 36 || op == 37){ //New sweeper commands,
             newSweeperControl(actionsList, op);
-        } else if(op == 38 || op == 39 || op == 40){
+        } else if(op == 38 || op == 39 || op == 40){ //Sweeper speed controller,
             sweeperSpeedControl(actionsList, op);
-        } else if(op == 42){
+        } else if(op == 42){ //Set sweep type
             if (actionsList.contains("TOGETHER")) {
                 setSweepType(1);
             }
@@ -326,6 +305,7 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // Handler for fading commands
     public void fadingCommands(Color crossFading[][], double fading[][], FCW f, int op){
         switch(op){
             case 501:
@@ -402,6 +382,7 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // Draws a ring given by the string ring
     public void drawRing(int level, double lagTime, String ring){
         final Timeline timeline = new Timeline();
         timeline.setCycleCount(1);
@@ -448,6 +429,7 @@ public class FountainSimController implements Initializable {
         timeline.play();
     }
 
+    //Returns Ring 1A's KeyFrame
     public KeyFrame get1AKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -457,6 +439,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
+    //Returns Ring 1B's KeyFrame
     public KeyFrame get1BKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -465,6 +448,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
+    //Returns Ring 2A's KeyFrame
     public KeyFrame get2AKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod1ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod3ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -474,6 +458,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
+    //Returns Ring 2B's KeyFrame
     public KeyFrame get2BKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod2ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod4ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -482,6 +467,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
+    //Returns Ring 3A's KeyFrame
     public KeyFrame get3AKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod1ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod3ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -491,6 +477,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
+    //Returns Ring 3B's KeyFrame
     public KeyFrame get3BKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod2ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod4ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -499,6 +486,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
+    //Returns Ring 4A's KeyFrame
     public KeyFrame get4AKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod1ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod3ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -508,6 +496,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
+    //Returns Ring 4B's KeyFrame
     public KeyFrame get4BKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod2ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod4ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -516,6 +505,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
+    //Returns Ring 5A's KeyFrame
     public KeyFrame get5AKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod1ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod3ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -525,6 +515,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
+    //Returns Ring 5B's KeyFrame
     public KeyFrame get5BKeyFrame(int level, double lagTime){
         final KeyValue kv1 = new KeyValue(mod2ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
         final KeyValue kv2 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -533,130 +524,7 @@ public class FountainSimController implements Initializable {
         return kf;
     }
 
-	public void drawRing1A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing1B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing2A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing2B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing3A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing3B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing4A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing4B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing5A(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod1ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod3ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
-	public void drawRing5B(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(mod2ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-
+    // Draws the sweepers
     public void drawSweeps(ArrayList<String> actionsList, FCW f, double lagTime){
         if (actionsList.contains("MODULEA")) {
             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -668,6 +536,7 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // Draws either the spout, voice or bazooka
     public void drawSpoutVoiceBazooka(ArrayList<String> actionsList, FCW f, double lagTime){
         if (actionsList.contains("VOICE")) {
             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -679,6 +548,7 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // Draws the candelabras
     public void drawCandelabras(ArrayList<String> actionsList, FCW f, double lagTime){
         if (actionsList.contains("MODULEA")) {
             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -690,6 +560,7 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // Draws either the front curtain, the back curtain or the peacock
     public void drawFrontBackCurtain(ArrayList<String> actionsList, FCW f, double lagTime){
         if (actionsList.contains("FTCURT")) {
             int level = FCWLib.getInstance().reverseGetLevel(f);
@@ -705,6 +576,9 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // Old Sweeper Commands Controller
+    // Opcode 33 has sweepers together
+    // Opcode 34 has sweepers opposed
     public void legacySweepsControl(ArrayList<String> actionsList, int op){
         // Stops all motions
         if (actionsList.contains("OFFRESET")) {
@@ -819,6 +693,10 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // New Sweeper Commands Controller
+    // Opcode 35 controls both
+    // Opcode 36 controls left sweepers independently
+    // Opcode 37 controls right sweepers independently
     public void newSweeperControl(ArrayList<String> actionsList, int op){
         // Action list contains what sweeper action is supposed to
         // be occuring at each tenth of a second.
@@ -1308,6 +1186,10 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // Controls the Sweepers Speed.
+    // Opcode 38 controls left speed.
+    // Opcode 39 controls right speed.
+    // Opcode 40 controls both.
     public void sweeperSpeedControl(ArrayList<String> actionsList, int op){
         if (actionsList.contains("OFFRESET")) {
             if(op == 38 || op == 40) {
@@ -1407,6 +1289,7 @@ public class FountainSimController implements Initializable {
         }
     }
 
+    // Draws the Spout
 	public void drawSpout(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
@@ -1417,6 +1300,7 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
+    // Draws the Bazooka
 	public void drawBazooka(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		KeyValue kv2 = null;
@@ -1496,9 +1380,8 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
-    /*
-     * peacock level is being called as 0 right before the draw, making it invisible.
-     */
+    // Draws the Peacock
+    //peacock level is being called as 0 right before the draw, making it invisible.
 	public void drawPeacock(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		KeyValue kv2 = null;
@@ -1607,6 +1490,7 @@ public class FountainSimController implements Initializable {
 
 	}
 
+    // Draws Module A's Sweepers
 	public void drawSweepsA(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
@@ -1661,6 +1545,7 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
+    // Draws Module B's Sweepers
 	public void drawSweepsB(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
@@ -1704,6 +1589,7 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
+    // Sweeps the left sweepers between leftLimit and rightLimit
 	public void sweepLeftSweeps(double leftLimit, double rightLimit) {
 		leftSweepTimeline = new Timeline();
 
@@ -1770,6 +1656,7 @@ public class FountainSimController implements Initializable {
 		leftSweepTimeline.play();
 	}
 
+    // Sweeps the right sweepers between leftLimit and rightLimit
 	public void sweepRightSweeps(double leftLimit, double rightLimit) {
 		rightSweepTimeline = new Timeline();
 		if (MusicPaneController.getInstance().getMediaPlayer().statusProperty().getValue() == Status.PLAYING) {
@@ -1836,6 +1723,7 @@ public class FountainSimController implements Initializable {
 		rightSweepTimeline.play();
 	}
 
+    // Oscillates the left sweepers between leftLimit and rightLimit
 	public void oscillateLeftSweeps(double leftLimit, double rightLimit) {
 		leftSweepTimeline = new Timeline();
 		if (MusicPaneController.getInstance().getMediaPlayer().statusProperty().getValue() == Status.PLAYING) {
@@ -1898,6 +1786,7 @@ public class FountainSimController implements Initializable {
 		leftSweepTimeline.play();
 	}
 
+    // Oscillates the Right Sweepers between leftLimit and rightLimit
 	public void oscillateRightSweeps(double leftLimit, double rightLimit) {
 		rightSweepTimeline = new Timeline();
 		if (MusicPaneController.getInstance().getMediaPlayer().statusProperty().getValue() == Status.PLAYING) {
@@ -2114,6 +2003,7 @@ public class FountainSimController implements Initializable {
 		rightSweepTimeline.play();
 	}
 
+    // Draws Module A's Multi
 	public void drawMultiA(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
@@ -2258,6 +2148,7 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
+    // Draws Module B's Multi
 	public void drawMultiB(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
@@ -2372,6 +2263,7 @@ public class FountainSimController implements Initializable {
 		timeline.play();
 	}
 
+    // Draws Module A's Candelabras
 	public void drawCandlesA(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
@@ -3520,6 +3412,7 @@ public class FountainSimController implements Initializable {
 
 	}
 
+    // Draws Module B's Candelabras
 	public void drawCandlesB(int level, double lagTime) {
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
@@ -3637,6 +3530,9 @@ public class FountainSimController implements Initializable {
 
 	}
 
+    /**
+     * Below are getters and setters for all objects
+     */
 	public Rectangle getMod7ring5() {
 		return mod7ring5;
 	}
@@ -4867,6 +4763,134 @@ public class FountainSimController implements Initializable {
 		mod6sweep2.getTransforms().clear();
 		mod7sweep2.getTransforms().clear();
 	}
+
+    /**
+     * These are the old draw ring commands, they are still used by reset all and thus can't be deleted
+     * as the project is now
+     */
+    public void drawRing1A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing1B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing2A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing2B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring2.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing3A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing3B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring3.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing4A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing4B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring4.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing5A(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod1ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod3ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv4 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    public void drawRing5B(int level, double lagTime) {
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        final KeyValue kv1 = new KeyValue(mod2ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv2 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyValue kv3 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+        final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
 
 	// Sets the heights of all water features to zero, effectivly turning them
 	// off.
