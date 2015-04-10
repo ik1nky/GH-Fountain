@@ -167,10 +167,6 @@ public class TimelineController implements Initializable {
 			FCW off = new FCW(channelAddresses[channelIndex], 0);
 			lightRecArray[timeIndex][channelIndex].setFill(Color.LIGHTGRAY);
 			timeline.setLightFcw(off, timeIndex, timeIndex + length);// not sure
-			// if
-			// length
-			// is
-			// needed?
 		}
 
 	}
@@ -319,7 +315,6 @@ public class TimelineController implements Initializable {
 		 */
 		// all of the strobe, fades, and the initial 10
 		Integer[] specialChannels = new Integer[] {
-				// 17, 18, 19, 20, 21, 22, 23, 24, 27, 200,
 				16, 101, 102, 103, 106, 107, 108, 111, 112, 113, 116, 117, 118, 121, 122, 123, 126, 127, 128, 131, 132, 133, 136, 137, 138, 141, 142, 143, 191, 192, 193, 201, 202, 203, 206, 207, 208, 231, 232, 233, 251, 252, 253 };
 
 		return specialChannels;
@@ -471,7 +466,6 @@ public class TimelineController implements Initializable {
 			for (int labelIndex = 0; labelIndex < labelNames.length; labelIndex++) {
 				lightRecArray[timeIndex][labelIndex] = new Rectangle(25, 25, Color.LIGHTGRAY);
 				gridpaneLight.add(lightRecArray[timeIndex][labelIndex], timeIndex, labelIndex);
-
 				// these are used to tell the position of the rectangle while in
 				// the handler
 				final int timeIndexConst = timeIndex;
@@ -483,7 +477,6 @@ public class TimelineController implements Initializable {
 						selectedRec = lightRecArray[timeIndexConst][labelIndexConst];
 						selectedTimeIndex = timeIndexConst;
 						selectedLabelIndex = labelIndexConst;
-
 						// if right clicked
 						if (e.getButton() == MouseButton.SECONDARY) {
 							lightCM.show(lightRecArray[timeIndexConst][labelIndexConst], e.getScreenX(), e.getScreenY());
@@ -491,26 +484,23 @@ public class TimelineController implements Initializable {
 							pasteLabelIndex = labelIndexConst;
 
 						}
-
 						else if (ChoreographyController.getInstance().getShiftPressed()) {
 							for (int i = startTimeIndex; i <= endTimeIndex; i++) {
 								for (int j = startLabelIndex; j <= endLabelIndex; j++) {
 									lightRecArray[i][j].setStroke(null);
 								}
 							}
-
 							// disable menu items
 							lightCut.setDisable(true);
 							lightCopy.setDisable(true);
 							fadeUp.setDisable(true);
 							fadeDown.setDisable(true);
 							lightRecArray[timeIndexConst][labelIndexConst].setStroke(Color.BLACK);
-							lightRecArray[timeIndexConst][labelIndexConst].setStrokeWidth(2);
+							lightRecArray[timeIndexConst][labelIndexConst].setStrokeWidth(1);
 
 							startTimeIndex = timeIndexConst;
 							startLabelIndex = labelIndexConst;
 						}
-
 						else {
 							for (int i = startTimeIndex; i <= endTimeIndex; i++) {
 								for (int j = startLabelIndex; j <= endLabelIndex; j++) {
@@ -527,29 +517,21 @@ public class TimelineController implements Initializable {
 						}
 					}
 				});
-
 				// if we are dragging
 				lightRecArray[timeIndex][labelIndex].setOnDragDetected((MouseEvent e) -> {
 					if (ChoreographyController.getInstance().getShiftPressed()) {
 						lightRecArray[timeIndexConst][labelIndexConst].setStroke(Color.BLACK);
-						lightRecArray[timeIndexConst][labelIndexConst].setStrokeWidth(2);
+						lightRecArray[timeIndexConst][labelIndexConst].setStrokeWidth(1);
 					}
-
 					lightRecArray[timeIndexConst][labelIndexConst].startFullDrag();
 				});
-
 				// continues and ends the drag event
 				lightRecArray[timeIndex][labelIndex].setOnMouseDragOver((MouseEvent e) -> {
 					if (ChoreographyController.getInstance().getShiftPressed()) {
 						if (timeIndexConst >= startTimeIndex && labelIndexConst >= startLabelIndex) {
-							if (timeIndexConst < endTimeIndex) {
+							if (timeIndexConst < endTimeIndex || labelIndexConst < endLabelIndex) {
 								for (int i = 0; i <= endLabelIndex - startLabelIndex; i++) {
 									lightRecArray[endTimeIndex][startLabelIndex + i].setStroke(null);
-								}
-							}
-							if (labelIndexConst < endLabelIndex) {
-								for (int i = 0; i <= endTimeIndex - startTimeIndex; i++) {
-									lightRecArray[startTimeIndex + i][endLabelIndex].setStroke(null);
 								}
 							}
 							endTimeIndex = timeIndexConst;
@@ -557,7 +539,7 @@ public class TimelineController implements Initializable {
 							for (int i = 0; i <= endTimeIndex - startTimeIndex; i++) {
 								for (int j = 0; j <= endLabelIndex - startLabelIndex; j++) {
 									lightRecArray[startTimeIndex + i][startLabelIndex + j].setStroke(Color.BLACK);
-									lightRecArray[startTimeIndex + i][startLabelIndex + j].setStrokeWidth(2);
+									lightRecArray[startTimeIndex + i][startLabelIndex + j].setStrokeWidth(1);
 								}
 							}
 						}
@@ -567,13 +549,11 @@ public class TimelineController implements Initializable {
 						}
 					}
 				});
-
 				lightRecArray[timeIndex][labelIndex].setOnMouseDragReleased((MouseEvent e) -> {
 					if (!ChoreographyController.getInstance().getShiftPressed()) {
 						if (startRow != labelIndexConst) {
 							FCW f = new FCW(channelAddresses[startRow], ColorPaletteModel.getInstance().getSelectedIndex());
 							timeline.setLightFcw(f, start, timeIndexConst + 1);
-							System.out.println(f + " " + start + " " + timeIndexConst + 1);
 						} else {
 							FCW f = new FCW(channelAddresses[labelIndexConst], ColorPaletteModel.getInstance().getSelectedIndex());
 							timeline.setLightFcw(f, start, timeIndexConst + 1);
@@ -1165,12 +1145,10 @@ public class TimelineController implements Initializable {
 			newName = "Sweeps";
 			break;
 		case "SPOUT":
-			newName = "Spout"; // TODO there are duplicate SPOUT in the FCW_DEF
-								// file one in the table A and one in
-								// WaterAddresses
+			newName = "Spout";
 			break;
 		case "BAZOOKA":
-			newName = "Bazooka"; // TODO Same issue as SPOUT.
+			newName = "Bazooka";
 			break;
 		case "CANDELABRA":
 			newName = "Candelabra";
@@ -1207,25 +1185,11 @@ public class TimelineController implements Initializable {
 			break;
 		// From functions table
 		case "VOICE":
-			newName = "VOICE"; // TODO
-																	// needed?
+			newName = "VOICE"; // TODO needed?
 			break;
-		/*case "INTERCHANGEAB":
-			newName = "Interchange A+B module formations (water + light)"; // TODO
-																			// needed?
-			break;*/
 		case "OFF":
 			newName = "Off"; // TODO needed?
 			break;
-//		case "MODULEA":
-//			newName = "Module A";
-//			break;
-//		case "MODULEB":
-//			newName = "Module B";
-//			break;
-//		case "CONNECTAB":
-//			newName = "Connect A + B";
-//			break;
 		case "OFFRESET":
 			newName = "Hold Center";
 			break;
@@ -1415,9 +1379,6 @@ public class TimelineController implements Initializable {
 
 	public Timeline getTimeline() {
 		return timeline;
-	}
-
-	public void killTimelines() {
 	}
 
 	public boolean checkForCollisions(Integer query) {

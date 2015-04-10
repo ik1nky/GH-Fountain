@@ -126,12 +126,7 @@ public class Timeline {
 	 * @param timeline
 	 *            the timeline to set
 	 */
-	public void setTimeline(
-			ConcurrentSkipListMap<Integer, ArrayList<FCW>> timeline) {
-//        for (Entry<Integer, ArrayList<FCW>> entry : timeline.entrySet())
-//        {
-//            System.out.println("Time "+entry.getKey() + "  OP: " + entry.getValue());
-//        }
+	public void setTimeline(ConcurrentSkipListMap<Integer, ArrayList<FCW>> timeline) {
 		this.timeline = timeline;
 		statefulTimeline.loadExistingTimeline(timeline);
 
@@ -507,12 +502,6 @@ public class Timeline {
 	public int getEndTime(Iterator<Entry<Integer, Integer>> it, Iterator<Entry<Integer, Integer>> it2, int start, int color) {
 		int end = 0;
 
-//		it2 = it;
-//		while(it2.hasNext()) {
-//			Entry<Integer, Integer> timeColor = it.next();
-//			System.out.println(timeColor.getKey());
-//		}
-
 		while (it.hasNext()) {
 			Entry<Integer, Integer> timeColor = it.next();
 			if(timeColor.getKey() != start + 1 && timeColor.getKey() != start + 2) {
@@ -625,12 +614,6 @@ public class Timeline {
 					waterTimeline.get(closestKey));
 		}
 	}
-	// public void updateColorsLists(int time){
-	// for (int channel: channelColorMap.keySet()){
-	// for()
-	// }
-	// FountainSimController.getInstance().getFrontCurtain().setFill(arg0);
-	// }
 
 	public boolean getActionsAtTime(int time) {
 		ConcurrentSkipListMap<Integer, ArrayList<FCW>> waterTimeline = (ConcurrentSkipListMap<Integer, ArrayList<FCW>>) getWaterTimeline();
