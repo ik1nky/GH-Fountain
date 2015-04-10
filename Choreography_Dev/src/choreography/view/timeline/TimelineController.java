@@ -491,14 +491,12 @@ public class TimelineController implements Initializable {
 							pasteLabelIndex = labelIndexConst;
 
 						}
-
 						else if (ChoreographyController.getInstance().getShiftPressed()) {
 							for (int i = startTimeIndex; i <= endTimeIndex; i++) {
 								for (int j = startLabelIndex; j <= endLabelIndex; j++) {
 									lightRecArray[i][j].setStroke(null);
 								}
 							}
-
 							// disable menu items
 							lightCut.setDisable(true);
 							lightCopy.setDisable(true);
@@ -510,7 +508,6 @@ public class TimelineController implements Initializable {
 							startTimeIndex = timeIndexConst;
 							startLabelIndex = labelIndexConst;
 						}
-
 						else {
 							for (int i = startTimeIndex; i <= endTimeIndex; i++) {
 								for (int j = startLabelIndex; j <= endLabelIndex; j++) {
@@ -530,11 +527,11 @@ public class TimelineController implements Initializable {
 
 				// if we are dragging
 				lightRecArray[timeIndex][labelIndex].setOnDragDetected((MouseEvent e) -> {
+					System.out.println("time index constant " + timeIndexConst + " labelIndexConst " + labelIndexConst);
 					if (ChoreographyController.getInstance().getShiftPressed()) {
 						lightRecArray[timeIndexConst][labelIndexConst].setStroke(Color.BLACK);
 						lightRecArray[timeIndexConst][labelIndexConst].setStrokeWidth(2);
 					}
-
 					lightRecArray[timeIndexConst][labelIndexConst].startFullDrag();
 				});
 
