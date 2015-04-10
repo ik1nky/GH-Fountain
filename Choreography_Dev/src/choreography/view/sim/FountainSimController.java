@@ -176,7 +176,6 @@ public class FountainSimController implements Initializable {
 
                 int addr = f.getAddr();
                 int choice = 0;
-				System.out.println("This is addr " + addr);
                 if(addr >= 1 && addr <= 5){
                     choice = 1; // Draw Ring
                 } else if(addr >= 6 && addr <= 9){
@@ -346,7 +345,7 @@ public class FountainSimController implements Initializable {
                 break;
             case 602:
                 fading[1][0]=f.getData()/10;
-                fading[1][1]=mod1.getOpacity();
+                fading[1][1]=mod2.getOpacity();
                 fading[1][2]= ((int) f.getData()) / 100;
                 fadeModule(2, fading[1][0], fading[1][1], fading[1][2], crossFading[1][0], crossFading[1][1]);
                 break;
@@ -356,7 +355,7 @@ public class FountainSimController implements Initializable {
                 break;
             case 603:
                 fading[2][0]=f.getData()/10;
-                fading[2][1]=mod1.getOpacity();
+                fading[2][1]=mod3.getOpacity();
                 fading[2][2]= ((int) f.getData()) / 100;
                 fadeModule(3, fading[2][0], fading[2][1], fading[2][2], crossFading[2][0], crossFading[2][1]);
                 break;
@@ -366,7 +365,7 @@ public class FountainSimController implements Initializable {
                 break;
             case 604:
                 fading[3][0]=f.getData()/10;
-                fading[3][1]=mod1.getOpacity();
+                fading[3][1]=mod4.getOpacity();
                 fading[3][2]= ((int) f.getData()) / 100;
                 fadeModule(4, fading[3][0], fading[3][1], fading[3][2], crossFading[3][0], crossFading[3][1]);
                 break;
@@ -376,7 +375,7 @@ public class FountainSimController implements Initializable {
                 break;
             case 605:
                 fading[4][0]=f.getData()/10;
-                fading[4][1]=mod1.getOpacity();
+                fading[4][1]=mod5.getOpacity();
                 fading[4][2]= ((int) f.getData()) / 100;
                 fadeModule(5, fading[4][0], fading[4][1], fading[4][2], crossFading[4][0], crossFading[4][1]);
                 break;
@@ -386,7 +385,7 @@ public class FountainSimController implements Initializable {
                 break;
             case 606:
                 fading[5][0]=f.getData()/10;
-                fading[5][1]=mod1.getOpacity();
+                fading[5][1]=mod6.getOpacity();
                 fading[5][2]= ((int) f.getData()) / 100;
                 fadeModule(6, fading[5][0], fading[5][1], fading[5][2], crossFading[5][0], crossFading[5][1]);
                 break;
@@ -396,7 +395,7 @@ public class FountainSimController implements Initializable {
                 break;
             case 607:
                 fading[6][0]=f.getData()/10;
-                fading[6][1]=mod1.getOpacity();
+                fading[6][1]=mod7.getOpacity();
                 fading[6][2]= ((int) f.getData()) / 100;
                 fadeModule(7, fading[6][0], fading[6][1], fading[6][2], crossFading[6][0], crossFading[6][1]);
                 break;

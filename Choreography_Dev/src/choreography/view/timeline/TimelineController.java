@@ -539,14 +539,9 @@ public class TimelineController implements Initializable {
 				lightRecArray[timeIndex][labelIndex].setOnMouseDragOver((MouseEvent e) -> {
 					if (ChoreographyController.getInstance().getShiftPressed()) {
 						if (timeIndexConst >= startTimeIndex && labelIndexConst >= startLabelIndex) {
-							if (timeIndexConst < endTimeIndex) {
+							if (timeIndexConst < endTimeIndex || labelIndexConst < endLabelIndex) {
 								for (int i = 0; i <= endLabelIndex - startLabelIndex; i++) {
 									lightRecArray[endTimeIndex][startLabelIndex + i].setStroke(null);
-								}
-							}
-							if (labelIndexConst < endLabelIndex) {
-								for (int i = 0; i <= endTimeIndex - startTimeIndex; i++) {
-									lightRecArray[startTimeIndex + i][endLabelIndex].setStroke(null);
 								}
 							}
 							endTimeIndex = timeIndexConst;
