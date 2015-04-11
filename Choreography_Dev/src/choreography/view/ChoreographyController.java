@@ -208,6 +208,7 @@ public class ChoreographyController implements Initializable {
 				fc.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Music Files", "*.wav"));
 				File file2 = fc.showOpenDialog(null);
 				MusicPaneController.getInstance().selectMusic(file2);
+                TimelineController.getInstance().disposeTimeline();
 				TimelineController.getInstance().initializeTimelines();
 
                 String ctl = (file2.getPath().substring(0, (file2.getPath().length() - 3))) + "ctl";
@@ -225,8 +226,6 @@ public class ChoreographyController implements Initializable {
                     loadDefaultMap();
                     CtlLib.getInstance().openCtl(file3);
                     cc.setfcwOutput("CTL file has loaded!");
-                    SlidersController.getInstance().enableAllSliders();
-                    MusicPaneController.getInstance().getTimeSlider().setDisable(false);
                     SpecialoperationsController.getInstance().initializeSweepSpeedSelectors();
                 } catch (IOException ex) {
                     Logger.getLogger(ChoreographyController.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,6 +233,8 @@ public class ChoreographyController implements Initializable {
 
                 } finally {
                     fcwOutput.setText("Choreographer has loaded!") ;
+                    SlidersController.getInstance().enableAllSliders();
+                    MusicPaneController.getInstance().getTimeSlider().setDisable(false);
                 }
             }
         });
