@@ -317,7 +317,11 @@ public class ChoreographyController implements Initializable {
 				CtlLib.getInstance().saveFile(saveLocation, TimelineController.getInstance().getTimeline().getTimeline());
 			}
 		});
-		
+
+        /**
+         * If the project is saved, attempts to save as a GHMF zip file
+         * else calls save as
+         */
 		saveMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
@@ -329,6 +333,9 @@ public class ChoreographyController implements Initializable {
 			}
 		});
 
+        /**
+         * Saves the project as a GHMF zip file at location of user's choice
+         */
 		saveAsMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
