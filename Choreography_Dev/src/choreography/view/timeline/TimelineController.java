@@ -1373,7 +1373,6 @@ public class TimelineController implements Initializable {
 		waterRecArray = null;
 		gridpaneLight.getChildren().clear();
 		gridpaneWater.getChildren().clear();
-		initializeTimelines();
 		timeline.getChannelColorMap().clear();
 	}
 
