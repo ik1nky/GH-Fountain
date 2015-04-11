@@ -1,5 +1,6 @@
 package choreography.view.timeline;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -343,12 +344,31 @@ public class TimelineController implements Initializable {
 	 * timeline.getChannelColormap().keySet()
 	 */
 	public void setLabelGridPaneWithCtl() {
-		Set<Integer> channelAddressesSet = timeline.getChannelColorMap().keySet();
+		Set<Integer> tempChannelAddressesSet = timeline.getChannelColorMap().keySet();
+        Set<Integer> channelAddressesSet = new HashSet<>();
+        ArrayList<Integer> tempList = new ArrayList<Integer>(){{
+            add(17);
+            add(18);
+            add(19);
+            add(20);
+            add(21);
+            add(22);
+            add(23);
+            add(27);
+            add(56);
+            add(57);
+        }};
+        channelAddressesSet.addAll(new HashSet<>(tempList));
+        for(Integer i : tempChannelAddressesSet){
+            channelAddressesSet.add(i);
+        }
+
 		setChannelAddresses(channelAddressesSet);
 		labelNames = new String[channelAddresses.length];
 		for (int channelIndex = 0; channelIndex < channelAddresses.length; channelIndex++) {
-			labelNames[channelIndex] = FCWLib.getInstance().reverseLookupAddress(channelAddresses[channelIndex]);
+                labelNames[channelIndex] = FCWLib.getInstance().reverseLookupAddress(channelAddresses[channelIndex]);
 		}
+
 		setLabelGridPane(channelAddresses);
 		setTimelineGridPane();
 		rePaintLightTimeline();
