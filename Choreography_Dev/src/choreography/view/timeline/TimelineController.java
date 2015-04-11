@@ -370,6 +370,7 @@ public class TimelineController implements Initializable {
 		}
 
 		setLabelGridPane(channelAddresses);
+        TimelineController.getInstance().setWaterGridPane();
 		setTimelineGridPane();
 		rePaintLightTimeline();
 	}
