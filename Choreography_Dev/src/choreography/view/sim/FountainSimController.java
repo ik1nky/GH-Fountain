@@ -115,13 +115,6 @@ public class FountainSimController implements Initializable {
 		return instance;
 	}
 
-	// The method that is used to animate the simulation
-	public void playSim() {
-		for (Integer i : bufferedFcws.keySet()) {
-			drawFcw(bufferedFcws.get(i));
-		}
-	}
-
 	/**
 	 * This method is used to redraw the simulation given the current fcw at a
 	 * moment of time. There is a switch statement where each case is a
@@ -153,13 +146,17 @@ public class FountainSimController implements Initializable {
                 int choice = 0;
                 if(addr >= 1 && addr <= 5){
                     choice = 1; // Draw Ring
-                } else if(addr >= 6 && addr <= 9){
+                }
+                else if(addr >= 6 && addr <= 9){
                     choice = 2; // Draw Other
-                } else if(addr >= 33 && addr <= 42 && addr != 41){
+                }
+                else if(addr >= 33 && addr <= 42 && addr != 41){
                     choice = 3; // Sweeper Commands
-                } else if((addr >= 501 && addr <= 507) || (addr >= 601 && addr <= 607)){
+                }
+                else if((addr >= 501 && addr <= 507) || (addr >= 601 && addr <= 607)){
                     choice = 4; // Fading Commands
-                } else if(addr == 99){
+                }
+                else if(addr == 99){
                     choice = 5; // Reset
                 }
 
@@ -184,69 +181,6 @@ public class FountainSimController implements Initializable {
 
 			}
 		}
-	}
-
-	/*
-	 * Animation controller for the front curtain. All of the following methods
-	 * have the same concept with the exception of the sweeper classes since
-	 * they have more complex movements. These methods are animations written in
-	 * java, so experience with blender or the likes is helpful
-	 */
-	public void drawFtCurtain(int level, double lagTime) {
-
-		// Holds all of the animation information
-		final Timeline timeline = new Timeline();
-
-		// How many times the animation happens
-		timeline.setCycleCount(1);
-
-		// Each of these the end value for the animation, which in this and most
-		// cases is just a height change
-		final KeyValue kv1 = new KeyValue(frontCurtain1.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(frontCurtain2.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(frontCurtain3.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(frontCurtain4.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv5 = new KeyValue(frontCurtain5.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv6 = new KeyValue(frontCurtain6.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv7 = new KeyValue(frontCurtain7.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv8 = new KeyValue(frontCurtain8.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv9 = new KeyValue(frontCurtain9.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv10 = new KeyValue(frontCurtain10.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv11 = new KeyValue(frontCurtain11.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv12 = new KeyValue(frontCurtain12.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv13 = new KeyValue(frontCurtain13.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv14 = new KeyValue(frontCurtain14.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-
-		// Adds all of the movements to the keyframe with a duration as given by
-		// lagtime
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14);
-		timeline.getKeyFrames().add(kf);
-
-		// Starts the animation
-		timeline.play();
-	}
-
-    // Animation controller for the back curtain
-	public void drawBkCurtain(int level, double lagTime) {
-		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(1);
-		final KeyValue kv1 = new KeyValue(backCurtain1.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv2 = new KeyValue(backCurtain2.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv3 = new KeyValue(backCurtain3.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv4 = new KeyValue(backCurtain4.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv5 = new KeyValue(backCurtain5.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv6 = new KeyValue(backCurtain6.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv7 = new KeyValue(backCurtain7.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv8 = new KeyValue(backCurtain8.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv9 = new KeyValue(backCurtain9.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv10 = new KeyValue(backCurtain10.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv11 = new KeyValue(backCurtain11.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv12 = new KeyValue(backCurtain12.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv13 = new KeyValue(backCurtain13.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyValue kv14 = new KeyValue(backCurtain14.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
-		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
 	}
 
     // Animation controller for the rings. The ring to be drawn is determined by op
@@ -428,6 +362,69 @@ public class FountainSimController implements Initializable {
         timeline.getKeyFrames().add(kf);
         timeline.play();
     }
+
+	/*
+	 * Animation controller for the front curtain. All of the following methods
+	 * have the same concept with the exception of the sweeper classes since
+	 * they have more complex movements. These methods are animations written in
+	 * java, so experience with blender or the likes is helpful
+	 */
+	public void drawFtCurtain(int level, double lagTime) {
+
+		// Holds all of the animation information
+		final Timeline timeline = new Timeline();
+
+		// How many times the animation happens
+		timeline.setCycleCount(1);
+
+		// Each of these the end value for the animation, which in this and most
+		// cases is just a height change
+		final KeyValue kv1 = new KeyValue(frontCurtain1.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv2 = new KeyValue(frontCurtain2.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv3 = new KeyValue(frontCurtain3.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv4 = new KeyValue(frontCurtain4.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv5 = new KeyValue(frontCurtain5.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv6 = new KeyValue(frontCurtain6.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv7 = new KeyValue(frontCurtain7.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv8 = new KeyValue(frontCurtain8.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv9 = new KeyValue(frontCurtain9.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv10 = new KeyValue(frontCurtain10.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv11 = new KeyValue(frontCurtain11.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv12 = new KeyValue(frontCurtain12.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv13 = new KeyValue(frontCurtain13.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv14 = new KeyValue(frontCurtain14.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+
+		// Adds all of the movements to the keyframe with a duration as given by
+		// lagtime
+		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14);
+		timeline.getKeyFrames().add(kf);
+
+		// Starts the animation
+		timeline.play();
+	}
+
+    // Animation controller for the back curtain
+	public void drawBkCurtain(int level, double lagTime) {
+		final Timeline timeline = new Timeline();
+		timeline.setCycleCount(1);
+		final KeyValue kv1 = new KeyValue(backCurtain1.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv2 = new KeyValue(backCurtain2.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv3 = new KeyValue(backCurtain3.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv4 = new KeyValue(backCurtain4.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv5 = new KeyValue(backCurtain5.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv6 = new KeyValue(backCurtain6.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv7 = new KeyValue(backCurtain7.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv8 = new KeyValue(backCurtain8.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv9 = new KeyValue(backCurtain9.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv10 = new KeyValue(backCurtain10.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv11 = new KeyValue(backCurtain11.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv12 = new KeyValue(backCurtain12.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv13 = new KeyValue(backCurtain13.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyValue kv14 = new KeyValue(backCurtain14.heightProperty(), ((40 * level)), Interpolator.EASE_OUT);
+		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14);
+		timeline.getKeyFrames().add(kf);
+		timeline.play();
+	}
 
     //Returns Ring 1A's KeyFrame
     public KeyFrame get1AKeyFrame(int level, double lagTime){
@@ -616,37 +613,37 @@ public class FountainSimController implements Initializable {
             rightSweepTimeline.setRate(0.2);
             rightSweepSpeed = 4.0;
         }
-        if (actionsList.contains("ADAGIO")) {
+        else if (actionsList.contains("ADAGIO")) {
             leftSweepTimeline.setRate(0.5);
             leftSweepSpeed = 3.0;
             rightSweepTimeline.setRate(0.5);
             rightSweepSpeed = 3.0;
         }
-        if (actionsList.contains("ANDANTE")) {
+        else if (actionsList.contains("ANDANTE")) {
             leftSweepTimeline.setRate(0.8);
             leftSweepSpeed = 2.5;
             rightSweepTimeline.setRate(0.8);
             rightSweepSpeed = 2.5;
         }
-        if (actionsList.contains("MODERATO")) {
+        else if (actionsList.contains("MODERATO")) {
             leftSweepTimeline.setRate(1.0);
             leftSweepSpeed = 1.0;
             rightSweepTimeline.setRate(1.0);
             rightSweepSpeed = 1.0;
         }
-        if (actionsList.contains("ALLEGRETO")) {
+        else if (actionsList.contains("ALLEGRETO")) {
             leftSweepTimeline.setRate(1.3);
             leftSweepSpeed = 1.8;
             rightSweepTimeline.setRate(1.3);
             rightSweepSpeed = 1.8;
         }
-        if (actionsList.contains("ALLEGRO")) {
+        else if (actionsList.contains("ALLEGRO")) {
             leftSweepTimeline.setRate(1.5);
             leftSweepSpeed = 1.6;
             rightSweepTimeline.setRate(1.5);
             rightSweepSpeed = 1.6;
         }
-        if (actionsList.contains("PRESTO")) {
+        else if (actionsList.contains("PRESTO")) {
             leftSweepTimeline.setRate(1.8);
             leftSweepSpeed = 1.5;
             rightSweepTimeline.setRate(1.8);
@@ -674,8 +671,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-
-        if(op == 34){
+        else if(op == 34){
             if (actionsList.contains("SHORT")) {
                 if (sweepCommand != "SHORT") {
                     sweepCommand = "SHORT";
@@ -693,10 +689,12 @@ public class FountainSimController implements Initializable {
         }
     }
 
-    // New Sweeper Commands Controller
-    // Opcode 35 controls both
-    // Opcode 36 controls left sweepers independently
-    // Opcode 37 controls right sweepers independently
+    /*
+     * New Sweeper Commands Controller
+     * Opcode 35 controls both
+     * Opcode 36 controls left sweepers independently
+     * Opcode 37 controls right sweepers independently
+     */
     public void newSweeperControl(ArrayList<String> actionsList, int op){
         // Action list contains what sweeper action is supposed to
         // be occuring at each tenth of a second.
@@ -779,10 +777,10 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-       else if (actionsList.contains("RIGHTLONGCENTER")) { // 20
+        else if (actionsList.contains("RIGHTLONGCENTER")) { // 20
             if (sweepCommand != "RIGHTLONGCENTER") {
                 sweepCommand = "RIGHTLONGCENTER";
-                if(op == 35) {
+                if (op == 35) {
                     if (sweepType == 1) {
                         sweepLeftSweeps(rightLong, center);
                         sweepRightSweeps(rightLong, center);
@@ -791,7 +789,7 @@ public class FountainSimController implements Initializable {
                         sweepLeftSweeps(rightLong, center);
                         sweepRightSweeps(center, rightLong);
                     }
-                } else if(op == 36){
+                } else if (op == 36) {
                     sweepLeftSweeps(rightLong, center);
                 } else {
                     sweepRightSweeps(rightLong, center);
@@ -1102,12 +1100,10 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-				/*
-				 *
-				 *Putting all the holds in one spot to make it easier to see
-				 *
-				 */
-				else if (actionsList.contains("HOLDRIGHTLONG")) { // 17
+		/*
+		* Putting all the holds in one spot to make it easier to see
+        */
+        else if (actionsList.contains("HOLDRIGHTLONG")) { // 17
             if (sweepCommand != "HOLDRIGHTLONG") {
                 sweepCommand = "HOLDRIGHTLONG";
                 if(op == 35 || op == 36) {
@@ -1118,7 +1114,7 @@ public class FountainSimController implements Initializable {
                 }
             }
         }
-       else if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
+        else if (actionsList.contains("HOLDRIGHTSHORT")) { // 34
             if (sweepCommand != "HOLDRIGHTSHORT") {
                 sweepCommand = "HOLDRIGHTSHORT";
                 if(op == 35 || op == 36) {
@@ -1201,7 +1197,6 @@ public class FountainSimController implements Initializable {
                 mod6sweep1.getTransforms().clear();
                 mod7sweep1.getTransforms().clear();
             }
-
             if(op == 39 || op == 40) {
                 mod1sweep2.getTransforms().clear();
                 mod2sweep2.getTransforms().clear();
@@ -1239,13 +1234,13 @@ public class FountainSimController implements Initializable {
                 rightSweepSpeed = 4.0;
             }
         }
-        if (actionsList.contains("ADAGIO")) {
+        else if (actionsList.contains("ADAGIO")) {
             leftSweepTimeline.setRate(0.5);
             leftSweepSpeed = 3.0;
             rightSweepTimeline.setRate(0.5);
             rightSweepSpeed = 3.0;
         }
-        if (actionsList.contains("ANDANTE")) {
+        else if (actionsList.contains("ANDANTE")) {
             if(op == 38 || op == 40) {
                 leftSweepTimeline.setRate(0.8);
                 leftSweepSpeed = 2.5;
@@ -1255,13 +1250,13 @@ public class FountainSimController implements Initializable {
                 rightSweepSpeed = 2.5;
             }
         }
-        if (actionsList.contains("MODERATO")) {
+        else if (actionsList.contains("MODERATO")) {
             leftSweepTimeline.setRate(1.0);
             leftSweepSpeed = 1.0;
             rightSweepTimeline.setRate(1.0);
             rightSweepSpeed = 1.0;
         }
-        if (actionsList.contains("ALLEGRETO")) {
+        else if (actionsList.contains("ALLEGRETO")) {
             if(op == 38 || op == 40) {
                 leftSweepTimeline.setRate(1.3);
                 leftSweepSpeed = 1.8;
@@ -1271,13 +1266,13 @@ public class FountainSimController implements Initializable {
                 rightSweepSpeed = 1.8;
             }
         }
-        if (actionsList.contains("ALLEGRO")) {
+        else if (actionsList.contains("ALLEGRO")) {
             leftSweepTimeline.setRate(1.5);
             leftSweepSpeed = 1.6;
             rightSweepTimeline.setRate(1.5);
             rightSweepSpeed = 1.6;
         }
-        if (actionsList.contains("PRESTO")) {
+        else if (actionsList.contains("PRESTO")) {
             if(op == 38 || op == 40) {
                 leftSweepTimeline.setRate(1.8);
                 leftSweepSpeed = 1.5;
@@ -1324,23 +1319,19 @@ public class FountainSimController implements Initializable {
 
 		timeline.setCycleCount(1);
 		if (level == 0) {
-
 			kv2 = new KeyValue(bazooka1.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(bazooka1.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
 			kv4 = new KeyValue(bazooka2.endXProperty(), (10 + 1320 - (100 * level)), Interpolator.EASE_OUT);
 			kv5 = new KeyValue(bazooka2.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
-
 			kv7 = new KeyValue(bazooka3.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
 			kv8 = new KeyValue(bazooka3.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
 			kv9 = new KeyValue(bazooka4.endXProperty(), (10 + 1320 - (100 * level)), Interpolator.EASE_OUT);
 			kv10 = new KeyValue(bazooka4.endYProperty(), (5 + (47 * level)), Interpolator.EASE_OUT);
-
 			kv11 = new KeyValue(bazooka1.visibleProperty(), false);
 			kv12 = new KeyValue(bazooka2.visibleProperty(), false);
 			kv13 = new KeyValue(bazooka3.visibleProperty(), false);
 			kv14 = new KeyValue(bazooka4.visibleProperty(), false);
 		} else if (level == 1 || level == 2) {
-
 			bazooka1.setVisible(true);
 			bazooka2.setVisible(true);
 			bazooka3.setVisible(true);
@@ -1350,16 +1341,12 @@ public class FountainSimController implements Initializable {
 			kv3 = new KeyValue(bazooka1.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
 			kv4 = new KeyValue(bazooka2.endXProperty(), (1310 - (100 * level)), Interpolator.EASE_OUT);
 			kv5 = new KeyValue(bazooka2.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
-
 			kv8 = new KeyValue(bazooka3.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
 			kv9 = new KeyValue(bazooka3.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
 			kv10 = new KeyValue(bazooka4.endXProperty(), (1310 - (100 * level)), Interpolator.EASE_OUT);
 			kv11 = new KeyValue(bazooka4.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
-
 		}
-
 		else {
-
 			bazooka1.setVisible(true);
 			bazooka2.setVisible(true);
 			bazooka3.setVisible(true);
@@ -1368,7 +1355,6 @@ public class FountainSimController implements Initializable {
 			kv3 = new KeyValue(bazooka1.endYProperty(), (10 + (47 * 2)), Interpolator.EASE_OUT);
 			kv4 = new KeyValue(bazooka2.endXProperty(), (1310 - (100 * 2)), Interpolator.EASE_OUT);
 			kv5 = new KeyValue(bazooka2.endYProperty(), (12 + (47 * 2)), Interpolator.EASE_OUT);
-
 			kv8 = new KeyValue(bazooka3.endXProperty(), (10 + (100 * level)), Interpolator.EASE_OUT);
 			kv9 = new KeyValue(bazooka3.endYProperty(), (10 + (47 * level)), Interpolator.EASE_OUT);
 			kv10 = new KeyValue(bazooka4.endXProperty(), (1310 - (100 * level)), Interpolator.EASE_OUT);
@@ -1413,8 +1399,28 @@ public class FountainSimController implements Initializable {
 		KeyValue kv28 = null;
 
 		timeline.setCycleCount(1);
-		if (level > 0.0) {
 
+        //We have no idea what the magic numbers do...
+        kv2 = new KeyValue(peacock1.endXProperty(), (689 + (102.2 * level)), Interpolator.EASE_OUT);
+        kv3 = new KeyValue(peacock1.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
+        kv4 = new KeyValue(peacock2.endXProperty(), (688 + (66.4 * level)), Interpolator.EASE_OUT);
+        kv5 = new KeyValue(peacock2.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
+        kv6 = new KeyValue(peacock3.endXProperty(), (683 + (38.4 * level)), Interpolator.EASE_OUT);
+        kv7 = new KeyValue(peacock3.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
+        kv8 = new KeyValue(peacock4.endXProperty(), (675 + (18 * level)), Interpolator.EASE_OUT);
+        kv9 = new KeyValue(peacock4.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
+        kv10 = new KeyValue(peacock5.endXProperty(), (665 + (0 * level)), Interpolator.EASE_OUT);
+        kv11 = new KeyValue(peacock5.endYProperty(), (40 + (40 * level)), Interpolator.EASE_OUT);
+        kv12 = new KeyValue(peacock6.endXProperty(), (655 + (-18 * level)), Interpolator.EASE_OUT);
+        kv13 = new KeyValue(peacock6.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
+        kv14 = new KeyValue(peacock7.endXProperty(), (647 + (-39.4 * level)), Interpolator.EASE_OUT);
+        kv15 = new KeyValue(peacock7.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
+        kv16 = new KeyValue(peacock8.endXProperty(), (643 + (-66.6 * level)), Interpolator.EASE_OUT);
+        kv17 = new KeyValue(peacock8.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
+        kv18 = new KeyValue(peacock9.endXProperty(), (642 + (-101.4 * level)), Interpolator.EASE_OUT);
+        kv19 = new KeyValue(peacock9.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
+
+		if (level > 0.0) {
 			peacock1.setVisible(true);
 			peacock2.setVisible(true);
 			peacock3.setVisible(true);
@@ -1424,54 +1430,8 @@ public class FountainSimController implements Initializable {
 			peacock7.setVisible(true);
 			peacock8.setVisible(true);
 			peacock9.setVisible(true);
-
-			kv2 = new KeyValue(peacock1.endXProperty(), (689 + (102.2 * level)), Interpolator.EASE_OUT);
-			kv3 = new KeyValue(peacock1.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
-
-			kv4 = new KeyValue(peacock2.endXProperty(), (688 + (66.4 * level)), Interpolator.EASE_OUT);
-			kv5 = new KeyValue(peacock2.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
-
-			kv6 = new KeyValue(peacock3.endXProperty(), (683 + (38.4 * level)), Interpolator.EASE_OUT);
-			kv7 = new KeyValue(peacock3.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
-
-			kv8 = new KeyValue(peacock4.endXProperty(), (675 + (18 * level)), Interpolator.EASE_OUT);
-			kv9 = new KeyValue(peacock4.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
-
-			kv10 = new KeyValue(peacock5.endXProperty(), (665 + (0 * level)), Interpolator.EASE_OUT);
-			kv11 = new KeyValue(peacock5.endYProperty(), (40 + (40 * level)), Interpolator.EASE_OUT);
-
-			kv12 = new KeyValue(peacock6.endXProperty(), (655 + (-18 * level)), Interpolator.EASE_OUT);
-			kv13 = new KeyValue(peacock6.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
-
-			kv14 = new KeyValue(peacock7.endXProperty(), (647 + (-39.4 * level)), Interpolator.EASE_OUT);
-			kv15 = new KeyValue(peacock7.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
-
-			kv16 = new KeyValue(peacock8.endXProperty(), (643 + (-66.6 * level)), Interpolator.EASE_OUT);
-			kv17 = new KeyValue(peacock8.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
-
-			kv18 = new KeyValue(peacock9.endXProperty(), (642 + (-101.4 * level)), Interpolator.EASE_OUT);
-			kv19 = new KeyValue(peacock9.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
-
+            //Magic numbers, I have no idea what they do...
 		} else {
-			kv2 = new KeyValue(peacock1.endXProperty(), (689 + (102.2 * level)), Interpolator.EASE_OUT);
-			kv3 = new KeyValue(peacock1.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
-			kv4 = new KeyValue(peacock2.endXProperty(), (688 + (66.4 * level)), Interpolator.EASE_OUT);
-			kv5 = new KeyValue(peacock2.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
-			kv6 = new KeyValue(peacock3.endXProperty(), (683 + (38.4 * level)), Interpolator.EASE_OUT);
-			kv7 = new KeyValue(peacock3.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
-			kv8 = new KeyValue(peacock4.endXProperty(), (675 + (18 * level)), Interpolator.EASE_OUT);
-			kv9 = new KeyValue(peacock4.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
-			kv10 = new KeyValue(peacock5.endXProperty(), (665 + (0 * level)), Interpolator.EASE_OUT);
-			kv11 = new KeyValue(peacock5.endYProperty(), (40 + (40 * level)), Interpolator.EASE_OUT);
-			kv12 = new KeyValue(peacock6.endXProperty(), (655 + (-18 * level)), Interpolator.EASE_OUT);
-			kv13 = new KeyValue(peacock6.endYProperty(), (37 + (39.6 * level)), Interpolator.EASE_OUT);
-			kv14 = new KeyValue(peacock7.endXProperty(), (647 + (-39.4 * level)), Interpolator.EASE_OUT);
-			kv15 = new KeyValue(peacock7.endYProperty(), (28 + (39.4 * level)), Interpolator.EASE_OUT);
-			kv16 = new KeyValue(peacock8.endXProperty(), (643 + (-66.6 * level)), Interpolator.EASE_OUT);
-			kv17 = new KeyValue(peacock8.endYProperty(), (17 + (36.6 * level)), Interpolator.EASE_OUT);
-			kv18 = new KeyValue(peacock9.endXProperty(), (642 + (-101.4 * level)), Interpolator.EASE_OUT);
-			kv19 = new KeyValue(peacock9.endYProperty(), (5 + (26 * level)), Interpolator.EASE_OUT);
-
 			kv20 = new KeyValue(peacock1.visibleProperty(), false);
 			kv21 = new KeyValue(peacock2.visibleProperty(), false);
 			kv22 = new KeyValue(peacock3.visibleProperty(), false);
@@ -1483,7 +1443,6 @@ public class FountainSimController implements Initializable {
 			kv28 = new KeyValue(peacock9.visibleProperty(), false);
 
 		}
-
 		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv19, kv20, kv21, kv22, kv23, kv24, kv25, kv26, kv27, kv28);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
@@ -1517,31 +1476,26 @@ public class FountainSimController implements Initializable {
 		if (level == 0) {
 			kv25 = new KeyValue(mod1sweep1.visibleProperty(), false);
 			kv26 = new KeyValue(mod1sweep2.visibleProperty(), false);
-
 			kv27 = new KeyValue(mod3sweep1.visibleProperty(), false);
 			kv28 = new KeyValue(mod3sweep2.visibleProperty(), false);
-
 			kv29 = new KeyValue(mod5sweep1.visibleProperty(), false);
 			kv30 = new KeyValue(mod5sweep2.visibleProperty(), false);
-
 			kv31 = new KeyValue(mod7sweep1.visibleProperty(), false);
 			kv32 = new KeyValue(mod7sweep2.visibleProperty(), false);
 		}
 
 		final KeyValue kv1 = new KeyValue(mod1sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		final KeyValue kv2 = new KeyValue(mod1sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
 		final KeyValue kv7 = new KeyValue(mod3sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		final KeyValue kv8 = new KeyValue(mod3sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
 		final KeyValue kv13 = new KeyValue(mod5sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		final KeyValue kv14 = new KeyValue(mod5sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
 		final KeyValue kv19 = new KeyValue(mod7sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		final KeyValue kv20 = new KeyValue(mod7sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
 
 		final KeyFrame kf = new KeyFrame(Duration.seconds(.5), kv1, kv2, kv7, kv8, kv13, kv14, kv14, kv19, kv20, kv25, kv26, kv27, kv28, kv29, kv30, kv31, kv32);
-		timeline.getKeyFrames().add(kf);
+
+        timeline.getKeyFrames().add(kf);
 		timeline.play();
 	}
 
@@ -1567,20 +1521,16 @@ public class FountainSimController implements Initializable {
 		if (level == 0) {
 			kv15 = new KeyValue(mod2sweep1.visibleProperty(), false);
 			kv16 = new KeyValue(mod2sweep2.visibleProperty(), false);
-
 			kv17 = new KeyValue(mod4sweep1.visibleProperty(), false);
 			kv18 = new KeyValue(mod4sweep2.visibleProperty(), false);
-
 			kv19 = new KeyValue(mod6sweep1.visibleProperty(), false);
 			kv20 = new KeyValue(mod6sweep2.visibleProperty(), false);
 		}
 
 		final KeyValue kv1 = new KeyValue(mod2sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		final KeyValue kv2 = new KeyValue(mod2sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
 		final KeyValue kv7 = new KeyValue(mod4sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		final KeyValue kv8 = new KeyValue(mod4sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
-
 		final KeyValue kv13 = new KeyValue(mod6sweep1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		final KeyValue kv14 = new KeyValue(mod6sweep2.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
 
@@ -1642,13 +1592,10 @@ public class FountainSimController implements Initializable {
 
 		kv1 = new KeyValue(rotate1.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv2 = new KeyValue(rotate2.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv7 = new KeyValue(rotate3.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv8 = new KeyValue(rotate4.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv13 = new KeyValue(rotate5.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv14 = new KeyValue(rotate6.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv19 = new KeyValue(rotate7.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 
 		final KeyFrame kf = new KeyFrame(Duration.seconds(leftSweepSpeed), kv1, kv2, kv7, kv8, kv13, kv14, kv19);
@@ -1708,18 +1655,14 @@ public class FountainSimController implements Initializable {
 
 		kv1 = new KeyValue(rotate1.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv2 = new KeyValue(rotate2.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv7 = new KeyValue(rotate3.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv8 = new KeyValue(rotate4.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv13 = new KeyValue(rotate5.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv14 = new KeyValue(rotate6.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv19 = new KeyValue(rotate7.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 
 		final KeyFrame kf = new KeyFrame(Duration.seconds(rightSweepSpeed), kv1, kv2, kv7, kv8, kv13, kv14, kv19);
 		rightSweepTimeline.getKeyFrames().add(kf);
-
 		rightSweepTimeline.play();
 	}
 
@@ -1772,13 +1715,10 @@ public class FountainSimController implements Initializable {
 
 		kv1 = new KeyValue(rotate1.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv2 = new KeyValue(rotate2.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv7 = new KeyValue(rotate3.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv8 = new KeyValue(rotate4.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv13 = new KeyValue(rotate5.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv14 = new KeyValue(rotate6.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv19 = new KeyValue(rotate7.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 
 		final KeyFrame kf = new KeyFrame(Duration.seconds(leftSweepSpeed), kv1, kv2, kv7, kv8, kv13, kv14, kv19);
@@ -1838,163 +1778,10 @@ public class FountainSimController implements Initializable {
 
 		kv1 = new KeyValue(rotate1.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv2 = new KeyValue(rotate2.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv7 = new KeyValue(rotate3.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv8 = new KeyValue(rotate4.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv13 = new KeyValue(rotate5.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 		kv14 = new KeyValue(rotate6.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
-		kv19 = new KeyValue(rotate7.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(rightSweepSpeed), kv1, kv2, kv7, kv8, kv13, kv14, kv19);
-		rightSweepTimeline.getKeyFrames().add(kf);
-
-		rightSweepTimeline.play();
-	}
-
-	/*
-	 * Unimplimented Method This method is meant to be called before each
-	 * sweeping action. It is supposed to take the sweeper and move it to the
-	 * initial start position of the new FCW. For example, 035-23, will have
-	 * both sweepers sweep from left long to right long. All sweeps/oscillations
-	 * work from the left to the right. This method will take the current angle
-	 * and move it to the left long position before it calls sweepLeftSweeps(ll,
-	 * rl). However, there currently is no way to find the angle of the animated
-	 * line. If a way to find that angle is found, all that has to be done is
-	 * put that in for double angle.
-	 */
-	public void smoothLeftSweeps(double leftLimit) {
-		leftSweepTimeline = new Timeline();
-		leftSweepTimeline.setCycleCount(1);
-		leftSweepTimeline.setAutoReverse(false);
-
-		// These are for the animations and hold actions
-		KeyValue kv1 = null;
-		KeyValue kv2 = null;
-		KeyValue kv7 = null;
-		KeyValue kv8 = null;
-		KeyValue kv13 = null;
-		KeyValue kv14 = null;
-		KeyValue kv19 = null;
-
-		// Makes sure that there are no current animations happening to the
-		// object
-		mod1sweep1.getTransforms().clear();
-		mod2sweep1.getTransforms().clear();
-		mod3sweep1.getTransforms().clear();
-		mod4sweep1.getTransforms().clear();
-		mod5sweep1.getTransforms().clear();
-		mod6sweep1.getTransforms().clear();
-		mod7sweep1.getTransforms().clear();
-
-		// The current angle of the line
-		double angle = 0;
-
-		// Creates a rotate object Rotate (X,Y,Z)
-		Rotate rotate1 = new Rotate(angle, mod1sweep1.getStartX(), mod1sweep1.getStartY());
-		Rotate rotate2 = new Rotate(angle, mod2sweep1.getStartX(), mod2sweep1.getStartY());
-		Rotate rotate3 = new Rotate(angle, mod3sweep1.getStartX(), mod3sweep1.getStartY());
-		Rotate rotate4 = new Rotate(angle, mod4sweep1.getStartX(), mod4sweep1.getStartY());
-		Rotate rotate5 = new Rotate(angle, mod5sweep1.getStartX(), mod5sweep1.getStartY());
-		Rotate rotate6 = new Rotate(angle, mod6sweep1.getStartX(), mod6sweep1.getStartY());
-		Rotate rotate7 = new Rotate(angle, mod7sweep1.getStartX(), mod7sweep1.getStartY());
-
-		// Tells the sweep that it needs to rotate
-		mod1sweep1.getTransforms().add(rotate1);
-		mod2sweep1.getTransforms().add(rotate2);
-		mod3sweep1.getTransforms().add(rotate3);
-		mod4sweep1.getTransforms().add(rotate4);
-		mod5sweep1.getTransforms().add(rotate5);
-		mod6sweep1.getTransforms().add(rotate6);
-		mod7sweep1.getTransforms().add(rotate7);
-
-		kv1 = new KeyValue(rotate1.angleProperty(), leftLimit, Interpolator.EASE_OUT);
-		kv2 = new KeyValue(rotate2.angleProperty(), leftLimit, Interpolator.EASE_OUT);
-
-		kv7 = new KeyValue(rotate3.angleProperty(), leftLimit, Interpolator.EASE_OUT);
-		kv8 = new KeyValue(rotate4.angleProperty(), leftLimit, Interpolator.EASE_OUT);
-
-		kv13 = new KeyValue(rotate5.angleProperty(), leftLimit, Interpolator.EASE_OUT);
-		kv14 = new KeyValue(rotate6.angleProperty(), leftLimit, Interpolator.EASE_OUT);
-
-		kv19 = new KeyValue(rotate7.angleProperty(), leftLimit, Interpolator.EASE_OUT);
-
-		final KeyFrame kf = new KeyFrame(Duration.seconds(2), kv1, kv2, kv7, kv8, kv13, kv14, kv14, kv19);
-		leftSweepTimeline.getKeyFrames().add(kf);
-		leftSweepTimeline.play();
-	}
-
-	/*
-	 * Unimplimented Method This method is meant to be called before each
-	 * sweeping action. It is supposed to take the sweeper and move it to the
-	 * initial start position of the new FCW. For example, 035-23, will have
-	 * both sweepers sweep from left long to right long. All sweeps/oscillations
-	 * work from the left to the right. This method will take the current angle
-	 * and move it to the left long position before it calls
-	 * sweepRightSweeps(ll, rl). However, there currently is no way to find the
-	 * angle of the animated line. If a way to find that angle is found, all
-	 * that has to be done is put that in for double angle.
-	 */
-	public void smoothRightSweeps(double leftLimit) {
-		double rightLimit = -leftLimit;
-		rightSweepTimeline = new Timeline();
-		if (MusicPaneController.getInstance().getMediaPlayer().statusProperty().getValue() == Status.PLAYING) {
-			rightSweepTimeline.setCycleCount(Animation.INDEFINITE);
-		} else {
-			rightSweepTimeline.setCycleCount(1);
-		}
-		rightSweepTimeline.setAutoReverse(false);
-
-		KeyValue kv1 = null;
-		KeyValue kv2 = null;
-		KeyValue kv7 = null;
-		KeyValue kv8 = null;
-		KeyValue kv13 = null;
-		KeyValue kv14 = null;
-		KeyValue kv19 = null;
-
-		mod1sweep2.setVisible(true);
-		mod2sweep2.setVisible(true);
-		mod3sweep2.setVisible(true);
-		mod4sweep2.setVisible(true);
-		mod5sweep2.setVisible(true);
-		mod6sweep2.setVisible(true);
-		mod7sweep2.setVisible(true);
-
-		mod1sweep2.getTransforms().clear();
-		mod2sweep2.getTransforms().clear();
-		mod3sweep2.getTransforms().clear();
-		mod4sweep2.getTransforms().clear();
-		mod5sweep2.getTransforms().clear();
-		mod6sweep2.getTransforms().clear();
-		mod7sweep2.getTransforms().clear();
-
-		Rotate rotate1 = new Rotate(leftLimit, mod1sweep2.getStartX(), mod1sweep2.getStartY());
-		Rotate rotate2 = new Rotate(leftLimit, mod2sweep2.getStartX(), mod2sweep2.getStartY());
-		Rotate rotate3 = new Rotate(leftLimit, mod3sweep2.getStartX(), mod3sweep2.getStartY());
-		Rotate rotate4 = new Rotate(leftLimit, mod4sweep2.getStartX(), mod4sweep2.getStartY());
-		Rotate rotate5 = new Rotate(leftLimit, mod5sweep2.getStartX(), mod5sweep2.getStartY());
-		Rotate rotate6 = new Rotate(leftLimit, mod6sweep2.getStartX(), mod6sweep2.getStartY());
-		Rotate rotate7 = new Rotate(leftLimit, mod7sweep2.getStartX(), mod7sweep2.getStartY());
-
-		mod1sweep2.getTransforms().add(rotate1);
-		mod2sweep2.getTransforms().add(rotate2);
-		mod3sweep2.getTransforms().add(rotate3);
-		mod4sweep2.getTransforms().add(rotate4);
-		mod5sweep2.getTransforms().add(rotate5);
-		mod6sweep2.getTransforms().add(rotate6);
-		mod7sweep2.getTransforms().add(rotate7);
-
-		kv1 = new KeyValue(rotate1.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-		kv2 = new KeyValue(rotate2.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
-		kv7 = new KeyValue(rotate3.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-		kv8 = new KeyValue(rotate4.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
-		kv13 = new KeyValue(rotate5.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-		kv14 = new KeyValue(rotate6.angleProperty(), rightLimit, Interpolator.EASE_OUT);
-
 		kv19 = new KeyValue(rotate7.angleProperty(), rightLimit, Interpolator.EASE_OUT);
 
 		final KeyFrame kf = new KeyFrame(Duration.seconds(rightSweepSpeed), kv1, kv2, kv7, kv8, kv13, kv14, kv19);
@@ -2051,8 +1838,7 @@ public class FountainSimController implements Initializable {
 			kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		}
-
-		if (level == 2.0) {
+		else if (level == 2.0) {
 			kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
@@ -2074,8 +1860,7 @@ public class FountainSimController implements Initializable {
 			kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		}
-
-		if (level == 3.0) {
+		else if (level == 3.0) {
 			kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
@@ -2097,8 +1882,7 @@ public class FountainSimController implements Initializable {
 			kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 		}
-
-		if (level == 4.0) {
+		else if (level == 4.0) {
 			kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
@@ -2120,8 +1904,7 @@ public class FountainSimController implements Initializable {
 			kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 		}
-
-		if (level == 5.0) {
+		else if (level == 5.0) {
 			kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
@@ -2186,8 +1969,7 @@ public class FountainSimController implements Initializable {
 			kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		}
-
-		if (level == 2.0) {
+		else if (level == 2.0) {
 			kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
@@ -2204,8 +1986,7 @@ public class FountainSimController implements Initializable {
 			kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 		}
-
-		if (level == 3.0) {
+		else if (level == 3.0) {
 			kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
@@ -2222,8 +2003,7 @@ public class FountainSimController implements Initializable {
 			kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 		}
-
-		if (level == 4.0) {
+        else if (level == 4.0) {
 			kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
@@ -2240,8 +2020,7 @@ public class FountainSimController implements Initializable {
 			kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 		}
-
-		if (level == 5.0) {
+        else if (level == 5.0) {
 			kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
@@ -2345,7 +2124,6 @@ public class FountainSimController implements Initializable {
 			kv46 = new KeyValue(mod7candle4.visibleProperty(), false);
 			kv47 = new KeyValue(mod7candle5.visibleProperty(), false);
 			kv48 = new KeyValue(mod7candle6.visibleProperty(), false);
-
 		}
 
 		final KeyValue kv1 = new KeyValue(mod1candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -3476,7 +3254,6 @@ public class FountainSimController implements Initializable {
 			kv40 = new KeyValue(mod6candle4.visibleProperty(), false);
 			kv41 = new KeyValue(mod6candle5.visibleProperty(), false);
 			kv42 = new KeyValue(mod6candle6.visibleProperty(), false);
-
 		}
 
 		final KeyValue kv1 = new KeyValue(mod2candle1.endYProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -3508,26 +3285,14 @@ public class FountainSimController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		assert fountainPane != null : "fx:id=\"fountainPane\" was not injected: check your FXML file 'fountainSim.fxml'.";
-		// assert ring1Rec != null :
-		// "fx:id=\"ring1Rec\" was not injected: check your FXML file 'fountainSim.fxml'.";
 		assert ring1Slider != null : "fx:id=\"ring1Slider\" was not injected: check your FXML file 'fountainSim.fxml'.";
-		// assert ring2Rec != null :
-		// "fx:id=\"ring2Rec\" was not injected: check your FXML file 'fountainSim.fxml'.";
-
-		assert ring2Slider != null : "fx:id=\"ring2Slider\" was not injected: check your FXML file 'fountainSim.fxml'.";
-		// assert ring3Rec != null :
-		// "fx:id=\"ring3Rec\" was not injected: check your FXML file 'fountainSim.fxml'.";
+        assert ring2Slider != null : "fx:id=\"ring2Slider\" was not injected: check your FXML file 'fountainSim.fxml'.";
 		assert ring3Slider != null : "fx:id=\"ring3Slider\" was not injected: check your FXML file 'fountainSim.fxml'.";
-		// assert ring4Rec != null :
-		// "fx:id=\"ring4Rec\" was not injected: check your FXML file 'fountainSim.fxml'.";
 		assert ring4Slider != null : "fx:id=\"ring4Slider\" was not injected: check your FXML file 'fountainSim.fxml'.";
 		assert ring5Level != null : "fx:id=\"ring5Level\" was not injected: check your FXML file 'fountainSim.fxml'.";
-		// assert ring5Rec != null :
-		// "fx:id=\"ring5Rec\" was not injected: check your FXML file 'fountainSim.fxml'.";
 		assert ring5Slider != null : "fx:id=\"ring5Slider\" was not injected: check your FXML file 'fountainSim.fxml'.";
 
 		instance = this;
-
 	}
 
     /**
@@ -3988,22 +3753,6 @@ public class FountainSimController implements Initializable {
 	public void setPeacock9(Line peacock9) {
 		this.peacock9 = peacock9;
 	}
-
-	// public Rectangle getFrontCurtain() {
-	// return frontCurtain;
-	// }
-	//
-	// public void setFrontCurtain(Rectangle frontCurtain) {
-	// this.frontCurtain = frontCurtain;
-	// }
-
-	// public Rectangle getBackCurtain() {
-	// return backCurtain;
-	// }
-	//
-	// public void setBackCurtain(Rectangle backCurtain) {
-	// this.backCurtain = backCurtain;
-	// }
 
 	public Line getMod1sweep1() {
 		return mod1sweep1;
