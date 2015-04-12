@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.input.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
 <?scenebuilder-stylesheet application.css?>
 
 <VBox fx:id="csGUI" maxHeight="-Infinity" maxWidth="-Infinity"
@@ -44,9 +39,7 @@
 								<KeyCodeCombination alt="UP" code="O"
 									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
-						</MenuItem>						
-<!--						<MenuItem fx:id="openCTLMenuItem" mnemonicParsing="false"
-							text="Open CTL" />-->
+						</MenuItem>
 						<SeparatorMenuItem mnemonicParsing="false" />
 						<MenuItem fx:id="saveCTLMenuItem" mnemonicParsing="true"
 							text="Save CTL File">
@@ -94,8 +87,6 @@
 						<MenuItem id="addChannelsMenuItem" fx:id="addChannelsMenuItem"
 							mnemonicParsing="false" onAction="#addChannels" text="Add Channels"
 							visible="true" />
-						<!--<MenuItem fx:id="setLagTimesMenuItem" mnemonicParsing="false"
-							onAction="#openLagTimeDialog" text="Set Lag Times" visible="false" />-->
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="View">
@@ -160,24 +151,6 @@
 						<HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-1.0"
 							prefHeight="15.0" prefWidth="1329.0" visible="true">
 							<children>
-								<!-- <Label maxWidth="-Infinity" minWidth="-Infinity"
-									prefWidth="60.0" text="Beat Marks:">
-									<font>
-										<Font name="System Bold Italic" size="10.0" />
-									</font>
-									<HBox.margin>
-										<Insets left="35.0" />
-									</HBox.margin>
-								</Label>
-								<ScrollPane fx:id="beatMarkScrollPane" content="$null"
-									fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hmax="100.0"
-									maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-									minWidth="-1.0" prefHeight="15.0" prefViewportHeight="15.0"
-									prefViewportWidth="1229.0" prefWidth="1229.0" vbarPolicy="NEVER">
-									<HBox.margin>
-										<Insets left="10.0" />
-									</HBox.margin>
-								</ScrollPane> -->
 							</children>
 							<padding>
 								<Insets />

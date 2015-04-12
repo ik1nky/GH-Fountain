@@ -12,9 +12,8 @@
 .slider#time .thumb {
     -fx-background-image: url("../../resources/redline.png");
     -fx-padding: 7;
-
+    -fx-font-size: 100px;
 }
 .slider .thumb{
-
     -fx-background-image :url("../../resources/blueline.png");
 }
