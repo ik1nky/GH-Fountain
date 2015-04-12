@@ -161,10 +161,6 @@ public class TimelineController implements Initializable {
 	public void delete(int timeIndex, int channelIndex, int length, boolean first) {
 		if (first) {
 			lightRecArray[timeIndex][channelIndex].setFill(Color.LIGHTGRAY);
-			if (timeline.getChannelColorMap().containsKey(channelIndex)) {
-				// tgetChannelColorMaptGtfoMap().get(row).remove(row,
-				// value);//TODO ask frank about this
-			}
 			FCW off = new FCW(channelAddresses[channelIndex], 0);
 			lightRecArray[timeIndex][channelIndex].setFill(Color.LIGHTGRAY);
 			timeline.setLightFcw(off, timeIndex, timeIndex + length);// not sure
@@ -222,11 +218,8 @@ public class TimelineController implements Initializable {
 					for (int j = 0; j < copyArray[i].length; j++) {
 						copyArray[i][j] = new Rectangle();
 						copyArray[i][j].setFill(lightRecArray[startTimeIndex + i][startLabelIndex + j].getFill());
-						lightRecArray[startTimeIndex + i][startLabelIndex + j].setFill(Color.LIGHTGRAY); // TODO
-						// use
-						// delete()
-						// here
-						// instead
+						lightRecArray[startTimeIndex + i][startLabelIndex + j].setFill(Color.LIGHTGRAY);
+						// TODO use delete() here instead
 						lightRecArray[startTimeIndex + i][startLabelIndex + j].setOpacity(1);
 					}
 				}
@@ -302,7 +295,6 @@ public class TimelineController implements Initializable {
 		setLabelNames(new String[] { "Module1", "Module2", "Module3", "Module4", "Module5", "Module6", "Module7", "PeacockAB", "FrontCurtain", "BackCurtain" });
 		setLabelGridPane(getLabelNames());
 		setTimelineGridPane();
-		// ChoreographyController.getInstance().setBeatMarkGridPane();
 	}
 
 	public void disableCopyPaste() {
@@ -379,7 +371,6 @@ public class TimelineController implements Initializable {
 	 * Sets channelAddresses based on input parameter
 	 */
 	public void setChannelAddresses(Set<Integer> channelAddressesSet) {
-
 		// TODO is okChannels even used for useful things?
 		ArrayList<Integer> okChannels = new ArrayList<>();
 		for (Integer query : channelAddressesSet) {
@@ -415,9 +406,8 @@ public class TimelineController implements Initializable {
         Integer[] sort_by = {17,19,21,23,18,20,22};
         int count = 0;
         int address_space = 0;
-        //Implement a button for this
+        //TODO Implement a button for this
         if(sort_by_group) {
-
             for (int i = 0; i < sort_by.length; i++) {
                 for (int j = 0; j < addresses.length; j++) {
                     if (addresses[j] == sort_by[i]) {
@@ -766,64 +756,6 @@ public class TimelineController implements Initializable {
 			else if (channel == 190 || channel == 194 || channel == 195) {
 				FountainSimController.getInstance().getSpoutRec().setFill(color);
 			}
-			else if (channel == 49 && !color.equals(Color.LIGHTGRAY)) {
-				// Module A
-				setMod1(color);
-				setMod3(color);
-				setMod5(color);
-				setMod7(color);
-			}
-			else if (channel == 50 && !color.equals(Color.LIGHTGRAY)) {
-				// Module B
-				setMod2(color);
-				setMod4(color);
-				setMod6(color);
-			}
-			else if ((channel == 51 || channel == 250) && !color.equals(Color.LIGHTGRAY)) {
-				setMod1(color);
-				setMod2(color);
-				setMod3(color);
-				setMod4(color);
-				setMod5(color);
-				setMod6(color);
-				setMod7(color);
-				setPeacockA(color);
-				setPeacockB(color);
-			}
-			else if (channel == 160) {
-				FountainSimController.getInstance().getFrontCurtain2().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain4().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain6().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain8().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain10().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain12().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain14().setFill(color);
-
-				FountainSimController.getInstance().getFrontCurtain2().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain4().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain6().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain8().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain10().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain12().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain14().setStroke(color);
-			}
-			else if (channel == 170) {
-				FountainSimController.getInstance().getFrontCurtain1().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain3().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain5().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain7().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain9().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain11().setFill(color);
-				FountainSimController.getInstance().getFrontCurtain13().setFill(color);
-
-				FountainSimController.getInstance().getFrontCurtain1().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain3().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain5().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain7().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain9().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain11().setStroke(color);
-				FountainSimController.getInstance().getFrontCurtain13().setStroke(color);
-			}
 			else if (channel == 161) {
 				FountainSimController.getInstance().getFrontCurtain14().setFill(color);
 				FountainSimController.getInstance().getFrontCurtain14().setStroke(color);
@@ -879,36 +811,6 @@ public class TimelineController implements Initializable {
 			else if (channel == 177) {
 				FountainSimController.getInstance().getFrontCurtain1().setFill(color);
 				FountainSimController.getInstance().getFrontCurtain1().setStroke(color);
-			}
-			else if (channel == 210) {
-				FountainSimController.getInstance().getBackCurtain2().setFill(color);
-				FountainSimController.getInstance().getBackCurtain4().setFill(color);
-				FountainSimController.getInstance().getBackCurtain6().setFill(color);
-				FountainSimController.getInstance().getBackCurtain10().setFill(color);
-				FountainSimController.getInstance().getBackCurtain12().setFill(color);
-				FountainSimController.getInstance().getBackCurtain14().setFill(color);
-
-				FountainSimController.getInstance().getBackCurtain2().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain4().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain6().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain10().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain12().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain14().setStroke(color);
-			}
-			else if (channel == 220) {
-				FountainSimController.getInstance().getBackCurtain1().setFill(color);
-				FountainSimController.getInstance().getBackCurtain3().setFill(color);
-				FountainSimController.getInstance().getBackCurtain5().setFill(color);
-				FountainSimController.getInstance().getBackCurtain9().setFill(color);
-				FountainSimController.getInstance().getBackCurtain11().setFill(color);
-				FountainSimController.getInstance().getBackCurtain13().setFill(color);
-
-				FountainSimController.getInstance().getBackCurtain1().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain3().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain5().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain9().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain11().setStroke(color);
-				FountainSimController.getInstance().getBackCurtain13().setStroke(color);
 			}
 			else if (channel == 211) {
 				FountainSimController.getInstance().getBackCurtain14().setFill(color);
@@ -1143,7 +1045,6 @@ public class TimelineController implements Initializable {
 			}
 		}
 		throw new IllegalArgumentException("Channel doesn't exist " + channel);
-		// return 0;
 	}
 
 	private String waterTLWords(String badName) {
@@ -1387,10 +1288,6 @@ public class TimelineController implements Initializable {
 		for (Integer i : newAddresses) {
 			gtfo.putIfAbsent(i, new ConcurrentSkipListMap<>());
 		}
-	}
-
-	public void fireSubmapToSim() {
-		timeline.sendSubmapToSim(MusicPaneController.getInstance().getTenthsTime());
 	}
 
 	public void disposeTimeline() {
