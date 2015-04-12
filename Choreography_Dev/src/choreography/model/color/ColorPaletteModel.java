@@ -57,6 +57,9 @@ public class ColorPaletteModel{
         colors[13]=Color.web(ColorPaletteEnum.LIGHTORANGE.getColor());
         colors[14]=Color.web(ColorPaletteEnum.LIGHTGREEN.getColor());
         colors[15]=Color.web(ColorPaletteEnum.CYAN.getColor());
+
+        //This piece would be used to implement the custom colors defined from the user
+        //You would also need to use ColorPalletEnum to actually place the color in the the box
         colors[16]=Color.web(ColorPaletteEnum.WHITE.getColor());
         colors[17]=Color.web(ColorPaletteEnum.WHITE.getColor());
         colors[18]=Color.web(ColorPaletteEnum.WHITE.getColor());
@@ -97,7 +100,6 @@ public class ColorPaletteModel{
     	catch(ArrayIndexOutOfBoundsException e){
     		return null;
     	}
-        
     }
 
     /**
@@ -153,8 +155,6 @@ public class ColorPaletteModel{
      * @return
      */
     public int checkColor(Paint grid) {
-    	int index = 0;
-    	
     	// Creates a hex representation of the color
     	Color c = (Color) grid;
     	String hexGrid = String.format( "#%02X%02X%02X",
@@ -163,7 +163,7 @@ public class ColorPaletteModel{
     	            (int)( c.getBlue() * 255 ) );
     	
     	// Compares to hex representation of all colors in the palette
-    	for(index=0;index < 32; index++) {
+    	for(int index=0;index < 32; index++) {
     		String hexIndex = String.format( "#%02X%02X%02X",
     	            (int)( colors[index].getRed() * 255 ),
     	            (int)( colors[index].getGreen() * 255 ),

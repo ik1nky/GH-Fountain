@@ -39,19 +39,10 @@ import javafx.util.Callback;
 public class LagTimeGUIController implements Initializable {
     @FXML
     private TableView<LagTime> lagTimeTable;
-    @FXML
     private TableColumn<LagTime, String> delayName;
-    @FXML
     private TableColumn<LagTime, Double> delayTime;
-    @FXML
-    private Button cancelButton;
-    @FXML
-    private Button okButton;
-    @FXML
-    private Button addButton;
-    @FXML
+    private Button cancelButton, okButton, addButton;
     private TextField addDelayName;
-    @FXML
     private TextField addDelayTime;
     private Stage dialogStage;
 

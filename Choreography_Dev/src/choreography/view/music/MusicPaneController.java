@@ -134,7 +134,6 @@ public class MusicPaneController {
 		TimelineController.getInstance().fireSliderChangeEvent();
 		FountainSimController.getInstance().pauseLeftSweep();
 		FountainSimController.getInstance().pauseRightSweep();
-		// FountainSimController.getInstance().disposeBuffer();
 	}
 
 	/**
@@ -144,7 +143,6 @@ public class MusicPaneController {
 	 */
 	@FXML
 	void playSong(ActionEvent event) {
-
 		// Makes sure the music is not already playing
 		if (mediaPlayer.statusProperty().getValue() == Status.PAUSED || mediaPlayer.statusProperty().getValue() == Status.STOPPED || mediaPlayer.statusProperty().getValue() == Status.READY) {
 			mediaPlayer.play();
@@ -156,7 +154,6 @@ public class MusicPaneController {
 			ChoreographyController.getInstance().startPollingColorAlgorithm();
 			SlidersController.getInstance().resetAllSliders();
 		}
-
 		// Calls the pause method and updates the button text
 		if (mediaPlayer.statusProperty().getValue() == Status.PLAYING) {
 			pauseSong(event);
@@ -266,39 +263,24 @@ public class MusicPaneController {
 
 		try {
 			AudioWaveformCreator awc = new AudioWaveformCreator(url, "out.png");
-
 			setTime(awc.getTime());
-
 			DecimalFormat f = new DecimalFormat("0.0");
 
-           // /*original
 			roundedTime = Double.parseDouble(f.format(getTime()));
 			setTime(getTimeFactor() * Double.parseDouble(f.format(getTime())));
 			SONG_TIME = (int) getTime();
             System.err.println("song time"+getTime());
 			TimelineController.getInstance().getTimeline().setTime(SONG_TIME);
-			//*/
-//            SONG_TIME = (int) getTime();
-//            roundedTime = Double.parseDouble(f.format(SONG_TIME));
-//            setTime(getTimeFactor() * Double.parseDouble(f.format(SONG_TIME)));
-//            TimelineController.getInstance().getTimeline().setTime(SONG_TIME);
-
 			TimelineController.getInstance().setTimelineGridPane();
 			TimelineController.getInstance().setWaterGridPane();
 			//ChoreographyController.getInstance().setBeatMarkGridPane();
 
-           // /*original
-//			numberLine.setMinWidth(getTime() * 26);
-//			numberLine.setPrefWidth(getTime() * 26);
-			//*/
             numberLine.setMinWidth(SONG_TIME * 26);
             numberLine.setPrefWidth(SONG_TIME * 26);
 
 			numberLine.setUpperBound(roundedTime);
 			numberLine.setVisible(true);
             songProgress.setText("0:00.0/" + roundedTime);
-
-
 		} catch (Exception ex) {
 
 			ex.printStackTrace();
@@ -315,7 +297,6 @@ public class MusicPaneController {
 			getAllMusic(file2);
 			music2.setDirectoryFile(file2.getAbsolutePath());
 		}
-
 		loadMusicFile(file2);
 
 		String source = new File(music2.getDirectoryFile()).toURI().toString();
@@ -334,22 +315,25 @@ public class MusicPaneController {
      */
 	public void updateProgress() {
 		final DecimalFormat f = new DecimalFormat("0.0");
-
 		try {
+
+			//The next couple of lines are necessary because JavaFX does not return a time in min and second format so
+			//we had to write a 'hack' to create it
+
             String timeInFormat = "";
+			String finalTimeInFormat;
+			String inSeconds;
+			int finalInMinutes = 0;
             int inMinutes = 0;
 
             for(int i = 0; i < (int) mediaPlayer.getCurrentTime().toMinutes(); i++) {
                 inMinutes++;
             }
-			String inSeconds = f.format((mediaPlayer.getCurrentTime().toSeconds() - inMinutes * 60));
+			inSeconds = f.format((mediaPlayer.getCurrentTime().toSeconds() - inMinutes * 60));
 			if(inSeconds.length() == 3) {
 				inSeconds = "0" + inSeconds;
 			}
 			timeInFormat = inMinutes + ":" + inSeconds;
-
-            String finalTimeInFormat;
-            int finalInMinutes = 0;
 
             for(int i = 0; i < (int) mediaPlayer.getTotalDuration().toMinutes(); i++) {
                 finalInMinutes++;
@@ -367,26 +351,7 @@ public class MusicPaneController {
 			double totalTime = mediaPlayer.getTotalDuration().toSeconds();
 			double currentTime = mediaPlayer.getCurrentTime().toSeconds();
 			double percentComplete = currentTime / totalTime * 100;
-			
-			/*
-			 * javafx scroll panes do not operate in an intuitive manner.
-			 * The "node" shown (in this case the light timeline) is shown proportional
-			 * to where we are at on the scroll pane. Check out
-			 * https://docs.oracle.com/javafx/2/api/javafx/scene/control/ScrollPane.html
-			 * under hvalue for a better explanation.
-			 * 
-			 * The 1.51 represents the amount of the node(light timeline) that can be seen
-			 * at one time(1.51%). This value might change depending on resolution.
-			 * Therefore the 1.51 is a hacky fix that alleviates and hides the problem,
-			 * but doesn't totally fix it.
-			 */
-			//double hValue = (100 * percentComplete) / (100 - 1.51);
-            //double hValue = (100 * percentComplete) / (100 - 1.51);
-            //Double maxPort = TimelineController.getInstance().getScrollPane().getHmax();;
-            //Double widthPort = TimelineController.getInstance().getScrollPane().getViewportBounds().getHeight();
-            //System.err.println("percent visible " + widthPort/maxPort + "\t" + maxPort + "\t" + widthPort);
 
-            //Double hValue = 100*percentComplete/(100 - (widthPort/maxPort));
             Double hValue = percentComplete;
 
 			TimelineController.getInstance().getScrollPane().setHvalue(hValue);
