@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?scenebuilder-stylesheet ../application.css?>
 
-<HBox fx:id="slidersPane" maxHeight="-Infinity" prefHeight="150.0" prefWidth="1190.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="choreography.view.sliders.SlidersController">
+<HBox fx:id="slidersPane" maxHeight="-Infinity" prefHeight="181.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="choreography.view.sliders.SlidersController">
   <!-- TODO Add Nodes -->
   <children>
-    <HBox id="HBox" alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" spacing="5.0" HBox.hgrow="ALWAYS">
+    <HBox id="HBox" alignment="CENTER" maxHeight="-Infinity" prefHeight="159.0" prefWidth="713.0" spacing="5.0" HBox.hgrow="ALWAYS">
       <children>
         <GridPane id="GridPane" HBox.hgrow="ALWAYS">
           <children>
@@ -155,8 +156,14 @@
           </rowConstraints>
         </GridPane>
       </children>
+         <padding>
+            <Insets top="15.0" />
+         </padding>
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
     </HBox>
-    <HBox id="HBox" alignment="CENTER" maxHeight="-Infinity" prefHeight="150.0" spacing="5.0" HBox.hgrow="ALWAYS">
+    <HBox id="HBox" alignment="CENTER" maxHeight="-Infinity" prefHeight="159.0" prefWidth="185.0" spacing="5.0" HBox.hgrow="ALWAYS">
       <children>
         <GridPane id="GridPane">
           <children>
@@ -188,7 +195,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
           </rowConstraints>
         </GridPane>
-        <GridPane id="GridPane" alignment="CENTER" gridLinesVisible="false" HBox.hgrow="SOMETIMES">
+        <GridPane id="GridPane" alignment="CENTER" gridLinesVisible="false">
           <children>
             <Slider id="Peacock" fx:id="pk" majorTickUnit="5.0" max="5.0" minorTickCount="4" orientation="VERTICAL" prefHeight="233.0" prefWidth="45.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="0.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
             <Label text="Peacock" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.rowSpan="2147483647" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
@@ -234,8 +241,14 @@
           </rowConstraints>
         </GridPane>
       </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets top="15.0" />
+         </padding>
     </HBox>
-    <HBox maxHeight="-Infinity" prefHeight="150.0" prefWidth="250.0" HBox.hgrow="NEVER">
+    <HBox maxHeight="-Infinity" prefHeight="150.0" prefWidth="184.0" HBox.hgrow="NEVER">
       <children>
         <fx:include source="../specialOperations/Specialoperations.fxml" />
         <!--fx:include source="../specialOperations/Specialoperations.fxml" /-->

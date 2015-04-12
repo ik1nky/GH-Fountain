@@ -17,3 +17,6 @@
 .slider .thumb{
     -fx-background-image :url("../../resources/blueline.png");
 }
+.label#fcwOutput{
+    -fx-text-fill: #FFC800;
+}

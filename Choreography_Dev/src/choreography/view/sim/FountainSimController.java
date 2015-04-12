@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
+
+import choreography.view.ChoreographyController;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.FillTransition;
@@ -124,11 +126,13 @@ public class FountainSimController implements Initializable {
 	 * @param fcws
 	 */
 	public void drawFcw(ArrayList<FCW> fcws) {
+        String comment = "";
 		if (fcws != null) {
 			Iterator<FCW> it = fcws.iterator();
 			while (it.hasNext()) {
 				double lagTime = 0;
 				FCW f = it.next();
+                comment += " " + f.toString();
 				String[] actions = FCWLib.getInstance().reverseLookupData(f);
 				double fading [][] = new double [7][3];
 				Color crossFading[][] = new Color [7][2];
@@ -158,6 +162,8 @@ public class FountainSimController implements Initializable {
                 }
                 else if(addr == 99){
                     choice = 5; // Reset
+                }else if(addr == 48){
+                    choice = 6;
                 }
 
                 switch(choice){
@@ -177,10 +183,25 @@ public class FountainSimController implements Initializable {
                         resetAll();
                         clearSweeps();
                         break;
+                    case 6:
+                        if(f.getData() >= 48){
+                            drawMultiB(FCWLib.getInstance().reverseGetLevel(f),.1);
+                            drawMultiA(FCWLib.getInstance().reverseGetLevel(f),.1);
+                        }else if(f.getData() >= 32){
+                            drawMultiB(FCWLib.getInstance().reverseGetLevel(f),.1);
+                            drawMultiA(0,.1);
+                        }else if(f.getData() >= 16){
+                            drawMultiA(FCWLib.getInstance().reverseGetLevel(f), .1);
+                            drawMultiB(0,.1);
+                        }
+
+                        System.err.println("Got 48");
+                        break;
                 }
 
 			}
 		}
+        ChoreographyController.getInstance().setfcwOutput(comment);
 	}
 
     // Animation controller for the rings. The ring to be drawn is determined by op
@@ -1816,7 +1837,7 @@ public class FountainSimController implements Initializable {
 		KeyValue kv19 = null;
 		KeyValue kv20 = null;
 
-		if (level == 1.0 || level == 0.0) {
+		if (level == 1 || level == 0) {
 			kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -1837,8 +1858,9 @@ public class FountainSimController implements Initializable {
 			kv18 = new KeyValue(mod3ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+            drawSweepsA(0, .1);
 		}
-		else if (level == 2.0) {
+		else if (level == 2) {
 			kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
@@ -1859,8 +1881,9 @@ public class FountainSimController implements Initializable {
 			kv18 = new KeyValue(mod3ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+            drawSweepsA(0, .1);
 		}
-		else if (level == 3.0) {
+		else if (level == 3) {
 			kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
@@ -1881,8 +1904,9 @@ public class FountainSimController implements Initializable {
 			kv18 = new KeyValue(mod3ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            drawSweepsA(0, .1);
 		}
-		else if (level == 4.0) {
+		else if (level == 4) {
 			kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
@@ -1903,8 +1927,9 @@ public class FountainSimController implements Initializable {
 			kv18 = new KeyValue(mod3ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            drawSweepsA(0, .1);
 		}
-		else if (level == 5.0) {
+		else if (level == 5) {
 			kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
@@ -1925,7 +1950,31 @@ public class FountainSimController implements Initializable {
 			kv18 = new KeyValue(mod3ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
-		}
+            drawSweepsA(0, .1);
+		}else if (level == 6) {
+            level -= 1;
+            kv1 = new KeyValue(mod1ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
+            kv2 = new KeyValue(mod3ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
+            kv3 = new KeyValue(mod5ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
+            kv4 = new KeyValue(mod7ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
+            kv5 = new KeyValue(mod1ring2.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
+            kv6 = new KeyValue(mod3ring2.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
+            kv7 = new KeyValue(mod5ring2.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
+            kv8 = new KeyValue(mod7ring2.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
+            kv9 = new KeyValue(mod1ring3.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
+            kv10 = new KeyValue(mod3ring3.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
+            kv11 = new KeyValue(mod5ring3.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
+            kv12 = new KeyValue(mod7ring3.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
+            kv13 = new KeyValue(mod1ring4.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
+            kv14 = new KeyValue(mod3ring4.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
+            kv15 = new KeyValue(mod5ring4.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
+            kv16 = new KeyValue(mod7ring4.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
+            kv17 = new KeyValue(mod1ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            kv18 = new KeyValue(mod3ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            kv19 = new KeyValue(mod5ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            kv20 = new KeyValue(mod7ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            drawSweepsA(level, .1);
+        }
 		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv4, kv5, kv6, kv7, kv8, kv9, kv10, kv11, kv12, kv13, kv14, kv15, kv16, kv17, kv18, kv19, kv20);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
@@ -1952,7 +2001,7 @@ public class FountainSimController implements Initializable {
 		KeyValue kv18 = null;
 		KeyValue kv19 = null;
 
-		if (level == 1.0 || level == 0.0) {
+		if (level == 1 || level == 0) {
 			kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
@@ -1968,8 +2017,9 @@ public class FountainSimController implements Initializable {
 			kv17 = new KeyValue(mod2ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+            drawSweepsB(0, .1);
 		}
-		else if (level == 2.0) {
+		else if (level == 2) {
 			kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
@@ -1985,8 +2035,9 @@ public class FountainSimController implements Initializable {
 			kv17 = new KeyValue(mod2ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * level)), Interpolator.EASE_OUT);
+            drawSweepsB(0, .1);
 		}
-		else if (level == 3.0) {
+		else if (level == 3) {
 			kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
@@ -2002,8 +2053,9 @@ public class FountainSimController implements Initializable {
 			kv17 = new KeyValue(mod2ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            drawSweepsB(0, .1);
 		}
-        else if (level == 4.0) {
+        else if (level == 4) {
 			kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
@@ -2019,8 +2071,9 @@ public class FountainSimController implements Initializable {
 			kv17 = new KeyValue(mod2ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            drawSweepsB(0, .1);
 		}
-        else if (level == 5.0) {
+        else if (level == 5) {
 			kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
 			kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
 			kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
@@ -2036,7 +2089,26 @@ public class FountainSimController implements Initializable {
 			kv17 = new KeyValue(mod2ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
 			kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
-		}
+            drawSweepsB(0, .1);
+		}else if (level == 6) {
+            level -= 1;
+            kv1 = new KeyValue(mod2ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
+            kv2 = new KeyValue(mod4ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
+            kv3 = new KeyValue(mod6ring1.heightProperty(), ((35 * (level - 4))), Interpolator.EASE_OUT);
+            kv5 = new KeyValue(mod2ring2.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
+            kv6 = new KeyValue(mod4ring2.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
+            kv7 = new KeyValue(mod6ring2.heightProperty(), ((35 * (level - 3))), Interpolator.EASE_OUT);
+            kv9 = new KeyValue(mod2ring3.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
+            kv10 = new KeyValue(mod4ring3.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
+            kv11 = new KeyValue(mod6ring3.heightProperty(), ((35 * (level - 2))), Interpolator.EASE_OUT);
+            kv13 = new KeyValue(mod2ring4.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
+            kv14 = new KeyValue(mod4ring4.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
+            kv15 = new KeyValue(mod6ring4.heightProperty(), ((35 * (level - 1))), Interpolator.EASE_OUT);
+            kv17 = new KeyValue(mod2ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            kv18 = new KeyValue(mod4ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            kv19 = new KeyValue(mod6ring5.heightProperty(), ((35 * (level - 0))), Interpolator.EASE_OUT);
+            drawSweepsB(level, .1);
+        }
 		final KeyFrame kf = new KeyFrame(Duration.seconds(lagTime), kv1, kv2, kv3, kv5, kv6, kv7, kv9, kv10, kv11, kv13, kv14, kv15, kv17, kv18, kv19);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();

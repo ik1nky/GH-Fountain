@@ -750,6 +750,7 @@ public class TimelineController implements Initializable {
 				setPeacockA(color);
 				setPeacockB(color);
 			}
+
 			else if (channel == 200) {
 				setFrontcurtain(color);
 			}
