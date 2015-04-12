@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -7,98 +8,72 @@
 <?import javafx.scene.layout.*?>
 <?scenebuilder-stylesheet application.css?>
 
-<VBox fx:id="csGUI" maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" prefHeight="810.0" prefWidth="1329.0" spacing="0.0"
-	style="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="choreography.view.ChoreographyController">
+<VBox fx:id="csGUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="912.0" prefWidth="1329.0" spacing="0.0" style="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="choreography.view.ChoreographyController">
 	<children>
-		<MenuBar maxHeight="-Infinity" minHeight="-Infinity"
-			prefHeight="24.0" VBox.vgrow="NEVER">
+		<MenuBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="34.0" prefWidth="1329.0" VBox.vgrow="NEVER">
 			<menus>
 				<Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
 					<items>
-						<MenuItem fx:id="newItemMenuItem" mnemonicParsing="false"
-							text="New">
+						<MenuItem fx:id="newItemMenuItem" mnemonicParsing="false" text="New">
 							<accelerator>
-								<KeyCodeCombination alt="UP" code="N"
-									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+								<KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
 						</MenuItem>
-						<MenuItem fx:id="openGhmfMenuItem" mnemonicParsing="false"
-							onAction="#openGhmfFile" text="Open GHMF">
+						<MenuItem fx:id="openGhmfMenuItem" mnemonicParsing="false" onAction="#openGhmfFile" text="Open GHMF">
 							<accelerator>
-								<KeyCodeCombination alt="UP" code="G"
-									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+								<KeyCodeCombination alt="UP" code="G" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
 						</MenuItem>							
-						<MenuItem fx:id="OpenColorMapMenuItem" mnemonicParsing="false"
-							onAction="#openMapFileMenuItemHandler" text="Open Color Map" />
-						<MenuItem fx:id="openMusicMenuItem" mnemonicParsing="false"
-							text="Open Music...">
+						<MenuItem fx:id="OpenColorMapMenuItem" mnemonicParsing="false" onAction="#openMapFileMenuItemHandler" text="Open Color Map" />
+						<MenuItem fx:id="openMusicMenuItem" mnemonicParsing="false" text="Open Music...">
 							<accelerator>
-								<KeyCodeCombination alt="UP" code="O"
-									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+								<KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
 						</MenuItem>
 						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem fx:id="saveCTLMenuItem" mnemonicParsing="true"
-							text="Save CTL File">
+						<MenuItem fx:id="saveCTLMenuItem" mnemonicParsing="true" text="Save CTL File">
 							<accelerator>
-								<KeyCodeCombination alt="UP" code="C"
-									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+								<KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 
 							</accelerator>
 						</MenuItem>
-						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false"
-							text="Save GHMF">
+						<MenuItem fx:id="saveMenuItem" mnemonicParsing="false" text="Save GHMF">
 							<accelerator>
-								<KeyCodeCombination alt="UP" code="S"
-									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+								<KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
 						</MenuItem>
-						<MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false"
-							text="Save GHMF As…">
+						<MenuItem fx:id="saveAsMenuItem" mnemonicParsing="false" text="Save GHMF As…">
 							<accelerator>
-								<KeyCodeCombination alt="UP" code="S"
-									control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+								<KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
 							</accelerator>
 						</MenuItem>
-						<MenuItem fx:id="updateCtlMenuItem" mnemonicParsing="false"
-							text="Update Ctl File">
+						<MenuItem fx:id="updateCtlMenuItem" mnemonicParsing="false" text="Update Ctl File">
 							<accelerator>
-								<KeyCodeCombination alt="UP" code="U"
-									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+								<KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
 						</MenuItem>
 						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem fx:id="quitMenuItem" mnemonicParsing="false"
-							text="Quit">
+						<MenuItem fx:id="quitMenuItem" mnemonicParsing="false" text="Quit">
 							<accelerator>
-								<KeyCodeCombination alt="UP" code="Q"
-									control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+								<KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
 						</MenuItem>
 					</items>
 				</Menu>
 				<Menu fx:id="editMenu" mnemonicParsing="false" text="Edit">
 					<items>
-						<CheckMenuItem fx:id="advancedCheckMenuItem"
-							mnemonicParsing="false" text="Advanced Function" />
-						<MenuItem id="addChannelsMenuItem" fx:id="addChannelsMenuItem"
-							mnemonicParsing="false" onAction="#addChannels" text="Add Channels"
-							visible="true" />
+						<CheckMenuItem fx:id="advancedCheckMenuItem" mnemonicParsing="false" text="Advanced Function" />
+						<MenuItem id="addChannelsMenuItem" fx:id="addChannelsMenuItem" mnemonicParsing="false" onAction="#addChannels" text="Add Channels" visible="true" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="View">
 					<items>
-						<MenuItem fx:id="showSimulationMenuItem" mnemonicParsing="false"
-							text="Hide Simulation" >
+						<MenuItem fx:id="showSimulationMenuItem" mnemonicParsing="false" text="Hide Simulation">
 							<accelerator>
 								<KeyCodeCombination alt="UP" code="F11" control="UP" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
 						</MenuItem>
-						<MenuItem fx:id="splitSimulationMenuItem"
-							mnemonicParsing="false" text="Split Simulation">
+						<MenuItem fx:id="splitSimulationMenuItem" mnemonicParsing="false" text="Split Simulation">
 							<accelerator>
 								<KeyCodeCombination alt="UP" code="F12" control="UP" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
@@ -107,10 +82,8 @@
 				</Menu>
 				<Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
 					<items>
-						<MenuItem fx:id="aboutMenuItem" mnemonicParsing="false"
-							onAction="#aboutDialogueBox" text="About" />
-						<MenuItem mnemonicParsing="false" onAction="#userManual"
-							text="Help" >
+						<MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#aboutDialogueBox" text="About" />
+						<MenuItem mnemonicParsing="false" onAction="#userManual" text="Help">
 							<accelerator>
 								<KeyCodeCombination alt="UP" code="F1" control="UP" meta="UP" shift="UP" shortcut="UP" />
 							</accelerator>
@@ -127,29 +100,29 @@
 
 
 
-		<ScrollPane prefHeight="1000" maxHeight="-Infinity"
-			prefWidth="500" BorderPane.alignment="CENTER">
+		<ScrollPane maxHeight="-Infinity" prefHeight="873.0" prefWidth="1329.0" BorderPane.alignment="CENTER">
 			<content>
 
-				<VBox fx:id="vboxParent" maxHeight="-Infinity" minHeight="-Infinity"
-					minWidth="-Infinity" prefHeight="770.0" prefWidth="1300.0" spacing="10.0">
+				<VBox fx:id="vboxParent" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1300.0" spacing="10.0">
 					<children>
 
-						<Pane fx:id="simPane" maxHeight="-1.0" minHeight="-Infinity"
-							prefHeight="250.0" prefWidth="1190.0" style="-fx-background-color: black"
-							VBox.vgrow="NEVER">
+						<Pane fx:id="simPane" maxHeight="-1.0" minHeight="-Infinity" prefHeight="255.0" prefWidth="1202.0" style="-fx-background-color: black" VBox.vgrow="NEVER">
 							<children>
 								<fx:include source="sim/fountainSim.fxml" />
+                                <Label fx:id="fcwOutput" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="22.0" text="FCW Output" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.vgrow="NEVER">
+                                    <GridPane.margin>
+                                        <Insets left="4.0" />
+                                    </GridPane.margin>
+                                </Label>
 							</children>
 						</Pane>
 
 
 						<fx:include source="sliders/Sliders.fxml"> </fx:include>
-						<fx:include source="music/MusicPane.fxml" >
+						<fx:include source="music/MusicPane.fxml">
 						</fx:include>
 
-						<HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-1.0"
-							prefHeight="15.0" prefWidth="1329.0" visible="true">
+						<HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-1.0" prefHeight="17.0" prefWidth="1300.0" visible="true">
 							<children>
 							</children>
 							<padding>
@@ -160,46 +133,28 @@
 							</VBox.margin>
 						</HBox>
 
-						<fx:include source="timeline/Timeline.fxml" >
+						<fx:include source="timeline/Timeline.fxml">
 						</fx:include>
 
-						<GridPane id="GridPane" fx:id="progressIndicator"
-							maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0"
-							VBox.vgrow="NEVER">
+						<GridPane id="GridPane" fx:id="progressIndicator" maxHeight="-Infinity"  minHeight="-Infinity" prefHeight="63.0" prefWidth="1300.0" VBox.vgrow="NEVER">
 
 							<children>
-								<Label fx:id="fcwOutput" alignment="CENTER_LEFT"
-									maxHeight="-Infinity" minHeight="-Infinity" prefHeight="18.0"
-									text="FCW Output" GridPane.columnIndex="0" GridPane.rowIndex="0"
-									GridPane.vgrow="NEVER">
-									<GridPane.margin>
-										<Insets left="4.0" />
-									</GridPane.margin>
-								</Label>
-								<ToggleButton fx:id="selectionButton" visible="false"
-									mnemonicParsing="false" prefWidth="53.0" text="Select"
-									GridPane.columnIndex="1" GridPane.halignment="LEFT"
-									GridPane.rowIndex="0">
+
+								<ToggleButton fx:id="selectionButton" mnemonicParsing="false" prefWidth="53.0" text="Select" visible="false" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0">
 									<GridPane.margin>
 										<Insets />
 									</GridPane.margin>
 								</ToggleButton>
-								<fx:include source="colorPalette/ColorPalette.fxml"
-								    GridPane.columnIndex="2" GridPane.halignment="RIGHT"
-									GridPane.rowIndex="0" GridPane.vgrow="NEVER" />
+								<fx:include source="colorPalette/ColorPalette.fxml" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.vgrow="NEVER" />
 							</children>
 
 							<columnConstraints>
-								<ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0"
-									minWidth="10.0" prefWidth="181.0" />
-								<ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0"
-									minWidth="10.0" prefWidth="77.0" />
-								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1113.0"
-									minWidth="10.0" prefWidth="1071.0" />
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="181.0" />
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="77.0" />
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1113.0" minWidth="10.0" prefWidth="1071.0" />
 							</columnConstraints>
 							<rowConstraints>
-								<RowConstraints maxHeight="-Infinity" minHeight="10.0"
-									prefHeight="35.0" vgrow="NEVER" />
+								<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
 							</rowConstraints>
 						</GridPane>
 
