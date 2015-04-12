@@ -610,6 +610,7 @@ public class TimelineController implements Initializable {
 		gridpaneWater.setGridLinesVisible(true);
 
 		waterRecArray = new Rectangle[time];
+
 		for (int i = 0; i < time; i++) {
 			final int testI = i;
 			gridpaneWater.getColumnConstraints().add(new ColumnConstraints(26));
@@ -676,7 +677,10 @@ public class TimelineController implements Initializable {
 			for (FCW f : waterTimeline.get(i)) {
 				actionsList.add(f.getPrettyString());
 			}
-			waterRecArray[colAtTime].setFill(Color.AZURE);
+			if(colAtTime < 0) {
+				waterRecArray[colAtTime].setFill(Color.AZURE);
+			}
+
 			t = new Tooltip(actionsList.toString());
 			t.setAutoHide(true);
 			Tooltip.install(waterRecArray[colAtTime], t);
