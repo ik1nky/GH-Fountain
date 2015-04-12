@@ -62,77 +62,30 @@ public class SlidersController {
 
 	@FXML
 	private ResourceBundle resources;
-
 	@FXML
 	private URL location;
 
+	/*
+	 * LIST OF ALL SLIDERS WITH VARIABLE NAMES
+	 *
+	 * ftC = front curtain
+	 * bkC = back curtain
+	 * bz = bazooka
+	 * candleA = Candelabra A
+	 * candleB = Candelabra B
+	 * r1 - r5 Rings A and B
+	 * mx = multi a and b
+	 * sw = sweeps a and b
+	 * pk = peacock
+	 * sp = spout
+	 */
 	@FXML
-	private Slider bkC;
-
+	private Slider bkC, bz, candleA, candleB, ftC, mxA, mxB, pk, r1A, r1B, r2A, r2B, r3A, r3B, r4A, r4B, r5A, r5B, sp,
+	swA, swB;
 	@FXML
-	private Slider bz;
-
-	@FXML
-	private Slider candleA;
-
-	@FXML
-	private Slider candleB;
-
-	@FXML
-	private Slider ftC;
-
-	@FXML
-	private Slider mxA;
-
-	@FXML
-	private Slider mxB;
-
-	@FXML
-	private Slider pk;
-
-	@FXML
-	private Slider r1A;
-
-	@FXML
-	private Slider r1B;
-
-	@FXML
-	private Slider r2A;
-
-	@FXML
-	private Slider r2B;
-
-	@FXML
-	private Slider r3A;
-
-	@FXML
-	private Slider r3B;
-
-	@FXML
-	private Slider r4A;
-
-	@FXML
-	private Slider r4B;
-
-	@FXML
-	private Slider r5A;
-
-	@FXML
-	private Slider r5B;
-
-	@FXML
-	private Slider sp;
-
-	@FXML
-	private Slider swA;
-
-	@FXML
-	private Slider swB;
 	private Slider[] allSliders;
-
 	@FXML
 	private HBox slidersPane;
-
 	@FXML
 	void initialize() {
 		assert bkC != null : "fx:id=\"bkC\" was not injected: check your FXML file 'Sliders.fxml'.";
@@ -185,7 +138,6 @@ public class SlidersController {
 	 * @param s
 	 */
 	public void setupCannonSliderChangeListener(ArrayList<? extends Cannon> list, ModuleGroup aB, ModuleEnum me, CannonEnum ce, Slider s, Slider paired) {
-
 		list = aB.getCannonGroup(ce);
 		CannonSliderChangeListener<? extends Cannon> cs = new CannonSliderChangeListener<>(list, me.getModule());
 		s.valueProperty().addListener(cs);
@@ -195,37 +147,23 @@ public class SlidersController {
 
 	private void setupAModule() {
 		setupCannonSliderChangeListener(rings1A, A, ModuleEnum.A, CannonEnum.RING1, r1A, r1B);
-
 		setupCannonSliderChangeListener(rings2A, A, ModuleEnum.A, CannonEnum.RING2, r2A, r2B);
-
 		setupCannonSliderChangeListener(rings3A, A, ModuleEnum.A, CannonEnum.RING3, r3A, r3B);
-
 		setupCannonSliderChangeListener(rings4A, A, ModuleEnum.A, CannonEnum.RING4, r4A, r4B);
-
 		setupCannonSliderChangeListener(rings5A, A, ModuleEnum.A, CannonEnum.RING5, r5A, r5B);
-
 		setupCannonSliderChangeListener(multisA, A, ModuleEnum.A, CannonEnum.MULTI, mxA, mxB);
-
 		setupCannonSliderChangeListener(candlesA, A, ModuleEnum.A, CannonEnum.CANDELABRA, candleA, candleB);
-
 		setupCannonSliderChangeListener(sweepsA, A, ModuleEnum.A, CannonEnum.SWEEP, swA, swB);
 	}
 
 	private void setupBModule() {
 		setupCannonSliderChangeListener(rings1B, B, ModuleEnum.B, CannonEnum.RING1, r1B, r1A);
-
 		setupCannonSliderChangeListener(rings2B, B, ModuleEnum.B, CannonEnum.RING2, r2B, r2A);
-
 		setupCannonSliderChangeListener(rings3B, B, ModuleEnum.B, CannonEnum.RING3, r3B, r3A);
-
 		setupCannonSliderChangeListener(rings4B, B, ModuleEnum.B, CannonEnum.RING4, r4B, r4A);
-
 		setupCannonSliderChangeListener(rings5B, B, ModuleEnum.B, CannonEnum.RING5, r5B, r5A);
-
 		setupCannonSliderChangeListener(multisB, B, ModuleEnum.B, CannonEnum.MULTI, mxB, mxA);
-
 		setupCannonSliderChangeListener(candlesB, B, ModuleEnum.B, CannonEnum.CANDELABRA, candleB, candleA);
-
 		setupCannonSliderChangeListener(sweepsB, B, ModuleEnum.B, CannonEnum.SWEEP, swB, swA);
 	}
 
@@ -267,20 +205,17 @@ public class SlidersController {
 	 * @param fcws
 	 */
 	public synchronized void setSlidersWithFcw(ArrayList<FCW> fcws) {
-		// Concurrency issues with for each loops -> therefore must use normal
-		// for loop
+		// Concurrency issues with for each loops -> therefore must use normal for loop
 		for (int g = 0; g < fcws.size(); g++) {
 			FCW f = fcws.get(g);
 			if (!f.getIsWater()) {
 				fcws.remove(f);
 			}
 		}
-		// resetAllSliders();
 		Iterator<FCW> it = fcws.iterator();
 		while (it.hasNext()) {
 			FCW f = it.next();
 			String[] actions = FCWLib.getInstance().reverseLookupData(f);
-			// String module = findModule(actions);
 
 			for (String action : actions) {
 				switch (f.getAddr()) {
@@ -377,36 +312,6 @@ public class SlidersController {
 						mxB.setValue(level);
 					}
 					break;
-				// Sweeps Speeds!
-				case 33:
-				case 34:
-				case 38:
-				case 39:
-					if (action.equalsIgnoreCase("offreset")) {
-
-					} else if (action.equalsIgnoreCase("short")) {
-
-					} else if (action.equalsIgnoreCase("long")) {
-
-					} else if (action.equalsIgnoreCase("largo")) {
-
-					} else if (action.equalsIgnoreCase("adagio")) {
-
-					} else if (action.equalsIgnoreCase("andante")) {
-
-					} else if (action.equalsIgnoreCase("moderato")) {
-
-					} else if (action.equalsIgnoreCase("allegreto")) {
-
-					} else if (action.equalsIgnoreCase("allegro")) {
-
-					} else if (action.equalsIgnoreCase("presto")) {
-
-					} else if (action.equalsIgnoreCase("playpause")) {
-
-					}
-				case 35:
-				case 36:
 				case 37:
 					SpecialoperationsController.getInstance().setSweeps(f);
 					break;
@@ -414,22 +319,6 @@ public class SlidersController {
 			}
 		}
 	}
-
-	//
-	// public String findModule(String[] input) {
-	// for(String action: input) {
-	// if(action.equalsIgnoreCase("modulea")){
-	// return "A";
-	// }
-	// else if(action.equalsIgnoreCase("moduleb")){
-	// return "B";
-	// }
-	// else if(action.equalsIgnoreCase("ftcurt")) {
-	// return "A";
-	// }
-	// }
-	// return null;
-	// }
 
 	public int findLevel(String[] input) {
 		for (String action : input) {
@@ -447,7 +336,6 @@ public class SlidersController {
 			case "6":
 				return 6;
 			}
-
 		}
 		return 0;
 	}

@@ -232,24 +232,20 @@ public class Timeline {
 				}
 			}
 		}
-
 		statefulTimeline.insertIntoTimelineStateful(pointInTime, f);
 		insertIntoTimeline(timeline, pointInTime, f);
 
 		TimelineController.getInstance().rePaintWaterTimeline();
-		// waterTimeline.get(pointInTime).add(f);
 	}
 
 	/*
-	 * public void setLightFcwAtPoint(int point, FCW f) {
-	 * 
-	 * }
+	 * This is the main piece of logic for painting the lighting timeline, which is then used to paint the anamation
 	 */
+	public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
+        //Before we used this to take out all op codes we do not want such as 49, 50, 51
 
-	/*public void fillTheSpaces(
-			SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
 		for (Integer channel : channelMap.keySet()) {
-			int start, end, color;
+            int start, end, color, end2;
 			SortedMap<Integer, Integer> newMap = new ConcurrentSkipListMap<>();
 			for (Integer tenth : channelMap.get(channel).keySet()) {
 				if (channelMap.get(channel).get(tenth) != 0) {
@@ -274,228 +270,6 @@ public class Timeline {
 				}
 				channelMap.get(channel).putAll(newMap);
 			}
-		}
-	}*/
-
-	public void fillTheSpaces(SortedMap<Integer, SortedMap<Integer, Integer>> channelMap) {
-        for (Integer channel : channelMap.keySet()) {
-            int start, end, color, end2;
-			SortedMap<Integer, Integer> newMap = new ConcurrentSkipListMap<>();
-			SortedMap<Integer, Integer> newMap17 = new ConcurrentSkipListMap<>();
-			SortedMap<Integer, Integer> newMap18 = new ConcurrentSkipListMap<>();
-			SortedMap<Integer, Integer> newMap19 = new ConcurrentSkipListMap<>();
-			SortedMap<Integer, Integer> newMap20 = new ConcurrentSkipListMap<>();
-			SortedMap<Integer, Integer> newMap21 = new ConcurrentSkipListMap<>();
-			SortedMap<Integer, Integer> newMap22 = new ConcurrentSkipListMap<>();
-			SortedMap<Integer, Integer> newMap23 = new ConcurrentSkipListMap<>();
-
-            if(channel == 51 || channel == 50 || channel == 49) {
-                //This part will need to be done for each module within the corresponding group(ie group a --> modules 1,3,5,7)
-                for (Integer tenth : channelMap.get(channel).keySet()) {
-                    if (channelMap.get(channel).get(tenth) != 0) {
-                        start = tenth;
-                        color = channelMap.get(channel).get(tenth);
-                        Iterator<Entry<Integer, Integer>> it;
-						if(channel == 49) {
-							System.out.println("hit 49 at " + start);
-							Iterator<Entry<Integer, Integer>> it2 = channelMap.get(49).tailMap(start + 1).entrySet().iterator();
-
-							it = channelMap.get(17).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
-							if(end <= end2) {
-								setLightFcwWithRange(newMap17, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap17, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(19).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-							if(end <= end2) {
-								setLightFcwWithRange(newMap19, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap19, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(21).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-							if(end <= end2) {
-								setLightFcwWithRange(newMap21, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap21, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(23).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-							if(end <= end2) {
-								setLightFcwWithRange(newMap23, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap23, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-						}
-						else if(channel == 50) {
-							System.out.println("hit 50 at " + tenth);
-
-							Iterator<Entry<Integer, Integer>> it2 = channelMap.get(50).tailMap(start + 1).entrySet().iterator();
-
-							it = channelMap.get(18).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
-							if(end <= end2) {
-								setLightFcwWithRange(newMap18, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap18, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(20).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-
-							if(end <= end2) {
-								setLightFcwWithRange(newMap20, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap20, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(22).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-
-							if(end <= end2) {
-								setLightFcwWithRange(newMap22, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap22, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-
-						}
-						else if (channel == 51) {
-							System.out.println("hit 51 at " + tenth);
-
-							Iterator<Entry<Integer, Integer>> it2 = channelMap.get(51).tailMap(start + 1).entrySet().iterator();
-							it = channelMap.get(17).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-							end2 = getEndTime(it2, it, start, color);
-							if(end <= end2) {
-								setLightFcwWithRange(newMap17, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap17, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(19).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-
-							if(end <= end2) {
-								setLightFcwWithRange(newMap19, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap19, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(21).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-
-							if(end <= end2) {
-								setLightFcwWithRange(newMap21, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap21, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(23).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-
-							if(end <= end2) {
-								setLightFcwWithRange(newMap23, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap23, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(18).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-
-							if(end <= end2) {
-								setLightFcwWithRange(newMap18, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap18, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(20).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-
-							if(end <= end2) {
-								setLightFcwWithRange(newMap20, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap20, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-
-							it = channelMap.get(22).tailMap(start + 1).entrySet().iterator();
-							end = getEndTime(it, it2, start, color);
-
-							if(end <= end2) {
-								setLightFcwWithRange(newMap22, start, end, color);
-							} else {
-								setLightFcwWithRange(newMap22, start, end2, color);
-							}
-							System.out.println("end: " + end + " end2: " + end2);
-						}
-                    }
-					if (channel == 49) {
-						channelMap.get(17).putAll(newMap17);
-						channelMap.get(19).putAll(newMap19);
-						channelMap.get(21).putAll(newMap21);
-						channelMap.get(23).putAll(newMap23);
-					}
-					else if (channel == 50) {
-						channelMap.get(18).putAll(newMap18);
-						channelMap.get(20).putAll(newMap20);
-						channelMap.get(22).putAll(newMap22);
-					}
-					else if (channel == 51) {
-						channelMap.get(17).putAll(newMap17);
-						channelMap.get(18).putAll(newMap18);
-						channelMap.get(19).putAll(newMap19);
-						channelMap.get(20).putAll(newMap20);
-						channelMap.get(21).putAll(newMap21);
-						channelMap.get(22).putAll(newMap22);
-						channelMap.get(23).putAll(newMap23);
-					}
-                }
-            } else{
-                for (Integer tenth : channelMap.get(channel).keySet()) {
-                    if (channelMap.get(channel).get(tenth) != 0) {
-                        start = tenth;
-                        color = channelMap.get(channel).get(tenth);
-                        Iterator<Entry<Integer, Integer>> it = channelMap
-                                .get(channel).tailMap(start + 1).entrySet()
-                                .iterator();
-                        while (it.hasNext()) {
-                            Entry<Integer, Integer> timeColor = it.next();
-                            if (timeColor.getValue() == 0
-                                    && timeColor.getKey() != start) {
-                                end = timeColor.getKey();
-                                setLightFcwWithRange(newMap, start, end, color);
-                                break;
-                            } else if (timeColor.getValue() != color) {
-                                end = timeColor.getKey();// - 1;
-                                setLightFcwWithRange(newMap, start, end, color);
-                                break;
-                            }
-                        }
-                    }
-                    channelMap.get(channel).putAll(newMap);
-                }
-            }
         }
     }
 
@@ -546,8 +320,6 @@ public class Timeline {
 			SortedMap<Integer, Integer> newMap = new ConcurrentSkipListMap<>();
 			// int start = 0;
 			for (FCW f : lightTimeline.get(timeIndex)) {
-				// String name = FCWLib.getInstance().reverseLookupAddress(f);
-				// String[] actions = FCWLib.getInstance().reverseLookupData(f);
 				int color = f.getData();
 				int tenthOfSec = timeIndex % 10;
 				int secondsOnly = timeIndex / 10;
@@ -588,8 +360,6 @@ public class Timeline {
 		return address.size();
 	}
 
-	// private void populateLightFcwArray() {
-
 	public void sendTimelineInstanceToSliders(int time) {
         int closestKey = 0;
 		ConcurrentSkipListMap<Integer, ArrayList<FCW>> waterTimeline = (ConcurrentSkipListMap<Integer, ArrayList<FCW>>) getWaterTimeline();
@@ -620,12 +390,6 @@ public class Timeline {
 		return waterTimeline.containsKey(time);
 	}
 
-	public void sendSubmapToSim(int tenthsTime) {
-		// FountainSimController.getInstance().acceptSubmapOfFcws(timeline.tailMap(timeline.floorKey(tenthsTime)));
-		// FountainSimController.getInstance().acceptSubmapOfFcws(timeline.subMap(tenthsTime,
-		// true, MusicPaneController.getInstance().SONG_TIME, true));
-	}
-
 	private boolean checkForCollision( SortedMap<Integer, ArrayList<FCW>> timeline, int pointInTime, FCW query) {
 		boolean result = false;
 		if (timeline.containsKey(pointInTime)) {
@@ -642,15 +406,6 @@ public class Timeline {
 								// query.setData(query.getData() + f.getData());
 								return true;
 							}
-							// else if(!fAction.equals(queryAction) &&
-							// !FCWLib.getInstance().isLevel(fAction)) {
-							// if(f.getData() > query.getData()) {
-							// query.setData(f.getData() - query.getData());
-							// }
-							// else {
-							// query.setData(f.getData() + query.getData());
-							// }
-							// }
 						}
 					}
 					if (f.getAddr() == 54) {
@@ -675,12 +430,6 @@ public class Timeline {
 		// waterTimeline.remove(i);
 	}
 
-	/*
-	 * public void collapseTimelines() { ConcurrentSkipListMap<Integer,
-	 * ArrayList<FCW>> result = new ConcurrentSkipListMap<>(); //
-	 * timeline.clear(); insertFcwsIntoTimeline(lightTimeline);
-	 * insertFcwsIntoTimeline(waterTimeline); timeline = result; }
-	 */
 	public void insertFcwsIntoTimeline(SortedMap<Integer, ArrayList<FCW>> srcTimeline) {
 		for (Integer timeIndex : srcTimeline.keySet()) {
 			for (FCW f : srcTimeline.get(timeIndex)) {

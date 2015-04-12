@@ -60,7 +60,6 @@ public class FCW {
     public void setData(int data) {
         this.data = data;
     }
-
     public void addComment(String s) { comments.add(s); }
     public void removeComment(int index){ comments.remove(index);}
     public ArrayList<String> getComments(){ return comments; }
