@@ -42,15 +42,15 @@
     <Group fx:id="bazooka">
       <children>
       <Line fx:id="bazooka3" endX="10.0" endY="10.0" startX="10.0" startY="10.0" strokeWidth="10.0" stroke="LIGHTGRAY" visible="false"/>
-          
+
       <Line fx:id="bazooka1" endX="10.0" endY="10.0" startX="10.0" startY="10.0" stroke="LIGHTGRAY" strokeWidth="10.0" visible="false" />
-        
+
         <QuadCurve fx:id="bazookaB" controlY="200.0" endY="220.0" layoutX="5.0" layoutY="10.0" stroke="#dd0b0b" strokeType="INSIDE" strokeWidth="10.0" />
         <Line fx:id="bazooka5" endX="500.0" endY="235.0" smooth="false" startX="400.0" startY="225.0" stroke="LIGHTGRAY" strokeWidth="10.0" visible="false" />
         <Line fx:id="bazooka4" endX="1320.0" endY="10.0" startX="1320.0" startY="10.0" stroke="LIGHTGRAY" strokeWidth="10.0" visible="false" />
         <Line fx:id="bazooka2" endX="1320.0" endY="10.0" startX="1320.0" startY="10.0" stroke="LIGHTGRAY" strokeWidth="10.0" visible="false" />
-        
-        
+
+
       </children>
     </Group>
     <Group fx:id="mod1" layoutX="920.0">
